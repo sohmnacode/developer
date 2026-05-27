@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/research.css">
+<link rel="stylesheet" href="/assets/chat-widget.css">
 <style>
 .tier-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px}
 .tier-chip{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.7);font-size:12px;font-weight:500}
@@ -124,5 +125,6 @@ map.innerHTML = evidenceDomains.map(d => `
     <div class="card-footer">Explore full research →</div>
   </a>`).join('');
 </script>
+<script src="/assets/chat-widget.js" defer></script>
 </body>
 </html>

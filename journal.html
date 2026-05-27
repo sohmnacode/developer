@@ -5,6 +5,7 @@
 <title>Experience Journal — ReincarnatedAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/research.css">
+<link rel="stylesheet" href="/assets/chat-widget.css">
 </head>
 <body>
 <nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/methodology">Methodology</a><a href="/glossary">Glossary</a><a href="/unknowns">Unknowns</a></div><a href="/#chatbox" class="cta-nav">ASK RAI</a></nav>
@@ -31,4 +32,5 @@ form.onsubmit=e=>{e.preventDefault();const rows=load();rows.unshift({title:title
 document.getElementById('export').onclick=()=>{const blob=new Blob([JSON.stringify(load(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='reincarnatedai-experience-journal.json';a.click();URL.revokeObjectURL(a.href)};
 render();
 </script>
+<script src="/assets/chat-widget.js" defer></script>
 </body></html>
