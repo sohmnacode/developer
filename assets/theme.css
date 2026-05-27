@@ -7,7 +7,7 @@
   text-decoration:none;transition:all .15s;
 }
 .nav-icon-btn:hover{border-color:rgba(255,255,255,.45);color:#fff;}
-nav.scrolled .nav-icon-btn{border-color:rgba(45,107,34,.2);color:rgba(23,54,20,.45);}
+nav.scrolled .nav-icon-btn{border-color:rgba(45,107,34,.2);color:rgba(23,54,20,0.65);}
 nav.scrolled .nav-icon-btn:hover{border-color:rgba(45,107,34,.4);color:#173614;}
 
 /* ── Hamburger (hidden on desktop) ── */
@@ -20,7 +20,7 @@ nav.scrolled .nav-icon-btn:hover{border-color:rgba(45,107,34,.4);color:#173614;}
   transition:all .15s;
 }
 .nav-hamburger:hover{border-color:rgba(255,255,255,.45);color:#fff;}
-nav.scrolled .nav-hamburger{border-color:rgba(45,107,34,.2);color:rgba(23,54,20,.45);}
+nav.scrolled .nav-hamburger{border-color:rgba(45,107,34,.2);color:rgba(23,54,20,0.65);}
 nav.scrolled .nav-hamburger:hover{border-color:rgba(45,107,34,.4);color:#173614;}
 [data-theme="dark"] nav.scrolled .nav-hamburger{border-color:rgba(80,140,70,.3);color:rgba(130,180,120,.7);}
 

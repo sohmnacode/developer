@@ -26,7 +26,7 @@ main{position:relative}
 .card ul{padding-left:18px;margin-top:10px}
 .meta{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(45,130,34,.68);margin-bottom:12px}
 .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.pill{border:1px solid rgba(45,107,34,.16);border-radius:999px;padding:6px 10px;font-size:11px;color:rgba(23,54,20,.58);background:rgba(255,255,255,.55)}
+.pill{border:1px solid rgba(45,107,34,.16);border-radius:999px;padding:6px 10px;font-size:11px;color:rgba(23,54,20,0.75);background:rgba(255,255,255,.55)}
 .divider{height:1px;background:linear-gradient(to right,transparent,var(--line),transparent)}
 .score{height:8px;border-radius:999px;background:rgba(45,107,34,.1);overflow:hidden;margin:16px 0 10px}
 .score span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--leaf),var(--bright))}
@@ -43,8 +43,8 @@ main{position:relative}
 .timeline{display:flex;flex-direction:column;gap:16px}
 .event{display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;padding:22px;border:1px solid var(--line);background:rgba(255,255,255,.62);border-radius:8px}
 .year{font-size:22px;font-weight:700;color:var(--leaf);font-family:'Fraunces',serif}
-.footer{padding:34px 80px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:rgba(23,54,20,.32);font-size:12px}
-.footer a{text-decoration:none;color:rgba(23,54,20,.52)}
+.footer{padding:34px 80px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:rgba(23,54,20,0.65);font-size:12px}
+.footer a{text-decoration:none;color:rgba(23,54,20,0.75)}
 @media(max-width:760px){nav{padding:16px 20px;align-items:flex-start}.links{gap:12px}.cta-nav{display:none}.hero{padding:110px 24px 48px}.section{padding:58px 24px}.split{grid-template-columns:1fr}.rail{position:static}.event{grid-template-columns:1fr;gap:8px}.footer{padding:28px 24px;flex-direction:column}.links a{font-size:11px}}
 
 /* nav-icon-btn styles live in theme.css */
@@ -52,8 +52,8 @@ main{position:relative}
 /* ── Dark mode overrides ── */
 [data-theme="dark"]{
   --ink:rgba(218,238,210,.9);
-  --muted:rgba(155,195,145,.62);
-  --soft:rgba(130,175,120,.45);
+  --muted:rgba(175,215,160,.85);
+  --soft:rgba(155,195,145,.70);
   --line:rgba(80,140,70,.15);
   --paper:#080f0a;
   --paper2:#0b140d;

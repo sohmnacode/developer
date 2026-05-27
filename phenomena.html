@@ -59,7 +59,7 @@
   border:1px solid rgba(45,107,34,.14);
   background:rgba(255,255,255,.7);
   font-size:11.5px;
-  color:rgba(23,54,20,.52);
+  color:rgba(23,54,20,0.75);
   cursor:pointer;
   font-family:inherit;
   transition:all .15s;
@@ -68,7 +68,7 @@
 .chip.active{ background:rgba(45,107,34,.09); border-color:rgba(45,130,34,.4); color:#2d6b22; font-weight:600; }
 
 .phenomena-main{ padding:40px 80px 80px; max-width:1120px; margin:0 auto; }
-.results-count{ font-size:13px; color:rgba(23,54,20,.4); margin-bottom:28px; }
+.results-count{ font-size:13px; color:rgba(23,54,20,0.65); margin-bottom:28px; }
 
 .phenom-card{
   background:#fff;
@@ -122,7 +122,7 @@
 }
 .phenom-desc{
   font-size:12.5px;
-  color:rgba(23,54,20,.58);
+  color:rgba(23,54,20,0.75);
   line-height:1.68;
   margin-bottom:14px;
 }
@@ -131,7 +131,7 @@
   font-size:10px;
   letter-spacing:.12em;
   text-transform:uppercase;
-  color:rgba(23,54,20,.38);
+  color:rgba(23,54,20,0.65);
   margin-bottom:5px;
 }
 .freq-bar{
@@ -147,7 +147,7 @@
   background:linear-gradient(90deg,#2d6b22,#48a82e);
   transition:width .6s cubic-bezier(.4,0,.2,1);
 }
-.freq-note{ font-size:11px; color:rgba(23,54,20,.42); }
+.freq-note{ font-size:11px; color:rgba(23,54,20,0.65); }
 .phenom-card-bottom{
   padding:12px 22px 16px;
   border-top:1px solid rgba(45,107,34,.06);
@@ -162,7 +162,7 @@
   align-items:center;
   gap:5px;
   font-size:10.5px;
-  color:rgba(23,54,20,.4);
+  color:rgba(23,54,20,0.65);
 }
 .cross-cultural-badge span{ color:#2d7a22; font-weight:600; }
 .read-more{ font-size:11px; color:rgba(45,107,34,.65); font-weight:500; }
@@ -216,7 +216,7 @@
   flex-shrink:0;
 }
 .modal-name{ font-family:'Fraunces',serif; font-size:20px; font-weight:700; color:#173614; margin-bottom:2px; }
-.modal-sub{ font-size:11.5px; color:rgba(23,54,20,.44); }
+.modal-sub{ font-size:11.5px; color:rgba(23,54,20,0.65); }
 .modal-close{
   margin-left:auto;
   width:30px; height:30px;
@@ -225,7 +225,7 @@
   background:transparent;
   cursor:pointer;
   font-size:14px;
-  color:rgba(23,54,20,.4);
+  color:rgba(23,54,20,0.65);
   display:flex; align-items:center; justify-content:center;
   flex-shrink:0;
   transition:background .15s;
@@ -236,9 +236,9 @@
 .modal-label{ font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(45,107,34,.65); margin-bottom:6px; font-weight:600; }
 .modal-text{ font-size:13px; color:rgba(23,54,20,.68); line-height:1.75; }
 .modal-tags{ display:flex; flex-wrap:wrap; gap:6px; }
-.modal-tag{ padding:5px 11px; border-radius:999px; border:1px solid rgba(45,107,34,.12); font-size:11px; color:rgba(23,54,20,.5); background:rgba(237,245,232,.6); }
+.modal-tag{ padding:5px 11px; border-radius:999px; border:1px solid rgba(45,107,34,.12); font-size:11px; color:rgba(23,54,20,0.75); background:rgba(237,245,232,.6); }
 .modal-cases{ display:flex; flex-direction:column; gap:6px; }
-.modal-case-item{ font-size:12.5px; color:rgba(23,54,20,.6); padding:7px 12px; background:rgba(237,245,232,.5); border-radius:8px; border:1px solid rgba(45,107,34,.08); }
+.modal-case-item{ font-size:12.5px; color:rgba(23,54,20,0.75); padding:7px 12px; background:rgba(237,245,232,.5); border-radius:8px; border:1px solid rgba(45,107,34,.08); }
 
 @media(max-width:760px){
   .filter-strip{ padding:14px 20px; }
@@ -310,7 +310,7 @@ function render() {
           <div class="freq-label">Reported frequency</div>
           <div class="freq-bar"><div class="freq-bar-fill" style="width:${Math.min(p.frequency,100)}%"></div></div>
           <div class="freq-note">${p.frequencyNote}</div>
-        </div>` : `<div class="freq-note" style="font-size:11px;color:rgba(23,54,20,.42)">${p.frequencyNote}</div>`}
+        </div>` : `<div class="freq-note" style="font-size:11px;color:rgba(23,54,20,0.65)">${p.frequencyNote}</div>`}
       </div>
       <div class="phenom-card-bottom">
         <div class="cross-cultural-badge">
