@@ -147,6 +147,7 @@ nav.scrolled .nav-hamburger:hover{border-color:rgba(100,75,180,.4);color:#1A1535
 [data-theme="dark"] .tool-card{background:#130E25!important;border-color:rgba(110,85,190,.1)!important;}
 [data-theme="dark"] .tool-card h3{color:rgba(237,232,224,.9)!important;}
 [data-theme="dark"] .tool-card p{color:rgba(180,172,225,.6)!important;}
+[data-theme="dark"] .s2-quote-text{background:linear-gradient(135deg,#B09AE8,#D4C3F5,#EDE0FF)!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;background-clip:text!important}
 [data-theme="dark"] .sh2 h2{color:rgba(237,232,224,.92)!important;}
 [data-theme="dark"] .sh2 p{color:rgba(160,150,210,.6)!important;}
 [data-theme="dark"] .s3h h2{color:rgba(237,232,224,.92)!important;}
