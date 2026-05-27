@@ -1000,15 +1000,21 @@ const QUOTES = [
     status.className = 'cf-status';
 
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message }),
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: 'bee91e89-fdb3-4ee9-aaaa-ce280162ddb8',
+          subject: `New message from ${name} — ReincarnatedAI`,
+          from_name: 'ReincarnatedAI Contact Form',
+          name, email, message,
+          replyto: email,
+        }),
       });
 
       const data = await res.json();
 
-      if (res.ok) {
+      if (res.ok && data.success) {
         status.textContent = '✓ Message sent — we\'ll be in touch.';
         status.className = 'cf-status success';
         form.reset();
