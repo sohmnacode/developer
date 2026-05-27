@@ -162,7 +162,7 @@ nav.scrolled .nav-hamburger:hover{border-color:rgba(45,107,34,.4);color:#173614;
 [data-theme="dark"] .stat-l,
 [data-theme="dark"] .tool-tag,
 [data-theme="dark"] .case-body,
-[data-theme="dark"] .case-location-year{color:rgba(130,175,120,.65)!important;}
+[data-theme="dark"] .case-location-year{color:rgba(170,215,155,.82)!important;}
 
 /* Quote / descriptive text */
 [data-theme="dark"] .s2i p,
@@ -172,7 +172,7 @@ nav.scrolled .nav-hamburger:hover{border-color:rgba(45,107,34,.4);color:#173614;
 [data-theme="dark"] .s5i .lead,
 [data-theme="dark"] .s5-foot,
 [data-theme="dark"] .cta-block p,
-[data-theme="dark"] .hero-desc{color:rgba(130,175,120,.62)!important;}
+[data-theme="dark"] .hero-desc{color:rgba(160,205,145,.78)!important;}
 
 /* Section borders */
 [data-theme="dark"] .cta-block{border-color:rgba(80,140,70,.12)!important;}
