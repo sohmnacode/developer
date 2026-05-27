@@ -99,7 +99,10 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
 .send-btn{width:34px;height:34px;flex-shrink:0;border-radius:12px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .2s;color:#fff}
 .send-btn:disabled{opacity:.3;cursor:default}
 .send-btn:not(:disabled):hover{opacity:.85}
-.chat-disclaimer{text-align:center;font-size:10px;color:rgba(26,21,53,0.5);margin-top:10px}
+.chat-footer-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px;flex-wrap:wrap}
+.chat-disclaimer{font-size:10px;color:rgba(26,21,53,0.5)}
+.save-chat-btn{font-size:10px;color:rgba(109,40,217,0.65);background:none;border:none;cursor:pointer;padding:0;font-family:inherit;letter-spacing:.04em;transition:color .15s}
+.save-chat-btn:hover{color:rgba(109,40,217,1)}
 
 /* Research domains section */
 .s4{background:#fff;padding:112px 40px;position:relative;z-index:2}
@@ -367,7 +370,10 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M14 8L2 2l2.5 6L2 14l12-6z" fill="white"/></svg>
       </button>
     </div>
-    <p class="chat-disclaimer">ReincarnatedAI synthesizes consciousness research — not medical or spiritual advice</p>
+    <div class="chat-footer-row">
+      <p class="chat-disclaimer">ReincarnatedAI synthesizes consciousness research — not medical or spiritual advice</p>
+      <button id="saveChat" class="save-chat-btn" onclick="saveChatTranscript()" hidden>↓ Save conversation</button>
+    </div>
   </div>
 </section>
 
@@ -919,6 +925,7 @@ async function sendMsg(preset) {
     // Remove cursor, finalise
     aiBody.querySelectorAll('.cursor').forEach(c => c.remove());
     history.push({ role: 'assistant', content: aiBody._raw });
+    document.getElementById('saveChat').hidden = false;
 
   } catch {
     aiBody.querySelectorAll('.cursor').forEach(c => c.remove());
@@ -927,6 +934,29 @@ async function sendMsg(preset) {
 
   busy = false;
   sendBtn.disabled = !chatIn.value.trim();
+}
+
+function saveChatTranscript() {
+  const modeLabel = { researcher: 'Researcher', skeptic: 'Skeptic', guide: 'Gentle Guide', compare: 'Compare Theories' };
+  const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const lines = [
+    'ReincarnatedAI — Chat Transcript',
+    date + ' · Mode: ' + (modeLabel[chatMode] || chatMode),
+    '',
+    '─'.repeat(48),
+    '',
+  ];
+  for (const m of history) {
+    lines.push(m.role === 'user' ? 'You:' : 'RAI:');
+    lines.push(m.content.trim());
+    lines.push('');
+  }
+  const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'reincarnatedai-chat-' + new Date().toISOString().slice(0, 10) + '.txt';
+  a.click();
+  URL.revokeObjectURL(a.href);
 }
 </script>
 
