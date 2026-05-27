@@ -85,8 +85,11 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
 .msg-body p{margin:.35em 0}
 .msg-body ul,.msg-body ol{margin:.35em 0;padding-left:1.4em}
 .msg-body a{color:#7B4FC9;text-decoration:none}
-.cursor{display:inline-block;width:6px;height:14px;background:rgba(120,95,190,.8);margin-left:2px;vertical-align:middle;animation:blink .9s step-end infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.cursor{display:inline-flex;gap:3px;align-items:center;margin-left:4px;vertical-align:middle}
+.cursor s{display:inline-block;font-size:13px;font-style:normal;color:rgba(120,95,190,.85);animation:starPulse 1.3s ease-in-out infinite}
+.cursor s:nth-child(2){animation-delay:.22s}
+.cursor s:nth-child(3){animation-delay:.44s}
+@keyframes starPulse{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
 .chat-input-row{display:flex;align-items:flex-end;gap:10px;background:rgba(255,255,255,.7);border:1px solid rgba(100,75,180,.25);border-radius:18px;padding:12px 14px;margin-top:8px;transition:border-color .2s,box-shadow .2s;animation:chatGlow 3s ease-in-out infinite}
 @keyframes chatGlow{
   0%,100%{box-shadow:0 0 0 1px rgba(110,85,190,.15),0 0 18px rgba(120,95,190,.13),0 0 40px rgba(120,95,190,.06)}
@@ -858,6 +861,7 @@ function appendMsg(role, text, streaming) {
   if (streaming) {
     const cursor = document.createElement('span');
     cursor.className = 'cursor';
+    cursor.innerHTML = '<s>✦</s><s>✦</s><s>✦</s>';
     body._cursor = cursor;
     body._raw = '';
     body.appendChild(cursor);
@@ -915,6 +919,7 @@ async function sendMsg(preset) {
             aiBody.innerHTML = `<p>${md(aiBody._raw)}</p>`;
             const cur = document.createElement('span');
             cur.className = 'cursor';
+            cur.innerHTML = '<s>✦</s><s>✦</s><s>✦</s>';
             aiBody.appendChild(cur);
             // no auto-scroll during streaming — user reads from top
           }
