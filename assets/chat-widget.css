@@ -54,7 +54,13 @@
 .rai-fab-icon{font-size:15px;line-height:1}
 .rai-fab-label{font-size:13px;font-weight:600;letter-spacing:.03em}
 
-@media(max-width:420px){.rai-panel{width:calc(100vw - 24px)}.rai-fab-label{display:none}.rai-fab{padding:13px}}
+@media(max-width:600px){
+  #rai-widget{right:0;left:0;bottom:0;padding:0 12px 20px;align-items:flex-end}
+  .rai-panel{width:100%;max-height:70vh;max-height:70dvh;border-radius:20px 20px 16px 16px}
+  .rai-fab{padding:13px}
+  .rai-fab-label{display:none}
+  .rai-fab,.rai-send,.rai-starter,.rai-mode-btn,.rai-hbtn{touch-action:manipulation}
+}
 
 /* ── Dark mode ── */
 [data-theme="dark"] .rai-panel{background:#13102A;border-color:rgba(110,85,190,.2);box-shadow:0 12px 48px rgba(0,0,0,.45)}
