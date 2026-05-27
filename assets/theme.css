@@ -94,6 +94,20 @@ nav.scrolled .nav-hamburger:hover{border-color:rgba(100,75,180,.4);color:#1A1535
   .theories-main,
   .cases-main,
   .search-main{padding-left:16px!important;padding-right:16px!important;}
+
+  /* ── Fix inner-page hero overlap on mobile ──
+     align-items:flex-end pushes content upward on short viewports, causing
+     the tag ("CLINICAL EVIDENCE") to collide with the back link
+     ("← Research Domains"). Switch to flex-start + padding-top so content
+     always starts safely below the nav and the back link. */
+  .hero{
+    align-items:flex-start!important;
+    padding-top:108px!important;
+  }
+  .hero-back{
+    top:66px!important;
+    left:28px!important;
+  }
 }
 
 /* ── Dark mode: universal overrides ── */
