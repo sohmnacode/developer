@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,600;1,700&display=swap');
+
+/* ── Global quote typography ── */
+.quote-block blockquote,
+.quote-block p,
+.intro-quote {
+  font-family: 'Bodoni Moda', Georgia, serif !important;
+  font-size: 18px !important;
+  font-style: italic !important;
+  line-height: 1.75 !important;
+}
+
 /* ── Nav icon buttons (search + dark mode toggle) ── */
 .nav-icon-btn{
   width:32px;height:32px;border-radius:50%;
