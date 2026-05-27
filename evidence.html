@@ -8,38 +8,120 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/research.css">
+<style>
+.tier-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px}
+.tier-chip{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.7);font-size:12px;font-weight:500}
+.tier-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.tier-dot.strong{background:#2d7a22}
+.tier-dot.suggestive-strong{background:#3ea832}
+.tier-dot.suggestive{background:#64c44a}
+.tier-dot.mixed{background:#8fc44f}
+.tier-dot.open{background:#a0b870}
+.tier-dot.contested{background:#c4a050}
+.tier-dot.speculative{background:#9aa090}
+
+.domain-card{border:1px solid var(--line);background:rgba(255,255,255,.66);border-radius:12px;padding:26px;display:block;text-decoration:none;color:inherit;transition:border-color .2s,background .2s,transform .18s}
+.domain-card:hover{border-color:rgba(45,130,34,.34);background:rgba(255,255,255,.94);transform:translateY(-2px)}
+
+.tier-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:14px}
+.tier-badge.strong{background:rgba(45,122,34,.12);color:#2d7a22;border:1px solid rgba(45,122,34,.22)}
+.tier-badge.suggestive-strong{background:rgba(62,168,50,.11);color:#2d8a20;border:1px solid rgba(62,168,50,.22)}
+.tier-badge.suggestive{background:rgba(100,196,74,.11);color:#3a8a25;border:1px solid rgba(100,196,74,.22)}
+.tier-badge.mixed{background:rgba(143,196,79,.11);color:#5a7a20;border:1px solid rgba(143,196,79,.22)}
+.tier-badge.open{background:rgba(160,184,112,.12);color:#5a6840;border:1px solid rgba(160,184,112,.22)}
+.tier-badge.contested{background:rgba(196,160,80,.11);color:#8a6a20;border:1px solid rgba(196,160,80,.22)}
+.tier-badge.speculative{background:rgba(150,160,144,.11);color:#606860;border:1px solid rgba(150,160,144,.22)}
+
+.domain-title{font-size:19px;font-weight:700;color:var(--ink);margin-bottom:8px;letter-spacing:-.01em}
+.domain-claim{font-size:13px;color:var(--muted);line-height:1.68;margin-bottom:16px}
+.score-bar{height:6px;border-radius:999px;background:rgba(45,107,34,.1);overflow:hidden;margin-bottom:8px}
+.score-bar span{display:block;height:100%;border-radius:999px}
+.score-bar span.strong{background:linear-gradient(90deg,#2d7a22,#4aab30)}
+.score-bar span.suggestive-strong{background:linear-gradient(90deg,#3ea832,#6acf50)}
+.score-bar span.suggestive{background:linear-gradient(90deg,#64c44a,#90dc70)}
+.score-bar span.mixed{background:linear-gradient(90deg,#8fc44f,#b0d870)}
+.score-bar span.open{background:linear-gradient(90deg,#a0b870,#c4d890)}
+.score-bar span.contested{background:linear-gradient(90deg,#c4a050,#d8c070)}
+.score-bar span.speculative{background:linear-gradient(90deg,#9aa090,#bcc4b8)}
+.score-label{font-size:10px;color:var(--soft);margin-bottom:12px}
+
+.supports-list{list-style:none;padding:0;margin:0 0 10px 0;display:flex;flex-direction:column;gap:4px}
+.supports-list li{font-size:12px;color:rgba(45,122,34,.72);display:flex;gap:6px;align-items:flex-start}
+.supports-list li::before{content:'↑';font-size:10px;margin-top:1px;flex-shrink:0}
+.cautions-list{list-style:none;padding:0;margin:0 0 14px 0;display:flex;flex-direction:column;gap:4px}
+.cautions-list li{font-size:12px;color:rgba(160,100,40,.72);display:flex;gap:6px;align-items:flex-start}
+.cautions-list li::before{content:'↓';font-size:10px;margin-top:1px;flex-shrink:0;color:rgba(160,100,40,.6)}
+.card-footer{font-size:11px;color:rgba(45,122,34,.55);font-weight:600;letter-spacing:.04em}
+.domains-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+@media(max-width:640px){.domains-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/#explore">Ask RAI</a><a href="/cases">Cases</a><a href="/skeptics">Skeptic's Corner</a><a href="/methodology">Methodology</a><a href="/library">Library</a></div><a href="/#chatbox" class="cta-nav">ASK RAI</a></nav>
-<section class="hero"><div class="hero-content"><div class="eyebrow">Research Instrument</div><h1>Evidence Map</h1><p>A clear view of which claims are well-supported, which are suggestive, which are contested, and which remain speculative.</p></div></section>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Research Instrument</div>
+    <h1>Evidence Map</h1>
+    <p>A clear view of which claims are well-supported, which are suggestive, which are contested, and which remain speculative — ranked by checkable, methodologically constrained evidence.</p>
+  </div>
+</section>
+
 <main>
 <section class="section">
-  <h2 class="section-title">Strength of Evidence</h2>
-  <p class="lede">The map does not rank what is spiritually meaningful. It ranks how much public, checkable, methodologically constrained evidence currently supports each research domain.</p>
-  <div id="map" class="grid"></div>
+  <h2 class="section-title">Strength Tiers</h2>
+  <p class="lede">The map ranks how much public, checkable, methodologically constrained evidence currently supports each research domain — not what is spiritually meaningful.</p>
+  <div class="tier-legend">
+    <div class="tier-chip"><div class="tier-dot strong"></div>Well-supported — replicated, controlled, hard to dismiss</div>
+    <div class="tier-chip"><div class="tier-dot suggestive-strong"></div>Suggestive to strong — serious evidence, some open questions</div>
+    <div class="tier-chip"><div class="tier-dot suggestive"></div>Suggestive — evidence strains normal explanations</div>
+    <div class="tier-chip"><div class="tier-dot mixed"></div>Mixed — robust for one claim, speculative for another</div>
+    <div class="tier-chip"><div class="tier-dot open"></div>Open problem — genuine uncertainty, multiple competing frameworks</div>
+    <div class="tier-chip"><div class="tier-dot contested"></div>Contested — results exist but replication and method are disputed</div>
+    <div class="tier-chip"><div class="tier-dot speculative"></div>Speculative — interesting model, thin direct evidence</div>
+  </div>
+  <div id="map" class="domains-grid"></div>
 </section>
+
 <div class="divider"></div>
+
 <section class="section narrow">
-  <h2 class="section-title">Claim Ladder</h2>
+  <h2 class="section-title">Reading the Map</h2>
   <div class="grid">
-    <article class="card"><div class="meta">Well-supported</div><h3>The experience happened</h3><p>There are controlled or well-documented reasons to believe people reliably report a class of experience or measurable effect.</p></article>
-    <article class="card"><div class="meta">Suggestive</div><h3>Normal explanations strain</h3><p>The evidence appears difficult to explain fully by fraud, expectation, ordinary memory, or known physiology.</p></article>
-    <article class="card"><div class="meta">Contested</div><h3>Methods and meaning disputed</h3><p>Results exist, but replication, interpretation, or experimental controls remain heavily argued.</p></article>
-    <article class="card"><div class="meta">Speculative</div><h3>Possible model, thin evidence</h3><p>The theory is interesting, but direct empirical support is currently limited.</p></article>
+    <article class="card">
+      <div class="meta">What the score means</div>
+      <h3>Evidence weight (0–100)</h3>
+      <p>The score reflects the quantity, quality, and methodological rigor of directly relevant published evidence — not how plausible the phenomenon seems intuitively. A score of 70 means substantial evidence exists with open methodological questions; 40 means the evidence is real but contested.</p>
+    </article>
+    <article class="card">
+      <div class="meta">What the tiers mean</div>
+      <h3>The claim ladder</h3>
+      <p><strong>Well-supported:</strong> controlled or prospective studies, cross-site replication.<br><strong>Suggestive:</strong> evidence that strains ordinary explanations but lacks high-powered replication.<br><strong>Contested:</strong> results exist but methods or interpretation are actively disputed.<br><strong>Speculative:</strong> a coherent theory with thin direct evidence.</p>
+    </article>
+    <article class="card">
+      <div class="meta">Important caveat</div>
+      <h3>Evidence ≠ interpretation</h3>
+      <p>A strong evidence score for NDE phenomenology does not automatically imply survival of death. Each layer of claim — the experience, the anomaly, the mechanism, the metaphysics — requires separate evaluation. The map rates the first layer: the evidence that something real and interesting is happening.</p>
+    </article>
   </div>
 </section>
 </main>
+
 <footer class="footer"><span>ReincarnatedAI research tools</span><span><a href="/unknowns">What we don't know yet</a></span></footer>
+
 <script type="module">
 import { evidenceDomains } from '/data/research-data.js';
 const map = document.getElementById('map');
 map.innerHTML = evidenceDomains.map(d => `
-  <a class="card" href="${d.href}" style="text-decoration:none">
-    <div class="meta">${d.tag}</div>
-    <h3>${d.title}</h3>
-    <p>${d.claim}</p>
-    <div class="score" aria-label="${d.score} out of 100"><span style="width:${d.score}%"></span></div>
-    <div class="pill-row"><span class="pill">${d.strength}</span>${d.supports.slice(0,2).map(s=>`<span class="pill">${s}</span>`).join('')}</div>
+  <a class="domain-card" href="${d.href}">
+    <div class="tier-badge ${d.tier}">${d.strength}</div>
+    <div class="domain-title">${d.title}</div>
+    <p class="domain-claim">${d.claim}</p>
+    <div class="score-bar" aria-label="${d.score} out of 100"><span class="${d.tier}" style="width:${d.score}%"></span></div>
+    <div class="score-label">Evidence weight: ${d.score} / 100</div>
+    <ul class="supports-list">${d.supports.slice(0,3).map(s=>`<li>${s}</li>`).join('')}</ul>
+    <ul class="cautions-list">${d.cautions.slice(0,2).map(c=>`<li>${c}</li>`).join('')}</ul>
+    <div class="card-footer">Explore full research →</div>
   </a>`).join('');
 </script>
 </body>

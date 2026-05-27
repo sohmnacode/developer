@@ -4,21 +4,85 @@
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Source Library — ReincarnatedAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/research.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/research.css">
+<style>
+.kind-badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px}
+.kind-badge.Book{background:rgba(45,90,180,.08);color:#2d4a9a;border:1px solid rgba(45,90,180,.16)}
+.kind-badge.Paper{background:rgba(45,122,34,.09);color:#2d7a22;border:1px solid rgba(45,122,34,.18)}
+.kind-badge.Researcher{background:rgba(130,60,180,.08);color:#6a2a9a;border:1px solid rgba(130,60,180,.16)}
+.kind-badge.Institution{background:rgba(180,120,30,.08);color:#8a5a18;border:1px solid rgba(180,120,30,.16)}
+.kind-badge.Essay{background:rgba(60,150,160,.08);color:#2a7080;border:1px solid rgba(60,150,160,.16)}
+.kind-badge.Review{background:rgba(160,80,80,.08);color:#8a3030;border:1px solid rgba(160,80,80,.16)}
+.lib-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.lib-author{font-size:12.5px;color:rgba(45,130,34,.75);margin-bottom:8px;font-weight:500}
+.lib-note{font-size:13px;color:var(--muted);line-height:1.65}
+.count-line{font-size:13px;color:var(--muted);margin-bottom:22px}
+.section-divider{margin:48px 0 28px;border:none;border-top:1px solid var(--line)}
+.kind-section-title{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(45,130,34,.65);margin-bottom:18px;font-weight:600}
+</style>
 </head>
 <body>
 <nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/cases">Cases</a><a href="/glossary">Glossary</a><a href="/timeline">Timeline</a></div><a href="/#chatbox" class="cta-nav">ASK RAI</a></nav>
-<section class="hero"><div class="hero-content"><div class="eyebrow">Bibliography</div><h1>Source Library</h1><p>A starting shelf for the papers, books, researchers, and institutions behind the site.</p></div></section>
-<main><section class="section">
-<div class="filters"><input id="q" class="search" placeholder="Search author, title, domain, note..."><select id="domain" class="select"><option value="">All domains</option></select></div>
-<div id="library" class="grid"></div>
-</section></main>
-<footer class="footer"><span>Library entries are concise waypoints.</span><span><a href="/methodology">Evaluation standards</a></span></footer>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Bibliography</div>
+    <h1>Source Library</h1>
+    <p>The books, papers, researchers, and institutions behind the research — annotated starting points for serious inquiry.</p>
+  </div>
+</section>
+
+<main>
+<section class="section">
+  <div class="filters">
+    <input id="q" class="search" placeholder="Search title, author, domain, notes…">
+    <select id="domain" class="select"><option value="">All domains</option></select>
+    <select id="kind"   class="select"><option value="">All types</option></select>
+  </div>
+  <div class="count-line" id="count"></div>
+  <div id="library" class="grid"></div>
+</section>
+</main>
+
+<footer class="footer">
+  <span>Library entries are concise waypoints, not full reviews.</span>
+  <span><a href="/methodology">Evaluation standards</a> · <a href="/timeline">Research timeline</a></span>
+</footer>
+
 <script type="module">
 import { libraryItems } from '/data/research-data.js';
-const q=document.getElementById('q'),domain=document.getElementById('domain'),wrap=document.getElementById('library');
-for(const d of [...new Set(libraryItems.map(i=>i.domain))]) domain.insertAdjacentHTML('beforeend',`<option>${d}</option>`);
-function render(){const query=q.value.toLowerCase();const rows=libraryItems.filter(i=>(!domain.value||i.domain===domain.value)&&(!query||Object.values(i).join(' ').toLowerCase().includes(query)));wrap.innerHTML=rows.map(i=>`<article class="card"><div class="meta">${i.kind} · ${i.domain} · ${i.year}</div><h3>${i.title}</h3><p><strong>${i.author}</strong></p><p>${i.note}</p></article>`).join('')}
-[q,domain].forEach(el=>el.addEventListener('input',render));render();
+
+const q      = document.getElementById('q');
+const domain = document.getElementById('domain');
+const kind   = document.getElementById('kind');
+const wrap   = document.getElementById('library');
+const count  = document.getElementById('count');
+
+for (const v of [...new Set(libraryItems.map(i=>i.domain))])
+  domain.insertAdjacentHTML('beforeend', `<option>${v}</option>`);
+for (const v of [...new Set(libraryItems.map(i=>i.kind))])
+  kind.insertAdjacentHTML('beforeend', `<option>${v}</option>`);
+
+function render() {
+  const query = q.value.toLowerCase();
+  const rows = libraryItems.filter(i =>
+    (!domain.value || i.domain === domain.value) &&
+    (!kind.value   || i.kind   === kind.value)   &&
+    (!query || Object.values(i).join(' ').toLowerCase().includes(query))
+  );
+  count.textContent = `${rows.length} entr${rows.length===1?'y':'ies'} shown`;
+  wrap.innerHTML = rows.map(i => `
+    <article class="card">
+      <span class="kind-badge ${i.kind}">${i.kind}</span>
+      <div class="lib-title">${i.title}</div>
+      <div class="lib-author">${i.author} · ${i.year} · ${i.domain}</div>
+      <p class="lib-note">${i.note}</p>
+    </article>`).join('') || '<p class="lede" style="margin:0">No entries match.</p>';
+}
+
+[q, domain, kind].forEach(el => el.addEventListener('input', render));
+render();
 </script>
-</body></html>
+</body>
+</html>

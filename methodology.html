@@ -4,24 +4,207 @@
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Methodology — ReincarnatedAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/research.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/research.css">
+<style>
+.step-card{border:1px solid var(--line);background:rgba(255,255,255,.66);border-radius:10px;padding:24px;display:flex;gap:18px;align-items:flex-start}
+.step-num{font-size:28px;font-weight:800;font-family:"Cormorant Garamond",serif;color:rgba(45,107,34,.28);flex-shrink:0;line-height:1;min-width:32px}
+.step-body h3{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.step-body p{font-size:13px;color:var(--muted);line-height:1.7}
+.steps{display:flex;flex-direction:column;gap:12px;margin-bottom:48px}
+.q-block{border:1px solid var(--line);background:rgba(255,255,255,.66);border-radius:10px;padding:24px;margin-bottom:12px}
+.q-block h3{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.q-block p,.q-block li{font-size:13.5px;color:var(--muted);line-height:1.72}
+.q-block ul{padding-left:18px;margin-top:8px;display:flex;flex-direction:column;gap:4px}
+.callout{padding:22px 26px;background:rgba(45,107,34,.05);border:1px solid rgba(45,107,34,.14);border-radius:10px;margin-bottom:40px}
+.callout p{font-size:14px;color:rgba(23,54,20,.65);line-height:1.72}
+.callout strong{color:rgba(23,54,20,.85)}
+.falsify-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:620px){.falsify-grid{grid-template-columns:1fr}}
+.falsify-card{padding:18px 20px;border-radius:8px}
+.falsify-card.strengthen{background:rgba(45,122,34,.06);border:1px solid rgba(45,122,34,.15)}
+.falsify-card.weaken{background:rgba(196,160,80,.06);border:1px solid rgba(196,160,80,.15)}
+.falsify-card h4{font-size:13px;font-weight:700;margin-bottom:8px}
+.falsify-card.strengthen h4{color:rgba(34,100,25,.85)}
+.falsify-card.weaken h4{color:rgba(130,90,20,.85)}
+.falsify-card ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px}
+.falsify-card li{font-size:12px;color:var(--muted);line-height:1.6;display:flex;gap:6px;align-items:flex-start}
+.falsify-card.strengthen li::before{content:'↑';color:rgba(45,122,34,.7);font-size:10px;margin-top:2px;flex-shrink:0}
+.falsify-card.weaken li::before{content:'↓';color:rgba(160,110,30,.7);font-size:10px;margin-top:2px;flex-shrink:0}
+</style>
 </head>
 <body>
 <nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/cases">Cases</a><a href="/skeptics">Skeptic's Corner</a><a href="/library">Library</a></div><a href="/#chatbox" class="cta-nav">ASK RAI</a></nav>
-<section class="hero"><div class="hero-content"><div class="eyebrow">Research Standards</div><h1>Methodology</h1><p>How ReincarnatedAI separates experience, evidence, interpretation, and speculation.</p></div></section>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Research Standards</div>
+    <h1>Methodology</h1>
+    <p>How ReincarnatedAI separates experience, evidence, interpretation, and speculation — and what it would take to change its mind.</p>
+  </div>
+</section>
+
 <main>
-<section class="section split">
-<div>
-<h2 class="section-title">Evaluation Protocol</h2><p class="lede">Every claim is treated as a layered object. First: what was reported? Second: what can be verified? Third: what ordinary explanations remain? Fourth: what larger theory, if any, is justified?</p>
-<div class="grid">
-<article class="card"><div class="meta">1</div><h3>Document early</h3><p>Give greatest weight to statements recorded before confirmation, media exposure, family contact, or researcher interpretation.</p></article>
-<article class="card"><div class="meta">2</div><h3>Separate facts from meaning</h3><p>A verified perception is evidence for anomalous perception; it is not automatically evidence for a full metaphysical system.</p></article>
-<article class="card"><div class="meta">3</div><h3>Prefer prospective designs</h3><p>Studies that define targets, samples, and methods before outcomes are stronger than retrospective collections.</p></article>
-<article class="card"><div class="meta">4</div><h3>Track normal information paths</h3><p>Check overhearing, coaching, cryptomnesia, prior family contact, internet availability, and investigator leakage.</p></article>
-</div>
-</div>
-<aside class="rail card"><div class="meta">What would change our mind?</div><p>Stronger evidence would include repeated prospective veridical perception, preregistered psi replications with large effects, and reincarnation cases documented before identification with independent records. Weaker evidence would include failed high-powered replications, clear information leakage, or physiological models that predict the disputed features.</p></aside>
+<section class="section narrow">
+
+  <h2 class="section-title">What counts as evidence?</h2>
+  <p class="lede">Not all data is equal. ReincarnatedAI applies a layered evaluation — starting with what was directly observed, then what can be checked, then what ordinary explanations remain, and finally what larger theory (if any) is justified.</p>
+
+  <div class="callout">
+    <p><strong>The core principle:</strong> A claim about survival or nonlocal mind gets stronger only when it survives the strongest available alternatives — not when it accumulates supporting anecdotes. The question is always: what is the minimum interpretation consistent with the evidence? We work upward from that floor.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Document early and independently</h3>
+        <p>Give greatest weight to statements, drawings, or reports recorded before any connection to a previous personality is established, before media exposure, and before family contact. The timing of documentation is often more important than the content of a claim. A verified detail recorded in writing two weeks before investigation is worth more than a hundred details recorded two years later.</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Separate the claim layers</h3>
+        <p>Each evidential domain involves stacked claims that require separate evaluation: (a) the experience happened, (b) the experience was anomalous, (c) the anomaly requires a non-ordinary explanation, (d) that explanation is survival or nonlocal consciousness. These are not the same claim. A veridical NDE perception is evidence for anomalous perception — it is not automatically evidence for a full afterlife.</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Prefer prospective and preregistered designs</h3>
+        <p>Studies that define targets, samples, and methods before data collection are far stronger than retrospective collection. Case investigation is not reproducible in a laboratory sense, but investigators can still commit to methods before beginning — and should document the investigation process as carefully as the report.</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>Map every normal information path</h3>
+        <p>For each piece of apparently anomalous knowledge, systematically investigate all conventional routes: overhearing, media access, family stories, investigator leakage, cryptomnesia, prior contact, childhood exposure. The question is not whether fraud is conceivable, but whether any specific normal channel could have supplied the specific knowledge in the specific case.</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h3>Weight convergent evidence</h3>
+        <p>A single anomaly is interesting. The same anomaly appearing under multiple methodologies, across independent investigators, across cultures and eras, with consistent phenomenology, carries more weight. Convergence across NDE studies, reincarnation cases, and deathbed vision research does not prove survival — but it narrows the space of viable explanations.</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <h3>Treat mechanism as an open frontier, not a defeater</h3>
+        <p>The absence of an accepted mechanism does not disprove an anomaly. Quantum entanglement was accepted before its mechanism was understood; the hard problem of consciousness itself lacks an accepted mechanism. But anomalies without mechanism cannot be integrated into broader science, so mechanism-building is a legitimate research priority — not a burden of proof that must be cleared before taking evidence seriously.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2 class="section-title" style="margin-top:56px">How do we handle anecdote?</h2>
+  <p class="lede">Anecdotes are not worthless — they are evidence of the weakest kind. The question is what they can and cannot support.</p>
+
+  <div class="q-block">
+    <h3>What an anecdote can do</h3>
+    <ul>
+      <li>Establish that a class of experience exists and is reported</li>
+      <li>Generate hypotheses that can be investigated with stronger methods</li>
+      <li>Provide detailed phenomenology that surveys and scales can then measure</li>
+      <li>Supply leads for prospective case investigation</li>
+    </ul>
+  </div>
+  <div class="q-block">
+    <h3>What an anecdote cannot do alone</h3>
+    <ul>
+      <li>Establish the frequency of a phenomenon (selection bias is unavoidable)</li>
+      <li>Rule out normal explanations (memory reconstruction, cryptomnesia, fraud)</li>
+      <li>Demonstrate that a verified detail was obtained by anomalous means</li>
+      <li>Support a general theory about survival or nonlocal consciousness</li>
+    </ul>
+  </div>
+  <div class="q-block">
+    <h3>What upgrades an anecdote</h3>
+    <ul>
+      <li>Independent corroboration by witnesses present at the time</li>
+      <li>Physical evidence (photographs, medical records, written records)</li>
+      <li>Timing — the claim was recorded before the information was available</li>
+      <li>Investigator independence from the reporting family</li>
+      <li>The claimant had no incentive to fabricate, and may have had strong incentives against</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2 class="section-title" style="margin-top:56px">What makes a case strong?</h2>
+  <p class="lede">Strength is a compound score — no single factor is sufficient, and multiple factors pointing in the same direction is more meaningful than any one of them alone.</p>
+
+  <div class="grid" style="margin-bottom:40px">
+    <article class="card">
+      <div class="meta">Documentation timing</div>
+      <h3>Early and independent records</h3>
+      <p>Claims recorded in writing before any investigation or family contact. Ideally by someone with no stake in the outcome, using a standard protocol. The van Lommel study collected NDE reports before patients left the hospital for this reason.</p>
+    </article>
+    <article class="card">
+      <div class="meta">Specificity</div>
+      <h3>Verifiable, checkable details</h3>
+      <p>Not general impressions but specific, low-probability details: names, addresses, physical descriptions, unusual events, wound locations. A child saying "I died near water" is less specific than "I drowned at a particular well in a named village."</p>
+    </article>
+    <article class="card">
+      <div class="meta">Information isolation</div>
+      <h3>Closed information channels</h3>
+      <p>Evidence that the child or experiencer could not have accessed the information through any conventional route — geographic isolation, age, language barrier, family history, media access. The rarer and more obscure the previous personality, the stronger the case.</p>
+    </article>
+    <article class="card">
+      <div class="meta">Physical evidence</div>
+      <h3>Corroborating physical markers</h3>
+      <p>In reincarnation cases: birthmarks corresponding to documented wounds, verified by medical attestation from both ends of the case. In NDE cases: medical records confirming the duration and completeness of brain shutdown during the claimed perception.</p>
+    </article>
+    <article class="card">
+      <div class="meta">Investigator independence</div>
+      <h3>Disinterested investigation</h3>
+      <p>The investigator should have no prior relationship to either family, no financial stake in the outcome, and should ideally approach the case from a skeptical or neutral starting position. Self-reports by believers carry less weight than skeptical investigation with positive findings.</p>
+    </article>
+    <article class="card">
+      <div class="meta">Behavioral consistency</div>
+      <h3>Behavioral evidence predating verbal report</h3>
+      <p>In reincarnation cases: unusual behaviors, phobias, skills, or food preferences consistent with the claimed past life, present before the verbal reports began and not explainable by the current family environment. Behavioral evidence is harder to fabricate retroactively than verbal claims.</p>
+    </article>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2 class="section-title" style="margin-top:56px">What would change our mind?</h2>
+  <p class="lede">A serious research program must name what would strengthen or weaken its preferred interpretations. Here is ours.</p>
+
+  <div class="falsify-grid">
+    <div class="falsify-card strengthen">
+      <h4>Evidence that would strengthen survival hypotheses</h4>
+      <ul>
+        <li>Multiple prospective, preregistered NDE studies with verified hidden-target identifications</li>
+        <li>Reincarnation cases with strong early documentation and multiple independently verified, low-probability details</li>
+        <li>Xenoglossy cases where the language is documented, the isolation is verified, and the exchange is responsive</li>
+        <li>High-powered psi replications with large effects that survive independent adversarial replication</li>
+        <li>A coherent physical or informational mechanism that makes testable predictions</li>
+      </ul>
+    </div>
+    <div class="falsify-card weaken">
+      <h4>Evidence that would weaken or undermine survival hypotheses</h4>
+      <ul>
+        <li>Physiological models that specifically predict and explain veridical perception during verified flatline</li>
+        <li>High-powered replications of psi experiments with consistent null results under improved controls</li>
+        <li>Demonstration that the strongest reincarnation cases have overlooked information channels</li>
+        <li>EEG evidence that NDE perceptions consistently occur during recovery rather than during arrest</li>
+        <li>A complete functional account of consciousness that leaves no explanatory role for nonlocal processes</li>
+      </ul>
+    </div>
+  </div>
+
 </section>
 </main>
-<footer class="footer"><span>Evidence first. Interpretation second.</span><span><a href="/journal">Report an experience</a></span></footer>
-</body></html>
+
+<footer class="footer">
+  <span>Evidence first. Interpretation second. Mechanism third.</span>
+  <span><a href="/journal">Report an experience</a> · <a href="/skeptics">Skeptic's Corner</a></span>
+</footer>
+</body>
+</html>

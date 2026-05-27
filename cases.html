@@ -8,34 +8,120 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/research.css">
+<style>
+.strength-badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.strength-badge.Strong{background:rgba(45,122,34,.12);color:#2d7a22;border:1px solid rgba(45,122,34,.2)}
+.strength-badge.Moderate{background:rgba(62,168,50,.1);color:#3a8020;border:1px solid rgba(62,168,50,.18)}
+.strength-badge.Suggestive{background:rgba(100,180,74,.1);color:#487a25;border:1px solid rgba(100,180,74,.18)}
+.strength-badge.Contested{background:rgba(196,160,80,.12);color:#8a6820;border:1px solid rgba(196,160,80,.2)}
+.strength-badge.Speculative{background:rgba(150,160,144,.12);color:#606860;border:1px solid rgba(150,160,144,.2)}
+.case-meta{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-bottom:8px}
+.case-title{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.case-body{font-size:13px;color:var(--muted);line-height:1.68;margin-bottom:14px}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px}
+.tag{border:1px solid var(--line);border-radius:999px;padding:4px 9px;font-size:11px;color:var(--soft);background:rgba(255,255,255,.55)}
+.tag.active-tag{background:rgba(45,107,34,.1);border-color:rgba(45,130,34,.3);color:rgba(23,54,20,.75)}
+.count-line{font-size:13px;color:var(--muted);margin-bottom:22px}
+.filter-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.filter-tag-btn{padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.6);font-size:11.5px;color:var(--muted);cursor:pointer;font-family:inherit;transition:background .18s,border-color .18s,color .18s}
+.filter-tag-btn:hover,.filter-tag-btn.active{background:rgba(255,255,255,.95);border-color:rgba(45,130,34,.36);color:var(--ink)}
+</style>
 </head>
 <body>
 <nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/skeptics">Skeptic's Corner</a><a href="/methodology">Methodology</a><a href="/glossary">Glossary</a></div><a href="/#chatbox" class="cta-nav">ASK RAI</a></nav>
-<section class="hero"><div class="hero-content"><div class="eyebrow">Searchable Archive</div><h1>Case Explorer</h1><p>Filter landmark cases and studies by domain, type, strength, and evidential pattern.</p></div></section>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Searchable Archive</div>
+    <h1>Case Explorer</h1>
+    <p>Filter landmark cases and studies from the research literature by domain, type, evidence strength, and evidential pattern.</p>
+  </div>
+</section>
+
 <main>
 <section class="section">
   <div class="filters">
-    <input id="q" class="search" placeholder="Search cases, tags, locations, summaries...">
+    <input id="q" class="search" placeholder="Search cases, people, locations, summaries…">
     <select id="domain" class="select"><option value="">All domains</option></select>
     <select id="strength" class="select"><option value="">All strengths</option></select>
   </div>
-  <div id="count" class="lede" style="margin-bottom:18px"></div>
+  <div class="filter-tags" id="typeTags"></div>
+  <div class="count-line" id="count"></div>
   <div id="cases" class="grid"></div>
 </section>
 </main>
-<footer class="footer"><span>Cases are summaries, not final judgments.</span><span><a href="/methodology">How we evaluate claims</a></span></footer>
+
+<footer class="footer">
+  <span>Case summaries are concise research pointers, not final verdicts.</span>
+  <span><a href="/methodology">How we evaluate claims</a></span>
+</footer>
+
 <script type="module">
 import { caseIndex } from '/data/research-data.js';
-const q = document.getElementById('q'), domain = document.getElementById('domain'), strength = document.getElementById('strength'), wrap = document.getElementById('cases'), count = document.getElementById('count');
-for (const value of [...new Set(caseIndex.map(c=>c.domain))]) domain.insertAdjacentHTML('beforeend', `<option>${value}</option>`);
-for (const value of [...new Set(caseIndex.map(c=>c.strength))]) strength.insertAdjacentHTML('beforeend', `<option>${value}</option>`);
-function render(){
+
+const q        = document.getElementById('q');
+const domain   = document.getElementById('domain');
+const strength = document.getElementById('strength');
+const wrap     = document.getElementById('cases');
+const count    = document.getElementById('count');
+const typeTags = document.getElementById('typeTags');
+
+// Populate domain and strength dropdowns
+for (const v of [...new Set(caseIndex.map(c=>c.domain))])
+  domain.insertAdjacentHTML('beforeend', `<option>${v}</option>`);
+for (const v of [...new Set(caseIndex.map(c=>c.strength))])
+  strength.insertAdjacentHTML('beforeend', `<option>${v}</option>`);
+
+// Type filter chips — these map to tags in the data
+const TYPE_FILTERS = [
+  { label:'Verified perception', tag:'verified perception' },
+  { label:'Birthmark evidence',  tag:'birthmark evidence'  },
+  { label:'Clinical study',      tag:'clinical study'      },
+  { label:'Child memory',        tag:'child memory'        },
+  { label:'Cross-cultural',      tag:'cross-cultural'      },
+  { label:'Skeptical critique',  tag:'skeptical critique'  },
+];
+let activeType = '';
+
+typeTags.innerHTML = TYPE_FILTERS.map(f =>
+  `<button class="filter-tag-btn" data-tag="${f.tag}">${f.label}</button>`
+).join('');
+
+typeTags.querySelectorAll('.filter-tag-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const same = activeType === btn.dataset.tag;
+    activeType = same ? '' : btn.dataset.tag;
+    typeTags.querySelectorAll('.filter-tag-btn').forEach(b => b.classList.toggle('active', b.dataset.tag === activeType));
+    render();
+  });
+});
+
+function render() {
   const query = q.value.trim().toLowerCase();
-  const rows = caseIndex.filter(c => (!domain.value || c.domain===domain.value) && (!strength.value || c.strength===strength.value) && (!query || [c.title,c.domain,c.type,c.location,c.year,c.summary,...c.tags].join(' ').toLowerCase().includes(query)));
+  const rows = caseIndex.filter(c => {
+    if (domain.value   && c.domain   !== domain.value)   return false;
+    if (strength.value && c.strength !== strength.value) return false;
+    if (activeType && !c.tags.includes(activeType))       return false;
+    if (query && ![c.title,c.domain,c.type,c.location,c.year,c.summary,...c.tags].join(' ').toLowerCase().includes(query)) return false;
+    return true;
+  });
+
   count.textContent = `${rows.length} case${rows.length===1?'':'s'} shown`;
-  wrap.innerHTML = rows.map(c => `<article class="card"><div class="meta">${c.domain} · ${c.type}</div><h3>${c.title}</h3><p>${c.summary}</p><div class="pill-row"><span class="pill">${c.strength}</span><span class="pill">${c.location}</span><span class="pill">${c.year}</span>${c.tags.map(t=>`<span class="pill">${t}</span>`).join('')}</div></article>`).join('');
+
+  wrap.innerHTML = rows.map(c => `
+    <article class="card">
+      <div class="case-meta">${c.domain} · ${c.type} · ${c.location} · ${c.year}</div>
+      <div class="case-title">${c.title}</div>
+      <p class="case-body">${c.summary}</p>
+      <div class="tag-row">
+        <span class="strength-badge ${c.strength}">${c.strength}</span>
+        ${c.tags.map(t=>`<span class="tag${t===activeType?' active-tag':''}">${t}</span>`).join('')}
+      </div>
+    </article>`).join('') || '<p class="lede" style="margin:0">No cases match the current filters.</p>';
 }
-[q,domain,strength].forEach(el=>el.addEventListener('input',render)); render();
+
+[q, domain, strength].forEach(el => el.addEventListener('input', render));
+render();
 </script>
 </body>
 </html>

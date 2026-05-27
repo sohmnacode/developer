@@ -4,15 +4,90 @@
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Research Timeline — ReincarnatedAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/research.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/research.css">
+<style>
+.era-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(45,130,34,.65);font-weight:600;margin:48px 0 16px;display:flex;align-items:center;gap:14px}
+.era-label::after{content:'';flex:1;height:1px;background:var(--line)}
+.era-label:first-child{margin-top:0}
+.tl{display:flex;flex-direction:column;gap:0;position:relative}
+.tl-item{display:grid;grid-template-columns:124px 28px minmax(0,1fr);gap:0;align-items:stretch}
+.tl-year-col{padding:20px 16px 20px 0;text-align:right}
+.tl-year{font-size:18px;font-weight:700;color:var(--leaf);font-family:"Cormorant Garamond",serif;line-height:1.2}
+.tl-spine{display:flex;flex-direction:column;align-items:center;gap:0}
+.tl-dot{width:11px;height:11px;border-radius:50%;background:linear-gradient(135deg,var(--leaf),var(--bright));flex-shrink:0;margin-top:24px;z-index:1}
+.tl-line{flex:1;width:2px;background:linear-gradient(to bottom,var(--line),var(--line))}
+.tl-item:last-child .tl-line{display:none}
+.tl-content{padding:18px 0 18px 18px}
+.tl-content h3{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.tl-content p{font-size:13px;color:var(--muted);line-height:1.7}
+@media(max-width:560px){
+  .tl-item{grid-template-columns:80px 22px 1fr}
+  .tl-year{font-size:14px}
+  .tl-content{padding:14px 0 14px 12px}
+}
+</style>
 </head>
 <body>
 <nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/library">Library</a><a href="/glossary">Glossary</a><a href="/unknowns">Unknowns</a></div><a href="/#chatbox" class="cta-nav">ASK RAI</a></nav>
-<section class="hero"><div class="hero-content"><div class="eyebrow">Historical Context</div><h1>Research Timeline</h1><p>How the scientific study of consciousness, survival, and exceptional experience developed over time.</p></div></section>
-<main><section class="section"><div id="timeline" class="timeline"></div></section></main>
-<footer class="footer"><span>History helps separate novelty from rediscovery.</span><span><a href="/library">Open library</a></span></footer>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Historical Context</div>
+    <h1>Research Timeline</h1>
+    <p>How the scientific study of consciousness, survival, and exceptional human experience developed — from Plato to the present.</p>
+  </div>
+</section>
+
+<main>
+<section class="section narrow">
+  <div id="timeline"></div>
+</section>
+</main>
+
+<footer class="footer">
+  <span>History helps separate novelty from rediscovery.</span>
+  <span><a href="/library">Open library</a> · <a href="/unknowns">What we don't know yet</a></span>
+</footer>
+
 <script type="module">
 import { timelineEvents } from '/data/research-data.js';
-document.getElementById('timeline').innerHTML=timelineEvents.map(e=>`<article class="event"><div class="year">${e.year}</div><div><h3>${e.title}</h3><p>${e.text}</p></div></article>`).join('');
+
+const ERAS = [
+  { label: 'Ancient & Classical',   before: 1800 },
+  { label: '19th Century',          before: 1920 },
+  { label: 'Early Parapsychology',  before: 1960 },
+  { label: 'Clinical Research Era', before: 2000 },
+  { label: 'Modern Science',        before: 9999 },
+];
+
+function getEra(yearStr) {
+  const n = parseInt(yearStr.replace(/[^0-9]/g,'')) || 0;
+  const neg = yearStr.includes('BC') || yearStr.startsWith('~');
+  const num = neg ? -n : n;
+  for (const era of ERAS) if (num < era.before) return era.label;
+  return ERAS[ERAS.length-1].label;
+}
+
+const container = document.getElementById('timeline');
+let lastEra = null;
+let html = '<div class="tl">';
+
+for (const e of timelineEvents) {
+  const era = getEra(e.year);
+  if (era !== lastEra) {
+    html += `</div><div class="era-label">${era}</div><div class="tl">`;
+    lastEra = era;
+  }
+  html += `
+    <div class="tl-item">
+      <div class="tl-year-col"><div class="tl-year">${e.year}</div></div>
+      <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><h3>${e.title}</h3><p>${e.text}</p></div>
+    </div>`;
+}
+html += '</div>';
+container.innerHTML = html;
 </script>
-</body></html>
+</body>
+</html>

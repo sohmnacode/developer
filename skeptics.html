@@ -6,20 +6,315 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/research.css">
+<style>
+.argument{border:1px solid var(--line);background:rgba(255,255,255,.66);border-radius:12px;padding:30px;margin-bottom:18px}
+.argument-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.argument-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(160,100,40,.75);margin-bottom:6px}
+.argument-title{font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.verdict-chip{flex-shrink:0;padding:5px 12px;border-radius:999px;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.verdict-chip.partial{background:rgba(196,160,80,.12);color:#8a6820;border:1px solid rgba(196,160,80,.22)}
+.verdict-chip.limited{background:rgba(45,122,34,.1);color:#2d7a22;border:1px solid rgba(45,122,34,.18)}
+.verdict-chip.strong-critique{background:rgba(180,70,40,.1);color:#8a3820;border:1px solid rgba(180,70,40,.18)}
+.argument-body{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:22px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:620px){.two-col{grid-template-columns:1fr}}
+.explains-box,.fails-box{padding:16px 18px;border-radius:8px}
+.explains-box{background:rgba(45,122,34,.06);border:1px solid rgba(45,122,34,.15)}
+.fails-box{background:rgba(196,160,80,.06);border:1px solid rgba(196,160,80,.15)}
+.box-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+.box-label.green{color:rgba(45,122,34,.8)}
+.box-label.amber{color:rgba(160,110,30,.8)}
+.explains-box ul,.fails-box ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px}
+.explains-box li,.fails-box li{font-size:12.5px;line-height:1.6;display:flex;gap:7px;align-items:flex-start}
+.explains-box li::before{content:'✓';font-size:10px;color:rgba(45,122,34,.7);margin-top:2px;flex-shrink:0}
+.fails-box li::before{content:'✗';font-size:10px;color:rgba(160,110,30,.7);margin-top:2px;flex-shrink:0}
+.explains-box li{color:rgba(23,54,20,.65)}
+.fails-box li{color:rgba(100,70,20,.7)}
+.bottom-line{margin-top:18px;padding:14px 18px;background:rgba(255,255,255,.7);border-left:3px solid rgba(45,107,34,.25);border-radius:0 6px 6px 0;font-size:13px;color:var(--muted);font-style:italic;line-height:1.65}
+.intro-callout{padding:24px 28px;background:rgba(196,160,80,.07);border:1px solid rgba(196,160,80,.18);border-radius:10px;margin-bottom:40px;font-size:14px;color:rgba(100,70,20,.75);line-height:1.7}
+.intro-callout strong{color:rgba(100,70,20,.9)}
+</style>
 </head>
 <body>
 <nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/cases">Cases</a><a href="/methodology">Methodology</a><a href="/unknowns">Unknowns</a></div><a href="/#chatbox" class="cta-nav">ASK RAI</a></nav>
-<section class="hero"><div class="hero-content"><div class="eyebrow">Intellectual Honesty</div><h1>Skeptic's Corner</h1><p>The strongest version of the countercase belongs inside the project, not outside it.</p></div></section>
-<main><section class="section">
-<h2 class="section-title">Best Counterarguments</h2><p class="lede">A claim about survival or nonlocal mind gets stronger only when it survives serious alternatives. These are the explanations RAI should actively test before leaning extraordinary.</p>
-<div class="grid">
-<article class="card"><div class="meta">Physiology</div><h3>Hypoxia, hypercarbia, and crisis chemistry</h3><p>Oxygen deprivation, CO2 changes, endorphins, ketamine-like neurochemistry, and temporal-lobe instability can produce vivid states. They explain some features well, but struggle with verified perceptions and clear cognition during absent cortical function.</p></article>
-<article class="card"><div class="meta">Memory</div><h3>Confabulation after recovery</h3><p>People may assemble memories after the event from fragments, overheard details, expectation, and later conversations. The strongest cases document specific statements early and before external confirmation.</p></article>
-<article class="card"><div class="meta">Culture</div><h3>Expectation shapes interpretation</h3><p>People often interpret experiences through available religious or cultural imagery. Cross-cultural recurrence of functional patterns matters more than matching symbols.</p></article>
-<article class="card"><div class="meta">Fraud and incentive</div><h3>Extraordinary stories attract reward</h3><p>Fame, money, social status, or family pressure can distort reports. Strong investigations look for records, witnesses, and incentives to fabricate.</p></article>
-<article class="card"><div class="meta">Research bias</div><h3>Only impressive cases get published</h3><p>Publication bias can make evidence look cleaner than it is. Prospective and regional collection methods are more valuable than cherry-picked retrospective stories.</p></article>
-<article class="card"><div class="meta">Mechanism</div><h3>No accepted model</h3><p>Even strong anomalies do not automatically prove a soul. They may show current models are incomplete. Mechanism is an open research frontier.</p></article>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Intellectual Honesty</div>
+    <h1>Skeptic's Corner</h1>
+    <p>The strongest version of the countercase belongs inside the project, not outside it. A claim about survival gets stronger only when it survives serious alternatives.</p>
+  </div>
+</section>
+
+<main>
+<section class="section narrow">
+
+<div class="intro-callout">
+  <strong>How to read this page:</strong> Each argument is presented in its strongest possible form — not as a straw man. Then we assess what it actually explains, and where it falls short or remains genuinely open. The goal is not to dismiss skepticism, but to identify exactly how much work each counterargument can and cannot do.
 </div>
-</section></main>
-<footer class="footer"><span>RAI should be curious, not credulous.</span><span><a href="/evidence">Return to evidence map</a></span></footer>
-</body></html>
+
+<div class="argument">
+  <div class="argument-header">
+    <div>
+      <div class="argument-label">Physiology</div>
+      <div class="argument-title">Hypoxia, hypercarbia, and crisis neurochemistry</div>
+    </div>
+    <div class="verdict-chip partial">Partial explanation</div>
+  </div>
+  <p class="argument-body">Oxygen deprivation triggers hallucinations, emotional flooding, and altered time perception. Elevated CO2 (hypercarbia) can produce tunnels, lights, and feelings of peace. Endorphin release during crisis and endogenous ketamine-like neurochemistry (NMDA antagonism) could explain dissociative OBE-type states. Temporal lobe stimulation produces body-separation sensations in surgical patients. This is a scientifically serious set of mechanisms, not a dismissal.</p>
+  <div class="two-col">
+    <div class="explains-box">
+      <div class="box-label green">What this explains well</div>
+      <ul>
+        <li>Tunnel and light imagery (visual cortex disinhibition)</li>
+        <li>Peace, euphoria, and emotional flooding</li>
+        <li>Time distortion and life-review-like rapid memory access</li>
+        <li>Why NDEs occur more often in people under greater physiological stress</li>
+      </ul>
+    </div>
+    <div class="fails-box">
+      <div class="box-label amber">Where it falls short</div>
+      <ul>
+        <li>Cannot account for veridical perceptions of verifiable details during flatline</li>
+        <li>Enhanced clarity and cognition — the opposite of hypoxic confusion</li>
+        <li>Cross-cultural consistency of phenomenology beyond cultural expectation</li>
+        <li>Cases occurring under general anesthesia with active sensory blockade</li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom-line">The strongest materialist explanation for NDE content. Adequate for a substantial portion of cases. The veridical perception cases are its hardest problem — specifically the Pam Reynolds and Maria cases, where sensory input was demonstrably blocked.</div>
+</div>
+
+<div class="argument">
+  <div class="argument-header">
+    <div>
+      <div class="argument-label">Memory</div>
+      <div class="argument-title">Confabulation and retrospective reconstruction</div>
+    </div>
+    <div class="verdict-chip partial">Partial explanation</div>
+  </div>
+  <p class="argument-body">Memory is reconstructive, not archival. People routinely fill gaps with plausible material, particularly after high-arousal events. After a cardiac arrest, a patient is exposed to staff conversations, family visits, and media accounts before their story is formally recorded. Later interviews can unknowingly incorporate overheard details. This is not fraud — it is ordinary memory being ordinary.</p>
+  <div class="two-col">
+    <div class="explains-box">
+      <div class="box-label green">What this explains well</div>
+      <ul>
+        <li>Cases where documentation occurs weeks or months after the event</li>
+        <li>Symbolic or culturally expected elements (robes, pearly gates)</li>
+        <li>Gradually embellished accounts across multiple tellings</li>
+        <li>Retrospective reincarnation cases without early documentation</li>
+      </ul>
+    </div>
+    <div class="fails-box">
+      <div class="box-label amber">Where it falls short</div>
+      <ul>
+        <li>Cases where perceptions were reported immediately and independently</li>
+        <li>Stevenson cases documented in writing before family contact</li>
+        <li>Specific verifiable details that post-hoc exposure cannot have supplied</li>
+        <li>Children's birthmarks — not a memory phenomenon at all</li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom-line">Compelling for under-documented cases. The methodological response is early, independent documentation — which the best reincarnation and NDE cases have. The question is always: was this detail recorded before the source was available?</div>
+</div>
+
+<div class="argument">
+  <div class="argument-header">
+    <div>
+      <div class="argument-label">Cognition</div>
+      <div class="argument-title">REM intrusion during recovery</div>
+    </div>
+    <div class="verdict-chip partial">Partial explanation</div>
+  </div>
+  <p class="argument-body">REM intrusion occurs when dream-state neurophysiology bleeds into wakefulness. Nelson et al. (2006) found that NDE experiencers have higher rates of REM intrusion, suggesting the NDE may be a dissociative REM-like state triggered by extreme stress. This is a testable, mechanistically specific hypothesis — not hand-waving.</p>
+  <div class="two-col">
+    <div class="explains-box">
+      <div class="box-label green">What this explains well</div>
+      <ul>
+        <li>Vivid visual imagery and sense of presence</li>
+        <li>Paralysis or floating sensations (sleep paralysis phenomena)</li>
+        <li>Why some people but not others have NDEs under similar conditions</li>
+        <li>The emotionally intense and memorable character of NDEs</li>
+      </ul>
+    </div>
+    <div class="fails-box">
+      <div class="box-label amber">Where it falls short</div>
+      <ul>
+        <li>The experience appears to occur during arrest, not during recovery REM</li>
+        <li>REM states do not generate specific verifiable perceptions of the room</li>
+        <li>The correlation with REM intrusion tendency may reflect a pre-existing trait</li>
+        <li>NDE content diverges from typical dream content in key ways</li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom-line">A real and testable physiological alternative. Does not explain veridical cases. The timing problem — whether the experience occurs during arrest or during recovery — is the crux, and it is genuinely unresolved.</div>
+</div>
+
+<div class="argument">
+  <div class="argument-header">
+    <div>
+      <div class="argument-label">Culture</div>
+      <div class="argument-title">Expectation, culture, and interpretive framing</div>
+    </div>
+    <div class="verdict-chip partial">Partial explanation</div>
+  </div>
+  <p class="argument-body">People interpret experiences through available cultural frameworks. A Christian may see Jesus; a Hindu may see Yama. After media coverage of Moody's Life After Life, the reported content of NDEs may have converged on culturally expected elements. Cultural expectation can shape memory, interpretation, and reporting without requiring fraud or deliberate deception.</p>
+  <div class="two-col">
+    <div class="explains-box">
+      <div class="box-label green">What this explains well</div>
+      <ul>
+        <li>The specific religious symbols and figures reported (culturally variable)</li>
+        <li>Why reported NDE content shifted after Moody's 1975 book</li>
+        <li>Differences in symbolic framing across Christian, Hindu, Buddhist reports</li>
+        <li>Why NDE reports are understandable to experiencers in cultural terms</li>
+      </ul>
+    </div>
+    <div class="fails-box">
+      <div class="box-label amber">Where it falls short</div>
+      <ul>
+        <li>The core functional pattern (OBE, boundary, light, enhanced cognition) is cross-cultural</li>
+        <li>Children's pre-cultural reports show similar structures</li>
+        <li>NDEs in non-Western cultures documented before Western exposure show similar patterns</li>
+        <li>Expectation cannot generate accurate veridical perceptions</li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom-line">Best explains the symbolic dressing of NDEs, not their functional structure. Cross-cultural phenomenology research by Ring and Kellehear specifically addressed this objection, finding consistent core elements across cultures with no Western NDE exposure.</div>
+</div>
+
+<div class="argument">
+  <div class="argument-header">
+    <div>
+      <div class="argument-label">Incentive</div>
+      <div class="argument-title">Fraud, social reward, and motivated reporting</div>
+    </div>
+    <div class="verdict-chip partial">Partial explanation</div>
+  </div>
+  <p class="argument-body">Extraordinary stories attract attention, social status, book deals, and emotional validation. This is not a cynical claim — incentive structures are real and do distort reporting. The question is how systematically fraud explains the evidence as a whole, and whether the best-documented cases have been investigated with this in mind.</p>
+  <div class="two-col">
+    <div class="explains-box">
+      <div class="box-label green">What this explains well</div>
+      <ul>
+        <li>Cases where the reporter gained financially or socially from the story</li>
+        <li>Why some cases are impossible to verify (vague details, no records)</li>
+        <li>Why the published literature over-represents dramatic reports</li>
+        <li>Fabricated reincarnation claims in cultural contexts that reward them</li>
+      </ul>
+    </div>
+    <div class="fails-box">
+      <div class="box-label amber">Where it falls short</div>
+      <ul>
+        <li>Many strong cases were reported reluctantly by initially skeptical experiencers</li>
+        <li>NDE after-effects include reduced interest in status and material reward</li>
+        <li>Children's reincarnation claims often create family embarrassment, not reward</li>
+        <li>Strongest cases include independently gathered records predating the claim</li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom-line">A necessary filter, not a wholesale explanation. The methodological response is to specifically investigate incentive structures case by case — who benefits, what was said before any reward was possible, what independent records exist?</div>
+</div>
+
+<div class="argument">
+  <div class="argument-header">
+    <div>
+      <div class="argument-label">Research bias</div>
+      <div class="argument-title">Publication bias and selective reporting</div>
+    </div>
+    <div class="verdict-chip strong-critique">Strong concern</div>
+  </div>
+  <p class="argument-body">Journals are far more likely to publish positive results than negative ones. Researchers who find nothing do not report it. The file-drawer problem is well-documented across medicine, psychology, and parapsychology. Even honest researchers accumulate evidence that looks stronger than it is because the null results are invisible.</p>
+  <div class="two-col">
+    <div class="explains-box">
+      <div class="box-label green">What this explains well</div>
+      <ul>
+        <li>Why the parapsychology literature appears more positive than replication suggests</li>
+        <li>Why effect sizes shrink significantly in registered, preregistered replications</li>
+        <li>Why high-powered adversarial replications often find smaller effects</li>
+        <li>The Bem precognition controversy — most replications failed</li>
+      </ul>
+    </div>
+    <div class="fails-box">
+      <div class="box-label amber">Where it falls short</div>
+      <ul>
+        <li>Does not explain individual strong cases (Pam Reynolds, Shanti Devi)</li>
+        <li>Prospective studies like van Lommel's are explicitly designed to avoid it</li>
+        <li>Reincarnation case research is field investigation, not lab statistics</li>
+        <li>Bayesian analysis of the ganzfeld meta-analyses still shows some signal</li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom-line">The most technically serious critique for the parapsychology literature specifically. Properly addressed by preregistration, registered reports, and adversarial collaboration — methodological improvements the field is slowly adopting. Not applicable to case-investigation research or prospective clinical studies.</div>
+</div>
+
+<div class="argument">
+  <div class="argument-header">
+    <div>
+      <div class="argument-label">Replication</div>
+      <div class="argument-title">No accepted mechanism and no reproducible protocol</div>
+    </div>
+    <div class="verdict-chip strong-critique">Strong concern</div>
+  </div>
+  <p class="argument-body">Science builds on reproducible protocols. Even if anomalies are real, without a mechanism and a reproducible experimental procedure, they cannot be integrated into broader scientific understanding. The parapsychology literature has produced decades of interesting results and almost no stable, high-powered, independently replicated protocols. This is a significant scientific problem regardless of whether the phenomena are real.</p>
+  <div class="two-col">
+    <div class="explains-box">
+      <div class="box-label green">What this explains well</div>
+      <ul>
+        <li>Why psi research has not entered mainstream science after 140 years</li>
+        <li>Why effect sizes shrink with better controls and larger samples</li>
+        <li>Why the field cannot currently produce diagnostic predictions</li>
+        <li>The absence of any accepted theoretical framework in the physics community</li>
+      </ul>
+    </div>
+    <div class="fails-box">
+      <div class="box-label amber">Where it falls short</div>
+      <ul>
+        <li>NDE and reincarnation research is observational, not experimental</li>
+        <li>Absence of mechanism does not rule out anomaly — the hard problem itself lacks mechanism</li>
+        <li>The bar for "accepted mechanism" is not consistently applied across fields</li>
+        <li>Case evidence does not require lab reproducibility to be evidentially significant</li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom-line">Legitimate as a limiting principle for experimental parapsychology. Less applicable to field case research or prospective clinical studies, where the standard is documentation quality, not lab reproducibility. The strongest response is to improve study design, not to ignore the critique.</div>
+</div>
+
+<div class="argument">
+  <div class="argument-header">
+    <div>
+      <div class="argument-label">Memory science</div>
+      <div class="argument-title">Cryptomnesia in reincarnation cases</div>
+    </div>
+    <div class="verdict-chip partial">Partial explanation</div>
+  </div>
+  <p class="argument-body">Cryptomnesia is remembering information without remembering its source, then believing it to be novel knowledge. A child could have overheard a story, seen a photograph, or absorbed details from adult conversations — and later genuinely believe the knowledge is their own. The Bridey Murphy case (Virginia Tighe, 1952) is the canonical example: details attributed to past-life memory were traced to a neighbor from childhood.</p>
+  <div class="two-col">
+    <div class="explains-box">
+      <div class="box-label green">What this explains well</div>
+      <ul>
+        <li>Cases involving widely known people or well-publicized events</li>
+        <li>Details that could have appeared in local newspapers, family stories, or books</li>
+        <li>Cases where documentation is retrospective and information paths are unclear</li>
+        <li>Regression hypnosis cases where the therapist inadvertently cues content</li>
+      </ul>
+    </div>
+    <div class="fails-box">
+      <div class="box-label amber">Where it falls short</div>
+      <ul>
+        <li>Cases involving obscure private individuals with no media presence</li>
+        <li>Very specific details (wound locations, birth defects) that cryptomnesia cannot supply</li>
+        <li>Children reporting details in languages they have never been exposed to (xenoglossy)</li>
+        <li>Cases where family isolation from the source was specifically investigated and documented</li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom-line">The primary alternative for reincarnation cases. The methodological response is to specifically investigate information channels — what could the child have known, from whom, at what age, through what route? Cases involving obscure previous personalities with no media trace are hardest to explain this way.</div>
+</div>
+
+</section>
+</main>
+
+<footer class="footer">
+  <span>RAI should be curious, not credulous — and honest about what the objections actually explain.</span>
+  <span><a href="/evidence">Return to evidence map</a></span>
+</footer>
+</body>
+</html>

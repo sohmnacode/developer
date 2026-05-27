@@ -4,17 +4,107 @@
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Glossary — ReincarnatedAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/research.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/research.css">
+<style>
+.domain-badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px}
+.domain-badge.NDE{background:rgba(45,122,34,.09);color:#2d7a22;border:1px solid rgba(45,122,34,.18)}
+.domain-badge.Reincarnation{background:rgba(45,90,180,.08);color:#2d4a9a;border:1px solid rgba(45,90,180,.16)}
+.domain-badge.Consciousness{background:rgba(130,60,180,.08);color:#6a2a9a;border:1px solid rgba(130,60,180,.16)}
+.domain-badge.Quantum{background:rgba(60,150,160,.08);color:#2a7080;border:1px solid rgba(60,150,160,.16)}
+.domain-badge.Psychedelics{background:rgba(180,80,60,.08);color:#8a3820;border:1px solid rgba(180,80,60,.16)}
+.domain-badge.Nonlocal{background:rgba(180,120,30,.08);color:#8a5a18;border:1px solid rgba(180,120,30,.16)}
+.domain-badge.Methodology{background:rgba(100,100,100,.08);color:#555;border:1px solid rgba(100,100,100,.16)}
+.term-name{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:8px;letter-spacing:-.01em}
+.term-def{font-size:13px;color:var(--muted);line-height:1.72}
+.alpha-anchor{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(45,130,34,.6);font-weight:600;margin:44px 0 16px;display:flex;align-items:center;gap:12px}
+.alpha-anchor::after{content:'';flex:1;height:1px;background:var(--line)}
+.count-line{font-size:13px;color:var(--muted);margin-bottom:24px}
+.alpha-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:36px}
+.alpha-btn{padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:rgba(255,255,255,.6);font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s,color .15s;text-decoration:none}
+.alpha-btn:hover{background:rgba(255,255,255,.95);border-color:rgba(45,130,34,.36);color:var(--ink)}
+</style>
 </head>
 <body>
 <nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/cases">Cases</a><a href="/library">Library</a><a href="/timeline">Timeline</a></div><a href="/#chatbox" class="cta-nav">ASK RAI</a></nav>
-<section class="hero"><div class="hero-content"><div class="eyebrow">Reference</div><h1>Glossary</h1><p>Plain-language definitions for the ideas that appear across consciousness research.</p></div></section>
-<main><section class="section"><div class="filters"><input id="q" class="search" placeholder="Search terms or definitions..."></div><div id="terms" class="grid"></div></section></main>
-<footer class="footer"><span>Definitions are compressed for orientation.</span><span><a href="/library">Source library</a></span></footer>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Reference</div>
+    <h1>Glossary</h1>
+    <p>Plain-language definitions for the ideas that appear across consciousness, NDE, reincarnation, psychedelic, and parapsychology research.</p>
+  </div>
+</section>
+
+<main>
+<section class="section">
+  <div class="filters" style="margin-bottom:16px">
+    <input id="q" class="search" placeholder="Search terms or definitions…">
+    <select id="domain" class="select"><option value="">All domains</option></select>
+  </div>
+  <div class="count-line" id="count"></div>
+  <div id="alpha-nav" class="alpha-nav"></div>
+  <div id="terms"></div>
+</section>
+</main>
+
+<footer class="footer">
+  <span>Definitions are compressed for orientation — follow the library for depth.</span>
+  <span><a href="/library">Source library</a> · <a href="/methodology">Methodology</a></span>
+</footer>
+
 <script type="module">
 import { glossaryTerms } from '/data/research-data.js';
-const q=document.getElementById('q'),terms=document.getElementById('terms');
-function render(){const query=q.value.toLowerCase();const rows=glossaryTerms.filter(t=>!query||Object.values(t).join(' ').toLowerCase().includes(query));terms.innerHTML=rows.map(t=>`<article class="card"><div class="meta">${t.domain}</div><h3>${t.term}</h3><p>${t.definition}</p></article>`).join('')}
-q.addEventListener('input',render);render();
+
+const q      = document.getElementById('q');
+const domain = document.getElementById('domain');
+const wrap   = document.getElementById('terms');
+const count  = document.getElementById('count');
+const alphaNav = document.getElementById('alpha-nav');
+
+for (const v of [...new Set(glossaryTerms.map(t=>t.domain))])
+  domain.insertAdjacentHTML('beforeend', `<option>${v}</option>`);
+
+function render() {
+  const query = q.value.toLowerCase();
+  const rows = glossaryTerms
+    .filter(t =>
+      (!domain.value || t.domain === domain.value) &&
+      (!query || (t.term + ' ' + t.definition).toLowerCase().includes(query))
+    )
+    .sort((a,b) => a.term.localeCompare(b.term));
+
+  count.textContent = `${rows.length} term${rows.length===1?'':'s'} shown`;
+
+  // Build alpha groups
+  const groups = {};
+  for (const t of rows) {
+    const letter = t.term[0].toUpperCase();
+    if (!groups[letter]) groups[letter] = [];
+    groups[letter].push(t);
+  }
+
+  // Alpha nav
+  const letters = Object.keys(groups).sort();
+  alphaNav.innerHTML = letters.map(l =>
+    `<a class="alpha-btn" href="#alpha-${l}">${l}</a>`
+  ).join('');
+
+  // Content
+  wrap.innerHTML = letters.map(l => `
+    <div class="alpha-anchor" id="alpha-${l}">${l}</div>
+    <div class="grid">
+      ${groups[l].map(t => `
+        <article class="card">
+          <span class="domain-badge ${t.domain.replace(/\s+/g,'')}">${t.domain}</span>
+          <div class="term-name">${t.term}</div>
+          <p class="term-def">${t.definition}</p>
+        </article>`).join('')}
+    </div>`).join('') || '<p class="lede" style="margin:0">No terms match.</p>';
+}
+
+[q, domain].forEach(el => el.addEventListener('input', render));
+render();
 </script>
-</body></html>
+</body>
+</html>
