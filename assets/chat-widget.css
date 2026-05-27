@@ -55,7 +55,8 @@
 .rai-fab-label{font-size:13px;font-weight:600;letter-spacing:.03em}
 
 @media(max-width:600px){
-  #rai-widget{right:0;left:0;bottom:0;padding:0 12px 20px;align-items:flex-end}
+  #rai-widget{right:0;left:0;bottom:0;padding:0 12px 20px;align-items:flex-end;pointer-events:none}
+  #rai-widget>*{pointer-events:auto}
   .rai-panel{width:100%;max-height:70vh;max-height:70dvh;border-radius:20px 20px 16px 16px}
   .rai-fab{padding:13px}
   .rai-fab-label{display:none}
