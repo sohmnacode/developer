@@ -289,3 +289,34 @@ nav.scrolled .nav-hamburger:hover{border-color:rgba(100,75,180,.4);color:#1A1535
 [data-theme="dark"] .result-item{background:rgba(14,12,28,.85);border-color:rgba(110,85,190,.16);color:rgba(145,135,200,.75);}
 [data-theme="dark"] .result-item:hover{background:rgba(18,15,35,.9);border-color:rgba(110,85,190,.3);}
 [data-theme="dark"] .result-item mark{background:rgba(110,85,200,.25);color:rgba(237,232,224,.9);}
+
+/* Inner research pages — text color overrides for hardcoded dark-ink values */
+[data-theme="dark"] .lede{color:rgba(175,168,222,.82)!important;}
+[data-theme="dark"] .theory-name,
+[data-theme="dark"] .study-title,
+[data-theme="dark"] .rc-name,
+[data-theme="dark"] .fc h3,
+[data-theme="dark"] .ev-text h4,
+[data-theme="dark"] .ph-text h4,
+[data-theme="dark"] .case h3{color:rgba(237,232,224,.9)!important;}
+[data-theme="dark"] .theory-author,
+[data-theme="dark"] .theory-implication,
+[data-theme="dark"] .fc p,
+[data-theme="dark"] .rc-desc,
+[data-theme="dark"] .ev-text p,
+[data-theme="dark"] .ph-text p,
+[data-theme="dark"] .case p,
+[data-theme="dark"] .study p,
+[data-theme="dark"] .highlight,
+[data-theme="dark"] .step-text p,
+[data-theme="dark"] .cta-block p,
+[data-theme="dark"] .quote-block cite{color:rgba(175,168,222,.78)!important;}
+[data-theme="dark"] .theory-implication strong,
+[data-theme="dark"] .highlight strong{color:rgba(237,232,224,.88)!important;}
+[data-theme="dark"] .stat-l{color:rgba(145,135,200,.6)!important;}
+[data-theme="dark"] .footer{color:rgba(110,100,165,.45)!important;}
+[data-theme="dark"] .footer a{color:rgba(125,115,180,.6)!important;}
+[data-theme="dark"] .theory-implication{background:rgba(100,75,180,.1)!important;border-color:rgba(110,85,190,.2)!important;}
+[data-theme="dark"] .highlight{background:rgba(100,75,180,.08)!important;border-color:rgba(110,85,190,.2)!important;}
+[data-theme="dark"] .ev-item{background:rgba(14,12,28,.8)!important;border-color:rgba(110,85,190,.14)!important;}
+[data-theme="dark"] .ph-item{background:rgba(14,12,28,.8)!important;border-color:rgba(110,85,190,.14)!important;}
