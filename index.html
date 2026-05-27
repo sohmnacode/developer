@@ -115,6 +115,25 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
 .dc-refs{font-size:10.5px;color:rgba(100,75,180,.45);font-weight:500}
 @media(max-width:640px){.s4{padding:80px 20px}.domains{grid-template-columns:1fr}}
 
+/* Technology frontier section */
+.s-tech{background:#07050F;padding:112px 40px;position:relative;z-index:2;overflow:hidden}
+.s-tech::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(139,92,246,.055) 1px,transparent 1px);background-size:30px 30px;pointer-events:none}
+.s-tech::after{content:'';position:absolute;top:0;right:0;width:55%;height:100%;background:radial-gradient(ellipse 60% 80% at 80% 40%,rgba(109,40,217,.14),transparent 65%);pointer-events:none}
+.s-tech .sh2 .ey{color:rgba(160,139,222,.55)}
+.s-tech .sh2 h2{color:#fff;background:none;-webkit-text-fill-color:#fff}
+.s-tech .sh2 p{color:rgba(255,255,255,.35)}
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;max-width:1080px;margin:0 auto 48px}
+.tech-card{padding:26px 28px;border-radius:16px;border:1px solid rgba(139,92,246,.16);background:rgba(255,255,255,.035);transition:border-color .2s,background .2s,transform .18s;position:relative;z-index:1}
+.tech-card:hover{border-color:rgba(139,92,246,.35);background:rgba(255,255,255,.065);transform:translateY(-2px)}
+.tech-card-icon{font-size:20px;margin-bottom:12px;line-height:1}
+.tech-card-tag{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(160,139,222,.5);font-weight:600;margin-bottom:8px}
+.tech-card h3{font-size:14px;font-weight:700;color:rgba(237,232,224,.88);margin-bottom:9px;letter-spacing:-.01em}
+.tech-card p{font-size:12px;color:rgba(200,195,235,.48);line-height:1.65}
+.s-tech-cta{display:flex;justify-content:center;position:relative;z-index:1}
+.tech-cta-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border-radius:12px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;transition:opacity .2s,transform .15s}
+.tech-cta-btn:hover{opacity:.85;transform:translateY(-2px)}
+@media(max-width:640px){.s-tech{padding:80px 20px}.tech-grid{grid-template-columns:1fr}}
+
 /* Research tools section */
 .s-tools{background:#F7F6FF;padding:112px 40px;position:relative;z-index:2}
 .tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;max-width:1080px;margin:0 auto}
@@ -302,6 +321,49 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
       <p>SRI remote viewing, PEAR Lab mind-matter studies, and morphic resonance research point beyond the individual skull.</p>
       <div class="dc-refs">Targ · Jahn · Sheldrake</div>
     </a>
+    <a class="dc" href="/technology">
+      <div class="dc-header"><div class="dc-tag">Emerging Frontier</div><div class="dc-arrow">→</div></div>
+      <h3>Technology &amp; Soul Science</h3>
+      <p>Mind uploading, AI consciousness research, and neurotechnology are reframing the question of what survives — with new precision.</p>
+      <div class="dc-refs">Tononi · Parnia · Sandberg &amp; Bostrom</div>
+    </a>
+  </div>
+</section>
+
+<section class="s-tech" id="technology">
+  <div class="sh2" style="position:relative;z-index:1">
+    <div class="ey">Emerging Frontier</div>
+    <h2>Technology &amp; Soul Science</h2>
+    <p>Mind uploading, AI consciousness, and neurotechnology are making the oldest questions precise. Four areas where the science is moving fast.</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-card">
+      <div class="tech-card-icon">🧠</div>
+      <div class="tech-card-tag">Whole Brain Emulation</div>
+      <h3>Mind Uploading</h3>
+      <p>OpenWorm ran a complete connectome in software. Blue Brain simulated a cortical column at cellular resolution. Substrate-independent consciousness is an engineering problem, not a theoretical one.</p>
+    </div>
+    <div class="tech-card">
+      <div class="tech-card-icon">Φ</div>
+      <div class="tech-card-tag">Integrated Information Theory</div>
+      <h3>AI &amp; Consciousness</h3>
+      <p>Tononi's IIT gives consciousness a mathematical measure applicable to any system. Current AI scores low on phi despite sophisticated outputs — raising harder questions about what biological brains actually do.</p>
+    </div>
+    <div class="tech-card">
+      <div class="tech-card-icon">⚡</div>
+      <div class="tech-card-tag">Neurotechnology</div>
+      <h3>The Dying Brain</h3>
+      <p>A 2023 PNAS study found a gamma wave surge at death exceeding waking activity. Sam Parnia's AWARE II places hidden targets in resuscitation rooms. The moment of death is now measurable at millisecond resolution.</p>
+    </div>
+    <div class="tech-card">
+      <div class="tech-card-icon">∞</div>
+      <div class="tech-card-tag">Philosophy of Identity</div>
+      <h3>Continuity &amp; The Self</h3>
+      <p>If mind uploading works, identity is pattern — not biology. Parfit's psychological continuity theory predicts exactly the kind of cross-life memory chains documented in reincarnation research.</p>
+    </div>
+  </div>
+  <div class="s-tech-cta">
+    <a href="/technology" class="tech-cta-btn">Explore Technology &amp; Soul Science →</a>
   </div>
 </section>
 <section class="s-tools" id="tools">

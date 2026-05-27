@@ -120,6 +120,7 @@ nav.scrolled .nav-hamburger:hover{border-color:rgba(100,75,180,.4);color:#1A1535
 /* Index page sections — opaque dark backgrounds so fixed canvas doesn't bleed through */
 [data-theme="dark"] .s3,
 [data-theme="dark"] .s-tools{background:#0E0C20!important;}
+[data-theme="dark"] .s-tech{background:#04030A!important;}
 [data-theme="dark"] .s4{background:#0C0A1A!important;}
 [data-theme="dark"] .s5{background:#07050F!important;}
 [data-theme="dark"] .s-stats{background:#0C0A1A!important;border-color:rgba(110,85,190,.1)!important;}

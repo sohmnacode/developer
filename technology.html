@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="color-scheme" content="light"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Technology &amp; Soul Science — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/theme.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F8F5EF;font-family:'Inter',system-ui,sans-serif;color:#1A1535;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Space Grotesk',system-ui,sans-serif}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;background:rgba(8,6,42,0.3);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);transition:background .35s,border-color .35s}
+nav.scrolled{background:rgba(248,245,239,0.94);border-bottom-color:rgba(100,75,180,0.13)}
+nav.scrolled .links a{color:rgba(26,21,53,0.75)}
+nav.scrolled .links a:hover{color:#1A1535}
+nav.scrolled .logo{background:linear-gradient(135deg,#7B4FC9,#9B6FE0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+nav.scrolled .cta-nav{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
+.logo{font-family:'Space Grotesk',system-ui,sans-serif;font-size:17px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(135deg,#A08BDE,#C5B0F0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none}
+.links{display:flex;gap:30px}
+.links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.links a:hover{color:#fff}
+.cta-nav{padding:9px 22px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border-radius:8px;font-size:13px;font-weight:600;color:#fff;text-decoration:none;transition:opacity .2s}
+.cta-nav:hover{opacity:.85}
+
+.hero{min-height:56vh;display:flex;align-items:flex-end;justify-content:flex-start;padding:0 80px 72px;background:linear-gradient(160deg,#060410 0%,#0D0B1F 60%,#0A0818 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 90% 15%,rgba(109,40,217,.18),transparent 65%),radial-gradient(ellipse 40% 50% at 5% 85%,rgba(0,160,255,.06),transparent 60%);pointer-events:none}
+.hero::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(139,92,246,.055) 1px,transparent 1px);background-size:30px 30px;pointer-events:none}
+.hero-back{position:absolute;top:88px;left:40px;font-size:12px;color:rgba(255,255,255,.32);text-decoration:none;letter-spacing:.06em;transition:color .2s;z-index:1}
+.hero-back:hover{color:rgba(255,255,255,.65)}
+.hero-content{position:relative;z-index:1;max-width:700px}
+.tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(160,139,222,.72);margin-bottom:16px;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:600}
+.hero h1{font-size:clamp(34px,5.5vw,68px);font-weight:700;letter-spacing:-.03em;line-height:1.03;margin-bottom:20px;background:linear-gradient(140deg,#fff 0%,#D4C8F5 50%,#A08BDE 92%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:17px;color:rgba(255,255,255,.42);line-height:1.78;max-width:560px}
+
+main{background:linear-gradient(to bottom,#F8F5EF,#F0ECE4)}
+.section{padding:80px 80px;max-width:1100px;margin:0 auto}
+.section-sm{padding:0 80px 80px;max-width:1100px;margin:0 auto}
+@media(max-width:768px){.hero{padding:0 24px 56px}.section,.section-sm{padding:60px 24px}}
+h2.sh{font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-.02em;margin-bottom:16px;background:linear-gradient(135deg,#7B4FC9,#9B6FE0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lede{font-size:16px;color:rgba(26,21,53,0.75);line-height:1.82;margin-bottom:32px;max-width:720px}
+.divider{height:1px;background:linear-gradient(to right,rgba(100,75,180,.14),transparent);margin:0 80px}
+@media(max-width:768px){.divider{margin:0 24px}}
+
+.evidence{display:flex;flex-direction:column;gap:14px;margin-bottom:48px}
+.ev-item{display:flex;gap:16px;align-items:flex-start;padding:20px 24px;border-radius:14px;border:1px solid rgba(100,75,180,.1);background:rgba(255,255,255,.55)}
+.ev-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#7B4FC9,#9B6FE0);flex-shrink:0;margin-top:6px}
+.ev-text h4{font-size:14px;font-weight:700;color:#1A1535;margin-bottom:5px;font-family:'Space Grotesk',system-ui,sans-serif}
+.ev-text p{font-size:13px;color:rgba(26,21,53,0.65);line-height:1.68}
+
+.features{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:48px}
+.fc{padding:28px;border-radius:18px;border:1px solid rgba(100,75,180,.11);background:rgba(255,255,255,.65)}
+.fc-tag{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(120,95,190,.6);font-weight:600;margin-bottom:10px}
+.fc-icon{font-size:24px;margin-bottom:14px;line-height:1}
+.fc h3{font-size:15px;font-weight:700;color:#1A1535;margin-bottom:10px}
+.fc p{font-size:13px;color:rgba(26,21,53,0.72);line-height:1.7}
+
+.theory-grid{display:flex;flex-direction:column;gap:16px;margin-bottom:48px}
+.theory{padding:28px 32px;border-radius:18px;border:1px solid rgba(100,75,180,.11);background:rgba(255,255,255,.65)}
+.theory-name{font-size:16px;font-weight:700;color:#1A1535;margin-bottom:4px;font-family:'Space Grotesk',system-ui,sans-serif}
+.theory-author{font-size:11px;color:rgba(26,21,53,0.65);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.theory p{font-size:13.5px;color:rgba(26,21,53,0.72);line-height:1.78}
+.theory-implication{margin-top:16px;padding:13px 16px;border-radius:10px;background:rgba(100,75,180,.07);border:1px solid rgba(100,75,180,.14);font-size:12.5px;color:rgba(26,21,53,.65);line-height:1.62}
+.theory-implication strong{color:#1A1535;font-weight:600}
+
+.callout{padding:26px 30px;border-radius:14px;background:rgba(109,40,217,.06);border:1px solid rgba(109,40,217,.14);margin-bottom:40px}
+.callout p{font-size:14px;color:rgba(26,21,53,.72);line-height:1.78}
+.callout strong{color:#1A1535;font-weight:600}
+
+.researchers{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:48px}
+.rc{padding:24px 26px;border-radius:18px;border:1px solid rgba(100,75,180,.11);background:rgba(255,255,255,.65)}
+.rc-name{font-size:15px;font-weight:700;color:#1A1535;margin-bottom:4px;font-family:'Space Grotesk',system-ui,sans-serif}
+.rc-inst{font-size:11px;color:rgba(120,95,190,.62);letter-spacing:.06em;margin-bottom:12px;text-transform:uppercase}
+.rc-desc{font-size:13px;color:rgba(26,21,53,0.72);line-height:1.7}
+
+.cta-block{padding:72px 40px;text-align:center;border-top:1px solid rgba(100,75,180,.1)}
+.cta-block h2{font-size:clamp(22px,3vw,38px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px;background:linear-gradient(135deg,#7B4FC9,#9B6FE0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cta-block p{font-size:15px;color:rgba(26,21,53,0.65);margin-bottom:32px;line-height:1.75}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.cta-btn{display:inline-block;padding:13px 30px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border-radius:12px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;transition:opacity .2s,transform .15s}
+.cta-btn:hover{opacity:.85;transform:translateY(-2px)}
+.cta-btn.secondary{background:rgba(255,255,255,.7);border:1px solid rgba(100,75,180,.18);color:#1A1535}
+.cta-btn.secondary:hover{background:#fff}
+
+.footer{padding:32px 80px;border-top:1px solid rgba(100,75,180,.1);font-size:12px;color:rgba(26,21,53,0.5);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer a{color:rgba(26,21,53,0.65);text-decoration:none}
+@media(max-width:640px){.footer{padding:24px;flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">ReincarnatedAI</a>
+  <div class="links"><a href="/#explore">Explore</a><a href="/#research">Research</a><a href="/#about">About</a><a href="/traditions">Traditions</a></div>
+</nav>
+
+<section class="hero">
+  <a href="/#research" class="hero-back">← Research Domains</a>
+  <div class="hero-content">
+    <div class="tag">Emerging Frontier</div>
+    <h1>Technology &amp;<br>Soul Science</h1>
+    <p class="hero-desc">Mind uploading, AI consciousness research, and neurotechnology are reframing questions humanity has asked for millennia. If identity can survive a substrate change, what does that tell us about what identity actually is?</p>
+  </div>
+</section>
+
+<main>
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Why Technology Changes the Question</h2>
+  <p class="lede">For most of history, questions about consciousness and personal continuity after death were purely philosophical. Technology is changing that. We can now simulate neurons at cellular resolution, measure brain activity in dying patients with millisecond precision, and build AI systems complex enough that serious philosophers debate whether they might be conscious.</p>
+  <p class="lede">This creates an entirely new situation. The question isn't just "does consciousness survive?" but "what exactly is consciousness, and what substrate does it require?" If we can run a worm's nervous system in software and the digital worm exhibits the worm's behavioral repertoire — does it feel anything? The answer to that question has direct implications for how we think about reincarnation, identity, and the soul.</p>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Mind Uploading &amp; Whole Brain Emulation</h2>
+  <p class="lede">Whole brain emulation (WBE) is the theoretical process of scanning a brain in sufficient detail to recreate its functional organization in software. Several serious research programs are working toward this — and the first milestone has already been reached.</p>
+  <div class="evidence">
+    <div class="ev-item">
+      <div class="ev-dot"></div>
+      <div class="ev-text">
+        <h4>OpenWorm — First Complete Connectome in Simulation (2014)</h4>
+        <p>Researchers digitized the complete neural wiring of C. elegans — all 302 neurons and ~7,000 synaptic connections — and ran the connectome in a Lego robot. The robot exhibited behaviors characteristic of the worm without being explicitly programmed for them, including avoidance responses to touch. This is the only fully completed connectome-to-simulation project to date. The worm's behavioral program ran on silicon.</p>
+      </div>
+    </div>
+    <div class="ev-item">
+      <div class="ev-dot"></div>
+      <div class="ev-text">
+        <h4>Blue Brain Project — Cortical Column Simulation (2015)</h4>
+        <p>Henry Markram's team at EPFL simulated a rat cortical column at cellular and synaptic resolution: 31,000 neurons, 37 million synapses. Published in Cell. The simulation reproduces electrophysiological properties of biological tissue, including emergent oscillation patterns not explicitly programmed. It does not claim consciousness — but demonstrates the technical pathway toward full-scale brain emulation at biological fidelity.</p>
+      </div>
+    </div>
+    <div class="ev-item">
+      <div class="ev-dot"></div>
+      <div class="ev-text">
+        <h4>Sandberg &amp; Bostrom — WBE Technical Roadmap (2008)</h4>
+        <p>The first serious technical blueprint for whole brain emulation, published by Oxford's Future of Humanity Institute. It identifies the key milestones: high-resolution brain scanning, automated tissue processing, neuron-type classification, and large-scale simulation infrastructure. Their conclusion: WBE is technically feasible. The question is cost and timeline reduction — not theoretical possibility.</p>
+      </div>
+    </div>
+    <div class="ev-item">
+      <div class="ev-dot"></div>
+      <div class="ev-text">
+        <h4>Kurzweil's Singularity Projection</h4>
+        <p>Ray Kurzweil argues that exponential growth in computing power will make the brain's computational complexity affordable to simulate by the late 2020s–2040s. His track record on technology predictions is unusually strong. While the timelines are contested, his core argument — that simulating ~86 billion neurons is computationally tractable on foreseeable hardware — is not seriously disputed by neuroscientists working in the space.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">AI &amp; Consciousness Research</h2>
+  <p class="lede">Large language models capable of sophisticated reasoning have forced a clarification on what human consciousness actually is. If a system can produce perfectly human-like outputs — including emotional language and apparent self-reflection — without being conscious, then behavior alone cannot confirm inner experience. This insight cuts in multiple directions.</p>
+  <div class="features">
+    <div class="fc">
+      <div class="fc-tag">Tononi · 2004–present</div>
+      <div class="fc-icon">Φ</div>
+      <h3>Integrated Information Theory</h3>
+      <p>IIT proposes that consciousness is identical to integrated information (phi, Φ) — a mathematically measurable quantity applicable to any system, biological or artificial. Current transformer-based AI scores very low on phi despite impressive outputs. IIT predicts that consciousness requires specific physical architecture, not just behavior — which suggests the substrate question matters profoundly.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-tag">Google · 2022</div>
+      <div class="fc-icon">🤖</div>
+      <h3>The LaMDA Controversy</h3>
+      <p>Google engineer Blake Lemoine's claim that LaMDA was sentient — and his subsequent dismissal — brought AI consciousness into mainstream discourse. The scientific consensus is that current LLMs are not conscious. But the controversy forced a useful question: what evidence would we even accept? We lack consensus criteria, which reveals how poorly we understand consciousness in biological systems — including ourselves.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-tag">Implication</div>
+      <div class="fc-icon">🔬</div>
+      <h3>What AI Reveals About Reincarnation Research</h3>
+      <p>AI demonstrates that behavioral evidence alone cannot confirm inner experience. This cuts both ways: it makes dismissing reincarnation cases by proposing behavioral explanations (fabrication, cryptomnesia) more complex. If even a system that produces perfect human-like outputs might not be conscious, then a child accurately recalling a verified past life cannot be dismissed on purely behavioral grounds.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Neurotechnology at the Moment of Death</h2>
+  <p class="lede">Advances in neuroimaging and monitoring have allowed researchers to observe the dying brain with unprecedented resolution — producing findings that neither materialist nor survivalist frameworks have yet fully integrated.</p>
+  <div class="evidence">
+    <div class="ev-item">
+      <div class="ev-dot"></div>
+      <div class="ev-text">
+        <h4>Gamma Surge at Death — University of Michigan (2023)</h4>
+        <p>A study of four dying patients published in PNAS found a dramatic surge of gamma-band activity (30–100 Hz) in the posterior cortex — the primary neural correlate of visual and integrative consciousness — immediately following cardiac arrest, after cerebral blood flow had ceased. One researcher noted the activity exceeded typical waking levels. If gamma coherence underlies conscious experience, this finding suggests a neurological mechanism for the heightened clarity NDErs consistently describe at the moment of apparent death.</p>
+      </div>
+    </div>
+    <div class="ev-item">
+      <div class="ev-dot"></div>
+      <div class="ev-text">
+        <h4>AWARE II — Hidden Visual Targets in Resuscitation Rooms</h4>
+        <p>Sam Parnia's AWARE II study placed concealed images on elevated shelves in 26 hospital resuscitation rooms — visible only from above, not from a supine body position. The protocol directly tests out-of-body perception claims from NDE reports. One case involved a patient accurately describing events during 3+ minutes of cardiac arrest. Full results are pending peer review, but the methodology represents the most rigorous attempt to empirically verify veridical NDE perception to date.</p>
+      </div>
+    </div>
+    <div class="ev-item">
+      <div class="ev-dot"></div>
+      <div class="ev-text">
+        <h4>BrainEx — Post-Mortem Neural Function Restored (2019)</h4>
+        <p>Yale researchers restored synaptic transmission and neuronal activity in pig brains 4 hours after decapitation using an artificial perfusion system. Neurons responded to electrical stimuli; individual cells showed metabolic activity. The researchers were explicit: consciousness was not restored, and deliberate steps were taken to prevent it. But the finding demonstrated that the boundary between life and death is more gradual and reversible than the binary model assumes — with implications for when subjective experience actually ends.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">The Continuity Problem</h2>
+  <p class="lede">If consciousness can be copied, moved, or reconstructed, what exactly persists? This question — central to mind uploading research — is also the core philosophical challenge of reincarnation. Technology has made the question precise enough to examine rigorously.</p>
+  <div class="theory-grid">
+    <div class="theory">
+      <div class="theory-name">Pattern Identity Theory</div>
+      <div class="theory-author">Kurzweil · Parfit · Chalmers · Dennett</div>
+      <p>What makes you "you" is not the specific atoms in your brain — those are continuously replaced — but the pattern of their organization. Your memories, personality, and cognitive style persist through material turnover. If this is correct, a sufficiently faithful copy of your brain, whether biological or digital, would constitute you rather than a copy of you. This view is the philosophical foundation of the entire WBE research program and is taken seriously across philosophy of mind.</p>
+      <div class="theory-implication"><strong>Reincarnation implication:</strong> If identity is pattern, then pattern transfer across bodies, substrates, or time constitutes genuine continuity of self — not metaphor, not approximation. The verified memories in reincarnation cases would be evidence of actual identity transfer.</div>
+    </div>
+    <div class="theory">
+      <div class="theory-name">Biological Continuity Theory</div>
+      <div class="theory-author">Olson · van Inwagen · Animalism</div>
+      <p>Personal identity requires biological continuity. You are a specific biological organism, and your existence depends on the continuous life of that organism. On this view, mind uploading creates a copy with your memories while the original ceases to exist. This is the animalist position in philosophy of personal identity — and it creates the most resistance to both WBE and reincarnation, requiring a non-physical substrate to maintain continuity across biological death.</p>
+      <div class="theory-implication"><strong>Reincarnation implication:</strong> Biological continuity theory actually supports survival-of-consciousness frameworks — since something non-biological would need to maintain identity continuity across the death of one body and birth into another.</div>
+    </div>
+    <div class="theory">
+      <div class="theory-name">Psychological Continuity Theory</div>
+      <div class="theory-author">Locke · Parfit · Shoemaker</div>
+      <p>Personal identity consists of overlapping chains of psychological connection — memory, intention, personality, belief. Derek Parfit's landmark analysis showed that strict identity may not even be what matters for survival; what matters is the right kind of psychological continuity and connectedness. This view accommodates gaps in consciousness (sleep, anesthesia, deep sedation) and is compatible with radical substrate changes.</p>
+      <div class="theory-implication"><strong>Reincarnation implication:</strong> The specific memories documented in reincarnation cases — names, locations, causes of death, family relationships — are precisely the kind of psychological content Parfit's framework identifies as the carrier of personal identity. Their presence in a new biological body would satisfy the conditions for continuity.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">The Simulation Hypothesis</h2>
+  <p class="lede">Nick Bostrom's 2003 simulation argument proposes that at least one of three claims must be true: civilizations go extinct before developing simulation capability; advanced civilizations choose not to run ancestor simulations; or we are almost certainly living in a simulation. The argument is probabilistic and taken seriously in physics and philosophy.</p>
+  <div class="callout">
+    <p>If we exist within a computational substrate, then <strong>consciousness is already substrate-independent by definition.</strong> The "rules" governing rebirth, karma, and continuity would be features of the simulation's architecture rather than physical constraints. This does not resolve whether those rules exist — but it changes the ontological category of the question entirely.</p>
+  </div>
+  <div class="features">
+    <div class="fc">
+      <div class="fc-tag">Bostrom · 2003</div>
+      <div class="fc-icon">🌐</div>
+      <h3>The Simulation Argument</h3>
+      <p>Published in Philosophical Quarterly. If post-human civilizations run many ancestor simulations, the number of simulated minds vastly outnumbers biological ones — making it more probable than not that any given mind is simulated. Endorsed as worth taking seriously by physicists including Neil deGrasse Tyson. Not empirically testable with current physics, but logically valid.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-tag">Tegmark · 2014</div>
+      <div class="fc-icon">∞</div>
+      <h3>Mathematical Universe Hypothesis</h3>
+      <p>Max Tegmark proposes that physical reality is not merely described by mathematics — it is a mathematical structure. On this view, every mathematically consistent structure exists, and consciousness emerges wherever information processing reaches sufficient complexity. This naturally accommodates multiple simultaneous or sequential instances of consciousness and makes substrate independence a mathematical certainty.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-tag">Pancomputationalism</div>
+      <div class="fc-icon">⚛</div>
+      <h3>Consciousness as Computation</h3>
+      <p>A growing position in philosophy of mind holds that consciousness is a property of certain types of information processing, independent of the physical medium. If true, consciousness could in principle be instantiated in any sufficiently complex computational substrate — neurons, silicon, or substrates not yet conceived. This position is gaining ground in mainstream philosophy of mind.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Researchers &amp; Labs</h2>
+  <p class="lede">The people actively working at the intersection of technology and consciousness science.</p>
+  <div class="researchers">
+    <div class="rc">
+      <div class="rc-name">Giulio Tononi</div>
+      <div class="rc-inst">University of Wisconsin · IIT</div>
+      <p class="rc-desc">Developed Integrated Information Theory (IIT), the leading mathematical framework for consciousness. His phi (Φ) measure is the most rigorous attempt to quantify consciousness applicable to any substrate.</p>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Sam Parnia</div>
+      <div class="rc-inst">NYU Langone · AWARE Studies</div>
+      <p class="rc-desc">Leads the most technologically rigorous NDE research — AWARE II with hidden visual targets in resuscitation rooms across 26 hospitals. Bridges clinical medicine and consciousness research.</p>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Henry Markram</div>
+      <div class="rc-inst">EPFL · Blue Brain Project</div>
+      <p class="rc-desc">Directs the Blue Brain Project, which simulated a rat cortical column at cellular resolution. A leading voice on both the technical feasibility and philosophical implications of brain simulation.</p>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Anders Sandberg</div>
+      <div class="rc-inst">Future of Humanity Institute · Oxford</div>
+      <p class="rc-desc">Co-authored the technical roadmap for whole brain emulation. Researches mind uploading, substrate-independent minds, and the long-run future of consciousness from a rigorous technical standpoint.</p>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Nick Bostrom</div>
+      <div class="rc-inst">Future of Humanity Institute · Oxford</div>
+      <p class="rc-desc">Formulated the simulation argument. Researches existential risk, superintelligence, and the metaphysics of personal identity as applied to digital minds and mind uploading.</p>
+    </div>
+    <div class="rc">
+      <div class="rc-name">David Chalmers</div>
+      <div class="rc-inst">NYU · Philosophy of Mind</div>
+      <p class="rc-desc">Coined "the hard problem of consciousness." His recent work connects virtual reality, digital minds, and the question of whether simulated consciousness is genuine — directly relevant to both WBE and reincarnation.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section-sm">
+  <div class="cta-block">
+    <h2>The Questions Are Getting Precise</h2>
+    <p>Technology isn't answering the hard problem of consciousness — but it's forcing more rigorous formulations. Explore the full research landscape.</p>
+    <div class="cta-row">
+      <a href="/#research" class="cta-btn">All Research Domains</a>
+      <a href="/consciousness" class="cta-btn secondary">Consciousness Science</a>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer class="footer">
+  <span>Technology and soul science is an emerging field — interpretations remain contested and evolving rapidly.</span>
+  <span><a href="/methodology">Methodology</a></span>
+</footer>
+
+<script>
+const navEl = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.55);
+}, { passive: true });
+</script>
+<script src="/assets/ui.js" defer></script>
+<script src="/assets/chat-widget.js" defer></script>
+</body>
+</html>
