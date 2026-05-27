@@ -73,7 +73,7 @@
   let history = [];
   let busy = false;
   let startersShown = true;
-  let isOpen = true;
+  let isOpen = false;
 
   /* ── Persistence ── */
   function saveState() {
