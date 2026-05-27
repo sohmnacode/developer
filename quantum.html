@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Quantum Mind Theory — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#edf5e8;font-family:'Jost',sans-serif;color:#1a3a16;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
+.s2-quote-text,.quote-block p{font-family:'Cormorant Garamond',serif}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;background:rgba(4,14,3,0.3);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);transition:background .35s,border-color .35s}
+nav.scrolled{background:rgba(237,245,232,0.94);border-bottom-color:rgba(45,100,35,0.13)}
+nav.scrolled .links a{color:rgba(26,58,22,.55)}
+nav.scrolled .links a:hover{color:#1a3a16}
+nav.scrolled .logo{font-family:'Cinzel',serif;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+nav.scrolled .cta-nav{background:linear-gradient(135deg,#2d5a1e,#4a9130)}
+.logo{font-family:'Cinzel',serif;font-size:17px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(135deg,#8de87a,#b0f59a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none}
+.links{display:flex;gap:30px}
+.links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.links a:hover{color:#fff}
+.cta-nav{padding:9px 22px;background:linear-gradient(135deg,#2a6b1a,#48a82e);border-radius:8px;font-size:13px;font-weight:600;color:#fff;text-decoration:none;transition:opacity .2s}
+.cta-nav:hover{opacity:.85}
+.hero{min-height:52vh;display:flex;align-items:flex-end;justify-content:flex-start;padding:0 80px 64px;background:linear-gradient(to bottom,#04100a,#07180a);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 60% at 20% 80%,rgba(16,185,129,.1),transparent 70%)}
+.hero-back{position:absolute;top:80px;left:40px;font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;letter-spacing:.06em;transition:color .2s}
+.hero-back:hover{color:rgba(255,255,255,.7)}
+.hero-content{position:relative;z-index:1;max-width:680px}
+.tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(150,230,120,.78);margin-bottom:14px}
+.hero h1{font-size:clamp(32px,5vw,62px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:18px;background:linear-gradient(140deg,#fff 0%,#b8f0a0 50%,#7ed96a 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:17px;color:rgba(255,255,255,.45);line-height:1.75;max-width:560px}
+main{background:linear-gradient(to bottom,#edf5e8,#f3f9ef)}
+.section{padding:80px 80px;max-width:1100px;margin:0 auto}
+@media(max-width:768px){.hero{padding:0 24px 48px}.section{padding:60px 24px}}
+h2.sh{font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.02em;margin-bottom:16px;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lede{font-size:16px;color:rgba(26,58,22,.5);line-height:1.8;margin-bottom:40px;max-width:680px}
+.divider{height:1px;background:linear-gradient(to right,rgba(45,107,34,.14),transparent);margin:0 80px}
+@media(max-width:768px){.divider{margin:0 24px}}
+.theory-grid{display:flex;flex-direction:column;gap:16px;margin-bottom:48px}
+.theory{padding:28px 32px;border-radius:18px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65)}
+.theory-name{font-size:16px;font-weight:800;color:#1a3a16;margin-bottom:4px}
+.theory-author{font-size:11px;color:rgba(26,58,22,.55);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.theory p{font-size:13.5px;color:rgba(255,255,255,.42);line-height:1.75}
+.theory-implication{margin-top:14px;padding:12px 16px;border-radius:10px;background:rgba(45,107,34,.08);border:1px solid rgba(45,107,34,.15);font-size:12.5px;color:rgba(26,58,22,.65);line-height:1.6}
+.theory-implication strong{color:rgba(26,58,22,.9)}
+.features{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:48px}
+.fc{padding:28px;border-radius:18px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65)}
+.fc-icon{font-size:22px;margin-bottom:14px}
+.fc h3{font-size:15px;font-weight:700;color:#1a3a16;margin-bottom:10px}
+.fc p{font-size:13px;color:rgba(26,58,22,.48);line-height:1.7}
+.researchers{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:48px}
+.rc{padding:24px 26px;border-radius:18px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65)}
+.rc-name{font-size:15px;font-weight:700;color:#1a3a16;margin-bottom:4px}
+.rc-inst{font-size:11px;color:rgba(45,130,34,.65);letter-spacing:.06em;margin-bottom:12px;text-transform:uppercase}
+.rc-desc{font-size:13px;color:rgba(26,58,22,.48);line-height:1.7}
+.evidence{display:flex;flex-direction:column;gap:14px;margin-bottom:48px}
+.ev-item{display:flex;gap:16px;align-items:flex-start;padding:18px 22px;border-radius:14px;border:1px solid rgba(45,107,34,.1);background:rgba(255,255,255,.5)}
+.ev-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#2d6b22,#5aab3a);flex-shrink:0;margin-top:5px}
+.ev-text h4{font-size:14px;font-weight:700;color:#1a3a16;margin-bottom:4px}
+.ev-text p{font-size:13px;color:rgba(26,58,22,.45);line-height:1.65}
+.cta-block{padding:64px 40px;text-align:center;border-top:1px solid rgba(45,107,34,.1)}
+.cta-block h2{font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cta-block p{font-size:15px;color:rgba(26,58,22,.45);margin-bottom:28px;line-height:1.7}
+.cta-btn{display:inline-block;padding:13px 30px;background:linear-gradient(135deg,#2a6b1a,#48a82e);border-radius:12px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;transition:opacity .2s,transform .15s}
+.cta-btn:hover{opacity:.85;transform:translateY(-2px)}
+.footer{padding:32px 80px;border-top:1px solid rgba(45,107,34,.1);font-size:12px;color:rgba(26,58,22,.28);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:640px){.footer{padding:24px;flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">ReincarnatedAI</a>
+  <div class="links"><a href="/#explore">Explore</a><a href="/#research">Research</a><a href="/#about">About</a></div>
+  <a href="/#chatbox" class="cta-nav">ASK RAI</a>
+</nav>
+
+<section class="hero">
+  <a href="/#research" class="hero-back">← Research Domains</a>
+  <div class="hero-content">
+    <div class="tag">Quantum Biology</div>
+    <h1>Quantum Mind<br>Theory</h1>
+    <p class="hero-desc">Quantum coherence in biology was dismissed for decades — then observed in photosynthesis, bird navigation, and enzyme catalysis. The question of whether it plays a role in consciousness is no longer laughable.</p>
+  </div>
+</section>
+
+<main>
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Why Quantum?</h2>
+  <p class="lede">Classical neuroscience treats the brain as a biological computer — neurons fire, patterns emerge, and somehow consciousness appears. But this framework has never explained why there is subjective experience rather than just information processing. Some physicists and neuroscientists think the answer requires quantum mechanics — not because quantum sounds mysterious, but because certain features of consciousness (superposition of possibilities, non-locality, the collapse of uncertainty into a single experience) have structural parallels to quantum phenomena that classical physics cannot replicate.</p>
+  <p class="lede">This is contested. Many neuroscientists think the brain is too warm and wet for quantum coherence. The response from quantum biology is: so was photosynthesis.</p>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Quantum Coherence in Biology — The Precedents</h2>
+  <p class="lede">The case for quantum effects in consciousness rests partly on the fact that quantum coherence has already been found in biological systems where it was considered impossible.</p>
+  <div class="evidence">
+    <div class="ev-item">
+      <div class="ev-dot"></div>
+      <div class="ev-text">
+        <h4>Photosynthesis — Gregory Engel et al., 2007</h4>
+        <p>The Fleming group at UC Berkeley observed quantum coherence in the Fenna-Matthews-Olson (FMO) complex, the protein that transfers energy in green sulfur bacteria. The energy travels via quantum superposition — exploring multiple pathways simultaneously — with near-100% efficiency. Published in Nature (2007). Initially contested, now widely replicated. This was the first demonstration of quantum coherence in a warm biological system.</p>
+      </div>
+    </div>
+    <div class="ev-item">
+      <div class="ev-dot"></div>
+      <div class="ev-text">
+        <h4>Avian magnetic sensing — Cryptochrome mechanism</h4>
+        <p>European robins and other migratory birds navigate using a quantum mechanical process in the cryptochrome proteins of their eyes. Radical pair reactions — which depend on quantum entanglement — allow the birds to sense the direction of Earth's magnetic field. Proposed by Klaus Schulten in 1978, confirmed experimentally by the Ritz group in the 2000s. A textbook case of macroscopic biological behavior depending on quantum mechanics.</p>
+      </div>
+    </div>
+    <div class="ev-item">
+      <div class="ev-dot"></div>
+      <div class="ev-text">
+        <h4>Enzyme catalysis — Quantum tunneling</h4>
+        <p>Multiple enzymes have been shown to operate via quantum tunneling — a process in which particles pass through energy barriers rather than over them. This quantum effect occurs at body temperature in biological systems and contributes to the speed of enzymatic reactions. It further erodes the argument that biology is "too warm" for quantum effects.</p>
+      </div>
+    </div>
+    <div class="ev-item">
+      <div class="ev-dot"></div>
+      <div class="ev-text">
+        <h4>Olfaction — Turin's quantum smell theory</h4>
+        <p>Luca Turin proposed that smell receptors detect molecular vibrations via quantum tunneling — not just molecular shape, as the classical theory holds. Experiments with deuterated odorants (chemically identical to normal odorants but with different vibrational frequencies) support this theory, as they are perceived as smelling different despite having identical shapes.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Orchestrated Objective Reduction (Orch OR)</h2>
+  <p class="lede">Orch OR is the most developed quantum theory of consciousness. Proposed by mathematical physicist Roger Penrose and anesthesiologist Stuart Hameroff, it combines Penrose's quantum gravity framework with Hameroff's biology of microtubules.</p>
+
+  <div class="theory-grid">
+    <div class="theory">
+      <div class="theory-name">Penrose's argument: Gödel and non-computability</div>
+      <div class="theory-author">Roger Penrose · Oxford / Cambridge</div>
+      <p>Penrose's contribution begins with mathematics, not biology. In The Emperor's New Mind (1989) and Shadows of the Mind (1994), he argued from Gödel's incompleteness theorems that mathematical understanding cannot be fully captured by any algorithm — and therefore that the brain cannot be a classical computer. He concluded that whatever physical process underlies consciousness must be non-computable, and that quantum gravity is the only known non-computable physical process.</p>
+      <div class="theory-implication"><strong>The core claim:</strong> Human mathematical insight involves accessing non-computable truths. Classical computation cannot do this. Therefore consciousness requires quantum — specifically quantum gravitational — processes.</div>
+    </div>
+
+    <div class="theory">
+      <div class="theory-name">Hameroff's mechanism: Microtubules</div>
+      <div class="theory-author">Stuart Hameroff · University of Arizona</div>
+      <p>Hameroff provided the biological substrate: microtubules — protein polymers that form the cytoskeleton of neurons. He proposed that tubulin proteins within microtubules can exist in quantum superpositions of two states, and that these superpositions undergo orchestrated collapse (objective reduction, or OR) — generating moments of consciousness. The "orchestration" refers to the fact that the collapse is influenced by the biological context of the neuron, not purely random.</p>
+      <div class="theory-implication"><strong>Updated (2014):</strong> Following the discovery of quantum vibrations in microtubules by Anirban Bandyopadhyay's group, Penrose and Hameroff revised Orch OR to account for this evidence. The updated theory proposes that microtubule quantum vibrations are the specific physical process — and that at death, quantum information in microtubules may dissipate into the quantum field rather than disappearing. This is Hameroff's speculative mechanism for NDE phenomena.</div>
+    </div>
+
+    <div class="theory">
+      <div class="theory-name">Criticisms</div>
+      <div class="theory-author">Tegmark, Dennett, and others</div>
+      <p>Max Tegmark's 2000 Physical Review E paper argued that quantum coherence in microtubules would decohere at body temperature within femtoseconds — far too brief to influence neural computation at millisecond timescales. This remains the most serious challenge. Penrose and Hameroff have responded that microtubule quantum processes may be protected by the ordered water surrounding them, but this is not yet experimentally verified. Orch OR also faces the philosophical criticism that it addresses the "easy" problems — how computation happens — rather than why it is accompanied by experience.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Other Quantum Mind Proposals</h2>
+  <div class="features">
+    <div class="fc">
+      <div class="fc-icon">◎</div>
+      <h3>Quantum Zeno effect in cognition</h3>
+      <p>Henry Stapp (Lawrence Berkeley Lab) proposes that the quantum Zeno effect — in which observation keeps a quantum system in its current state — may be relevant to how attention works. Conscious observation, on this view, literally stabilizes quantum states in the brain. Published in Mind, Matter and Quantum Mechanics.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">◈</div>
+      <h3>Wave function consciousness</h3>
+      <p>Eugene Wigner (Nobel laureate) proposed that consciousness is necessary to collapse the quantum wave function — that measurement requires a conscious observer. This view, once mainstream in quantum foundations, has been largely replaced but resurfaces in discussions of the hard problem. It implies consciousness is fundamental to physics.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">◇</div>
+      <h3>Quantum brain dynamics</h3>
+      <p>Hiroomi Umezawa and Giuseppe Vitiello developed a quantum field theory of the brain in which consciousness arises from long-range coherent states — analogous to the Bose-Einstein condensates of laser light. The brain, on this view, is a quantum field device, not a classical computer.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">◫</div>
+      <h3>Non-locality and entanglement</h3>
+      <p>Quantum non-locality — the ability of entangled particles to correlate instantaneously across arbitrary distances — has been proposed as a mechanism for non-local consciousness. If consciousness involves quantum entanglement, it would not be spatially bounded by the skull. This is highly speculative but not logically incoherent.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Key Researchers</h2>
+  <div class="researchers">
+    <div class="rc">
+      <div class="rc-name">Roger Penrose</div>
+      <div class="rc-inst">University of Oxford</div>
+      <div class="rc-desc">Mathematical physicist and Nobel laureate (black hole singularities). Author of The Emperor's New Mind and Shadows of the Mind. Proposed that non-computable quantum gravitational processes underlie consciousness. One of the most credentialed scientists to take quantum mind seriously.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Stuart Hameroff</div>
+      <div class="rc-inst">University of Arizona</div>
+      <div class="rc-desc">Anesthesiologist and consciousness researcher who provided the biological mechanism for Orch OR. Has proposed that quantum information in microtubules may persist after brain death, offering a physical basis for NDE phenomena and continuity of consciousness.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Anirban Bandyopadhyay</div>
+      <div class="rc-inst">National Institute for Materials Science, Japan</div>
+      <div class="rc-desc">Nanoscientist whose 2013 experiments detected quantum vibrations in microtubules — providing the first direct experimental evidence supporting the Orch OR mechanism. This work was incorporated into the updated (2014) version of the theory.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Henry Stapp</div>
+      <div class="rc-inst">Lawrence Berkeley National Laboratory</div>
+      <div class="rc-desc">Physicist who worked on quantum foundations with Heisenberg and developed a consciousness-based interpretation of quantum mechanics. Author of Mind, Matter and Quantum Mechanics — argues that consciousness is required for quantum wave function collapse.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Gregory Engel</div>
+      <div class="rc-inst">University of Chicago</div>
+      <div class="rc-desc">Physical chemist whose 2007 Nature paper demonstrating quantum coherence in photosynthesis transformed quantum biology from fringe to mainstream. His work established that warm, wet biological systems can sustain quantum coherence — the key precedent for quantum mind theories.</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-block">
+  <h2>Go deeper with the research AI</h2>
+  <p>Ask about Orch OR, the microtubule evidence, quantum biology precedents, or what Penrose actually argued.</p>
+  <a href="/#explore" class="cta-btn">Ask ReincarnatedAI →</a>
+</div>
+
+<footer class="footer">
+  <span>© 2025 ReincarnatedAI — Research Assistant, not spiritual authority</span>
+  <span>Sources: Physical Review, Nature, Journal of Consciousness Studies, Quantum Bioscience</span>
+</footer>
+</main>
+<script>
+const navEl=document.querySelector('nav');
+window.addEventListener('scroll',function(){
+  navEl.classList.toggle('scrolled',window.scrollY>window.innerHeight*0.55);
+});
+</script>
+</body>
+</html>

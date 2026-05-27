@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Research Timeline — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/research.css">
+</head>
+<body>
+<nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/library">Library</a><a href="/glossary">Glossary</a><a href="/unknowns">Unknowns</a></div><a href="/#chatbox" class="cta-nav">ASK RAI</a></nav>
+<section class="hero"><div class="hero-content"><div class="eyebrow">Historical Context</div><h1>Research Timeline</h1><p>How the scientific study of consciousness, survival, and exceptional experience developed over time.</p></div></section>
+<main><section class="section"><div id="timeline" class="timeline"></div></section></main>
+<footer class="footer"><span>History helps separate novelty from rediscovery.</span><span><a href="/library">Open library</a></span></footer>
+<script type="module">
+import { timelineEvents } from '/data/research-data.js';
+document.getElementById('timeline').innerHTML=timelineEvents.map(e=>`<article class="event"><div class="year">${e.year}</div><div><h3>${e.title}</h3><p>${e.text}</p></div></article>`).join('');
+</script>
+</body></html>

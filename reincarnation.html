@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Reincarnation Studies — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#edf5e8;font-family:'Jost',sans-serif;color:#1a3a16;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
+.s2-quote-text,.quote-block p{font-family:'Cormorant Garamond',serif}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;background:rgba(4,14,3,0.3);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);transition:background .35s,border-color .35s}
+nav.scrolled{background:rgba(237,245,232,0.94);border-bottom-color:rgba(45,100,35,0.13)}
+nav.scrolled .links a{color:rgba(26,58,22,.55)}
+nav.scrolled .links a:hover{color:#1a3a16}
+nav.scrolled .logo{font-family:'Cinzel',serif;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+nav.scrolled .cta-nav{background:linear-gradient(135deg,#2d5a1e,#4a9130)}
+.logo{font-family:'Cinzel',serif;font-size:17px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(135deg,#8de87a,#b0f59a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none}
+.links{display:flex;gap:30px}
+.links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.links a:hover{color:#fff}
+.cta-nav{padding:9px 22px;background:linear-gradient(135deg,#2a6b1a,#48a82e);border-radius:8px;font-size:13px;font-weight:600;color:#fff;text-decoration:none;transition:opacity .2s}
+.cta-nav:hover{opacity:.85}
+.hero{min-height:52vh;display:flex;align-items:flex-end;justify-content:flex-start;padding:0 80px 64px;background:linear-gradient(to bottom,#04100a,#07180a);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 65% at 80% 20%,rgba(45,120,30,.12),transparent 70%)}
+.hero-back{position:absolute;top:80px;left:40px;font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;letter-spacing:.06em;transition:color .2s}
+.hero-back:hover{color:rgba(255,255,255,.7)}
+.hero-content{position:relative;z-index:1;max-width:680px}
+.tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(150,230,120,.78);margin-bottom:14px}
+.hero h1{font-size:clamp(32px,5vw,62px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:18px;background:linear-gradient(140deg,#fff 0%,#b8f0a0 50%,#7ed96a 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:17px;color:rgba(255,255,255,.45);line-height:1.75;max-width:560px}
+main{background:linear-gradient(to bottom,#edf5e8,#f3f9ef)}
+.section{padding:80px 80px;max-width:1100px;margin:0 auto}
+@media(max-width:768px){.hero{padding:0 24px 48px}.section{padding:60px 24px}}
+h2.sh{font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.02em;margin-bottom:16px;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lede{font-size:16px;color:rgba(26,58,22,.5);line-height:1.8;margin-bottom:40px;max-width:680px}
+.divider{height:1px;background:linear-gradient(to right,rgba(45,107,34,.14),transparent);margin:0 80px}
+@media(max-width:768px){.divider{margin:0 24px}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:48px}
+.stat{padding:24px;border-radius:16px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65);text-align:center}
+.stat-n{font-size:clamp(28px,4vw,42px);font-weight:800;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;margin-bottom:6px}
+.stat-l{font-size:11px;color:rgba(26,58,22,.42);letter-spacing:.06em;line-height:1.5}
+.case{padding:32px;border-radius:20px;border:1px solid rgba(45,107,34,.15);background:rgba(45,107,34,.06);margin-bottom:20px}
+.case-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(45,130,34,.65);margin-bottom:10px}
+.case h3{font-size:18px;font-weight:700;color:#1a3a16;margin-bottom:12px}
+.case p{font-size:14px;color:rgba(26,58,22,.48);line-height:1.75}
+.case-source{font-size:11px;color:rgba(45,120,30,.55);margin-top:14px}
+.method{display:flex;flex-direction:column;gap:14px;margin-bottom:48px}
+.method-step{display:flex;gap:20px;align-items:flex-start;padding:20px 24px;border-radius:14px;border:1px solid rgba(45,107,34,.1);background:rgba(255,255,255,.5)}
+.step-num{font-size:18px;font-weight:800;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;min-width:32px;line-height:1}
+.step-text h4{font-size:14px;font-weight:700;color:rgba(255,255,255,.85);margin-bottom:6px}
+.step-text p{font-size:13px;color:rgba(26,58,22,.45);line-height:1.65}
+.researchers{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:48px}
+.rc{padding:24px 26px;border-radius:18px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65)}
+.rc-name{font-size:15px;font-weight:700;color:#1a3a16;margin-bottom:4px}
+.rc-inst{font-size:11px;color:rgba(45,130,34,.65);letter-spacing:.06em;margin-bottom:12px;text-transform:uppercase}
+.rc-desc{font-size:13px;color:rgba(26,58,22,.48);line-height:1.7}
+.features{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:48px}
+.fc{padding:28px;border-radius:18px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65)}
+.fc-icon{font-size:22px;margin-bottom:14px}
+.fc h3{font-size:15px;font-weight:700;color:#1a3a16;margin-bottom:10px}
+.fc p{font-size:13px;color:rgba(26,58,22,.48);line-height:1.7}
+.cta-block{padding:64px 40px;text-align:center;border-top:1px solid rgba(45,107,34,.1)}
+.cta-block h2{font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cta-block p{font-size:15px;color:rgba(26,58,22,.45);margin-bottom:28px;line-height:1.7}
+.cta-btn{display:inline-block;padding:13px 30px;background:linear-gradient(135deg,#2a6b1a,#48a82e);border-radius:12px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;transition:opacity .2s,transform .15s}
+.cta-btn:hover{opacity:.85;transform:translateY(-2px)}
+.footer{padding:32px 80px;border-top:1px solid rgba(45,107,34,.1);font-size:12px;color:rgba(26,58,22,.28);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:640px){.footer{padding:24px;flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">ReincarnatedAI</a>
+  <div class="links"><a href="/#explore">Explore</a><a href="/#research">Research</a><a href="/#about">About</a></div>
+  <a href="/#chatbox" class="cta-nav">ASK RAI</a>
+</nav>
+
+<section class="hero">
+  <a href="/#research" class="hero-back">← Research Domains</a>
+  <div class="hero-content">
+    <div class="tag">Case Studies</div>
+    <h1>Reincarnation<br>Studies</h1>
+    <p class="hero-desc">For over 40 years, researchers at the University of Virginia systematically documented children who remembered verifiable details of previous lives. The cases are harder to dismiss than most people realize.</p>
+  </div>
+</section>
+
+<main>
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">The Research at a Glance</h2>
+  <p class="lede">Ian Stevenson didn't set out to prove reincarnation. A psychiatrist trained in orthodox medicine, he followed the data — and what he found over four decades, across dozens of countries, was a consistent pattern that conventional explanations struggle to account for.</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-n">3,000+</div><div class="stat-l">cases in the UVA database, collected over 40 years</div></div>
+    <div class="stat"><div class="stat-n">40+</div><div class="stat-l">countries represented in Stevenson's case collection</div></div>
+    <div class="stat"><div class="stat-n">35%</div><div class="stat-l">of cases include verifiable birthmarks or birth defects corresponding to previous-life wounds</div></div>
+    <div class="stat"><div class="stat-n">2–5</div><div class="stat-l">years old — typical age when memories are clearest; most fade by age 7–8</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">The Methodology</h2>
+  <p class="lede">The UVA research is not anecdote collection. Stevenson and Tucker developed rigorous field protocols that treated each case as a forensic investigation — with documentation, corroboration, and controls for motivated false memory.</p>
+  <div class="method">
+    <div class="method-step">
+      <div class="step-num">01</div>
+      <div class="step-text">
+        <h4>Interview before verification</h4>
+        <p>Researchers document the child's claims in detail — names, locations, family members, cause of death — before any attempt is made to identify the previous personality. This prevents post-hoc memory distortion.</p>
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="step-num">02</div>
+      <div class="step-text">
+        <h4>Independent corroboration</h4>
+        <p>Claims are verified against historical records: death records, family interviews, autopsy reports. The previous personality must be identified independently of the child's family, and matches must be specific enough to rule out coincidence.</p>
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="step-num">03</div>
+      <div class="step-text">
+        <h4>Alternative explanation testing</h4>
+        <p>Each case is evaluated for normal explanations: could the child have overheard adults discussing the deceased? Could the family have a prior connection? Cases that pass are classified as "solved" only when a specific previous personality is identified and verified.</p>
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="step-num">04</div>
+      <div class="step-text">
+        <h4>Physical evidence documentation</h4>
+        <p>Birthmarks and birth defects are photographed and matched against autopsy or death reports of the previous personality. In 35% of cases, physical marks correspond to wounds — often verified by hospital records the family had no access to.</p>
+      </div>
+    </div>
+    <div class="method-step">
+      <div class="step-num">05</div>
+      <div class="step-text">
+        <h4>Behavioral and phobia patterns</h4>
+        <p>Many children exhibit behaviors, skills, and phobias corresponding to the previous personality's life and death — before any connection is known. A child who drowned may fear water; one who was a carpenter may show unusual early skill with tools.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Notable Verified Cases</h2>
+
+  <div class="case">
+    <div class="case-label">Verified case · USA</div>
+    <h3>James Leininger — WWII Fighter Pilot</h3>
+    <p>James, born 1998 in Louisiana, began having intense nightmares of being shot down in a plane at age 2. He named his previous self "James McCready Huston Jr." — a WWII pilot killed when his Corsair was shot down near Iwo Jima in 1945. James named his pilot friend "Jack Larsen," identified the USS Natoma Bay as his carrier, and described the crash in accurate detail. Researchers located James Huston's service records and confirmed every verifiable detail. Jim Tucker's investigation is documented in Soul Survivor (2009).</p>
+    <div class="case-source">Tucker, J. (2005). Life Before Life. St. Martin's Press. Tucker, J. (2013). Return to Life. St. Martin's Press.</div>
+  </div>
+
+  <div class="case">
+    <div class="case-label">Verified case · USA</div>
+    <h3>Ryan Hammons — Hollywood Extra</h3>
+    <p>Ryan, an Oklahoma boy, described in detail a life in Hollywood — including specific rooms in a house, a sister who danced, and working for an agency that "changed hands." At age 5 he pointed to a photograph in a book on Golden Age Hollywood and identified himself as the man in it. Tucker's research team identified the man as Marty Martyn — a minor Hollywood extra who later became a talent agent. Details Ryan provided, including the address, number of sisters, and agency history, were verified in records that no family member had ever accessed.</p>
+    <div class="case-source">Tucker, J. B. (2013). Return to Life: Extraordinary Cases of Children Who Remember Past Lives. St. Martin's Press.</div>
+  </div>
+
+  <div class="case">
+    <div class="case-label">Verified case · Sri Lanka</div>
+    <h3>Disna Samarasinghe — Birthmarks Matching Wounds</h3>
+    <p>One of Stevenson's documented birthmark cases. A girl born with a constricted, malformed hand described a previous life in which she had her hand caught in a rice thresher. Stevenson located hospital records of a woman who had died from such an injury. The birthmark precisely matched the wound pattern documented in the autopsy. One of over 200 such cases Stevenson collected globally — published in Reincarnation and Biology (1997), a 2,000-page academic work with over 800 photographs.</p>
+    <div class="case-source">Stevenson, I. (1997). Reincarnation and Biology: A Contribution to the Etiology of Birthmarks and Birth Defects. Praeger Publishers.</div>
+  </div>
+
+  <div class="case">
+    <div class="case-label">Verified case · Lebanon</div>
+    <h3>Imad Elawar — 57 Verified Statements</h3>
+    <p>One of Stevenson's earliest and most thoroughly documented cases. A Lebanese boy named Imad made 57 specific statements about a previous life as Ibrahim Bouhamzy. Stevenson documented the statements before any identification was made, then visited the village named. Of 57 statements, 51 were verified — including names of relatives, the layout of a specific house, and the terminal illness of the previous personality. The six unverified statements could neither be confirmed nor denied. Published as the cornerstone case in Twenty Cases Suggestive of Reincarnation.</p>
+    <div class="case-source">Stevenson, I. (1966). Twenty Cases Suggestive of Reincarnation. University of Virginia Press.</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">The Researchers</h2>
+  <div class="researchers">
+    <div class="rc">
+      <div class="rc-name">Ian Stevenson</div>
+      <div class="rc-inst">University of Virginia · 1961–2007</div>
+      <div class="rc-desc">Psychiatrist and chair of UVA's psychiatry department. Collected over 3,000 cases across 40 countries. His 2,268-page Reincarnation and Biology is the most comprehensive academic treatment of the subject ever published.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Jim Tucker</div>
+      <div class="rc-inst">University of Virginia · DOPS</div>
+      <div class="rc-desc">Stevenson's successor at the UVA Division of Perceptual Studies. Author of Life Before Life and Return to Life. Has applied quantitative analysis to the case database and focused on American cases, which are harder to dismiss on cultural grounds.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Erlendur Haraldsson</div>
+      <div class="rc-inst">University of Iceland</div>
+      <div class="rc-desc">Conducted independent reincarnation case research in Sri Lanka and Lebanon, replicating Stevenson's findings in different cultural contexts. His work provides important cross-institutional corroboration.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Antonia Mills</div>
+      <div class="rc-inst">University of Northern British Columbia</div>
+      <div class="rc-desc">Studied cases among indigenous peoples of northwest North America, where reincarnation beliefs are traditional. Found cases that followed similar patterns to Stevenson's Asian cases, controlling for cultural expectation effects.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">What the Critics Say</h2>
+  <div class="features">
+    <div class="fc">
+      <div class="fc-icon">◎</div>
+      <h3>Cultural expectation</h3>
+      <p>Critics note that most cases come from cultures where reincarnation is believed. Families may unconsciously shape children's statements. Stevenson acknowledged this and specifically sought cases where the identified previous personality was from a different social class, caste, or religion than the child's family.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">◈</div>
+      <h3>Motivated memory</h3>
+      <p>Once a previous personality is identified, families may unconsciously add details that fit. The methodological control is documenting statements before identification — which Stevenson did, but which is difficult to verify in published cases.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">◇</div>
+      <h3>Fraud potential</h3>
+      <p>In societies where reincarnated children receive social status, there's an incentive for fabrication. Stevenson investigated for this and excluded suspicious cases. The birthmark cases are harder to fabricate than verbal accounts.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">◫</div>
+      <h3>Publication bias</h3>
+      <p>Cases that don't fit are less likely to be reported. The strongest evidence comes from prospective collection — documenting all cases in a region, not just compelling ones. Tucker has moved toward this approach in more recent work.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cta-block">
+  <h2>Go deeper with the research AI</h2>
+  <p>Ask about specific cases, the methodology, alternative explanations, or what the best evidence actually shows.</p>
+  <a href="/#explore" class="cta-btn">Ask ReincarnatedAI →</a>
+</div>
+
+<footer class="footer">
+  <span>© 2025 ReincarnatedAI — Research Assistant, not spiritual authority</span>
+  <span>Sources: UVA Division of Perceptual Studies, Journal of Scientific Exploration, Stevenson & Tucker archives</span>
+</footer>
+</main>
+<script>
+const navEl=document.querySelector('nav');
+window.addEventListener('scroll',function(){
+  navEl.classList.toggle('scrolled',window.scrollY>window.innerHeight*0.55);
+});
+</script>
+</body>
+</html>

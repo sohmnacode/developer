@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Near-Death Experiences — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#edf5e8;font-family:'Jost',sans-serif;color:#1a3a16;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
+.s2-quote-text,.quote-block p{font-family:'Cormorant Garamond',serif}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;background:rgba(4,14,3,0.3);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);transition:background .35s,border-color .35s}
+nav.scrolled{background:rgba(237,245,232,0.94);border-bottom-color:rgba(45,100,35,0.13)}
+nav.scrolled .links a{color:rgba(26,58,22,.55)}
+nav.scrolled .links a:hover{color:#1a3a16}
+nav.scrolled .logo{font-family:'Cinzel',serif;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+nav.scrolled .cta-nav{background:linear-gradient(135deg,#2d5a1e,#4a9130)}
+.logo{font-family:'Cinzel',serif;font-size:17px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(135deg,#8de87a,#b0f59a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none}
+.links{display:flex;gap:30px}
+.links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.links a:hover{color:#fff}
+.cta-nav{padding:9px 22px;background:linear-gradient(135deg,#2a6b1a,#48a82e);border-radius:8px;font-size:13px;font-weight:600;border:none;color:#fff;text-decoration:none;cursor:pointer;transition:opacity .2s}
+.cta-nav:hover{opacity:.85}
+
+/* Hero */
+.hero{min-height:52vh;display:flex;align-items:flex-end;justify-content:flex-start;padding:0 80px 64px;background:linear-gradient(to bottom,#04100a,#07180a);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 70% 30%,rgba(45,120,30,.18),transparent 70%)}
+.hero-back{position:absolute;top:80px;left:40px;font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;letter-spacing:.06em;transition:color .2s}
+.hero-back:hover{color:rgba(255,255,255,.7)}
+.hero-content{position:relative;z-index:1;max-width:680px}
+.tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(150,230,120,.78);margin-bottom:14px}
+.hero h1{font-size:clamp(32px,5vw,62px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:18px;background:linear-gradient(140deg,#fff 0%,#b8f0a0 50%,#7ed96a 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:17px;color:rgba(255,255,255,.45);line-height:1.75;max-width:560px}
+
+/* Content */
+main{background:linear-gradient(to bottom,#edf5e8,#f3f9ef)}
+.section{padding:80px 80px;max-width:1100px;margin:0 auto}
+.section-sm{padding:60px 80px;max-width:1100px;margin:0 auto}
+@media(max-width:768px){.hero{padding:0 24px 48px}.section,.section-sm{padding:60px 24px}}
+
+h2.sh{font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.02em;margin-bottom:16px;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lede{font-size:16px;color:rgba(26,58,22,.5);line-height:1.8;margin-bottom:40px;max-width:680px}
+.divider{height:1px;background:linear-gradient(to right,rgba(45,107,34,.14),transparent);margin:0 80px}
+@media(max-width:768px){.divider{margin:0 24px}}
+
+/* Stat row */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:48px}
+.stat{padding:24px;border-radius:16px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65);text-align:center}
+.stat-n{font-size:clamp(28px,4vw,42px);font-weight:800;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;margin-bottom:6px}
+.stat-l{font-size:11px;color:rgba(26,58,22,.42);letter-spacing:.06em;line-height:1.5}
+
+/* Researcher cards */
+.researchers{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:48px}
+.rc{padding:24px 26px;border-radius:18px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65)}
+.rc-name{font-size:15px;font-weight:700;color:#1a3a16;margin-bottom:4px}
+.rc-inst{font-size:11px;color:rgba(45,130,34,.65);letter-spacing:.06em;margin-bottom:12px;text-transform:uppercase}
+.rc-desc{font-size:13px;color:rgba(26,58,22,.48);line-height:1.7}
+
+/* Feature cards */
+.features{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:48px}
+.fc{padding:28px;border-radius:18px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65)}
+.fc-icon{font-size:22px;margin-bottom:14px}
+.fc h3{font-size:15px;font-weight:700;color:#1a3a16;margin-bottom:10px}
+.fc p{font-size:13px;color:rgba(26,58,22,.48);line-height:1.7}
+
+/* Phenomenology list */
+.phenom{display:flex;flex-direction:column;gap:14px;margin-bottom:48px}
+.ph-item{display:flex;gap:16px;align-items:flex-start;padding:18px 22px;border-radius:14px;border:1px solid rgba(45,107,34,.1);background:rgba(255,255,255,.5)}
+.ph-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#2d6b22,#5aab3a);flex-shrink:0;margin-top:5px}
+.ph-text h4{font-size:14px;font-weight:700;color:#1a3a16;margin-bottom:4px}
+.ph-text p{font-size:13px;color:rgba(26,58,22,.45);line-height:1.65}
+
+/* Case highlight */
+.case{padding:32px;border-radius:20px;border:1px solid rgba(45,107,34,.18);background:rgba(45,130,34,.05);margin-bottom:48px}
+.case-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(45,130,34,.65);margin-bottom:10px}
+.case h3{font-size:18px;font-weight:700;color:#1a3a16;margin-bottom:12px}
+.case p{font-size:14px;color:rgba(26,58,22,.48);line-height:1.75}
+.case-source{font-size:11px;color:rgba(45,120,30,.55);margin-top:14px}
+
+/* Study block */
+.study{padding:28px;border-radius:18px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65);margin-bottom:16px}
+.study-title{font-size:15px;font-weight:700;color:#1a3a16;margin-bottom:6px}
+.study-meta{font-size:11px;color:rgba(45,130,34,.62);letter-spacing:.05em;margin-bottom:12px;text-transform:uppercase}
+.study p{font-size:13px;color:rgba(26,58,22,.48);line-height:1.7}
+
+/* CTA block */
+.cta-block{padding:64px 40px;text-align:center;border-top:1px solid rgba(45,107,34,.1)}
+.cta-block h2{font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cta-block p{font-size:15px;color:rgba(26,58,22,.45);margin-bottom:28px;line-height:1.7}
+.cta-btn{display:inline-block;padding:13px 30px;background:linear-gradient(135deg,#2a6b1a,#48a82e);border-radius:12px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;transition:opacity .2s,transform .15s}
+.cta-btn:hover{opacity:.85;transform:translateY(-2px)}
+.footer{padding:32px 80px;border-top:1px solid rgba(45,107,34,.1);font-size:12px;color:rgba(26,58,22,.28);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:640px){.footer{padding:24px;flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">ReincarnatedAI</a>
+  <div class="links"><a href="/#explore">Explore</a><a href="/#research">Research</a><a href="/#about">About</a></div>
+  <a href="/#chatbox" class="cta-nav">ASK RAI</a>
+</nav>
+
+<section class="hero">
+  <a href="/#research" class="hero-back">← Research Domains</a>
+  <div class="hero-content">
+    <div class="tag">Clinical Evidence</div>
+    <h1>Near-Death<br>Experiences</h1>
+    <p class="hero-desc">What happens when the brain stops — and consciousness doesn't? Decades of rigorous clinical research are challenging the assumption that mind and brain are the same thing.</p>
+  </div>
+</section>
+
+<main>
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">The Scale of the Evidence</h2>
+  <p class="lede">Near-death experiences are not rare anomalies. Population surveys and cardiac arrest studies consistently find that a significant portion of people who survive clinical death report detailed, coherent experiences during the period when the brain shows no measurable activity.</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-n">18%</div><div class="stat-l">of cardiac arrest survivors report an NDE (van Lommel, The Lancet 2001)</div></div>
+    <div class="stat"><div class="stat-n">4–5%</div><div class="stat-l">of the general U.S. population has had an NDE — ~15 million people</div></div>
+    <div class="stat"><div class="stat-n">3,000+</div><div class="stat-l">cases in the IANDS research database</div></div>
+    <div class="stat"><div class="stat-n">9 min</div><div class="stat-l">average flatline duration in Parnia's AWARE study cases with verified perception</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">The Phenomenology</h2>
+  <p class="lede">What makes NDEs scientifically interesting is not that people feel something — but that they feel the <em>same</em> things, across cultures, ages, religious backgrounds, and eras. The core phenomenology is strikingly consistent.</p>
+  <div class="phenom">
+    <div class="ph-item">
+      <div class="ph-dot"></div>
+      <div class="ph-text">
+        <h4>Separation from the body</h4>
+        <p>Experiencers report observing their own resuscitation from above with a clarity that sometimes includes verifiable details — equipment used, conversations, positions of staff — that they couldn't have known.</p>
+      </div>
+    </div>
+    <div class="ph-item">
+      <div class="ph-dot"></div>
+      <div class="ph-text">
+        <h4>Enhanced consciousness</h4>
+        <p>Rather than confusion or diminishment, experiencers consistently report heightened clarity, expanded perception, and accelerated thought — the opposite of what standard neurology would predict during brain shutdown.</p>
+      </div>
+    </div>
+    <div class="ph-item">
+      <div class="ph-dot"></div>
+      <div class="ph-text">
+        <h4>Life review</h4>
+        <p>A panoramic, often simultaneous replay of one's entire life — experienced not just visually but with the felt perspective of others affected by one's actions. Reported by experiencers who have been blind from birth.</p>
+      </div>
+    </div>
+    <div class="ph-item">
+      <div class="ph-dot"></div>
+      <div class="ph-text">
+        <h4>Encounter with a boundary</h4>
+        <p>A threshold, barrier, or point of no return — described in culturally specific terms (a river, a fence, a door) but functionally identical across accounts. Crossing it is understood as permanent death; not crossing allows return.</p>
+      </div>
+    </div>
+    <div class="ph-item">
+      <div class="ph-dot"></div>
+      <div class="ph-text">
+        <h4>Encounter with deceased individuals</h4>
+        <p>Meetings with deceased relatives — sometimes including relatives the experiencer did not know were dead, or had never met in life, later verified by family records. These are among the most evidentially significant cases.</p>
+      </div>
+    </div>
+    <div class="ph-item">
+      <div class="ph-dot"></div>
+      <div class="ph-text">
+        <h4>Profound after-effects</h4>
+        <p>Reduced fear of death, increased empathy, loss of interest in material acquisition, and sometimes verifiable psychic abilities. These changes persist decades later and distinguish NDEs from vivid dreams or hallucinations.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Landmark Studies</h2>
+  <p class="lede">These are not anecdotes. The most significant NDE research has been published in peer-reviewed medical journals and conducted by physicians who began as skeptics.</p>
+
+  <div class="study">
+    <div class="study-title">The Pim van Lommel Study</div>
+    <div class="study-meta">The Lancet · 2001 · Rijnstate Hospital, Netherlands</div>
+    <p>344 cardiac arrest survivors prospectively followed. 18% reported NDEs. Critically, experiences occurred during the period of cardiac arrest and EEG silence — when the brain was not functioning. Van Lommel found that NDEs could not be explained by oxygen deprivation, drugs, fear of death, or prior religious beliefs. The study concluded that current medical concepts of consciousness were insufficient to explain the data.</p>
+  </div>
+
+  <div class="study">
+    <div class="study-title">The AWARE Study (AWAreness during REsuscitation)</div>
+    <div class="study-meta">Sam Parnia · University of Southampton · 2014</div>
+    <p>Multi-hospital prospective study with hidden visual targets placed above resuscitation areas — only visible from a ceiling-level vantage point. One case produced verified veridical out-of-body perception: a patient accurately described the specific sequence of events in the resuscitation room during a period of cardiac arrest verified by medical records. Parnia has expanded the study (AWARE II) with additional hospitals.</p>
+  </div>
+
+  <div class="study">
+    <div class="study-title">The NDE Scale</div>
+    <div class="study-meta">Bruce Greyson · University of Virginia · 1983 (updated)</div>
+    <p>A 16-item validated psychometric instrument for measuring depth and type of NDE. The scale established that NDEs have a consistent, measurable structure — they are not simply positive near-death associations or wishful hallucinations. Greyson has published over 100 papers on NDEs and after-effects over four decades at UVA.</p>
+  </div>
+
+  <div class="study">
+    <div class="study-title">Cross-Cultural NDE Research</div>
+    <div class="study-meta">Kenneth Ring, Allan Kellehear · 1980s–2000s</div>
+    <p>Ring's research established the "core NDE" — the consistent sequence shared across cases. Kellehear's cross-cultural analysis found that the core phenomenology appeared across cultures that had no exposure to Western NDE accounts, including tribal societies in India and indigenous Australian communities, suggesting the experience is not culturally constructed.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">The Veridical Perception Problem</h2>
+  <p class="lede">The hardest cases for conventional neuroscience are those involving accurate perception during verified unconsciousness. These are not explained by "last gasp" neural activity or lucky guesses.</p>
+  <div class="case">
+    <div class="case-label">Notable case</div>
+    <h3>The Maria Case — the "tennis shoe on the ledge"</h3>
+    <p>During cardiac arrest, a migrant worker named Maria described an out-of-body experience in which she observed specific details of the hospital's exterior — including a single worn tennis shoe on a window ledge on the third floor, with detailed description of its position and a worn patch near the little toe. Social worker Kimberly Clark Sharp investigated and found the shoe exactly as described, in a location not visible from Maria's room or any indoor vantage point. Reported in 1984 and included in multiple peer-reviewed analyses of veridical NDE perception.</p>
+    <div class="case-source">Sharp, K. C. (1990). After the Light. IANDS archive. Evaluated in Greyson (2010), "Seeing dead people not known to have died."</div>
+  </div>
+  <div class="case">
+    <div class="case-label">Notable case</div>
+    <h3>Pam Reynolds — Monitored flatline, verified perception</h3>
+    <p>Reynolds underwent a rare surgical procedure for a brain aneurysm requiring the brain to be drained of blood and cooled to 60°F — EEG flat, auditory evoked potentials absent, heart stopped. She reported a detailed out-of-body experience during this period, including accurate description of the bone saw used to open her skull (which she hadn't seen, as her eyes were taped shut and ears blocked with molded speakers). Cardiologist Michael Sabom independently corroborated the surgical details. The case was reported in Sabom's book Light and Death (1998) and has been analyzed in numerous NDE reviews.</p>
+    <div class="case-source">Sabom, M. (1998). Light and Death. Grand Rapids: Zondervan. Reviewed in Greyson, B. (2010). Journal of Nervous and Mental Disease.</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Leading Researchers</h2>
+  <div class="researchers">
+    <div class="rc">
+      <div class="rc-name">Pim van Lommel</div>
+      <div class="rc-inst">Rijnstate Hospital · Netherlands</div>
+      <div class="rc-desc">Cardiologist who published the landmark 2001 Lancet study. Author of Consciousness Beyond Life. Argues that the data supports a non-local view of consciousness that is not produced by the brain.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Sam Parnia</div>
+      <div class="rc-inst">NYU Langone · AWARE Study</div>
+      <div class="rc-desc">Critical care physician and lead investigator of the AWARE studies. His research focuses on veridical perception during cardiac arrest and the nature of consciousness at death.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Bruce Greyson</div>
+      <div class="rc-inst">University of Virginia</div>
+      <div class="rc-desc">Psychiatrist and co-founder of IANDS. Creator of the Greyson NDE Scale. Has published over 100 papers on NDEs, their phenomenology, and long-term after-effects over four decades.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Kenneth Ring</div>
+      <div class="rc-inst">University of Connecticut (Emeritus)</div>
+      <div class="rc-desc">Psychologist who established the concept of the "core NDE" — the consistent cross-cultural phenomenology. Author of Life at Death and Heading Toward Omega.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Janice Holden</div>
+      <div class="rc-inst">University of North Texas</div>
+      <div class="rc-desc">President of IANDS. Authored a comprehensive review of 107 cases of veridical NDE perception, finding 92% accurate, 6% mixed, and 1% inaccurate — published in The Handbook of Near-Death Studies.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Eben Alexander</div>
+      <div class="rc-inst">Harvard Medical School (formerly)</div>
+      <div class="rc-desc">Neurosurgeon whose own NDE during bacterial meningitis — while cortical function was demonstrably absent — became the subject of Proof of Heaven. His medical standing made the case unusually difficult for neurological dismissal.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Open Questions</h2>
+  <p class="lede">The field is not settled. These are the questions that honest researchers — on all sides — acknowledge remain unresolved.</p>
+  <div class="features">
+    <div class="fc">
+      <div class="fc-icon">◎</div>
+      <h3>The timing problem</h3>
+      <p>When exactly do NDE experiences occur? During cardiac arrest, during recovery, or in a brief lucid window? This matters enormously for mechanistic explanations. EEG evidence suggests some experiences happen during verifiable flatline.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">◈</div>
+      <h3>The replication problem</h3>
+      <p>Hidden visual target studies like AWARE have produced limited verified cases — not because none occurred, but because the methodology is hard to maintain at scale. AWARE II is expanding the sample with more hospitals.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">◇</div>
+      <h3>The hallucination alternative</h3>
+      <p>Some researchers argue NDEs are produced by REM intrusion, ketamine-like neurochemistry, or temporal lobe activity during early recovery — explanations that struggle to account for veridical cases but remain scientifically respectable.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">◫</div>
+      <h3>The interpretation problem</h3>
+      <p>Even if consciousness persists during brain shutdown, this doesn't necessarily imply immortality or that the experience accurately reflects an afterlife. The content of NDEs may be shaped by culture and expectation even if the phenomenon is real.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cta-block">
+  <h2>Go deeper with the research AI</h2>
+  <p>Ask specific questions about NDE phenomenology, methodology, or case studies.<br>The AI synthesizes the full research literature — not just what's summarized here.</p>
+  <a href="/#explore" class="cta-btn">Ask ReincarnatedAI →</a>
+</div>
+
+<footer class="footer">
+  <span>© 2025 ReincarnatedAI — Research Assistant, not spiritual authority</span>
+  <span>Sources: IANDS, The Lancet, Journal of Near-Death Studies, UVA Division of Perceptual Studies</span>
+</footer>
+</main>
+<script>
+const navEl=document.querySelector('nav');
+window.addEventListener('scroll',function(){
+  navEl.classList.toggle('scrolled',window.scrollY>window.innerHeight*0.55);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Experience Journal — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/research.css">
+</head>
+<body>
+<nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/methodology">Methodology</a><a href="/glossary">Glossary</a><a href="/unknowns">Unknowns</a></div><a href="/#chatbox" class="cta-nav">ASK RAI</a></nav>
+<section class="hero"><div class="hero-content"><div class="eyebrow">Private Phenomenology</div><h1>Experience Journal</h1><p>A local notebook for carefully describing anomalous, mystical, or end-of-life experiences without immediately forcing an explanation.</p></div></section>
+<main><section class="section split">
+<form id="form" class="card">
+<div class="meta">Saved only in this browser</div>
+<h2 class="section-title" style="font-size:32px">Record an Experience</h2>
+<p class="lede">This form stores entries locally on your device. It does not submit anything to ReincarnatedAI.</p>
+<p><input class="input" id="title" placeholder="Short title"></p><br>
+<p><select class="select" id="type"><option>NDE or medical crisis</option><option>Previous-life memory</option><option>Psychedelic experience</option><option>Dream or visitation</option><option>Synchronicity</option><option>Other</option></select></p><br>
+<textarea class="textarea" id="body" placeholder="Describe what happened. What was directly perceived? What was later verified? What might be ordinary context?"></textarea><br><br>
+<button class="button" type="submit">Save entry</button> <button class="button secondary" type="button" id="export">Export JSON</button>
+</form>
+<aside class="rail card"><div class="meta">Research prompts</div><ul><li>What happened before the experience?</li><li>What sensory qualities stood out?</li><li>Was anything later verified?</li><li>Who knew what, and when?</li><li>What changed afterward?</li></ul></aside>
+</section><section class="section"><h2 class="section-title">Saved Entries</h2><div id="entries" class="grid"></div></section></main>
+<footer class="footer"><span>Private notes are not clinical, spiritual, or medical advice.</span><span><a href="/#chatbox">Discuss with RAI</a></span></footer>
+<script>
+const key='rai-experience-journal', form=document.getElementById('form'), entries=document.getElementById('entries');
+function load(){return JSON.parse(localStorage.getItem(key)||'[]')}
+function save(rows){localStorage.setItem(key,JSON.stringify(rows))}
+function render(){const rows=load();entries.innerHTML=rows.length?rows.map((r,i)=>`<article class="card"><div class="meta">${r.type} · ${r.date}</div><h3>${r.title}</h3><p>${r.body}</p><button class="button secondary" data-i="${i}">Delete</button></article>`).join(''):'<p class="lede">No entries saved yet.</p>';entries.querySelectorAll('button').forEach(b=>b.onclick=()=>{const rows=load();rows.splice(Number(b.dataset.i),1);save(rows);render()})}
+form.onsubmit=e=>{e.preventDefault();const rows=load();rows.unshift({title:title.value||'Untitled experience',type:type.value,body:body.value,date:new Date().toLocaleDateString()});save(rows);form.reset();render()};
+document.getElementById('export').onclick=()=>{const blob=new Blob([JSON.stringify(load(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='reincarnatedai-experience-journal.json';a.click();URL.revokeObjectURL(a.href)};
+render();
+</script>
+</body></html>

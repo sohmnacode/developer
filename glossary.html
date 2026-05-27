@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Glossary — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/research.css">
+</head>
+<body>
+<nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/cases">Cases</a><a href="/library">Library</a><a href="/timeline">Timeline</a></div><a href="/#chatbox" class="cta-nav">ASK RAI</a></nav>
+<section class="hero"><div class="hero-content"><div class="eyebrow">Reference</div><h1>Glossary</h1><p>Plain-language definitions for the ideas that appear across consciousness research.</p></div></section>
+<main><section class="section"><div class="filters"><input id="q" class="search" placeholder="Search terms or definitions..."></div><div id="terms" class="grid"></div></section></main>
+<footer class="footer"><span>Definitions are compressed for orientation.</span><span><a href="/library">Source library</a></span></footer>
+<script type="module">
+import { glossaryTerms } from '/data/research-data.js';
+const q=document.getElementById('q'),terms=document.getElementById('terms');
+function render(){const query=q.value.toLowerCase();const rows=glossaryTerms.filter(t=>!query||Object.values(t).join(' ').toLowerCase().includes(query));terms.innerHTML=rows.map(t=>`<article class="card"><div class="meta">${t.domain}</div><h3>${t.term}</h3><p>${t.definition}</p></article>`).join('')}
+q.addEventListener('input',render);render();
+</script>
+</body></html>

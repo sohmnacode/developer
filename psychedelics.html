@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Psychedelic Research — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#edf5e8;font-family:'Jost',sans-serif;color:#1a3a16;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
+.s2-quote-text,.quote-block p{font-family:'Cormorant Garamond',serif}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;background:rgba(4,14,3,0.3);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);transition:background .35s,border-color .35s}
+nav.scrolled{background:rgba(237,245,232,0.94);border-bottom-color:rgba(45,100,35,0.13)}
+nav.scrolled .links a{color:rgba(26,58,22,.55)}
+nav.scrolled .links a:hover{color:#1a3a16}
+nav.scrolled .logo{font-family:'Cinzel',serif;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+nav.scrolled .cta-nav{background:linear-gradient(135deg,#2d5a1e,#4a9130)}
+.logo{font-family:'Cinzel',serif;font-size:17px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(135deg,#8de87a,#b0f59a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none}
+.links{display:flex;gap:30px}
+.links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.links a:hover{color:#fff}
+.cta-nav{padding:9px 22px;background:linear-gradient(135deg,#2a6b1a,#48a82e);border-radius:8px;font-size:13px;font-weight:600;color:#fff;text-decoration:none;transition:opacity .2s}
+.cta-nav:hover{opacity:.85}
+.hero{min-height:52vh;display:flex;align-items:flex-end;justify-content:flex-start;padding:0 80px 64px;background:linear-gradient(to bottom,#04100a,#07180a);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 65% at 50% 50%,rgba(45,120,30,.12),transparent 70%)}
+.hero-back{position:absolute;top:80px;left:40px;font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;letter-spacing:.06em;transition:color .2s}
+.hero-back:hover{color:rgba(255,255,255,.7)}
+.hero-content{position:relative;z-index:1;max-width:680px}
+.tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(150,230,120,.78);margin-bottom:14px}
+.hero h1{font-size:clamp(32px,5vw,62px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:18px;background:linear-gradient(140deg,#fff 0%,#b8f0a0 50%,#7ed96a 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:17px;color:rgba(255,255,255,.45);line-height:1.75;max-width:560px}
+main{background:linear-gradient(to bottom,#edf5e8,#f3f9ef)}
+.section{padding:80px 80px;max-width:1100px;margin:0 auto}
+@media(max-width:768px){.hero{padding:0 24px 48px}.section{padding:60px 24px}}
+h2.sh{font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.02em;margin-bottom:16px;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lede{font-size:16px;color:rgba(26,58,22,.5);line-height:1.8;margin-bottom:40px;max-width:680px}
+.divider{height:1px;background:linear-gradient(to right,rgba(45,107,34,.14),transparent);margin:0 80px}
+@media(max-width:768px){.divider{margin:0 24px}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:48px}
+.stat{padding:24px;border-radius:16px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65);text-align:center}
+.stat-n{font-size:clamp(28px,4vw,42px);font-weight:800;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;margin-bottom:6px}
+.stat-l{font-size:11px;color:rgba(26,58,22,.42);letter-spacing:.06em;line-height:1.5}
+.study{padding:28px;border-radius:18px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65);margin-bottom:16px}
+.study-title{font-size:15px;font-weight:700;color:#1a3a16;margin-bottom:6px}
+.study-meta{font-size:11px;color:rgba(45,130,34,.62);letter-spacing:.05em;margin-bottom:12px;text-transform:uppercase}
+.study p{font-size:13px;color:rgba(26,58,22,.48);line-height:1.7}
+.researchers{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:48px}
+.rc{padding:24px 26px;border-radius:18px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65)}
+.rc-name{font-size:15px;font-weight:700;color:#1a3a16;margin-bottom:4px}
+.rc-inst{font-size:11px;color:rgba(45,130,34,.65);letter-spacing:.06em;margin-bottom:12px;text-transform:uppercase}
+.rc-desc{font-size:13px;color:rgba(26,58,22,.48);line-height:1.7}
+.phenom{display:flex;flex-direction:column;gap:14px;margin-bottom:48px}
+.ph-item{display:flex;gap:16px;align-items:flex-start;padding:18px 22px;border-radius:14px;border:1px solid rgba(45,107,34,.1);background:rgba(255,255,255,.5)}
+.ph-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#2d6b22,#5aab3a);flex-shrink:0;margin-top:5px}
+.ph-text h4{font-size:14px;font-weight:700;color:#1a3a16;margin-bottom:4px}
+.ph-text p{font-size:13px;color:rgba(26,58,22,.45);line-height:1.65}
+.features{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:48px}
+.fc{padding:28px;border-radius:18px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65)}
+.fc-icon{font-size:22px;margin-bottom:14px}
+.fc h3{font-size:15px;font-weight:700;color:#1a3a16;margin-bottom:10px}
+.fc p{font-size:13px;color:rgba(26,58,22,.48);line-height:1.7}
+.highlight{padding:28px 32px;border-radius:16px;border:1px solid rgba(45,107,34,.2);background:rgba(45,107,34,.05);margin-bottom:48px;font-size:14px;color:rgba(26,58,22,.6);line-height:1.8}
+.highlight strong{color:rgba(26,58,22,.85)}
+.cta-block{padding:64px 40px;text-align:center;border-top:1px solid rgba(45,107,34,.1)}
+.cta-block h2{font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cta-block p{font-size:15px;color:rgba(26,58,22,.45);margin-bottom:28px;line-height:1.7}
+.cta-btn{display:inline-block;padding:13px 30px;background:linear-gradient(135deg,#2a6b1a,#48a82e);border-radius:12px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;transition:opacity .2s,transform .15s}
+.cta-btn:hover{opacity:.85;transform:translateY(-2px)}
+.footer{padding:32px 80px;border-top:1px solid rgba(45,107,34,.1);font-size:12px;color:rgba(26,58,22,.28);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:640px){.footer{padding:24px;flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">ReincarnatedAI</a>
+  <div class="links"><a href="/#explore">Explore</a><a href="/#research">Research</a><a href="/#about">About</a></div>
+  <a href="/#chatbox" class="cta-nav">ASK RAI</a>
+</nav>
+
+<section class="hero">
+  <a href="/#research" class="hero-back">← Research Domains</a>
+  <div class="hero-content">
+    <div class="tag">Clinical Trials</div>
+    <h1>Psychedelic<br>Research</h1>
+    <p class="hero-desc">Rigorous clinical trials are producing mystical experiences on demand — and subjects rate them among the most meaningful events of their lives. What do these states reveal about the nature of consciousness?</p>
+  </div>
+</section>
+
+<main>
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">The Numbers</h2>
+  <p class="lede">After a 40-year research blackout, psychedelic science has re-emerged with methodological rigor that was absent from 1960s studies. The results are among the most striking in modern psychiatry.</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-n">67%</div><div class="stat-l">of participants in Griffiths' 2006 study rated psilocybin sessions among the top 5 most meaningful experiences of their lives</div></div>
+    <div class="stat"><div class="stat-n">83%</div><div class="stat-l">rated the experience as "moderately or greatly spiritually significant" 14 months later</div></div>
+    <div class="stat"><div class="stat-n">80%</div><div class="stat-l">of terminal cancer patients showed sustained reduction in death anxiety after a single psilocybin session</div></div>
+    <div class="stat"><div class="stat-n">60+</div><div class="stat-l">active clinical trials for psilocybin, MDMA, and ketamine as of 2024</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">The Mystical Experience</h2>
+  <p class="lede">The Johns Hopkins group didn't set out to study spirituality. They set out to study psilocybin as a therapeutic agent. What they found was that the drug reliably produces something that researchers — including skeptical neuroscientists — call mystical experience. The Mystical Experience Questionnaire (MEQ30) measures it.</p>
+  <div class="phenom">
+    <div class="ph-item">
+      <div class="ph-dot"></div>
+      <div class="ph-text">
+        <h4>Unity — internal and external</h4>
+        <p>A sense of merging with the totality of everything — loss of the felt boundary between self and world. Subjects describe this not as a thought about unity but as a direct perception of it. Distinct from simple feelings of connectedness.</p>
+      </div>
+    </div>
+    <div class="ph-item">
+      <div class="ph-dot"></div>
+      <div class="ph-text">
+        <h4>Noetic quality</h4>
+        <p>The sense that what is being experienced is not hallucination but genuine knowledge — a perception of ultimate reality. Subjects persistently insist, long after the experience, that "it was more real than ordinary reality." This is one of the most consistent and puzzling features.</p>
+      </div>
+    </div>
+    <div class="ph-item">
+      <div class="ph-dot"></div>
+      <div class="ph-text">
+        <h4>Sacredness</h4>
+        <p>A sense of encountering something holy, divine, or of ultimate importance. This occurs across atheists, agnostics, and believers — it is not simply a reflection of prior religious belief. Atheist subjects often describe it as "the most religious experience of my life."</p>
+      </div>
+    </div>
+    <div class="ph-item">
+      <div class="ph-dot"></div>
+      <div class="ph-text">
+        <h4>Deeply felt positive mood</h4>
+        <p>Joy, love, peace, and awe at a depth subjects report having never experienced previously. Not euphoria in the hedonic sense — subjects describe a profound okayness that persists for months after the session.</p>
+      </div>
+    </div>
+    <div class="ph-item">
+      <div class="ph-dot"></div>
+      <div class="ph-text">
+        <h4>Transcendence of time and space</h4>
+        <p>Loss of usual sense of location in time and space. Some subjects describe perceiving all moments of their life simultaneously, or experiencing timelessness. The parallel to NDE life review reports is noted by multiple researchers.</p>
+      </div>
+    </div>
+    <div class="ph-item">
+      <div class="ph-dot"></div>
+      <div class="ph-text">
+        <h4>Ineffability</h4>
+        <p>The persistent sense that the experience cannot be adequately described in language. Not vagueness — subjects feel they experienced something specific and real that human language lacks the vocabulary to convey. This is reported universally, regardless of the subject's articulacy.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Landmark Studies</h2>
+
+  <div class="study">
+    <div class="study-title">The Good Friday Experiment — Replicated</div>
+    <div class="study-meta">Griffiths et al. · Johns Hopkins · 2006 · Psychopharmacology</div>
+    <p>The first rigorous modern replication of Walter Pahnke's 1962 Good Friday Experiment. 36 participants with no prior hallucinogen experience received either psilocybin or Ritalin (active placebo) in a double-blind design. 22 of 36 psilocybin sessions produced complete mystical experiences by MEQ30 criteria. Two-thirds rated it among their top five most meaningful life experiences. Effects on personality openness persisted at 14-month follow-up. Published in Psychopharmacology, 2006.</p>
+  </div>
+
+  <div class="study">
+    <div class="study-title">Psilocybin for End-of-Life Anxiety</div>
+    <div class="study-meta">Griffiths, Ross, et al. · Johns Hopkins & NYU · 2016 · Journal of Psychopharmacology</div>
+    <p>Two simultaneous randomized controlled trials examined psilocybin in cancer patients with significant death anxiety. Both found substantial, rapid reductions in depression, anxiety, and fear of death — with 80% maintaining clinically significant improvements at 6-month follow-up. Notably, the intensity of the mystical experience (MEQ30 score) directly predicted therapeutic outcome. The mechanism appeared to be a fundamental shift in relationship to mortality, not simply symptom suppression.</p>
+  </div>
+
+  <div class="study">
+    <div class="study-title">DMT Entity Encounters</div>
+    <div class="study-meta">Rick Strassman · University of New Mexico · 1990–1995 / Johns Hopkins Survey · 2020</div>
+    <p>Strassman's clinical research with intravenous DMT — the first psychedelic research approved in the U.S. after the moratorium — found that a significant proportion of subjects reported encounters with discrete non-human entities. A 2020 Johns Hopkins survey of 2,561 adults who had experienced DMT entities found that 99% rated the encounter as real or realer than ordinary reality. 80% described it as benevolent. 30% said it changed their beliefs about consciousness and death. The consistency and realism of these encounters is unexplained by current neuroscience.</p>
+  </div>
+
+  <div class="study">
+    <div class="study-title">MAPS MDMA-PTSD Phase 3 Trials</div>
+    <div class="study-meta">MAPS · Multiple sites · 2021–2024</div>
+    <p>Phase 3 clinical trials of MDMA-assisted therapy for PTSD produced response rates significantly exceeding current standard-of-care treatments. 67% of MDMA recipients no longer met PTSD diagnostic criteria after three sessions, compared to 32% in the placebo group. While MDMA is not a classic psychedelic, the therapeutic mechanism involves altered states of consciousness, reduced fear response, and what subjects describe as accessing experiences with a different emotional valence — relevant to understanding how altered states produce lasting change.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">The Connection to Soul Science</h2>
+  <div class="highlight">
+    <strong>The intersection with NDE phenomenology is striking.</strong> Independent researchers have noted that the core features of psychedelic mystical experiences — ego dissolution, unity, noetic quality, timelessness, encounters with beings — overlap substantially with the phenomenology of near-death experiences. This is not a fringe observation: it appears in Greyson's NDE research, in Strassman's DMT work, and in comparative analyses by researchers like Christopher Timmermann at Imperial College London, who conducted the first fMRI study of the DMT state and noted the "uncanny" parallels to NDE reports.
+  </div>
+  <div class="features">
+    <div class="fc">
+      <div class="fc-icon">◎</div>
+      <h3>Common mechanism?</h3>
+      <p>If psychedelics and near-death states produce similar experiences, they may share a common mechanism — one that accesses states of consciousness that are not produced by, but filtered by, the default brain. This is the filter theory of consciousness applied to pharmacology.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">◈</div>
+      <h3>Endogenous DMT</h3>
+      <p>DMT is produced by the human body. Strassman and others have speculated that it may be released in elevated quantities at death — potentially explaining the pharmacology of NDEs. This remains speculative; the evidence for elevated DMT at death is limited but not absent.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">◇</div>
+      <h3>Therapeutic death anxiety</h3>
+      <p>The most robust finding — psilocybin substantially reduces fear of death — is itself relevant. The therapeutic mechanism appears to be experiential: subjects feel they have touched something beyond ordinary ego-bound existence. Whether that something is "real" is a question psychedelic science hasn't yet asked.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">◫</div>
+      <h3>The entity question</h3>
+      <p>DMT entity encounters are the most philosophically challenging finding in modern psychedelic research. If the entities are simply produced by the brain, why do they behave as independent agents, convey unexpected information, and appear to subjects as more real than reality? This is unanswered.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Key Researchers</h2>
+  <div class="researchers">
+    <div class="rc">
+      <div class="rc-name">Roland Griffiths</div>
+      <div class="rc-inst">Johns Hopkins University</div>
+      <div class="rc-desc">Pharmacologist who launched the modern era of psilocybin research with his 2006 Psychopharmacology paper. Founded the Johns Hopkins Center for Psychedelic and Consciousness Research. His work moved psychedelics from counterculture to clinical science.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Rick Strassman</div>
+      <div class="rc-inst">University of New Mexico</div>
+      <div class="rc-desc">Psychiatrist who conducted the first federally approved psychedelic research in the U.S. since the 1970s. His DMT studies produced The Spirit Molecule (2000). The consistent reports of entity encounters in his research remain scientifically unexplained.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Matthew Johnson</div>
+      <div class="rc-inst">Johns Hopkins University</div>
+      <div class="rc-desc">Behavioral pharmacologist focusing on psilocybin for addiction — smoking cessation, alcohol use disorder. His studies show the mystical experience dose-dependently predicts abstinence outcomes.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Christopher Timmermann</div>
+      <div class="rc-inst">Imperial College London</div>
+      <div class="rc-desc">Neuroscientist who conducted the first fMRI study of the DMT state. His work systematically compared DMT phenomenology to NDE reports, finding substantial overlap in neural signatures and subjective features.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Robin Carhart-Harris</div>
+      <div class="rc-inst">UC San Francisco</div>
+      <div class="rc-desc">Neuroscientist who developed the REBUS (Relaxed Beliefs Under Psychedelics) model — proposing that psychedelics work by relaxing the brain's predictive hierarchy, allowing suppressed information to enter consciousness.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Michael Pollan</div>
+      <div class="rc-inst">Author / UC Berkeley</div>
+      <div class="rc-desc">Author of How to Change Your Mind (2018), which synthesized the modern psychedelic renaissance for a general audience. His own experiences with psilocybin and DMT, documented with journalistic rigor, brought the research to mainstream attention.</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-block">
+  <h2>Go deeper with the research AI</h2>
+  <p>Ask about specific studies, the phenomenology of mystical states, DMT entity encounters, or the NDE connection.</p>
+  <a href="/#explore" class="cta-btn">Ask ReincarnatedAI →</a>
+</div>
+
+<footer class="footer">
+  <span>© 2025 ReincarnatedAI — Research Assistant, not spiritual authority</span>
+  <span>Sources: Psychopharmacology, Journal of Psychopharmacology, MAPS, Johns Hopkins CPCR</span>
+</footer>
+</main>
+<script>
+const navEl=document.querySelector('nav');
+window.addEventListener('scroll',function(){
+  navEl.classList.toggle('scrolled',window.scrollY>window.innerHeight*0.55);
+});
+</script>
+</body>
+</html>

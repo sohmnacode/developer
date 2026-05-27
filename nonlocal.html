@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Non-Local Consciousness — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#edf5e8;font-family:'Jost',sans-serif;color:#1a3a16;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
+.s2-quote-text,.quote-block p{font-family:'Cormorant Garamond',serif}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;background:rgba(4,14,3,0.3);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);transition:background .35s,border-color .35s}
+nav.scrolled{background:rgba(237,245,232,0.94);border-bottom-color:rgba(45,100,35,0.13)}
+nav.scrolled .links a{color:rgba(26,58,22,.55)}
+nav.scrolled .links a:hover{color:#1a3a16}
+nav.scrolled .logo{font-family:'Cinzel',serif;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+nav.scrolled .cta-nav{background:linear-gradient(135deg,#2d5a1e,#4a9130)}
+.logo{font-family:'Cinzel',serif;font-size:17px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(135deg,#8de87a,#b0f59a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none}
+.links{display:flex;gap:30px}
+.links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.links a:hover{color:#fff}
+.cta-nav{padding:9px 22px;background:linear-gradient(135deg,#2a6b1a,#48a82e);border-radius:8px;font-size:13px;font-weight:600;color:#fff;text-decoration:none;transition:opacity .2s}
+.cta-nav:hover{opacity:.85}
+.hero{min-height:52vh;display:flex;align-items:flex-end;justify-content:flex-start;padding:0 80px 64px;background:linear-gradient(to bottom,#04100a,#07180a);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 85% 40%,rgba(45,120,30,.1),transparent 65%)}
+.hero-back{position:absolute;top:80px;left:40px;font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;letter-spacing:.06em;transition:color .2s}
+.hero-back:hover{color:rgba(255,255,255,.7)}
+.hero-content{position:relative;z-index:1;max-width:680px}
+.tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(150,230,120,.78);margin-bottom:14px}
+.hero h1{font-size:clamp(32px,5vw,62px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:18px;background:linear-gradient(140deg,#fff 0%,#b8f0a0 50%,#7ed96a 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:17px;color:rgba(255,255,255,.45);line-height:1.75;max-width:560px}
+main{background:linear-gradient(to bottom,#edf5e8,#f3f9ef)}
+.section{padding:80px 80px;max-width:1100px;margin:0 auto}
+@media(max-width:768px){.hero{padding:0 24px 48px}.section{padding:60px 24px}}
+h2.sh{font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.02em;margin-bottom:16px;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lede{font-size:16px;color:rgba(26,58,22,.5);line-height:1.8;margin-bottom:40px;max-width:680px}
+.divider{height:1px;background:linear-gradient(to right,rgba(45,107,34,.14),transparent);margin:0 80px}
+@media(max-width:768px){.divider{margin:0 24px}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:48px}
+.stat{padding:24px;border-radius:16px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65);text-align:center}
+.stat-n{font-size:clamp(28px,4vw,42px);font-weight:800;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;margin-bottom:6px}
+.stat-l{font-size:11px;color:rgba(26,58,22,.42);letter-spacing:.06em;line-height:1.5}
+.study{padding:28px;border-radius:18px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65);margin-bottom:16px}
+.study-title{font-size:15px;font-weight:700;color:#1a3a16;margin-bottom:6px}
+.study-meta{font-size:11px;color:rgba(45,130,34,.62);letter-spacing:.05em;margin-bottom:12px;text-transform:uppercase}
+.study p{font-size:13px;color:rgba(26,58,22,.48);line-height:1.7}
+.researchers{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:48px}
+.rc{padding:24px 26px;border-radius:18px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65)}
+.rc-name{font-size:15px;font-weight:700;color:#1a3a16;margin-bottom:4px}
+.rc-inst{font-size:11px;color:rgba(45,130,34,.65);letter-spacing:.06em;margin-bottom:12px;text-transform:uppercase}
+.rc-desc{font-size:13px;color:rgba(26,58,22,.48);line-height:1.7}
+.features{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:48px}
+.fc{padding:28px;border-radius:18px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65)}
+.fc-icon{font-size:22px;margin-bottom:14px}
+.fc h3{font-size:15px;font-weight:700;color:#1a3a16;margin-bottom:10px}
+.fc p{font-size:13px;color:rgba(26,58,22,.48);line-height:1.7}
+.case{padding:32px;border-radius:20px;border:1px solid rgba(45,107,34,.15);background:rgba(45,107,34,.06);margin-bottom:20px}
+.case-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(45,130,34,.65);margin-bottom:10px}
+.case h3{font-size:18px;font-weight:700;color:#1a3a16;margin-bottom:12px}
+.case p{font-size:14px;color:rgba(26,58,22,.48);line-height:1.75}
+.case-source{font-size:11px;color:rgba(45,120,30,.55);margin-top:14px}
+.cta-block{padding:64px 40px;text-align:center;border-top:1px solid rgba(45,107,34,.1)}
+.cta-block h2{font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cta-block p{font-size:15px;color:rgba(26,58,22,.45);margin-bottom:28px;line-height:1.7}
+.cta-btn{display:inline-block;padding:13px 30px;background:linear-gradient(135deg,#2a6b1a,#48a82e);border-radius:12px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;transition:opacity .2s,transform .15s}
+.cta-btn:hover{opacity:.85;transform:translateY(-2px)}
+.footer{padding:32px 80px;border-top:1px solid rgba(45,107,34,.1);font-size:12px;color:rgba(26,58,22,.28);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:640px){.footer{padding:24px;flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">ReincarnatedAI</a>
+  <div class="links"><a href="/#explore">Explore</a><a href="/#research">Research</a><a href="/#about">About</a></div>
+  <a href="/#chatbox" class="cta-nav">ASK RAI</a>
+</nav>
+
+<section class="hero">
+  <a href="/#research" class="hero-back">← Research Domains</a>
+  <div class="hero-content">
+    <div class="tag">Parapsychology</div>
+    <h1>Non-Local<br>Consciousness</h1>
+    <p class="hero-desc">If consciousness were strictly local — produced by and confined to the brain — certain experimental results should be impossible. Decades of controlled research suggest they are not.</p>
+  </div>
+</section>
+
+<main>
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">The Case for Non-Locality</h2>
+  <p class="lede">Non-local consciousness is the proposition that awareness, intention, and perception are not strictly bounded by the individual brain and skull. The evidence comes from multiple independent research programs — remote viewing, mind-matter interaction, ganzfeld telepathy, and global consciousness studies — each with its own methodology and skeptical debate. No single line of evidence is conclusive. The convergence is what demands attention.</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-n">28σ</div><div class="stat-l">effect size in PEAR Lab REG experiments across 2.5M trials (Jahn & Dunne)</div></div>
+    <div class="stat"><div class="stat-n">34%</div><div class="stat-l">hit rate in Ganzfeld telepathy studies vs. 25% expected by chance (Honorton meta-analysis)</div></div>
+    <div class="stat"><div class="stat-n">~70%</div><div class="stat-l">accuracy in the best operational remote viewing sessions at SRI (Targ & Puthoff)</div></div>
+    <div class="stat"><div class="stat-n">800+</div><div class="stat-l">ganzfeld trials in Honorton's 1985 meta-analysis, selected by methodological rigor</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Remote Viewing at Stanford Research Institute</h2>
+  <p class="lede">In the early 1970s, physicists Russell Targ and Hal Puthoff at SRI International began testing whether subjects could perceive distant locations without sensory input. What began as a curiosity became a classified U.S. government program that ran for 20 years.</p>
+
+  <div class="study">
+    <div class="study-title">SRI Remote Viewing Program</div>
+    <div class="study-meta">Russell Targ & Hal Puthoff · Stanford Research Institute · 1972–1985</div>
+    <p>Targ and Puthoff developed the remote viewing protocol: a subject ("viewer") attempts to describe a randomly selected geographical location where a "beacon" person is physically present. The viewer has no sensory access to the location. Independent judges, blind to which location was selected, match viewer transcripts to locations. Early results with subjects Ingo Swann and Pat Price were striking enough to attract CIA funding. Published in Nature (1974) and IEEE proceedings. The subsequent STARGATE program, run through the Defense Intelligence Agency, continued under government contract until 1995.</p>
+  </div>
+
+  <div class="case">
+    <div class="case-label">Notable case</div>
+    <h3>Pat Price — Soviet Research Facility</h3>
+    <p>In 1974, Pat Price was given only the geographic coordinates of a location and asked to describe it. He produced a detailed sketch and description of a Soviet research facility at Semipalatinsk — including the correct identification of a large gantry crane, a cluster of buildings, and underground facilities. The CIA later confirmed that Price's description matched classified satellite imagery of the site. The case was declassified in 1995. Documented in Targ's The Reality of ESP (2012) and corroborated by former CIA officer Kit Green.</p>
+    <div class="case-source">Targ, R. (2012). The Reality of ESP. Quest Books. CIA FOIA release, STARGATE program documents, 1995.</div>
+  </div>
+
+  <div class="study">
+    <div class="study-title">STARGATE Program — Government Assessment</div>
+    <div class="study-meta">DIA / CIA · 1978–1995 · AIR Report 1995</div>
+    <p>The U.S. government's 20-year investment in remote viewing concluded with a 1995 assessment by the American Institutes for Research. The AIR report acknowledged that remote viewing produced statistically significant results above chance under controlled conditions. The program was terminated not because the effect wasn't real — the assessors acknowledged it was — but because the intelligence output was "not useful" operationally. The statistical reality of the phenomenon was conceded even in the dismissal.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">PEAR Lab — Mind-Matter Interaction</h2>
+  <p class="lede">The Princeton Engineering Anomalies Research (PEAR) laboratory, founded by engineering dean Robert Jahn in 1979, studied whether human intention could influence the output of Random Event Generators (REGs) — electronic devices producing random sequences of numbers.</p>
+
+  <div class="study">
+    <div class="study-title">REG Experiments — 2.5 Million Trials</div>
+    <div class="study-meta">Robert Jahn & Brenda Dunne · Princeton University · 1979–2007</div>
+    <p>Over 28 years, PEAR accumulated over 2.5 million experimental trials in which operators attempted to influence REG outputs by intention alone. The overall effect was small — roughly 1 in 10,000 bits shifted — but extraordinarily consistent. The cumulative statistics reached odds against chance of greater than one in a trillion. Jahn and Dunne argued that consciousness has a small but real effect on random physical processes. Published in Foundations of Physics and the Journal of Scientific Exploration. Replication attempts outside PEAR produced mixed results, which remains the central methodological debate.</p>
+  </div>
+
+  <div class="study">
+    <div class="study-title">Global Consciousness Project</div>
+    <div class="study-meta">Roger Nelson · Princeton PEAR / GCP · 1998–present</div>
+    <p>Following PEAR, Roger Nelson established a global network of REGs running continuously worldwide. The GCP tests whether major global events — disasters, celebrations, collective attention — correlate with non-random REG outputs. Analysis of events including September 11, 2001, found statistically significant deviations during periods of mass global attention. Critics note the potential for selection bias in which events are analyzed. Nelson's response has been to use prospectively registered hypotheses for major events. The data archive is public.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Ganzfeld Telepathy Research</h2>
+  <p class="lede">The Ganzfeld ("total field") procedure was developed to reduce sensory noise — allowing subtle signals to emerge. A receiver in mild sensory deprivation attempts to identify which of four images a sender in another room is concentrating on. The expected hit rate by chance is 25%.</p>
+
+  <div class="study">
+    <div class="study-title">Meta-Analysis of 28 Studies</div>
+    <div class="study-meta">Charles Honorton · Psychophysical Research Laboratories · 1985</div>
+    <p>Honorton's 1985 meta-analysis of 28 ganzfeld studies found a hit rate of approximately 34% — significantly above the 25% chance baseline — with rigorous methodological selection criteria. Published in the Journal of Parapsychology. The methodology was evaluated and broadly accepted by statistical critics including Ray Hyman (a prominent skeptic), who acknowledged the overall effect was real while disputing specific procedural controls. The subsequent "autoganzfeld" protocol, using computer-randomized targets and fully automated selection, produced comparable results.</p>
+  </div>
+
+  <div class="study">
+    <div class="study-title">Daryl Bem's Feeling the Future</div>
+    <div class="study-meta">Daryl Bem · Cornell University · 2011 · Journal of Personality and Social Psychology</div>
+    <p>Cornell social psychologist Daryl Bem published nine experiments suggesting that human behavior is influenced by randomly selected future events — a form of precognition. Published in one of psychology's most prestigious journals, the paper produced an intense replication debate. Some replications succeeded; others failed. Bem's work prompted the psychology replication crisis discussion. Regardless of interpretation, it forced mainstream academia to engage with anomalous cognition research in a high-profile venue.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Morphic Resonance — Rupert Sheldrake</h2>
+  <p class="lede">Biologist Rupert Sheldrake's theory of morphic resonance proposes that nature has a kind of memory — that patterns, behaviors, and forms are shaped by the accumulated habits of previous systems of the same kind, transmitted through "morphic fields" rather than local biochemistry alone.</p>
+  <div class="study">
+    <div class="study-title">Morphic Fields and Collective Memory</div>
+    <div class="study-meta">Rupert Sheldrake · Cambridge / Perrott-Warrick Research · 1981–present</div>
+    <p>Sheldrake's model proposes that the laws of nature are more like habits — that crystals crystallize more easily in the form of previously crystallized crystals, that rats learn mazes faster in rooms where other rats have learned the same maze, and that human cultural behaviors spread through morphic resonance rather than genetic transmission alone. He has documented apparent telepathy between pets and owners — including dog-return-home studies in which dogs appeared to respond to their owner's decision to return home before the owner arrived. His "telephone telepathy" experiments used strict protocols to test whether people could identify which of four people was about to call them. Effect sizes were significant. Sheldrake remains outside mainstream biology but has engaged with critics rigorously.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">Key Researchers</h2>
+  <div class="researchers">
+    <div class="rc">
+      <div class="rc-name">Russell Targ</div>
+      <div class="rc-inst">SRI International (Emeritus)</div>
+      <div class="rc-desc">Laser physicist who co-founded the SRI remote viewing program. Co-author of Mind-Reach (1977) and author of The Reality of ESP (2012). Argues the SRI data represents the strongest scientific evidence for non-local consciousness.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Robert Jahn</div>
+      <div class="rc-inst">Princeton University (Emeritus)</div>
+      <div class="rc-desc">Dean of Princeton Engineering who founded PEAR in 1979. His decision to study anomalous consciousness phenomena from an engineering perspective lent the field an unusual degree of institutional credibility. Co-author of Margins of Reality.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Dean Radin</div>
+      <div class="rc-inst">Institute of Noetic Sciences (IONS)</div>
+      <div class="rc-desc">Chief scientist at IONS. Author of The Conscious Universe, Entangled Minds, and Real Magic. Has conducted some of the most rigorous psi research including double-slit interference experiments with meditators. Argues the cumulative meta-analytic evidence for psi is overwhelming.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Rupert Sheldrake</div>
+      <div class="rc-inst">Cambridge University (formerly)</div>
+      <div class="rc-desc">Biologist who developed morphic resonance theory. Has studied animal telepathy and telephone telepathy with controlled protocols. His work is dismissed by mainstream biology but his methodology has been found sound by independent statistical reviewers.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Charles Honorton</div>
+      <div class="rc-inst">Psychophysical Research Laboratories</div>
+      <div class="rc-desc">Parapsychologist who developed the autoganzfeld protocol and conducted the most methodologically rigorous meta-analysis of ganzfeld telepathy research. His work produced the "joint communiqué" with skeptic Ray Hyman acknowledging the statistical reality of the ganzfeld effect.</div>
+    </div>
+    <div class="rc">
+      <div class="rc-name">Roger Nelson</div>
+      <div class="rc-inst">Princeton / Global Consciousness Project</div>
+      <div class="rc-desc">Experimental psychologist who founded the Global Consciousness Project, a network of 70+ random event generators distributed worldwide testing whether collective human attention influences physical randomness. The GCP data archive is publicly available.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <h2 class="sh">The Skeptical Case — and Its Limits</h2>
+  <div class="features">
+    <div class="fc">
+      <div class="fc-icon">◎</div>
+      <h3>File drawer problem</h3>
+      <p>Negative results are less likely to be published. Meta-analyses of psi research have been accused of publication bias. The response from researchers like Radin has been to conduct prospective, pre-registered studies — reducing this concern but not eliminating it.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">◈</div>
+      <h3>Replication failures</h3>
+      <p>Many psi effects fail to replicate in independent labs. Proponents argue that psi effects are "sheep-goat" dependent (believers perform better than skeptics) and that experimenter expectations matter — a meta-hypothesis that is difficult to test but has some support.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">◇</div>
+      <h3>No mechanism</h3>
+      <p>Even if psi effects are real, there is no established physical mechanism. Critics argue this makes them impossible. Proponents note that the history of physics includes many phenomena observed before they were explained — and that quantum non-locality may provide a future mechanism.</p>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">◫</div>
+      <h3>What the skeptics actually concede</h3>
+      <p>Ray Hyman (CSICOP, the most prominent organized skeptic of psi research) acknowledged in his joint communiqué with Honorton that the ganzfeld effect is "statistically compelling" — the disagreement was about interpretation, not arithmetic. The data is not in dispute; its meaning is.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cta-block">
+  <h2>Go deeper with the research AI</h2>
+  <p>Ask about specific experiments, the statistical debates, government declassified programs, or Sheldrake's morphic resonance.</p>
+  <a href="/#explore" class="cta-btn">Ask ReincarnatedAI →</a>
+</div>
+
+<footer class="footer">
+  <span>© 2025 ReincarnatedAI — Research Assistant, not spiritual authority</span>
+  <span>Sources: Journal of Scientific Exploration, Foundations of Physics, STARGATE declassified archives, PEAR Lab</span>
+</footer>
+</main>
+<script>
+const navEl=document.querySelector('nav');
+window.addEventListener('scroll',function(){
+  navEl.classList.toggle('scrolled',window.scrollY>window.innerHeight*0.55);
+});
+</script>
+</body>
+</html>

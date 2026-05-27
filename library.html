@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Source Library — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/research.css">
+</head>
+<body>
+<nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/cases">Cases</a><a href="/glossary">Glossary</a><a href="/timeline">Timeline</a></div><a href="/#chatbox" class="cta-nav">ASK RAI</a></nav>
+<section class="hero"><div class="hero-content"><div class="eyebrow">Bibliography</div><h1>Source Library</h1><p>A starting shelf for the papers, books, researchers, and institutions behind the site.</p></div></section>
+<main><section class="section">
+<div class="filters"><input id="q" class="search" placeholder="Search author, title, domain, note..."><select id="domain" class="select"><option value="">All domains</option></select></div>
+<div id="library" class="grid"></div>
+</section></main>
+<footer class="footer"><span>Library entries are concise waypoints.</span><span><a href="/methodology">Evaluation standards</a></span></footer>
+<script type="module">
+import { libraryItems } from '/data/research-data.js';
+const q=document.getElementById('q'),domain=document.getElementById('domain'),wrap=document.getElementById('library');
+for(const d of [...new Set(libraryItems.map(i=>i.domain))]) domain.insertAdjacentHTML('beforeend',`<option>${d}</option>`);
+function render(){const query=q.value.toLowerCase();const rows=libraryItems.filter(i=>(!domain.value||i.domain===domain.value)&&(!query||Object.values(i).join(' ').toLowerCase().includes(query)));wrap.innerHTML=rows.map(i=>`<article class="card"><div class="meta">${i.kind} · ${i.domain} · ${i.year}</div><h3>${i.title}</h3><p><strong>${i.author}</strong></p><p>${i.note}</p></article>`).join('')}
+[q,domain].forEach(el=>el.addEventListener('input',render));render();
+</script>
+</body></html>

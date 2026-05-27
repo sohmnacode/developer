@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#edf5e8;font-family:'Jost',sans-serif;color:#1a3a16;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
+.s2-quote-text,.quote-block p{font-family:'Cormorant Garamond',serif}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;background:rgba(4,14,3,0.3);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);transition:background .35s,border-color .35s}
+nav.scrolled{background:rgba(237,245,232,0.94);border-bottom-color:rgba(45,100,35,0.13)}
+nav.scrolled .links a{color:rgba(26,58,22,.55)}
+nav.scrolled .links a:hover{color:#1a3a16}
+nav.scrolled .logo{font-family:'Cinzel',serif;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+nav.scrolled .cta{background:linear-gradient(135deg,#2d5a1e,#4a9130)}
+.logo{font-family:'Cinzel',serif;font-size:17px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(135deg,#8de87a,#b0f59a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.links{display:flex;gap:30px}
+.links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.links a:hover{color:#fff}
+.cta{padding:9px 22px;background:linear-gradient(135deg,#2a6b1a,#48a82e);border-radius:8px;font-size:13px;font-weight:600;border:none;color:#fff;text-decoration:none;cursor:pointer;transition:opacity .2s}
+.cta:hover{opacity:.85}
+.hero{position:relative;width:100%;height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#04100a}
+#c{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.ht{position:absolute;z-index:20;text-align:center;left:0;right:0;bottom:6vh;padding:0 24px}
+.ey{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(150,230,120,.85);margin-bottom:12px;opacity:0;animation:fu .8s ease .4s forwards}
+.ht h1{font-size:clamp(30px,4.5vw,58px);font-weight:800;letter-spacing:-.03em;line-height:1.07;margin-bottom:14px;background:linear-gradient(140deg,#fff 0%,#b8f0a0 48%,#7ed96a 88%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0;animation:fu .9s ease .6s forwards}
+.ht p{font-size:clamp(13px,1.4vw,16px);color:rgba(255,255,255,.5);max-width:440px;margin:0 auto 22px;line-height:1.65;opacity:0;animation:fu .9s ease .8s forwards}
+.acts{display:flex;align-items:center;justify-content:center;gap:12px;opacity:0;animation:fu .9s ease 1s forwards}
+.bp{padding:11px 26px;background:linear-gradient(135deg,#2a6b1a,#48a82e);border-radius:10px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;transition:opacity .2s,transform .15s}
+.bp:hover{opacity:.85;transform:translateY(-2px)}
+.bs{padding:11px 26px;border:1px solid rgba(255,255,255,.18);border-radius:10px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);text-decoration:none;transition:border-color .2s,color .2s}
+.bs:hover{border-color:rgba(255,255,255,.45);color:#fff}
+.sh{position:absolute;bottom:24px;right:40px;z-index:20;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;animation:fi 1s ease 1.6s forwards}
+.sh span{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);writing-mode:vertical-rl}
+.sl{width:1px;height:38px;background:linear-gradient(to bottom,rgba(130,220,100,.7),transparent);animation:la 2s ease-in-out 1.6s infinite}
+@keyframes la{0%,100%{transform:scaleY(1);opacity:.5}50%{transform:scaleY(.35);opacity:1}}
+@keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+.s2{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 40px;background:linear-gradient(to bottom,#edf5e8,#f3f9ef);position:relative;z-index:2}
+.s2i{text-align:center;max-width:580px}
+.s2i h2{font-size:clamp(26px,4vw,44px);font-weight:700;letter-spacing:-.02em;margin-bottom:16px;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.s2i p{font-size:16px;color:rgba(26,58,22,.5);line-height:1.75}
+.s2-quote{margin-top:44px;padding:0;text-align:center;max-width:580px;margin-left:auto;margin-right:auto;animation:quoteIn .7s ease both}
+@keyframes quoteIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.s2-quote-text{font-size:17px;font-style:italic;color:rgba(26,58,22,.72);line-height:1.9;margin-bottom:16px}
+.s2-quote-divider{width:32px;height:1px;background:rgba(45,107,34,.28);margin:0 auto 14px}
+.s2-quote-attr{font-size:10.5px;color:rgba(45,130,34,.7);letter-spacing:.14em;text-transform:uppercase}
+
+/* Research chat section */
+.s3{min-height:100vh;background:linear-gradient(to bottom,#f3f9ef,#edf5e8);padding:80px 24px 40px;display:flex;flex-direction:column;align-items:center;position:relative;z-index:2}
+.s3h{text-align:center;margin-bottom:40px}
+.s3h .ey{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(45,130,34,.75);margin-bottom:10px}
+.s3h h2{font-size:clamp(24px,3.5vw,40px);font-weight:700;letter-spacing:-.02em;margin-bottom:10px;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.s3h p{font-size:14px;color:rgba(26,58,22,.45);max-width:420px;margin:0 auto;line-height:1.7}
+.s3>.s2-quote{margin:0 auto 56px}
+.chat-wrap{width:100%;max-width:720px;display:flex;flex-direction:column;gap:0}
+.chat-msgs{min-height:200px;max-height:52vh;overflow-y:auto;display:flex;flex-direction:column;gap:16px;padding:4px 0 20px;scrollbar-width:thin;scrollbar-color:rgba(45,107,34,.2) transparent}
+.starters{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+@media(max-width:540px){.starters{grid-template-columns:1fr}}
+.mode-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.mode-btn{padding:9px 12px;border-radius:999px;border:1px solid rgba(45,107,34,.14);background:rgba(255,255,255,.55);color:rgba(26,58,22,.52);font-size:11.5px;font-weight:500;cursor:pointer;font-family:inherit;transition:background .2s,border-color .2s,color .2s}
+.mode-btn:hover,.mode-btn.active{background:rgba(255,255,255,.95);border-color:rgba(45,130,34,.36);color:#1a3a16}
+.starter-btn{text-align:left;padding:14px 16px;border-radius:14px;border:1px solid rgba(45,107,34,.13);background:rgba(255,255,255,.55);color:rgba(26,58,22,.58);font-size:13px;cursor:pointer;transition:background .2s,border-color .2s,color .2s;font-family:inherit;line-height:1.4}
+.starter-btn:hover{background:rgba(255,255,255,.9);border-color:rgba(45,130,34,.35);color:#1a3a16}
+.msg{display:flex;gap:10px;align-items:flex-start}
+.msg.user{justify-content:flex-end}
+.msg-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#2d6b22,#4aab30);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;margin-top:2px}
+.msg-body{max-width:80%;padding:12px 16px;border-radius:18px;font-size:13.5px;line-height:1.65;word-break:break-word}
+.msg.user .msg-body{background:rgba(45,107,34,.14);border:1px solid rgba(45,107,34,.22);color:#1a3a16;border-top-right-radius:4px}
+.msg.ai .msg-body{background:rgba(255,255,255,.8);border:1px solid rgba(45,107,34,.11);color:rgba(26,58,22,.82);border-top-left-radius:4px}
+.msg-body h1,.msg-body h2,.msg-body h3{color:rgba(40,110,25,.9);font-size:inherit;font-weight:700;margin:.5em 0 .25em}
+.msg-body strong{color:#1a3a16}
+.msg-body p{margin:.35em 0}
+.msg-body ul,.msg-body ol{margin:.35em 0;padding-left:1.4em}
+.msg-body a{color:#3a8b25;text-decoration:none}
+.cursor{display:inline-block;width:6px;height:14px;background:rgba(45,130,34,.8);margin-left:2px;vertical-align:middle;animation:blink .9s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.chat-input-row{display:flex;align-items:flex-end;gap:10px;background:rgba(255,255,255,.7);border:1px solid rgba(45,107,34,.15);border-radius:18px;padding:12px 14px;margin-top:8px;transition:border-color .2s}
+#chatbox{scroll-margin-top:110px}
+.chat-input-row:focus-within{border-color:rgba(45,130,34,.45)}
+.chat-input-row textarea{flex:1;background:transparent;border:none;outline:none;color:#1a3a16;font-size:13.5px;font-family:inherit;resize:none;max-height:120px;line-height:1.6;scrollbar-width:none}
+.chat-input-row textarea::placeholder{color:rgba(26,58,22,.28)}
+.send-btn{width:34px;height:34px;flex-shrink:0;border-radius:12px;background:linear-gradient(135deg,#2a6b1a,#48a82e);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .2s;color:#fff}
+.send-btn:disabled{opacity:.3;cursor:default}
+.send-btn:not(:disabled):hover{opacity:.85}
+.chat-disclaimer{text-align:center;font-size:10px;color:rgba(26,58,22,.22);margin-top:10px}
+
+/* Research domains section */
+.s4{background:linear-gradient(to bottom,#edf5e8,#f3f9ef);padding:100px 40px;position:relative;z-index:2}
+.sh2{text-align:center;max-width:560px;margin:0 auto 64px}
+.sh2 .ey{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(45,130,34,.72);margin-bottom:12px}
+.sh2 h2{font-size:clamp(26px,4vw,44px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sh2 p{font-size:15px;color:rgba(26,58,22,.45);line-height:1.75}
+.domains{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;max-width:1080px;margin:0 auto}
+.dc{padding:28px 30px;border-radius:20px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65);transition:border-color .25s,background .25s,transform .2s;display:block;color:inherit;text-decoration:none}
+.dc:hover{border-color:rgba(45,130,34,.34);background:rgba(255,255,255,.95);transform:translateY(-3px)}
+.dc-arrow{font-size:12px;color:rgba(45,130,34,.48);margin-top:14px;letter-spacing:.06em;transition:color .2s}
+.dc:hover .dc-arrow{color:rgba(45,130,34,.9)}
+.dc-tag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(45,130,34,.62);margin-bottom:14px}
+.dc h3{font-size:17px;font-weight:700;color:#1a3a16;margin-bottom:10px;letter-spacing:-.01em}
+.dc p{font-size:13px;color:rgba(26,58,22,.48);line-height:1.7;margin-bottom:14px}
+.dc-refs{font-size:11px;color:rgba(45,120,30,.5);line-height:1.65}
+@media(max-width:640px){.s4{padding:80px 20px}.domains{grid-template-columns:1fr}}
+
+/* Research tools section */
+.s-tools{background:linear-gradient(to bottom,#f3f9ef,#edf5e8);padding:100px 40px;position:relative;z-index:2}
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;max-width:1080px;margin:0 auto}
+.tool-card{padding:24px;border-radius:8px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.66);color:inherit;text-decoration:none;transition:border-color .2s,background .2s,transform .18s}
+.tool-card:hover{border-color:rgba(45,130,34,.34);background:rgba(255,255,255,.94);transform:translateY(-2px)}
+.tool-card h3{font-size:16px;color:#1a3a16;margin-bottom:8px}
+.tool-card p{font-size:12.8px;color:rgba(26,58,22,.48);line-height:1.65}
+.tool-tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(45,130,34,.62);margin-bottom:12px}
+@media(max-width:640px){.s-tools{padding:80px 20px}.tool-grid{grid-template-columns:1fr}}
+
+/* About section */
+.s5{background:linear-gradient(to bottom,#f3f9ef,#edf5e8);padding:120px 40px;position:relative;z-index:2}
+.s5i{max-width:680px;margin:0 auto;text-align:center}
+.s5i .ey{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(45,130,34,.72);margin-bottom:12px}
+.s5i h2{font-size:clamp(26px,4vw,44px);font-weight:700;letter-spacing:-.02em;margin-bottom:20px;background:linear-gradient(135deg,#2d6b22,#5aab3a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.s5i .lead{font-size:17px;color:rgba(26,58,22,.5);line-height:1.8;margin-bottom:60px}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:left}
+.pillar{padding:24px;border-radius:16px;border:1px solid rgba(45,107,34,.11);background:rgba(255,255,255,.65)}
+.pillar-icon{font-size:20px;margin-bottom:12px}
+.pillar h4{font-size:14px;font-weight:700;color:#1a3a16;margin-bottom:8px}
+.pillar p{font-size:12.5px;color:rgba(26,58,22,.45);line-height:1.7}
+.s5-foot{margin-top:64px;padding-top:40px;border-top:1px solid rgba(45,107,34,.1);font-size:13px;color:rgba(26,58,22,.3);line-height:1.75}
+@media(max-width:640px){.pillars{grid-template-columns:1fr}.s5{padding:80px 20px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">ReincarnatedAI</div>
+  <div class="links"><a href="#explore">Explore</a><a href="#research">Research</a><a href="#tools">Tools</a><a href="#about">About</a></div>
+  <a href="#chatbox" class="cta">ASK RAI</a>
+</nav>
+<section class="hero">
+  <canvas id="c"></canvas>
+  <div class="ht">
+    <div class="ey">Soul Science Research</div>
+    <h1>AI, Reborn.</h1>
+    <p>The first AI built to explore the science of consciousness, near-death experience, and the enduring human soul.</p>
+    <div class="acts">
+      <a href="#explore" class="bp">Start the Journey</a>
+      <a href="#research" class="bs">Learn More</a>
+    </div>
+  </div>
+  <div class="sh"><div class="sl"></div><span>Scroll</span></div>
+</section>
+<section class="s3" id="explore">
+  <div class="s2-quote">
+    <p class="s2-quote-text" id="qText"></p>
+    <div class="s2-quote-divider"></div>
+    <div class="s2-quote-attr" id="qAttr"></div>
+  </div>
+  <div class="s3h">
+    <div class="ey">Soul Science Research</div>
+    <h2>What would you like to explore?</h2>
+    <p>Research consciousness, NDEs, reincarnation evidence, and the emerging science of the human soul.</p>
+  </div>
+  <div class="chat-wrap">
+    <div class="mode-row" aria-label="RAI response mode">
+      <button class="mode-btn active" data-mode="researcher" type="button">Researcher</button>
+      <button class="mode-btn" data-mode="skeptic" type="button">Skeptic</button>
+      <button class="mode-btn" data-mode="guide" type="button">Gentle Guide</button>
+      <button class="mode-btn" data-mode="compare" type="button">Compare Theories</button>
+    </div>
+    <div id="starters" class="starters">
+      <button class="starter-btn" onclick="sendMsg(this.textContent)">What does the research say about consciousness surviving death?</button>
+      <button class="starter-btn" onclick="sendMsg(this.textContent)">Explain the Penrose-Hameroff Orch OR theory</button>
+      <button class="starter-btn" onclick="sendMsg(this.textContent)">What patterns appear across NDE reports globally?</button>
+      <button class="starter-btn" onclick="sendMsg(this.textContent)">How does Ian Stevenson's reincarnation research work?</button>
+    </div>
+    <div class="chat-msgs" id="chatMsgs"></div>
+    <div class="chat-input-row" id="chatbox">
+      <textarea id="chatIn" rows="1" placeholder="Ask about consciousness, NDEs, reincarnation research…" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <button class="send-btn" id="sendBtn" onclick="sendMsg()" disabled>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M14 8L2 2l2.5 6L2 14l12-6z" fill="white"/></svg>
+      </button>
+    </div>
+    <p class="chat-disclaimer">ReincarnatedAI synthesizes consciousness research — not medical or spiritual advice</p>
+  </div>
+</section>
+
+<section class="s2">
+  <div class="s2i">
+    <h2>Where Science Meets the Soul</h2>
+    <p>ReincarnatedAI synthesizes decades of consciousness research, NDE studies, and reincarnation evidence — a rigorous AI companion for humanity's deepest inquiry.</p>
+  </div>
+</section>
+
+<section class="s4" id="research">
+  <div class="sh2">
+    <div class="ey">The Science</div>
+    <h2>What We're Exploring</h2>
+    <p>Five frontier domains where rigorous research is quietly rewriting what science thinks it knows about the human soul.</p>
+  </div>
+  <div class="domains">
+    <a class="dc" href="/nde">
+      <div class="dc-tag">Clinical Evidence</div>
+      <h3>Near-Death Experiences</h3>
+      <p>Thousands of documented cases share a consistent phenomenology — life review, expanded consciousness, veridical perception — regardless of culture, age, or belief. The data is harder to dismiss than it used to be.</p>
+      <div class="dc-refs">Pim van Lommel · The Lancet, 2001<br>Sam Parnia · AWARE Study, Southampton<br>Bruce Greyson · NDE Scale, UVA</div>
+      <div class="dc-arrow">Explore the research →</div>
+    </a>
+    <a class="dc" href="/consciousness">
+      <div class="dc-tag">Neurophilosophy</div>
+      <h3>Consciousness Science</h3>
+      <p>The hard problem of consciousness — why there is subjective experience at all — remains unsolved. Leading frameworks like IIT and Orch OR suggest consciousness may be more fundamental than the brain that generates it.</p>
+      <div class="dc-refs">David Chalmers · The Hard Problem<br>Giulio Tononi · Integrated Information Theory<br>Penrose & Hameroff · Orch OR</div>
+      <div class="dc-arrow">Explore the research →</div>
+    </a>
+    <a class="dc" href="/reincarnation">
+      <div class="dc-tag">Case Studies</div>
+      <h3>Reincarnation Studies</h3>
+      <p>Over 40 years of case research at the University of Virginia documented children with detailed, verifiable memories of previous lives — including names, locations, and causes of death confirmed after the fact.</p>
+      <div class="dc-refs">Ian Stevenson · UVA, 3,000+ cases<br>Jim Tucker · Return to Life<br>James Leininger case · verified 2002</div>
+      <div class="dc-arrow">Explore the research →</div>
+    </a>
+    <a class="dc" href="/psychedelics">
+      <div class="dc-tag">Clinical Trials</div>
+      <h3>Psychedelic Research</h3>
+      <p>Clinical trials at Johns Hopkins and NYU show psilocybin reliably produces mystical experiences rated among the most meaningful in subjects' lives — including profound shifts in the sense of self and encounters with what feels like something beyond.</p>
+      <div class="dc-refs">Roland Griffiths · Johns Hopkins<br>Rick Strassman · DMT: The Spirit Molecule<br>MAPS · MDMA-PTSD Trials</div>
+      <div class="dc-arrow">Explore the research →</div>
+    </a>
+    <a class="dc" href="/quantum">
+      <div class="dc-tag">Quantum Biology</div>
+      <h3>Quantum Mind Theory</h3>
+      <p>Quantum coherence in biological systems — once dismissed — is now observed in photosynthesis and bird navigation. Penrose and Hameroff propose that microtubules in neurons may be the site of quantum-level consciousness processes.</p>
+      <div class="dc-refs">Roger Penrose · The Emperor's New Mind<br>Stuart Hameroff · Orch OR, Arizona<br>Gregory Engel · Quantum coherence, 2007</div>
+      <div class="dc-arrow">Explore the research →</div>
+    </a>
+    <a class="dc" href="/nonlocal">
+      <div class="dc-tag">Parapsychology</div>
+      <h3>Non-Local Consciousness</h3>
+      <p>Remote viewing experiments at Stanford Research Institute, PEAR Lab's mind-matter interaction studies, and Rupert Sheldrake's morphic resonance research all point toward consciousness that extends beyond the individual skull.</p>
+      <div class="dc-refs">Russell Targ · SRI Remote Viewing<br>Robert Jahn · PEAR Lab, Princeton<br>Rupert Sheldrake · Morphic Resonance</div>
+      <div class="dc-arrow">Explore the research →</div>
+    </a>
+  </div>
+</section>
+<section class="s-tools" id="tools">
+  <div class="sh2">
+    <div class="ey">Research Tools</div>
+    <h2>Go Beyond the Overview</h2>
+    <p>Explore the evidence, counterarguments, source library, and open questions with tools built for careful inquiry.</p>
+  </div>
+  <div class="tool-grid">
+    <a class="tool-card" href="/evidence"><div class="tool-tag">Map</div><h3>Evidence Map</h3><p>See which domains are well-supported, suggestive, contested, or speculative.</p></a>
+    <a class="tool-card" href="/cases"><div class="tool-tag">Archive</div><h3>Case Explorer</h3><p>Search landmark cases and studies by domain, type, strength, and pattern.</p></a>
+    <a class="tool-card" href="/skeptics"><div class="tool-tag">Critique</div><h3>Skeptic's Corner</h3><p>Test extraordinary claims against the strongest ordinary explanations.</p></a>
+    <a class="tool-card" href="/methodology"><div class="tool-tag">Standards</div><h3>Methodology</h3><p>Learn how ReincarnatedAI separates facts, interpretations, and speculation.</p></a>
+    <a class="tool-card" href="/library"><div class="tool-tag">Sources</div><h3>Source Library</h3><p>Browse the papers, books, and researchers behind the project.</p></a>
+    <a class="tool-card" href="/journal"><div class="tool-tag">Private</div><h3>Experience Journal</h3><p>Record anomalous or mystical experiences locally in your own browser.</p></a>
+    <a class="tool-card" href="/glossary"><div class="tool-tag">Reference</div><h3>Glossary</h3><p>Decode terms like veridical perception, filter theory, Orch OR, and MEQ30.</p></a>
+    <a class="tool-card" href="/timeline"><div class="tool-tag">History</div><h3>Research Timeline</h3><p>Follow the development of consciousness and survival research over time.</p></a>
+    <a class="tool-card" href="/unknowns"><div class="tool-tag">Humility</div><h3>What We Don't Know Yet</h3><p>Name the gaps, uncertainties, and tests that would strengthen or weaken the field.</p></a>
+  </div>
+</section>
+<section class="s5" id="about">
+  <div class="s5i">
+    <div class="ey">About</div>
+    <h2>Why ReincarnatedAI Exists</h2>
+    <p class="lead">Science has mapped the genome, split the atom, and probed the edges of the universe — but the nature of consciousness, the reality of subjective experience, and what happens when we die remain almost entirely unexplored. ReincarnatedAI exists to change that. We built an AI that takes the question of the soul seriously — not as religion, not as wishful thinking, but as the most important open problem in science.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">◎</div>
+        <h4>Scientific Rigor</h4>
+        <p>Every claim grounded in peer-reviewed research. We distinguish what the data shows, what it suggests, and what remains speculative.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">◈</div>
+        <h4>Compassionate Inquiry</h4>
+        <p>Many who come here have had experiences that changed them. We meet those experiences with genuine curiosity and respect, not dismissal.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">◇</div>
+        <h4>Open Frontier</h4>
+        <p>We don't claim answers. We help you ask better questions — and connect you to the research that's quietly rewriting the map.</p>
+      </div>
+    </div>
+    <p class="s5-foot">ReincarnatedAI is not a spiritual guide, therapist, or authority on metaphysical truth.<br>It is a research assistant — for the greatest mystery.</p>
+  </div>
+</section>
+
+<script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+let W,H,cx,cy,sy=0,af=0,ep=0,sp=0,tsp=0;
+
+const face=new Image();
+face.src='./face.jpg';
+let faceOk=false;
+face.onload=()=>{faceOk=true};
+
+function rsz(){
+  const d=devicePixelRatio||1;
+  W=cv.offsetWidth;H=cv.offsetHeight;
+  cv.width=W*d;cv.height=H*d;
+  ctx.setTransform(d,0,0,d,0,0);
+  cx=W/2;cy=H/2;
+}
+window.addEventListener('resize',rsz);rsz();
+const navEl=document.querySelector('nav');
+window.addEventListener('scroll',()=>{
+  sy=window.scrollY;
+  tsp=Math.min(1,sy/380);
+  // Fade canvas out as second section scrolls in (past 100vh)
+  const fade=Math.max(0,1-(sy-window.innerHeight*0.8)/(window.innerHeight*0.3));
+  cv.style.opacity=Math.min(1,fade);
+  // Switch nav to light mode once past the hero
+  navEl.classList.toggle('scrolled',sy>window.innerHeight*0.55);
+});
+
+const pts=Array.from({length:45},()=>({
+  nx:Math.random(),ny:Math.random(),sz:.3+Math.random()*1.2,
+  vel:.00004+Math.random()*.00013,ph:Math.random()*Math.PI*2,
+  hue:[128,118,142][~~(Math.random()*3)]
+}));
+
+// Scroll-driven split config per layer:
+// sc1/sc2 = scale at rest/split, dy2 = vertical shift at split (fraction of bh),
+// a1/a2 = opacity at rest/split
+const SPLIT=[
+  {hue:128,sat:2.2,br:1.9, sc1:1.00,sc2:0.68, dy2:-0.13, a1:0.14,a2:0.60}, // bright green — shrinks & rises (front)
+  {hue:140,sat:1.8,br:1.6, sc1:1.00,sc2:1.00, dy2: 0.00, a1:0.14,a2:0.40}, // forest green — holds center
+  {hue:115,sat:1.5,br:1.3, sc1:1.00,sc2:1.32, dy2: 0.09, a1:0.14,a2:0.22}, // sage green  — grows & drops (back)
+];
+
+// Cubic ease-in-out
+function ease(t){return t<.5?2*t*t:-1+(4-2*t)*t}
+
+function drawFaceGlow(){
+  const gx=cx,gy=H*.44;
+  const gr=Math.min(W,H)*(.38+sp*.16);
+  const g=ctx.createRadialGradient(gx,gy,0,gx,gy,gr);
+  g.addColorStop(0,`rgba(20,110,15,${(.18+sp*.14)*ep})`);
+  g.addColorStop(.4,`rgba(8,60,6,${(.09+sp*.07)*ep})`);
+  g.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=g;
+  ctx.fillRect(0,0,W,H);
+}
+
+function drawFaceLayers(){
+  if(!faceOk)return;
+
+  const ar=face.naturalWidth>0?(face.naturalHeight/face.naturalWidth):1.25;
+  const bw=Math.min(W*.40,420);
+  const bh=bw*ar;
+  const faceCY=H*.46;
+  const e=ease(sp);
+
+  // Draw back-to-front so violet (front) renders on top
+  for(let i=2;i>=0;i--){
+    const{hue,sat,br,sc1,sc2,dy2,a1,a2}=SPLIT[i];
+
+    const sc=sc1+(sc2-sc1)*e;
+    const yOff=dy2*bh*e;
+    const al=(a1+(a2-a1)*e)*ep;
+
+    if(al<.004)continue;
+
+    const dw=bw*sc,dh=bh*sc;
+    const dx=cx-dw/2,dy=faceCY-dh/2+yOff;
+
+    ctx.save();
+    ctx.globalAlpha=al;
+    ctx.filter=`invert(1) contrast(2.4) sepia(1) hue-rotate(${hue}deg) saturate(${sat}) brightness(${br})`;
+    ctx.globalCompositeOperation='screen';
+    ctx.drawImage(face,dx,dy,dw,dh);
+    ctx.restore();
+  }
+}
+
+function draw(){
+  af++;requestAnimationFrame(draw);
+
+  // Smooth scroll progress toward target
+  sp+=(tsp-sp)*.09;
+
+  ctx.clearRect(0,0,W,H);
+
+  const bg=ctx.createRadialGradient(cx,cy*.5,0,cx,cy*.5,Math.max(W,H)*.75);
+  bg.addColorStop(0,'rgba(8,45,6,.38)');
+  bg.addColorStop(.5,'rgba(4,22,3,.18)');
+  bg.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+
+  if(ep<1)ep=Math.min(1,ep+.008);
+
+  drawFaceGlow();
+  drawFaceLayers();
+
+  for(const p of pts){
+    p.ph+=.008;
+    const x=p.nx*W,y=((p.ny+af*p.vel)%1)*H;
+    const a=.04+.15*Math.abs(Math.sin(p.ph));
+    ctx.save();
+    ctx.fillStyle=`hsla(${p.hue},68%,70%,${a})`;
+    ctx.beginPath();ctx.arc(x,y,p.sz,0,Math.PI*2);ctx.fill();
+    ctx.restore();
+  }
+}
+draw();
+</script>
+
+<script>
+// ── Research Chat ──────────────────────────────────────────────
+const chatMsgs = document.getElementById('chatMsgs');
+const chatIn   = document.getElementById('chatIn');
+const sendBtn  = document.getElementById('sendBtn');
+const starters = document.getElementById('starters');
+const modeBtns = document.querySelectorAll('.mode-btn');
+let history = [], busy = false, chatMode = 'researcher';
+
+modeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    chatMode = btn.dataset.mode;
+    modeBtns.forEach(b => b.classList.toggle('active', b === btn));
+  });
+});
+
+chatIn.addEventListener('input', () => {
+  sendBtn.disabled = !chatIn.value.trim() || busy;
+});
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
+}
+
+function md(text) {
+  return text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/^### (.+)$/gm,'<h3>$1</h3>')
+    .replace(/^## (.+)$/gm,'<h2>$1</h2>')
+    .replace(/^# (.+)$/gm,'<h1>$1</h1>')
+    .replace(/^- (.+)$/gm,'<li>$1</li>')
+    .replace(/(<li>.*<\/li>\n?)+/g, s => `<ul>${s}</ul>`)
+    .replace(/\n\n/g,'</p><p>')
+    .replace(/^(?!<[hul])/gm,'')
+    .replace(/\n/g,' ');
+}
+
+function appendMsg(role, text, streaming) {
+  const wrap = document.createElement('div');
+  wrap.className = `msg ${role === 'user' ? 'user' : 'ai'}`;
+
+  if (role !== 'user') {
+    const av = document.createElement('div');
+    av.className = 'msg-avatar';
+    av.textContent = 'R';
+    wrap.appendChild(av);
+  }
+
+  const body = document.createElement('div');
+  body.className = 'msg-body';
+  body.innerHTML = role === 'user'
+    ? text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    : (streaming ? '' : `<p>${md(text)}</p>`);
+
+  if (streaming) {
+    const cursor = document.createElement('span');
+    cursor.className = 'cursor';
+    body._cursor = cursor;
+    body._raw = '';
+    body.appendChild(cursor);
+  }
+
+  wrap.appendChild(body);
+  chatMsgs.appendChild(wrap);
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+  return body;
+}
+
+async function sendMsg(preset) {
+  const text = preset || chatIn.value.trim();
+  if (!text || busy) return;
+
+  appendMsg('user', text);
+  history.push({ role: 'user', content: text });
+  chatIn.value = ''; autoResize(chatIn);
+  sendBtn.disabled = true;
+  busy = true;
+
+  const aiBody = appendMsg('ai', '', true);
+
+  try {
+    const res = await fetch('/api/research', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: history, mode: chatMode }),
+    });
+
+    const reader = res.body.getReader();
+    const dec = new TextDecoder();
+    let buf = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += dec.decode(value, { stream: true });
+      const lines = buf.split('\n\n');
+      buf = lines.pop() ?? '';
+
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        const d = line.slice(6);
+        if (d === '[DONE]') break;
+        try {
+          const { text: chunk } = JSON.parse(d);
+          if (chunk) {
+            aiBody._raw += chunk;
+            aiBody.innerHTML = `<p>${md(aiBody._raw)}</p>`;
+            const cur = document.createElement('span');
+            cur.className = 'cursor';
+            aiBody.appendChild(cur);
+            chatMsgs.scrollTop = chatMsgs.scrollHeight;
+          }
+        } catch {}
+      }
+    }
+
+    // Remove cursor, finalise
+    aiBody.querySelectorAll('.cursor').forEach(c => c.remove());
+    history.push({ role: 'assistant', content: aiBody._raw });
+
+  } catch {
+    aiBody.querySelectorAll('.cursor').forEach(c => c.remove());
+    aiBody.innerHTML = '<p style="color:rgba(255,80,80,.7)">Connection error — please try again.</p>';
+  }
+
+  busy = false;
+  sendBtn.disabled = !chatIn.value.trim();
+}
+</script>
+
+<script>
+// ── Rotating quotes ────────────────────────────────────────────
+const QUOTES = [
+  { text: "You are not a drop in the ocean. You are the entire ocean in a drop.", name: "Rumi", title: "13th-century Sufi poet & mystic" },
+  { text: "If the doors of perception were cleansed, everything would appear to man as it is — infinite.", name: "William Blake", title: "Poet & visionary, 1757–1827" },
+  { text: "I regard consciousness as fundamental. I regard matter as derivative from consciousness.", name: "Max Planck", title: "Nobel laureate, founder of quantum theory" },
+  { text: "Consciousness cannot be accounted for in physical terms. For consciousness is absolutely fundamental.", name: "Erwin Schrödinger", title: "Nobel laureate in physics" },
+  { text: "Who looks outside, dreams; who looks inside, awakes.", name: "Carl Jung", title: "Psychiatrist & founder of analytical psychology" },
+  { text: "We shall not cease from exploration, and the end of all our exploring will be to arrive where we started and know the place for the first time.", name: "T.S. Eliot", title: "Poet, Nobel laureate in literature" },
+  { text: "Death is not extinguishing the light; it is only putting out the lamp because the dawn has come.", name: "Rabindranath Tagore", title: "Poet & Nobel laureate, 1861–1941" },
+  { text: "I am large, I contain multitudes.", name: "Walt Whitman", title: "Poet, Song of Myself, 1855" },
+  { text: "A human being is a part of the whole called by us 'Universe,' a part limited in time and space. He experiences himself as something separate from the rest — a kind of optical delusion of consciousness.", name: "Albert Einstein", title: "Theoretical physicist" },
+  { text: "The eye through which I see God is the same eye through which God sees me; my eye and God's eye are one eye, one seeing, one knowing, one love.", name: "Meister Eckhart", title: "Christian mystic & theologian, 1260–1328" },
+  { text: "The soul takes nothing with her to the other world but her education and her culture.", name: "Plato", title: "Philosopher, Phaedo, 4th century BC" },
+  { text: "Knowing others is wisdom; knowing yourself is enlightenment.", name: "Lao Tzu", title: "Philosopher, Tao Te Ching" },
+  { text: "The present moment is the only moment available to us, and it is the door to all moments.", name: "Thich Nhat Hanh", title: "Zen Buddhist monk & peace activist" },
+  { text: "We are a way for the cosmos to know itself.", name: "Carl Sagan", title: "Astronomer & author, Cosmos" },
+  { text: "Out beyond ideas of wrongdoing and rightdoing, there is a field. I'll meet you there.", name: "Rumi", title: "13th-century Sufi poet & mystic" },
+  { text: "Our birth is but a sleep and a forgetting: The Soul that rises with us, our life's Star, hath had elsewhere its setting.", name: "William Wordsworth", title: "Poet, Ode: Intimations of Immortality, 1804" },
+  { text: "It is no more surprising to be born twice than once; everything in nature is resurrection.", name: "Voltaire", title: "Philosopher & writer, 1694–1778" },
+  { text: "For what is it to die but to stand naked in the wind and to melt into the sun?", name: "Kahlil Gibran", title: "Poet & philosopher, The Prophet" },
+  { text: "Deep down, the consciousness of mankind is one. This is a virtual certainty to me and it is the foundation of all my hopes.", name: "David Bohm", title: "Quantum physicist" },
+  { text: "Every soul is not only the inlet, but can become the outlet of all there is in God.", name: "Ralph Waldo Emerson", title: "Essayist & philosopher, The Over-Soul, 1841" },
+  { text: "I am confident that there truly is such a thing as living again, that the living spring from the dead, and that the souls of the dead are in existence.", name: "Socrates", title: "Philosopher, as recorded in Plato's Phaedo" },
+  { text: "Man is a transitional being. He is not final.", name: "Sri Aurobindo", title: "Philosopher, yogi & poet, The Life Divine" },
+  { text: "The further limits of our being plunge into an altogether other dimension of existence from the sensible and merely 'understandable' world.", name: "William James", title: "Psychologist & philosopher, The Varieties of Religious Experience" },
+  { text: "Never the spirit was born; the spirit shall cease to be never. Never was time it was not; End and Beginning are dreams.", name: "Bhagavad Gita", title: "Hindu scripture, translated by Sir Edwin Arnold" },
+  { text: "Death is the side of life that is turned away from us.", name: "Rainer Maria Rilke", title: "Poet, Letters, 1923" },
+  { text: "I wish I could show you, when you are lonely or in darkness, the astonishing light of your own being.", name: "Hafiz", title: "14th-century Persian Sufi poet" },
+  { text: "This World is not Conclusion. A Species stands beyond — Invisible, as Music — But positive, as Sound.", name: "Emily Dickinson", title: "Poet, 1830–1886" },
+  { text: "It is the same thing in us that is living and dead, awake and asleep, young and old.", name: "Heraclitus", title: "Philosopher, 6th century BC" },
+  { text: "Each one of us is potentially Mind at Large.", name: "Aldous Huxley", title: "Author, The Doors of Perception, 1954" },
+  { text: "My brain is only a receiver. In the universe there is a core from which we obtain knowledge, strength, and inspiration.", name: "Nikola Tesla", title: "Inventor & electrical engineer" },
+];
+
+(function() {
+  const q = QUOTES[Math.floor(Math.random() * QUOTES.length)];
+  document.getElementById('qText').textContent = q.text;
+  document.getElementById('qAttr').textContent = q.name + ' — ' + q.title;
+})();
+</script>
+</body>
+</html>

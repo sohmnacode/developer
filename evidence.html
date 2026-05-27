@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Evidence Map — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/research.css">
+</head>
+<body>
+<nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/#explore">Ask RAI</a><a href="/cases">Cases</a><a href="/skeptics">Skeptic's Corner</a><a href="/methodology">Methodology</a><a href="/library">Library</a></div><a href="/#chatbox" class="cta-nav">ASK RAI</a></nav>
+<section class="hero"><div class="hero-content"><div class="eyebrow">Research Instrument</div><h1>Evidence Map</h1><p>A clear view of which claims are well-supported, which are suggestive, which are contested, and which remain speculative.</p></div></section>
+<main>
+<section class="section">
+  <h2 class="section-title">Strength of Evidence</h2>
+  <p class="lede">The map does not rank what is spiritually meaningful. It ranks how much public, checkable, methodologically constrained evidence currently supports each research domain.</p>
+  <div id="map" class="grid"></div>
+</section>
+<div class="divider"></div>
+<section class="section narrow">
+  <h2 class="section-title">Claim Ladder</h2>
+  <div class="grid">
+    <article class="card"><div class="meta">Well-supported</div><h3>The experience happened</h3><p>There are controlled or well-documented reasons to believe people reliably report a class of experience or measurable effect.</p></article>
+    <article class="card"><div class="meta">Suggestive</div><h3>Normal explanations strain</h3><p>The evidence appears difficult to explain fully by fraud, expectation, ordinary memory, or known physiology.</p></article>
+    <article class="card"><div class="meta">Contested</div><h3>Methods and meaning disputed</h3><p>Results exist, but replication, interpretation, or experimental controls remain heavily argued.</p></article>
+    <article class="card"><div class="meta">Speculative</div><h3>Possible model, thin evidence</h3><p>The theory is interesting, but direct empirical support is currently limited.</p></article>
+  </div>
+</section>
+</main>
+<footer class="footer"><span>ReincarnatedAI research tools</span><span><a href="/unknowns">What we don't know yet</a></span></footer>
+<script type="module">
+import { evidenceDomains } from '/data/research-data.js';
+const map = document.getElementById('map');
+map.innerHTML = evidenceDomains.map(d => `
+  <a class="card" href="${d.href}" style="text-decoration:none">
+    <div class="meta">${d.tag}</div>
+    <h3>${d.title}</h3>
+    <p>${d.claim}</p>
+    <div class="score" aria-label="${d.score} out of 100"><span style="width:${d.score}%"></span></div>
+    <div class="pill-row"><span class="pill">${d.strength}</span>${d.supports.slice(0,2).map(s=>`<span class="pill">${s}</span>`).join('')}</div>
+  </a>`).join('');
+</script>
+</body>
+</html>

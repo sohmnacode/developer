@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Case Explorer — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/research.css">
+</head>
+<body>
+<nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/skeptics">Skeptic's Corner</a><a href="/methodology">Methodology</a><a href="/glossary">Glossary</a></div><a href="/#chatbox" class="cta-nav">ASK RAI</a></nav>
+<section class="hero"><div class="hero-content"><div class="eyebrow">Searchable Archive</div><h1>Case Explorer</h1><p>Filter landmark cases and studies by domain, type, strength, and evidential pattern.</p></div></section>
+<main>
+<section class="section">
+  <div class="filters">
+    <input id="q" class="search" placeholder="Search cases, tags, locations, summaries...">
+    <select id="domain" class="select"><option value="">All domains</option></select>
+    <select id="strength" class="select"><option value="">All strengths</option></select>
+  </div>
+  <div id="count" class="lede" style="margin-bottom:18px"></div>
+  <div id="cases" class="grid"></div>
+</section>
+</main>
+<footer class="footer"><span>Cases are summaries, not final judgments.</span><span><a href="/methodology">How we evaluate claims</a></span></footer>
+<script type="module">
+import { caseIndex } from '/data/research-data.js';
+const q = document.getElementById('q'), domain = document.getElementById('domain'), strength = document.getElementById('strength'), wrap = document.getElementById('cases'), count = document.getElementById('count');
+for (const value of [...new Set(caseIndex.map(c=>c.domain))]) domain.insertAdjacentHTML('beforeend', `<option>${value}</option>`);
+for (const value of [...new Set(caseIndex.map(c=>c.strength))]) strength.insertAdjacentHTML('beforeend', `<option>${value}</option>`);
+function render(){
+  const query = q.value.trim().toLowerCase();
+  const rows = caseIndex.filter(c => (!domain.value || c.domain===domain.value) && (!strength.value || c.strength===strength.value) && (!query || [c.title,c.domain,c.type,c.location,c.year,c.summary,...c.tags].join(' ').toLowerCase().includes(query)));
+  count.textContent = `${rows.length} case${rows.length===1?'':'s'} shown`;
+  wrap.innerHTML = rows.map(c => `<article class="card"><div class="meta">${c.domain} · ${c.type}</div><h3>${c.title}</h3><p>${c.summary}</p><div class="pill-row"><span class="pill">${c.strength}</span><span class="pill">${c.location}</span><span class="pill">${c.year}</span>${c.tags.map(t=>`<span class="pill">${t}</span>`).join('')}</div></article>`).join('');
+}
+[q,domain,strength].forEach(el=>el.addEventListener('input',render)); render();
+</script>
+</body>
+</html>
