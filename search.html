@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Search — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/research.css">
+<link rel="stylesheet" href="/assets/chat-widget.css">
+<style>
+.search-hero{
+  min-height:36vh;
+  display:flex;
+  align-items:flex-end;
+  padding:110px 80px 52px;
+  background:
+    radial-gradient(ellipse 50% 60% at 50% 20%, rgba(45,107,34,.18), transparent 65%),
+    linear-gradient(to bottom,#04100a,#070f08);
+  position:relative;
+  overflow:hidden;
+}
+.search-hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:28px 28px;
+  pointer-events:none;
+}
+.search-hero h1{
+  font-size:clamp(28px,4vw,52px);
+  font-weight:700;
+  color:#fff;
+  margin-bottom:8px;
+}
+.search-hero p{ font-size:15px; color:rgba(255,255,255,.4); }
+
+.search-main{ max-width:900px; margin:0 auto; padding:40px 80px 80px; }
+
+.search-box-wrap{
+  position:sticky;
+  top:60px;
+  z-index:40;
+  background:linear-gradient(to bottom,var(--paper) 80%,transparent);
+  padding:18px 0 14px;
+  margin-bottom:8px;
+}
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:#fff;
+  border:1.5px solid rgba(45,107,34,.2);
+  border-radius:14px;
+  padding:14px 18px;
+  box-shadow:0 4px 20px rgba(45,107,34,.08);
+  transition:border-color .15s, box-shadow .15s;
+}
+.search-box:focus-within{
+  border-color:rgba(45,107,34,.45);
+  box-shadow:0 4px 28px rgba(45,107,34,.14);
+}
+.search-box svg{ color:rgba(45,107,34,.5); flex-shrink:0; }
+.search-input{
+  flex:1;
+  border:none;
+  outline:none;
+  font:inherit;
+  font-size:16px;
+  color:#173614;
+  background:transparent;
+}
+.search-input::placeholder{ color:rgba(23,54,20,.3); }
+.search-kbd{
+  font-size:10.5px;
+  color:rgba(23,54,20,.3);
+  background:rgba(237,245,232,.8);
+  border:1px solid rgba(45,107,34,.12);
+  border-radius:5px;
+  padding:2px 6px;
+  white-space:nowrap;
+}
+
+.results-area{ margin-top:8px; }
+.empty-prompt{
+  text-align:center;
+  padding:60px 24px;
+  color:rgba(23,54,20,.38);
+}
+.empty-prompt div:first-child{ font-size:28px; margin-bottom:12px; }
+.empty-prompt div:last-child{ font-size:13.5px; }
+
+.no-results{
+  text-align:center;
+  padding:48px 24px;
+  color:rgba(23,54,20,.38);
+  font-size:13.5px;
+}
+
+.results-total{ font-size:12.5px; color:rgba(23,54,20,.4); margin-bottom:24px; }
+
+.result-group{ margin-bottom:36px; }
+.result-group-label{
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(45,107,34,.65);
+  font-weight:600;
+  margin-bottom:12px;
+  padding-bottom:8px;
+  border-bottom:1px solid rgba(45,107,34,.08);
+}
+.result-item{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  padding:14px 16px;
+  background:#fff;
+  border:1px solid rgba(45,107,34,.09);
+  border-radius:12px;
+  margin-bottom:8px;
+  text-decoration:none;
+  color:inherit;
+  transition:box-shadow .18s, border-color .18s, transform .18s;
+}
+.result-item:hover{
+  box-shadow:0 4px 20px rgba(45,107,34,.1);
+  border-color:rgba(45,107,34,.2);
+  transform:translateY(-2px);
+}
+.result-icon{
+  width:36px;
+  height:36px;
+  border-radius:9px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  flex-shrink:0;
+  margin-top:1px;
+}
+.icon-researcher{ background:rgba(45,107,34,.1); color:#2d6b22; border:1px solid rgba(45,107,34,.15); }
+.icon-phenomenon{ background:rgba(26,110,122,.1); color:#1a6e7a; border:1px solid rgba(26,110,122,.15); }
+.icon-theory{ background:rgba(138,104,32,.1); color:#8a6820; border:1px solid rgba(138,104,32,.15); }
+.icon-case{ background:rgba(80,100,200,.1); color:#5064c8; border:1px solid rgba(80,100,200,.15); }
+.result-name{
+  font-family:'Fraunces',serif;
+  font-size:15px;
+  font-weight:700;
+  color:#173614;
+  margin-bottom:3px;
+  line-height:1.3;
+}
+.result-snippet{ font-size:12px; color:rgba(23,54,20,.55); line-height:1.65; }
+.result-meta{
+  font-size:10.5px;
+  color:rgba(45,107,34,.6);
+  margin-top:4px;
+  font-weight:500;
+}
+
+mark{
+  background:rgba(45,107,34,.15);
+  color:inherit;
+  border-radius:2px;
+  padding:0 1px;
+}
+
+[data-theme="dark"] .search-box-wrap{ background:linear-gradient(to bottom,#080f0a 80%,transparent); }
+[data-theme="dark"] .search-box{ background:#111a14; border-color:rgba(80,140,70,.25); box-shadow:0 4px 20px rgba(0,0,0,.2); }
+[data-theme="dark"] .search-box:focus-within{ border-color:rgba(80,150,70,.45); }
+[data-theme="dark"] .search-input{ color:rgba(218,238,210,.9); }
+[data-theme="dark"] .search-input::placeholder{ color:rgba(120,170,110,.3); }
+[data-theme="dark"] .search-kbd{ background:rgba(20,35,22,.8); border-color:rgba(80,140,70,.18); color:rgba(120,170,110,.4); }
+[data-theme="dark"] .result-item{ background:#111a14; border-color:rgba(80,140,70,.14); }
+[data-theme="dark"] .result-item:hover{ border-color:rgba(80,140,70,.28); box-shadow:0 4px 20px rgba(0,0,0,.3); }
+[data-theme="dark"] .result-name{ color:rgba(218,238,210,.9); }
+[data-theme="dark"] .result-snippet{ color:rgba(140,185,130,.6); }
+[data-theme="dark"] .result-meta{ color:rgba(100,160,90,.6); }
+[data-theme="dark"] .result-group-label{ color:rgba(100,160,90,.6); border-color:rgba(80,140,70,.1); }
+[data-theme="dark"] .results-total{ color:rgba(120,165,110,.45); }
+[data-theme="dark"] mark{ background:rgba(80,150,70,.25); }
+[data-theme="dark"] .empty-prompt,[data-theme="dark"] .no-results{ color:rgba(120,165,110,.38); }
+
+@media(max-width:760px){
+  .search-hero{ padding:100px 24px 40px; }
+  .search-main{ padding:24px 20px 60px; }
+  .search-box-wrap{ padding:12px 0 10px; }
+}
+</style>
+</head>
+<body>
+<nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/cases">Cases</a><a href="/phenomena">Phenomena</a><a href="/researchers">Researchers</a><a href="/theories">Theories</a><a href="/traditions">Traditions</a></div><a href="/submit" class="cta-nav">Share Experience</a></nav>
+
+<section class="search-hero">
+  <div class="hero-content">
+    <div class="eyebrow">Global Search</div>
+    <h1>Search</h1>
+    <p>Researchers, phenomena, theories, and landmark cases.</p>
+  </div>
+</section>
+
+<div class="search-main">
+  <div class="search-box-wrap">
+    <div class="search-box">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7.5"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+      <input type="search" class="search-input" id="q" placeholder="Search researchers, cases, phenomena, theories…" autocomplete="off" autocorrect="off" spellcheck="false">
+      <span class="search-kbd">⌘K</span>
+    </div>
+  </div>
+
+  <div class="results-area" id="results">
+    <div class="empty-prompt">
+      <div>◎</div>
+      <div>Start typing to search across the full knowledge base.</div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <span>Searches researchers, phenomena, theories, and landmark case files.</span>
+  <span><a href="/methodology">Methodology</a></span>
+</footer>
+
+<script type="module">
+import { researchers } from '/data/researchers-data.js';
+import { phenomena } from '/data/phenomena-data.js';
+import { theories } from '/data/theories-data.js';
+import { caseIndex } from '/data/research-data.js';
+import { caseDetails } from '/data/cases-detail-data.js';
+
+const input = document.getElementById('q');
+const results = document.getElementById('results');
+
+// Deep-dive IDs for cases
+const deepDiveIds = new Set(caseDetails.map(c => c.id));
+const caseSlugMap = {};
+caseDetails.forEach(c => { caseSlugMap[c.name.toLowerCase()] = c.id; });
+
+function hl(text, q) {
+  if (!q) return text;
+  const safe = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return text.replace(new RegExp(`(${safe})`, 'gi'), '<mark>$1</mark>');
+}
+
+function snippet(text, q, maxLen = 120) {
+  if (!text) return '';
+  if (!q) return text.slice(0, maxLen) + (text.length > maxLen ? '…' : '');
+  const lower = text.toLowerCase();
+  const idx = lower.indexOf(q.toLowerCase());
+  if (idx === -1) return text.slice(0, maxLen) + (text.length > maxLen ? '…' : '');
+  const start = Math.max(0, idx - 40);
+  const end = Math.min(text.length, idx + 80);
+  return (start > 0 ? '…' : '') + text.slice(start, end) + (end < text.length ? '…' : '');
+}
+
+function matches(fields, q) {
+  return fields.join(' ').toLowerCase().includes(q.toLowerCase());
+}
+
+function renderResults(q) {
+  if (!q.trim()) {
+    results.innerHTML = `<div class="empty-prompt"><div>◎</div><div>Start typing to search across the full knowledge base.</div></div>`;
+    return;
+  }
+
+  const researcherHits = researchers.filter(r =>
+    matches([r.name, r.role, r.institution, r.headline, r.bio, r.keyWork, ...r.domains, r.stance], q)
+  );
+  const phenomenaHits = phenomena.filter(p =>
+    matches([p.name, p.description, p.details, p.domain, p.frequencyNote, ...p.theories], q)
+  );
+  const theoryHits = theories.filter(t =>
+    matches([t.name, t.core, ...t.proponents, ...t.strengths, ...t.weaknesses], q)
+  );
+  const caseHits = caseIndex.filter(c =>
+    matches([c.title, c.domain, c.type, c.location, c.year, c.summary, ...c.tags], q)
+  );
+
+  const total = researcherHits.length + phenomenaHits.length + theoryHits.length + caseHits.length;
+
+  if (total === 0) {
+    results.innerHTML = `<div class="no-results">No results for "<strong>${q}</strong>" — try a broader search term.</div>`;
+    return;
+  }
+
+  let html = `<div class="results-total">${total} result${total === 1 ? '' : 's'} for "<strong>${q}</strong>"</div>`;
+
+  if (researcherHits.length) {
+    html += `<div class="result-group">
+      <div class="result-group-label">Researchers (${researcherHits.length})</div>
+      ${researcherHits.map(r => `
+        <a href="/researchers" class="result-item">
+          <div class="result-icon icon-researcher">◉</div>
+          <div>
+            <div class="result-name">${hl(r.name, q)}</div>
+            <div class="result-snippet">${hl(snippet(r.headline, q), q)}</div>
+            <div class="result-meta">${r.role} · ${r.institution} · ${r.years}</div>
+          </div>
+        </a>`).join('')}
+    </div>`;
+  }
+
+  if (phenomenaHits.length) {
+    html += `<div class="result-group">
+      <div class="result-group-label">Phenomena (${phenomenaHits.length})</div>
+      ${phenomenaHits.map(p => `
+        <a href="/phenomena" class="result-item">
+          <div class="result-icon icon-phenomenon">${p.icon}</div>
+          <div>
+            <div class="result-name">${hl(p.name, q)}</div>
+            <div class="result-snippet">${hl(snippet(p.description, q), q)}</div>
+            <div class="result-meta">${p.domain} · ${p.frequencyNote}</div>
+          </div>
+        </a>`).join('')}
+    </div>`;
+  }
+
+  if (theoryHits.length) {
+    html += `<div class="result-group">
+      <div class="result-group-label">Theories (${theoryHits.length})</div>
+      ${theoryHits.map(t => `
+        <a href="/theories" class="result-item">
+          <div class="result-icon icon-theory" style="background:${t.colorLight};border-color:${t.colorBorder}">
+            <svg width="12" height="12" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="${t.color}" opacity=".75"/></svg>
+          </div>
+          <div>
+            <div class="result-name">${hl(t.name, q)}</div>
+            <div class="result-snippet">${hl(snippet(t.core, q), q)}</div>
+            <div class="result-meta">${t.stance.replace('-', ' ')}</div>
+          </div>
+        </a>`).join('')}
+    </div>`;
+  }
+
+  if (caseHits.length) {
+    html += `<div class="result-group">
+      <div class="result-group-label">Cases (${caseHits.length})</div>
+      ${caseHits.map(c => {
+        const slug = caseSlugMap[c.title.toLowerCase()];
+        const href = slug ? `/case?id=${slug}` : '/cases';
+        return `
+        <a href="${href}" class="result-item">
+          <div class="result-icon icon-case">◌</div>
+          <div>
+            <div class="result-name">${hl(c.title, q)}</div>
+            <div class="result-snippet">${hl(snippet(c.summary, q), q)}</div>
+            <div class="result-meta">${c.domain} · ${c.type} · ${c.strength} · ${c.year}</div>
+          </div>
+        </a>`;
+      }).join('')}
+    </div>`;
+  }
+
+  results.innerHTML = html;
+}
+
+// Focus input on load and ⌘K
+input.focus();
+document.addEventListener('keydown', e => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    input.focus();
+    input.select();
+  }
+});
+
+let debounce;
+input.addEventListener('input', () => {
+  clearTimeout(debounce);
+  debounce = setTimeout(() => renderResults(input.value.trim()), 120);
+});
+
+// Pre-fill from URL query param
+const urlQ = new URLSearchParams(window.location.search).get('q');
+if (urlQ) {
+  input.value = urlQ;
+  renderResults(urlQ);
+}
+</script>
+<script src="/assets/ui.js" defer></script>
+<script src="/assets/ui.js" defer></script>
+<script src="/assets/chat-widget.js" defer></script>
+</body>
+</html>

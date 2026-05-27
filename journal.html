@@ -32,5 +32,6 @@ form.onsubmit=e=>{e.preventDefault();const rows=load();rows.unshift({title:title
 document.getElementById('export').onclick=()=>{const blob=new Blob([JSON.stringify(load(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='reincarnatedai-experience-journal.json';a.click();URL.revokeObjectURL(a.href)};
 render();
 </script>
+<script src="/assets/ui.js" defer></script>
 <script src="/assets/chat-widget.js" defer></script>
 </body></html>

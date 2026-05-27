@@ -255,6 +255,17 @@
 }
 .empty-state svg{ opacity:.2; margin-bottom:14px; }
 
+.deep-dive-link{
+  margin-left:auto;
+  font-size:11px;
+  color:rgba(45,107,34,.75);
+  font-weight:600;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:color .15s;
+}
+.deep-dive-link:hover{ color:#2d6b22; }
+
 @media(max-width:760px){
   .filter-strip{ padding:16px 20px; top:56px; }
   .cases-main{ padding:24px 20px 60px; }
@@ -358,7 +369,17 @@ function render() {
     return;
   }
 
-  wrap.innerHTML = rows.map(c => `
+  const deepDiveMap = {
+    'james leininger': 'james-leininger',
+    'shanti devi': 'shanti-devi',
+    'pam reynolds': 'pam-reynolds',
+    'maria case (tennis shoe)': 'maria-shoe',
+    'ryan hammons': 'ryan-hammons',
+  };
+
+  wrap.innerHTML = rows.map(c => {
+    const deepId = deepDiveMap[c.title.toLowerCase()];
+    return `
     <article class="case-card">
       <div class="case-domain">${c.domain} · ${c.type}</div>
       <div class="case-title">${c.title}</div>
@@ -367,13 +388,16 @@ function render() {
       <div class="case-footer">
         <span class="strength-pill ${c.strength}">${c.strength}</span>
         ${c.tags.map(t=>`<span class="case-tag${t===activeType?' active-tag':''}">${t}</span>`).join('')}
+        ${deepId ? `<a href="/case?id=${deepId}" class="deep-dive-link" onclick="event.stopPropagation()">Deep Dive →</a>` : ''}
       </div>
-    </article>`).join('');
+    </article>`;
+  }).join('');
 }
 
 [q, domain, strength].forEach(el => el.addEventListener('input', render));
 render();
 </script>
+<script src="/assets/ui.js" defer></script>
 <script src="/assets/chat-widget.js" defer></script>
 </body>
 </html>
