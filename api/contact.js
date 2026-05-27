@@ -21,10 +21,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid email address.' });
   }
 
-  const key = process.env.WEB3FORMS_KEY;
-  if (!key) {
-    return res.status(500).json({ error: 'WEB3FORMS_KEY is not configured in environment variables.' });
-  }
+  const key = process.env.WEB3FORMS_KEY || 'bee91e89-fdb3-4ee9-aaaa-ce280162ddb8';
 
   try {
     const r = await fetch('https://api.web3forms.com/submit', {
