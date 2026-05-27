@@ -39,12 +39,15 @@ export default async function handler(req, res) {
     });
 
     let data = {};
-    try { data = await r.json(); } catch { /* ignore parse error */ }
+    let rawText = '';
+    try {
+      rawText = await r.text();
+      data = JSON.parse(rawText);
+    } catch { /* ignore parse error */ }
 
     if (!r.ok || !data.success) {
-      console.error('Web3Forms error:', r.status, JSON.stringify(data));
-      // Surface the exact error so we can debug
-      return res.status(500).json({ error: data.message || `Web3Forms status ${r.status}` });
+      console.error('Web3Forms error:', r.status, rawText);
+      return res.status(500).json({ error: data.message || rawText || `Web3Forms status ${r.status}` });
     }
 
     return res.status(200).json({ ok: true });
