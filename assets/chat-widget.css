@@ -45,8 +45,12 @@
 .rai-disclaimer{text-align:center;font-size:10px;color:rgba(26,21,53,0.5);padding:5px 14px 10px;flex-shrink:0}
 
 /* Toggle button (always visible) */
-.rai-fab{display:flex;align-items:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border-radius:999px;color:#fff;cursor:pointer;box-shadow:0 4px 20px rgba(100,75,180,.35);transition:transform .15s,box-shadow .15s;user-select:none;border:none;font-family:inherit}
-.rai-fab:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(100,75,180,.45)}
+.rai-fab{display:flex;align-items:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border-radius:999px;color:#fff;cursor:pointer;box-shadow:0 4px 20px rgba(100,75,180,.35);transition:transform .15s,box-shadow .15s;user-select:none;border:none;font-family:inherit;animation:fabGlow 2.5s ease-in-out infinite}
+@keyframes fabGlow{
+  0%,100%{box-shadow:0 4px 20px rgba(100,75,180,.35),0 0 14px rgba(120,95,190,.2),0 0 30px rgba(120,95,190,.08)}
+  50%{box-shadow:0 4px 28px rgba(120,95,190,.65),0 0 32px rgba(140,100,220,.45),0 0 60px rgba(120,95,190,.22)}
+}
+.rai-fab:hover{transform:translateY(-2px);animation:none;box-shadow:0 6px 36px rgba(120,95,190,.7),0 0 48px rgba(140,100,220,.45)}
 .rai-fab-icon{font-size:15px;line-height:1}
 .rai-fab-label{font-size:13px;font-weight:600;letter-spacing:.03em}
 
