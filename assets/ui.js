@@ -7,7 +7,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('nav');
-  if (!nav) return;
+  if (!nav || nav.querySelector('.nav-icon-btn')) return;
 
   const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
 
