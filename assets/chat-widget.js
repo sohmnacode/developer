@@ -161,6 +161,30 @@
 
     let assistContent = '';
 
+    function setBubble(html) {
+      const b = document.getElementById(assistId);
+      if (b) b.innerHTML = html;
+    }
+
+    function parseSSEChunk(chunk) {
+      const lines = chunk.split('\n\n');
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        const data = line.slice(6).trim();
+        if (data === '[DONE]') continue;
+        try {
+          const parsed = JSON.parse(data);
+          if (parsed.error) throw new Error(parsed.error);
+          if (parsed.text) {
+            assistContent += parsed.text;
+            setBubble(md(assistContent) + '<span class="rai-cursor">▋</span>');
+          }
+        } catch (e) {
+          if (e.message && !e.message.startsWith('Unexpected')) throw e;
+        }
+      }
+    }
+
     try {
       const res = await fetch('/api/research', {
         method: 'POST',
@@ -168,36 +192,40 @@
         body: JSON.stringify({ messages: history, mode: chatMode }),
       });
 
-      const reader  = res.body.getReader();
-      const decoder = new TextDecoder();
-      let buffer = '';
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split('\n\n');
-        buffer = lines.pop() ?? '';
-        for (const line of lines) {
-          if (!line.startsWith('data: ')) continue;
-          const data = line.slice(6);
-          if (data === '[DONE]') break;
-          try {
-            const { text } = JSON.parse(data);
-            assistContent += text;
-            const bubble = document.getElementById(assistId);
-            if (bubble) bubble.innerHTML = md(assistContent) + '<span class="rai-cursor">▋</span>';
-          } catch {}
-        }
+      if (!res.ok) {
+        setBubble('Sorry, something went wrong. Please try again.');
+        history.pop();
+        return;
       }
 
-      const bubble = document.getElementById(assistId);
-      if (bubble) bubble.innerHTML = md(assistContent);
-      history.push({ role: 'assistant', content: assistContent });
+      // Streaming path (modern browsers + desktop)
+      if (res.body && typeof res.body.getReader === 'function') {
+        const reader  = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+          // Pull complete events (separated by \n\n)
+          const parts = buffer.split('\n\n');
+          buffer = parts.pop() ?? '';
+          for (const part of parts) parseSSEChunk(part + '\n\n');
+        }
+        // Flush remainder
+        if (buffer) parseSSEChunk(buffer);
+      } else {
+        // Non-streaming fallback for older mobile browsers
+        const raw = await res.text();
+        parseSSEChunk(raw);
+      }
+
+      setBubble(assistContent ? md(assistContent) : 'No response. Please try again.');
+      if (assistContent) history.push({ role: 'assistant', content: assistContent });
 
     } catch {
-      const bubble = document.getElementById(assistId);
-      if (bubble) bubble.textContent = 'Connection error. Please try again.';
+      setBubble('Connection error. Please try again.');
+      history.pop();
     } finally {
       busy = false;
       sendBtn.disabled = false;

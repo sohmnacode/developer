@@ -117,17 +117,25 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
         'x-api-key': process.env.ANTHROPIC_API_KEY,
         'anthropic-version': '2023-06-01',
-        'anthropic-beta': 'interleaved-thinking-2025-05-14',
+        'anthropic-beta': 'prompt-caching-2024-07-31',
       },
       body: JSON.stringify({
-        model: 'claude-opus-4-7',
+        model: 'claude-opus-4-5',
         max_tokens: 4096,
-        thinking: { type: 'adaptive' },
         stream: true,
         system: systemBlocks,
         messages,
       }),
     });
+
+    if (!response.ok) {
+      const errBody = await response.text();
+      console.error('Anthropic API error:', response.status, errBody);
+      res.write(`data: ${JSON.stringify({ error: `API error ${response.status}` })}\n\n`);
+      res.write('data: [DONE]\n\n');
+      res.end();
+      return;
+    }
 
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
