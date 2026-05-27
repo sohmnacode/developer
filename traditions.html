@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Traditions — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/research.css">
+<link rel="stylesheet" href="/assets/chat-widget.css">
+<style>
+.trad-hero{background:radial-gradient(ellipse 80% 60% at 30% 40%,rgba(120,80,200,.18),transparent 65%),linear-gradient(to bottom,#04100a,#0a0814)}
+.trad-hero h1{background:linear-gradient(140deg,#fff 0%,#d4b8f8 45%,#a78bfa 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.trad-hero .eyebrow{color:rgba(180,150,255,.8)}
+.framing-box{background:rgba(120,80,200,.06);border:1px solid rgba(120,80,200,.15);border-radius:12px;padding:22px 28px;margin-bottom:56px;font-size:14px;color:var(--muted);line-height:1.8}
+.framing-box strong{color:var(--ink)}
+
+/* Tradition sections */
+.trad-section{margin-bottom:72px}
+.trad-header{display:flex;align-items:flex-start;gap:20px;margin-bottom:28px}
+.trad-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.trad-icon.vedic{background:rgba(210,140,40,.12);border:1px solid rgba(210,140,40,.2)}
+.trad-icon.tarot{background:rgba(120,80,200,.1);border:1px solid rgba(120,80,200,.18)}
+.trad-icon.esoteric{background:rgba(40,120,160,.1);border:1px solid rgba(40,120,160,.18)}
+.trad-icon.ancient{background:rgba(180,80,60,.1);border:1px solid rgba(180,80,60,.18)}
+.trad-name{font-family:'Fraunces',serif;font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
+.trad-name.vedic{color:#b8720a}
+.trad-name.tarot{color:#6b3fa8}
+.trad-name.esoteric{color:#1e6e8a}
+.trad-name.ancient{color:#8a3820}
+.trad-origin{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+
+.trad-lede{font-size:16px;color:var(--muted);line-height:1.82;margin-bottom:28px;font-family:'Playfair Display',serif;font-style:italic;max-width:780px}
+
+.concepts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:24px}
+.concept-card{border-radius:10px;padding:20px;border:1px solid}
+.concept-card.vedic{background:rgba(210,140,40,.05);border-color:rgba(210,140,40,.16)}
+.concept-card.tarot{background:rgba(120,80,200,.05);border-color:rgba(120,80,200,.14)}
+.concept-card.esoteric{background:rgba(40,120,160,.05);border-color:rgba(40,120,160,.14)}
+.concept-card.ancient{background:rgba(180,80,60,.05);border-color:rgba(180,80,60,.14)}
+.concept-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;font-weight:600}
+.concept-label.vedic{color:rgba(180,110,20,.7)}
+.concept-label.tarot{color:rgba(100,60,180,.7)}
+.concept-label.esoteric{color:rgba(30,100,140,.7)}
+.concept-label.ancient{color:rgba(140,60,30,.7)}
+.concept-name{font-family:'Fraunces',serif;font-size:17px;font-weight:600;margin-bottom:7px;color:var(--ink)}
+.concept-body{font-size:13px;color:var(--muted);line-height:1.7}
+
+.honest-note{margin-top:20px;padding:16px 20px;background:rgba(45,107,34,.04);border-left:3px solid rgba(45,107,34,.2);border-radius:0 8px 8px 0;font-size:13px;color:var(--muted);line-height:1.72}
+.honest-note strong{color:var(--ink)}
+
+.trad-divider{height:1px;background:linear-gradient(to right,transparent,rgba(120,80,200,.15),transparent);margin:56px 0}
+
+/* Cosmic connections */
+.astro-note{background:rgba(20,20,50,.04);border:1px solid rgba(60,60,120,.1);border-radius:12px;padding:28px;margin-bottom:28px}
+.astro-note h3{font-family:'Fraunces',serif;font-size:20px;margin-bottom:10px;color:#1a2a5e}
+.astro-note p{font-size:13.5px;color:var(--muted);line-height:1.78}
+
+/* Ask RAI callout */
+.trad-callout{background:linear-gradient(135deg,rgba(45,107,34,.07),rgba(120,80,200,.06));border:1px solid rgba(80,50,150,.14);border-radius:14px;padding:32px;text-align:center;margin-top:56px}
+.trad-callout h3{font-family:'Fraunces',serif;font-size:22px;margin-bottom:10px;color:var(--ink)}
+.trad-callout p{font-size:14px;color:var(--muted);margin-bottom:20px;line-height:1.7}
+</style>
+</head>
+<body>
+<nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/cases">Cases</a><a href="/traditions">Traditions</a><a href="/library">Library</a></div></nav>
+
+<section class="hero trad-hero">
+  <div class="hero-content">
+    <div class="eyebrow">Symbolic Frameworks</div>
+    <h1>How Humanity Has Mapped Rebirth</h1>
+    <p>Long before neuroscience asked whether consciousness survives death, traditions around the world built detailed maps of the soul's journey. These are those maps — examined honestly.</p>
+  </div>
+</section>
+
+<main>
+<section class="section narrow">
+
+  <div class="framing-box">
+    <strong>How to read this page:</strong> The traditions here are not presented as empirical evidence — they belong to a different register. They are philosophical frameworks, symbolic systems, and cultural wisdom built over millennia by people seriously engaged with the same questions this site explores. Where they converge with modern research findings, that's worth noting. Where they diverge, intellectual honesty requires saying so. Neither credulous nor dismissive — just curious.
+  </div>
+
+  <!-- VEDIC ASTROLOGY -->
+  <div class="trad-section">
+    <div class="trad-header">
+      <div class="trad-icon vedic">☽</div>
+      <div>
+        <div class="trad-name vedic">Vedic Astrology — Jyotish</div>
+        <div class="trad-origin">India · codified ~500 BCE–300 CE · still actively practiced</div>
+      </div>
+    </div>
+
+    <p class="trad-lede">"The stars do not compel — they incline. What they incline toward is the unfinished business of previous lives."</p>
+
+    <p style="font-size:14px;color:var(--muted);line-height:1.82;margin-bottom:24px">Jyotish (Sanskrit: <em>divine light</em>) is one of the six Vedangas — auxiliary disciplines of the Vedas. Unlike Western astrology, which developed largely independent of reincarnation frameworks, Jyotish is built on the explicit assumption that the soul cycles through births according to accumulated karma. A birth chart (kundali) is understood not as fate but as a map of karmic debts and gifts carried from prior incarnations — the specific lessons this soul chose to work through in this life.</p>
+
+    <div class="concepts-grid">
+      <div class="concept-card vedic">
+        <div class="concept-label vedic">The Karmic Axis</div>
+        <div class="concept-name">Rahu &amp; Ketu — The Lunar Nodes</div>
+        <p class="concept-body">Ketu (South Node) represents mastery accumulated in past lives — talents that come easily, patterns that feel familiar. Rahu (North Node) points toward what the soul must develop in this incarnation. Together they form the primary karmic axis in Jyotish.</p>
+      </div>
+      <div class="concept-card vedic">
+        <div class="concept-label vedic">Liberation</div>
+        <div class="concept-name">The 12th House — Moksha &amp; Past Lives</div>
+        <p class="concept-body">The 12th house governs dissolution, hidden realms, and the transition out of physical existence. Strong 12th house placements are read as signs of the soul approaching liberation (moksha) — the end of the reincarnation cycle.</p>
+      </div>
+      <div class="concept-card vedic">
+        <div class="concept-label vedic">Cause &amp; Effect</div>
+        <div class="concept-name">Saturn — The Planet of Karma</div>
+        <p class="concept-body">Shani (Saturn) governs the law of cause and effect across lifetimes. Saturn's position and transits reveal where karmic debts are being settled, often through difficulty, delay, and discipline — the universe demanding accounts be balanced.</p>
+      </div>
+      <div class="concept-card vedic">
+        <div class="concept-label vedic">Entry Point</div>
+        <div class="concept-name">The Ascendant — Soul's Chosen Door</div>
+        <p class="concept-body">The rising sign at the moment of birth is understood as the soul's chosen entry into this incarnation — the specific energetic frequency through which karmic work will unfold. Different from the Western emphasis on sun signs.</p>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--soft);margin-bottom:12px"><strong style="color:var(--muted)">Key texts:</strong> Brihat Parashara Hora Shastra (foundational), Brihat Jataka (Varahamihira, 6th c.), Saravali (Kalyana Varma). Active schools: B.V. Raman lineage, K.N. Rao school, Krishnamurti Paddhati.</p>
+
+    <div class="honest-note">
+      <strong>Honest assessment:</strong> Jyotish is not an empirical system — no controlled study has demonstrated that birth chart patterns reliably predict life outcomes. Its value is interpretive and meaning-making, not predictive in the scientific sense. That said, it is the most systematically developed framework for integrating reincarnation into a practical life philosophy — far more detailed in its mechanics than anything modern research has produced.
+    </div>
+  </div>
+
+  <div class="trad-divider"></div>
+
+  <!-- TAROT -->
+  <div class="trad-section">
+    <div class="trad-header">
+      <div class="trad-icon tarot">🜁</div>
+      <div>
+        <div class="trad-name tarot">Tarot — The Soul's Map</div>
+        <div class="trad-origin">Northern Italy, 15th century · esoteric synthesis, 18th–19th century</div>
+      </div>
+    </div>
+
+    <p class="trad-lede">"The Fool is not foolish — he is the soul at the threshold of incarnation, carrying everything and nothing, stepping off the cliff into a new life."</p>
+
+    <p style="font-size:14px;color:var(--muted);line-height:1.82;margin-bottom:24px">The 78 tarot cards began as a card game in Renaissance Italy. By the 18th century, occultists — particularly Antoine Court de Gébelin and later the Hermetic Order of the Golden Dawn — had mapped them onto Kabbalah, astrology, and a theory of the soul's journey. The 22 Major Arcana (trump cards) are now widely read as a continuous narrative: The Fool's Journey, from innocent incarnation through lived experience, transformation, death, and readiness for the next cycle. It is a psychological and symbolic system, not a predictive one.</p>
+
+    <div class="concepts-grid">
+      <div class="concept-card tarot">
+        <div class="concept-label tarot">New Incarnation</div>
+        <div class="concept-name">0 — The Fool</div>
+        <p class="concept-body">The unnumbered card: the soul at the moment of incarnation. Innocent, full of potential, stepping off the cliff without looking down. In esoteric readings, the Fool's journey through all 21 cards represents one complete lifetime — or one complete cycle of the soul's evolution.</p>
+      </div>
+      <div class="concept-card tarot">
+        <div class="concept-label tarot">Karmic Cycles</div>
+        <div class="concept-name">X — Wheel of Fortune</div>
+        <p class="concept-body">The wheel that never stops turning. Karma, cause and effect, the cyclical nature of fate. Figures on the wheel rise and fall — none permanently. In many readings, a direct representation of the reincarnation cycle itself: what goes around returns.</p>
+      </div>
+      <div class="concept-card tarot">
+        <div class="concept-label tarot">Transformation</div>
+        <div class="concept-name">XIII — Death</div>
+        <p class="concept-body">Almost never read as physical death — instead as the end of one phase and the forced beginning of another. The skeleton king rides; nothing living escapes transformation. In reincarnation terms: the soul does not end, it changes form. One door closes entirely so another can open.</p>
+      </div>
+      <div class="concept-card tarot">
+        <div class="concept-label tarot">Soul Review</div>
+        <div class="concept-name">XX — Judgement</div>
+        <p class="concept-body">The angel sounds the trumpet; souls rise from graves. A remarkably consistent image across cultures — the between-life review, the weighing of deeds, the assessment of readiness. In NDEs, the life review is one of the most consistently reported phenomena. Judgement may encode this as archetype.</p>
+      </div>
+      <div class="concept-card tarot">
+        <div class="concept-label tarot">Completion</div>
+        <div class="concept-name">XXI — The World</div>
+        <p class="concept-body">The dancing figure within the laurel wreath — integration, wholeness, and the end of a cycle. The soul has learned what this particular journey had to teach. In reincarnation terms: readiness to begin again, or for some traditions, the threshold of liberation from the cycle itself.</p>
+      </div>
+      <div class="concept-card tarot">
+        <div class="concept-label tarot">Hidden Knowledge</div>
+        <div class="concept-name">II — The High Priestess</div>
+        <p class="concept-body">The veil between worlds. She guards what cannot be spoken — the akashic record, the memory of prior lives, the unconscious inheritance the soul carries across incarnations. The scroll in her lap (Tora/Torah) holds knowledge that must be read between the lines.</p>
+      </div>
+    </div>
+
+    <div class="honest-note">
+      <strong>Honest assessment:</strong> Tarot is a divinatory and psychological tool — it does not make falsifiable claims about consciousness or survival. Its power lies in its archetypal symbolism: these images map patterns that resonate across cultures because they encode deep human concerns about time, change, death, and meaning. Carl Jung would have recognized the Major Arcana as a compressed index of archetypes. That is not nothing — but it is different from evidence.
+    </div>
+  </div>
+
+  <div class="trad-divider"></div>
+
+  <!-- WESTERN ESOTERIC -->
+  <div class="trad-section">
+    <div class="trad-header">
+      <div class="trad-icon esoteric">✦</div>
+      <div>
+        <div class="trad-name esoteric">The Western Esoteric Tradition</div>
+        <div class="trad-origin">Hermeticism, Theosophy, Anthroposophy · 3rd century CE – present</div>
+      </div>
+    </div>
+
+    <p class="trad-lede">"The soul is not born once — it descends through the planetary spheres into matter, gathers experience, and ascends. Each life is a schoolroom. The curriculum spans millennia."</p>
+
+    <p style="font-size:14px;color:var(--muted);line-height:1.82;margin-bottom:24px">The Western esoteric tradition is a continuous thread running from Neoplatonic philosophy through Renaissance magic, Freemasonry, Rosicrucianism, and into the 19th and 20th century movements of Theosophy and Anthroposophy. What unites them is a commitment to hidden knowledge — inner teachings about the soul's nature and trajectory that the exoteric traditions were said to obscure. Reincarnation is, for all of them, not a belief but a technical fact of cosmic architecture.</p>
+
+    <div class="concepts-grid">
+      <div class="concept-card esoteric">
+        <div class="concept-label esoteric">Neoplatonism · 3rd century CE</div>
+        <div class="concept-name">Plotinus — The Soul's Descent</div>
+        <p class="concept-body">Plotinus (205–270 CE) described the soul's emanation from the One, its descent into matter across multiple lives, and its gradual return. Each incarnation moves the soul either toward or away from its source. The Enneads remain the most rigorous Western philosophical treatment of the soul's multi-life trajectory.</p>
+      </div>
+      <div class="concept-card esoteric">
+        <div class="concept-label esoteric">Hermeticism · 2nd–3rd century CE</div>
+        <div class="concept-name">The Planetary Descent</div>
+        <p class="concept-body">The Corpus Hermeticum describes the soul descending through the seven planetary spheres at birth, acquiring a different quality from each (Saturn's gravitas, Venus's desire, Mars's courage), and shedding these garments on the way back up after death. "As above, so below" — macrocosm mirrors microcosm across lives.</p>
+      </div>
+      <div class="concept-card esoteric">
+        <div class="concept-label esoteric">Theosophy · 1875</div>
+        <div class="concept-name">Blavatsky — Rounds &amp; Root Races</div>
+        <p class="concept-body">Helena Petrovna Blavatsky's <em>The Secret Doctrine</em> (1888) describes cosmic evolution through seven planetary rounds and seven root races, with individual souls progressing through hundreds of incarnations. Theosophy directly inspired the modern Western interest in karma and reincarnation — including early influence on Ian Stevenson's cultural context.</p>
+      </div>
+      <div class="concept-card esoteric">
+        <div class="concept-label esoteric">Anthroposophy · 1902</div>
+        <div class="concept-name">Rudolf Steiner — Between-Life Periods</div>
+        <p class="concept-body">Rudolf Steiner described the between-life experience in precise detail: kamaloka (a period of review and processing), then devachan (a higher spiritual existence where the soul prepares its next life). Steiner claimed the soul spends roughly as long between lives as it did in the previous one. His accounts are unusually specific — and untestable.</p>
+      </div>
+    </div>
+
+    <div class="honest-note">
+      <strong>Honest assessment:</strong> These are elaborate metaphysical architectures built by serious, brilliant people — Plotinus remains one of the most rigorous philosophers in Western history. But these systems are built from introspection, revelation, and reasoning from first principles, not empirical investigation. Where they make specific claims (Steiner's precise inter-life timing, for example), those claims cannot be tested. Their value is as frameworks for thinking — not as maps confirmed by data.
+    </div>
+  </div>
+
+  <div class="trad-divider"></div>
+
+  <!-- ANCIENT SACRED MAPS -->
+  <div class="trad-section">
+    <div class="trad-header">
+      <div class="trad-icon ancient">𓂀</div>
+      <div>
+        <div class="trad-name ancient">Ancient Sacred Maps</div>
+        <div class="trad-origin">Egypt, Tibet, Greece, India · 4th century BCE – 8th century CE</div>
+      </div>
+    </div>
+
+    <p class="trad-lede">"Before the soul forgets — drink from the spring of Memory, not the spring of Lethe. Remember what you are."</p>
+
+    <p style="font-size:14px;color:var(--muted);line-height:1.82;margin-bottom:24px">Across cultures with no contact with each other, detailed manuals emerged for navigating the territory between death and rebirth. The convergences are striking — not proof of a shared reality, but evidence of a shared human concern serious enough to warrant this level of systematic thought. These are the oldest attempts to answer the question this site explores.</p>
+
+    <div class="concepts-grid">
+      <div class="concept-card ancient">
+        <div class="concept-label ancient">Tibet · 8th century CE</div>
+        <div class="concept-name">Bardo Thodol — The Tibetan Book of the Dead</div>
+        <p class="concept-body">Revealed by Padmasambhava, transcribed by Karma Lingpa. A manual for the dying — read aloud into the ear of the deceased to guide the consciousness through the bardos (intermediate states): the bardo of dying, the bardo of dharmata (luminosity), and the bardo of becoming, which leads to rebirth. One of the most detailed accounts of post-mortem consciousness ever written.</p>
+      </div>
+      <div class="concept-card ancient">
+        <div class="concept-label ancient">Egypt · ~1550 BCE</div>
+        <div class="concept-name">Book of the Dead — The Weighing of the Heart</div>
+        <p class="concept-body">The heart of the deceased is weighed against the feather of Ma'at (truth, justice). If lighter, the soul proceeds. If heavier with wrongdoing, it is devoured by Ammit. The Egyptian framework implies moral continuity across lives — deeds accumulate and determine the soul's trajectory. The 42 negative confessions anticipate the moral review reported in NDEs.</p>
+      </div>
+      <div class="concept-card ancient">
+        <div class="concept-label ancient">Greece · 4th century BCE</div>
+        <div class="concept-name">Plato's Myth of Er</div>
+        <p class="concept-body">In Book X of the Republic, the soldier Er dies, visits the afterlife, and returns to report. Souls choose their next lives — some wisely, most not. They drink from the River of Lethe (forgetting) before rebirth. The one who chooses well is the philosopher who understood life. This is perhaps the earliest systematic account of between-life soul choice in Western tradition.</p>
+      </div>
+      <div class="concept-card ancient">
+        <div class="concept-label ancient">Greece · 5th–4th century BCE</div>
+        <div class="concept-name">The Orphic Gold Tablets</div>
+        <p class="concept-body">Small gold tablets found in graves across the Greek world, inscribed with instructions for the soul navigating the underworld. The soul is told: do not drink from the spring of Lethe (forgetting) — find instead the spring of Mnemosyne (memory). "I am a child of Earth and starry Heaven — but my race is of Heaven alone." A striking assertion of the soul's non-earthly origin.</p>
+      </div>
+    </div>
+
+    <div class="honest-note">
+      <strong>Honest assessment:</strong> The cross-cultural convergence on themes of post-mortem review, soul choice, and the danger of forgetting is genuinely interesting — and it is one reason serious researchers like Ian Stevenson took reincarnation claims seriously. But convergence in mythology does not establish physical reality. These traditions tell us something important about what humans across history have intuited about consciousness — not necessarily about what happens after death.
+    </div>
+  </div>
+
+  <div class="trad-divider"></div>
+
+  <!-- ASTRONOMY -->
+  <div class="astro-note">
+    <h3>A Note on Astronomy</h3>
+    <p>Astronomy is a natural science, not a mystical tradition — but it offers something the traditions above do not: a sense of scale that reframes the question entirely. The universe is 13.8 billion years old. Earth has existed for 4.5 billion years. Complex life for perhaps 600 million. Human consciousness as we know it — a few hundred thousand years at most. If consciousness is in some sense fundamental to the universe (as panpsychist and idealist theories suggest), then the question of what happens to it after one biological lifetime becomes very small relative to deep time. Carl Sagan's insight — "we are star stuff" — is not just poetic. The carbon in your body was forged in stellar cores. The atoms are ancient. Whether the pattern of information that constitutes you persists in some form is a genuine open question. Cosmology does not answer it — but it gives it appropriate gravity.</p>
+  </div>
+
+  <div class="trad-callout">
+    <h3>Ask RAI About Any of These</h3>
+    <p>RAI can go deeper on the karmic mechanics of Jyotish, walk through the full Fool's Journey, compare Steiner's between-life model with modern NDE research, or trace the convergences between the Bardo Thodol and contemporary consciousness science.</p>
+    <button class="button" onclick="window.__raiToggle(true)">Open RAI Chat ✦</button>
+  </div>
+
+</section>
+</main>
+
+<footer class="footer">
+  <span>Traditions are frameworks for thinking — examined here with curiosity, not credulity.</span>
+  <span><a href="/evidence">Evidence Map</a> · <a href="/methodology">Methodology</a> · <a href="/unknowns">What We Don't Know</a></span>
+</footer>
+
+<script src="/assets/chat-widget.js" defer></script>
+</body>
+</html>
