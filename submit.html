@@ -414,34 +414,66 @@ async function handleSubmit() {
   btn.disabled = true;
   btn.textContent = 'Submitting…';
 
-  const payload = {
-    type: type.value,
-    year: document.getElementById('expYear').value,
-    age: document.getElementById('expAge').value,
-    location: document.getElementById('expLocation').value,
-    background: document.getElementById('expBackground').value,
-    description: desc,
-    verified: (document.querySelector('input[name="verified"]:checked') || {}).value || '',
-    verifyDetails: document.getElementById('verifyDetails').value.trim(),
-    name: document.getElementById('submitterName').value.trim(),
-    email: document.getElementById('submitterEmail').value.trim(),
-    openToContact: document.getElementById('consentContact').checked,
-    submittedAt: new Date().toISOString(),
-  };
+  const name          = document.getElementById('submitterName').value.trim();
+  const email         = document.getElementById('submitterEmail').value.trim();
+  const year          = document.getElementById('expYear').value;
+  const age           = document.getElementById('expAge').value;
+  const location      = document.getElementById('expLocation').value;
+  const background    = document.getElementById('expBackground').value;
+  const verified      = (document.querySelector('input[name="verified"]:checked') || {}).value || '';
+  const verifyDetails = document.getElementById('verifyDetails').value.trim();
+  const openToContact = document.getElementById('consentContact').checked;
+
+  // Build a readable email body with all fields
+  const message = [
+    `Experience Type: ${type.value}`,
+    year          ? `Year of experience: ${year}`               : '',
+    age           ? `Age at time of experience: ${age}`         : '',
+    location      ? `Location: ${location}`                     : '',
+    background    ? `Experiencer background: ${background}`     : '',
+    '',
+    '── Description ──',
+    desc,
+    '',
+    verified      ? `Verification status: ${verified}`          : '',
+    verifyDetails ? `Verification details: ${verifyDetails}`    : '',
+    '',
+    `Submitted by: ${name || 'Anonymous'}`,
+    email         ? `Contact email: ${email}`                   : 'No email provided',
+    `Open to follow-up contact: ${openToContact ? 'Yes' : 'No'}`,
+    `Submitted at: ${new Date().toISOString()}`,
+  ].filter(Boolean).join('\n');
 
   try {
-    await fetch('/api/submit', {
+    const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: 'bee91e89-fdb3-4ee9-aaaa-ce280162ddb8',
+        subject:    `New Experience Submission — ${type.value} — ReincarnatedAI`,
+        from_name:  'ReincarnatedAI Submissions',
+        name:       name || 'Anonymous',
+        email:      email || 'noreply@reincarnatedai.com',
+        replyto:    email || '',
+        message,
+      }),
     });
-  } catch (e) {
-    // Fail silently — show success regardless to avoid discouraging submission
-  }
 
-  document.querySelector('.form-footer').style.display = 'none';
-  document.querySelectorAll('.form-section').forEach(s => s.style.display = 'none');
-  document.getElementById('successState').classList.add('show');
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      throw new Error(data.message || `Submission failed (${res.status})`);
+    }
+
+    // Success — show thank-you state
+    document.querySelector('.form-footer').style.display = 'none';
+    document.querySelectorAll('.form-section').forEach(s => s.style.display = 'none');
+    document.getElementById('successState').classList.add('show');
+
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = 'Submit Experience';
+    alert('Something went wrong — please try again.\n\nDetails: ' + err.message);
+  }
 }
 </script>
 <script src="/assets/ui.js" defer></script>
