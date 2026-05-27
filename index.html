@@ -510,7 +510,12 @@ function appendMsg(role, text, streaming) {
 
   wrap.appendChild(body);
   chatMsgs.appendChild(wrap);
-  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+  if (role === 'user') {
+    chatMsgs.scrollTop = chatMsgs.scrollHeight;
+  } else {
+    // show the top of the AI message so user reads from the beginning
+    chatMsgs.scrollTop = wrap.offsetTop - 8;
+  }
   return body;
 }
 
@@ -556,7 +561,7 @@ async function sendMsg(preset) {
             const cur = document.createElement('span');
             cur.className = 'cursor';
             aiBody.appendChild(cur);
-            chatMsgs.scrollTop = chatMsgs.scrollHeight;
+            // no auto-scroll during streaming — user reads from top
           }
         } catch {}
       }
