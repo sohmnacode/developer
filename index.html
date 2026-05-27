@@ -428,7 +428,8 @@ function drawFaceLayers(){
 
     const sc=sc1+(sc2-sc1)*e;
     const yOff=dy2*bh*e;
-    const al=(a1+(a2-a1)*e)*ep;
+    // Mobile: image is ~2× larger so halve opacity to keep the ghost/translucent feel
+    const al=(a1+(a2-a1)*e)*ep*(mobile?.48:1);
 
     if(al<.004)continue;
 
