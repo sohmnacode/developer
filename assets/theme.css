@@ -312,6 +312,8 @@ nav.scrolled .nav-hamburger:hover{border-color:rgba(100,75,180,.4);color:#1A1535
 [data-theme="dark"] .step-text p,
 [data-theme="dark"] .cta-block p,
 [data-theme="dark"] .quote-block cite{color:rgba(175,168,222,.78)!important;}
+[data-theme="dark"] .quote-block blockquote{color:rgba(220,215,240,.86)!important;}
+[data-theme="dark"] .step-text h4{color:rgba(237,232,224,.9)!important;}
 [data-theme="dark"] .theory-implication strong,
 [data-theme="dark"] .highlight strong{color:rgba(237,232,224,.88)!important;}
 [data-theme="dark"] .stat-l{color:rgba(145,135,200,.6)!important;}
