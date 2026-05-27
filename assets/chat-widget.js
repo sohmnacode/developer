@@ -153,7 +153,7 @@
     msgs.insertAdjacentHTML('beforeend', `
       <div class="rai-msg assistant">
         <div class="rai-avatar-sm">R</div>
-        <div class="rai-bubble assistant" id="${assistId}"><span class="rai-cursor">✦</span></div>
+        <div class="rai-bubble assistant" id="${assistId}"><span class="rai-cursor"><span>✦</span><span>✦</span><span>✦</span></span></div>
       </div>
     `);
     // Scroll to top of new assistant message
@@ -181,7 +181,7 @@
           if (parsed.error) throw new Error(parsed.error);
           if (parsed.text) {
             assistContent += parsed.text;
-            setBubble(md(assistContent) + '<span class="rai-cursor">✦</span>');
+            setBubble(md(assistContent) + '<span class="rai-cursor"><span>✦</span><span>✦</span><span>✦</span></span>');
           }
         } catch (e) {
           if (e.message && !e.message.startsWith('Unexpected')) throw e;
