@@ -192,8 +192,12 @@
       }
 
       const bubble = document.getElementById(assistId);
-      if (bubble) bubble.innerHTML = md(assistContent);
-      history.push({ role: 'assistant', content: assistContent });
+      if (assistContent) {
+        if (bubble) bubble.innerHTML = md(assistContent);
+        history.push({ role: 'assistant', content: assistContent });
+      } else {
+        if (bubble) bubble.textContent = 'No response received. Please try again.';
+      }
 
     } catch {
       const bubble = document.getElementById(assistId);
