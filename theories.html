@@ -226,9 +226,6 @@ const TAB_LABELS = { nde:'NDEs', reincarnation:'Reincarnation', obeVerification:
 // Render overview cards
 document.getElementById('theoryCards').innerHTML = theories.map(t => `
   <article class="theory-card" style="background:${t.colorLight};border-color:${t.colorBorder}" onclick="openModal('${t.id}')">
-    <div class="theory-card-icon" style="background:${t.colorLight};border:1px solid ${t.colorBorder}">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="${t.color}"><circle cx="8" cy="8" r="6" fill="${t.color}" opacity=".7"/></svg>
-    </div>
     <div class="theory-card-name">${t.name}</div>
     <div class="theory-card-core">${t.core.slice(0, 120)}…</div>
     <span class="stance-pill stance-${t.stance}">${t.stance.replace('-',' ')}</span>
