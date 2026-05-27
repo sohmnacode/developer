@@ -30,13 +30,14 @@ nav.scrolled .nav-icon-btn:hover{border-color:rgba(45,107,34,.4);color:#173614;}
   background-clip:text!important;
 }
 
-/* Light sections */
+/* Index page sections — opaque dark backgrounds so fixed canvas doesn't bleed through */
 [data-theme="dark"] .s2,
 [data-theme="dark"] .s3,
 [data-theme="dark"] .s4,
-[data-theme="dark"] .s5{background:transparent!important;}
+[data-theme="dark"] .s5,
+[data-theme="dark"] .s-tools{background:#080f0a!important;}
 
-/* Content sections */
+/* Content sections on non-index pages */
 [data-theme="dark"] .section,
 [data-theme="dark"] .section-sm{color:rgba(218,238,210,.8);}
 
@@ -44,40 +45,62 @@ nav.scrolled .nav-icon-btn:hover{border-color:rgba(45,107,34,.4);color:#173614;}
 [data-theme="dark"] .stat,
 [data-theme="dark"] .tool-card,
 [data-theme="dark"] .card,
+[data-theme="dark"] .dc,
+[data-theme="dark"] .pillar,
 [data-theme="dark"] .feature,
 [data-theme="dark"] .quote-block,
 [data-theme="dark"] .case-card,
 [data-theme="dark"] .tradition-card,
 [data-theme="dark"] .evidence-item{
-  background:rgba(12,22,14,.85)!important;
+  background:rgba(12,22,14,.9)!important;
   border-color:rgba(80,140,70,.18)!important;
 }
 [data-theme="dark"] .tool-card:hover,
+[data-theme="dark"] .dc:hover,
 [data-theme="dark"] .stat:hover,
 [data-theme="dark"] .case-card:hover{
-  background:rgba(16,30,18,.9)!important;
+  background:rgba(16,30,18,.95)!important;
   border-color:rgba(80,140,70,.32)!important;
 }
 
 /* Card text */
 [data-theme="dark"] .tool-card h3,
+[data-theme="dark"] .dc h3,
+[data-theme="dark"] .pillar h4,
 [data-theme="dark"] .stat-n,
 [data-theme="dark"] .case-title{color:rgba(218,238,210,.9)!important;}
 [data-theme="dark"] .tool-card p,
+[data-theme="dark"] .dc p,
+[data-theme="dark"] .dc-refs,
+[data-theme="dark"] .pillar p,
 [data-theme="dark"] .stat-l,
 [data-theme="dark"] .tool-tag,
 [data-theme="dark"] .case-body,
 [data-theme="dark"] .case-location-year{color:rgba(130,175,120,.65)!important;}
 
-/* Quote / text blocks */
+/* Quote / descriptive text */
 [data-theme="dark"] .s2i p,
 [data-theme="dark"] .s2-quote-text,
 [data-theme="dark"] .s2-quote-attr,
+[data-theme="dark"] .sh2 p,
+[data-theme="dark"] .s5i .lead,
+[data-theme="dark"] .s5-foot,
 [data-theme="dark"] .cta-block p,
 [data-theme="dark"] .hero-desc{color:rgba(130,175,120,.62)!important;}
 
 /* Section borders */
 [data-theme="dark"] .cta-block{border-color:rgba(80,140,70,.12)!important;}
+
+/* Index chat section */
+[data-theme="dark"] .mode-btn{background:rgba(12,22,14,.8)!important;border-color:rgba(80,140,70,.2)!important;color:rgba(130,175,120,.65)!important;}
+[data-theme="dark"] .mode-btn:hover,[data-theme="dark"] .mode-btn.active{background:rgba(20,38,22,.9)!important;border-color:rgba(80,140,70,.4)!important;color:rgba(218,238,210,.85)!important;}
+[data-theme="dark"] .starter-btn{background:rgba(12,22,14,.8)!important;border-color:rgba(80,140,70,.18)!important;color:rgba(130,175,120,.65)!important;}
+[data-theme="dark"] .starter-btn:hover{background:rgba(20,38,22,.9)!important;border-color:rgba(80,140,70,.35)!important;color:rgba(218,238,210,.85)!important;}
+[data-theme="dark"] .chat-input-row{background:rgba(12,22,14,.85)!important;border-color:rgba(80,140,70,.22)!important;}
+[data-theme="dark"] .chat-input-row textarea{color:rgba(218,238,210,.85)!important;}
+[data-theme="dark"] .chat-input-row textarea::placeholder{color:rgba(100,150,90,.4)!important;}
+[data-theme="dark"] .msg.ai .msg-body{background:rgba(20,38,22,.8)!important;border-color:rgba(80,140,70,.14)!important;color:rgba(200,230,190,.82)!important;}
+[data-theme="dark"] .msg.user .msg-body{background:rgba(45,107,34,.18)!important;color:rgba(218,238,210,.85)!important;}
 
 /* Common heading text */
 [data-theme="dark"] h1:not([class]),
