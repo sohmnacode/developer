@@ -6,7 +6,7 @@
 .rai-panel.hidden{opacity:0;transform:scale(.92) translateY(12px);pointer-events:none}
 
 /* Header */
-.rai-header{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:linear-gradient(135deg,#A67C00,#D4A843);flex-shrink:0}
+.rai-header{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);flex-shrink:0}
 .rai-header-left{display:flex;align-items:center;gap:10px}
 .rai-avatar{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
 .rai-title{font-size:14px;font-weight:600;color:#fff;letter-spacing:.02em}
@@ -33,19 +33,19 @@
 .rai-bubble p{margin:0 0 .4em}.rai-bubble p:last-child{margin-bottom:0}
 .rai-bubble strong{color:#1A1535}.rai-bubble em{color:rgba(26,21,53,.7)}
 .rai-bubble h1,.rai-bubble h2,.rai-bubble h3{font-size:12.5px;font-weight:700;color:#7B4FC9;margin:.5em 0 .2em}
-.rai-cursor{display:inline-block;animation:raiBlink .65s step-end infinite;color:#D4A843}
+.rai-cursor{display:inline-block;animation:raiBlink .65s step-end infinite;color:#8B5CF6}
 @keyframes raiBlink{0%,100%{opacity:1}50%{opacity:0}}
 
 /* Input */
 .rai-input-wrap{padding:10px 14px;border-top:1px solid rgba(100,75,180,.09);display:flex;gap:8px;align-items:flex-end;flex-shrink:0}
 .rai-input-wrap textarea{flex:1;border:none;outline:none;resize:none;font-family:inherit;font-size:13px;color:#1A1535;background:transparent;max-height:80px;line-height:1.5;scrollbar-width:none}
 .rai-input-wrap textarea::placeholder{color:rgba(26,21,53,0.65)}
-.rai-send{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#A67C00,#D4A843);border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s}
+.rai-send{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s}
 .rai-send:disabled{opacity:.3;cursor:default}
 .rai-disclaimer{text-align:center;font-size:10px;color:rgba(26,21,53,0.5);padding:5px 14px 10px;flex-shrink:0}
 
 /* Toggle button (always visible) */
-.rai-fab{display:flex;align-items:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,#A67C00,#D4A843);border-radius:999px;color:#fff;cursor:pointer;box-shadow:0 4px 20px rgba(100,75,180,.35);transition:transform .15s,box-shadow .15s;user-select:none;border:none;font-family:inherit}
+.rai-fab{display:flex;align-items:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border-radius:999px;color:#fff;cursor:pointer;box-shadow:0 4px 20px rgba(100,75,180,.35);transition:transform .15s,box-shadow .15s;user-select:none;border:none;font-family:inherit}
 .rai-fab:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(100,75,180,.45)}
 .rai-fab-icon{font-size:15px;line-height:1}
 .rai-fab-label{font-size:13px;font-weight:600;letter-spacing:.03em}
