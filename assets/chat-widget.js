@@ -73,10 +73,11 @@
   let history = [];
   let busy = false;
   let startersShown = true;
+  let isOpen = true;
 
   /* ── Persistence ── */
   function saveState() {
-    try { sessionStorage.setItem(STATE_KEY, JSON.stringify({ history, chatMode, startersShown })); } catch {}
+    try { sessionStorage.setItem(STATE_KEY, JSON.stringify({ history, chatMode, startersShown, isOpen })); } catch {}
   }
   function loadState() {
     try {
@@ -86,6 +87,7 @@
       if (Array.isArray(s.history) && s.history.length) history = s.history;
       if (s.chatMode) chatMode = s.chatMode;
       if (typeof s.startersShown === 'boolean') startersShown = s.startersShown;
+      if (typeof s.isOpen === 'boolean') isOpen = s.isOpen;
     } catch {}
   }
 
@@ -96,7 +98,7 @@
     const widget = document.createElement('div');
     widget.id = 'rai-widget';
     widget.innerHTML = `
-      <div class="rai-panel" id="raiPanel">
+      <div class="rai-panel${isOpen ? '' : ' rai-hidden'}" id="raiPanel">
         <div class="rai-header">
           <div class="rai-header-left">
             <div class="rai-avatar">R</div>
@@ -105,7 +107,10 @@
               <div class="rai-subtitle">Soul Science Research</div>
             </div>
           </div>
-          <button class="rai-new-btn" onclick="window.__raiNewChat()" title="Start a new conversation">New chat</button>
+          <div class="rai-header-actions">
+            <button class="rai-new-btn" onclick="window.__raiNewChat()" title="Start a new conversation">New chat</button>
+            <button class="rai-min-btn" onclick="window.__raiMinimize()" title="Minimize">&#8722;</button>
+          </div>
         </div>
         <div class="rai-modes" id="raiModes"></div>
         <div class="rai-msgs" id="raiMsgs">
@@ -125,6 +130,10 @@
           <button class="rai-save-btn" id="raiSave" onclick="window.__raiSaveChat()" hidden>↓ Save</button>
         </div>
       </div>
+      <button class="rai-fab${isOpen ? ' rai-hidden' : ''}" id="raiFab" onclick="window.__raiMinimize()" aria-label="Open RAI chat">
+        <span class="rai-fab-icon">✦</span>
+        <span class="rai-fab-label">ASK RAI</span>
+      </button>
     `;
     document.body.appendChild(widget);
 
@@ -177,6 +186,13 @@
   }
 
   /* ── Public API ── */
+  window.__raiMinimize = function () {
+    isOpen = !isOpen;
+    saveState();
+    document.getElementById('raiPanel').classList.toggle('rai-hidden', !isOpen);
+    document.getElementById('raiFab').classList.toggle('rai-hidden', isOpen);
+  };
+
   window.__raiNewChat = function () {
     history = [];
     chatMode = 'researcher';
