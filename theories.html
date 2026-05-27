@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Theory Matrix — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/research.css">
+<link rel="stylesheet" href="/assets/chat-widget.css">
+<style>
+.theories-hero{
+  min-height:50vh;
+  display:flex;
+  align-items:flex-end;
+  padding:120px 80px 64px;
+  background:
+    radial-gradient(ellipse 60% 55% at 75% 25%, rgba(160,100,20,.2), transparent 60%),
+    linear-gradient(to bottom, #0d0905, #13100a);
+  position:relative;
+  overflow:hidden;
+}
+.theories-hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(
+    45deg, transparent, transparent 24px,
+    rgba(255,255,255,.018) 24px, rgba(255,255,255,.018) 25px
+  );
+  pointer-events:none;
+}
+.theories-hero .eyebrow{ color:rgba(220,170,80,.75); }
+.theories-hero h1{
+  background:linear-gradient(140deg,#fff 0%,#f0d090 50%,#d0a030 92%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.theories-hero p{ color:rgba(255,255,255,.42); }
+
+.theories-main{ padding:52px 80px 80px; max-width:1200px; margin:0 auto; }
+
+/* Theory cards (overview grid) */
+.theory-cards{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin-bottom:64px; }
+.theory-card{
+  border-radius:14px;
+  padding:22px;
+  cursor:pointer;
+  transition:transform .2s, box-shadow .2s;
+  border:1px solid transparent;
+}
+.theory-card:hover{ transform:translateY(-3px); box-shadow:0 8px 28px rgba(0,0,0,.1); }
+.theory-card-icon{ width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; margin-bottom:14px; }
+.theory-card-name{ font-family:'Fraunces',serif; font-size:17px; font-weight:700; color:#173614; margin-bottom:6px; }
+.theory-card-core{ font-size:12.5px; color:rgba(23,54,20,.6); line-height:1.65; margin-bottom:14px; }
+.stance-pill{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.stance-pro-survival{ background:rgba(45,107,34,.1); color:#2d6b22; border:1px solid rgba(45,107,34,.2); }
+.stance-neutral{ background:rgba(26,110,122,.1); color:#1a6e7a; border:1px solid rgba(26,110,122,.2); }
+.stance-skeptical{ background:rgba(122,48,48,.1); color:#7a3030; border:1px solid rgba(122,48,48,.2); }
+
+/* Comparison matrix */
+.matrix-section{ margin-top:0; }
+.matrix-title{ font-family:'Fraunces',serif; font-size:28px; font-weight:700; color:#173614; margin-bottom:8px; }
+.matrix-lede{ font-size:14px; color:rgba(23,54,20,.52); line-height:1.7; max-width:680px; margin-bottom:32px; }
+
+.matrix-tabs{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
+.mtab{
+  padding:8px 16px;
+  border-radius:999px;
+  border:1px solid rgba(45,107,34,.14);
+  background:rgba(255,255,255,.7);
+  font-size:12px;
+  color:rgba(23,54,20,.52);
+  cursor:pointer;
+  font-family:inherit;
+  transition:all .15s;
+}
+.mtab:hover{ background:#fff; border-color:rgba(45,130,34,.3); color:#173614; }
+.mtab.active{ background:#173614; border-color:#173614; color:#fff; }
+
+.matrix-table-wrap{ overflow-x:auto; border-radius:14px; border:1px solid rgba(45,107,34,.1); }
+.matrix-table{ width:100%; border-collapse:collapse; min-width:680px; }
+.matrix-table th{
+  padding:14px 18px;
+  text-align:left;
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-weight:600;
+  border-bottom:1px solid rgba(45,107,34,.1);
+  white-space:nowrap;
+}
+.matrix-table th:first-child{ background:#fafcf9; color:rgba(23,54,20,.45); min-width:160px; }
+.matrix-table td{
+  padding:16px 18px;
+  font-size:12.5px;
+  line-height:1.65;
+  border-bottom:1px solid rgba(45,107,34,.06);
+  vertical-align:top;
+  color:rgba(23,54,20,.68);
+}
+.matrix-table td:first-child{
+  font-weight:600;
+  color:rgba(23,54,20,.55);
+  font-size:11.5px;
+  background:#fafcf9;
+  white-space:nowrap;
+}
+.matrix-table tr:last-child td{ border-bottom:none; }
+.matrix-table tbody tr:hover td{ background:rgba(237,245,232,.3); }
+.matrix-table tbody tr:hover td:first-child{ background:rgba(237,245,232,.6); }
+
+/* Modal */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(4,10,3,.55);
+  backdrop-filter:blur(6px);
+  z-index:200;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s;
+}
+.modal-overlay.open{ opacity:1; pointer-events:all; }
+.modal{
+  background:#fff;
+  border-radius:18px;
+  max-width:660px;
+  width:100%;
+  max-height:88vh;
+  overflow-y:auto;
+  box-shadow:0 24px 80px rgba(0,0,0,.22);
+  transform:translateY(16px) scale(.98);
+  transition:transform .2s;
+}
+.modal-overlay.open .modal{ transform:none; }
+.modal-header{ padding:26px 26px 18px; border-bottom:1px solid rgba(45,107,34,.08); display:flex; align-items:flex-start; gap:14px; }
+.modal-dot{ width:48px; height:48px; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+.modal-name{ font-family:'Fraunces',serif; font-size:21px; font-weight:700; color:#173614; margin-bottom:3px; }
+.modal-sub{ font-size:11.5px; color:rgba(23,54,20,.44); }
+.modal-close{
+  margin-left:auto; width:30px; height:30px; border-radius:50%;
+  border:1px solid rgba(45,107,34,.14); background:transparent; cursor:pointer;
+  font-size:14px; color:rgba(23,54,20,.4); display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; transition:background .15s;
+}
+.modal-close:hover{ background:rgba(45,107,34,.06); }
+.modal-body{ padding:22px 26px 30px; }
+.modal-section{ margin-bottom:20px; }
+.modal-label{ font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(45,107,34,.65); margin-bottom:6px; font-weight:600; }
+.modal-text{ font-size:13px; color:rgba(23,54,20,.68); line-height:1.75; }
+.list-items{ display:flex; flex-direction:column; gap:7px; margin-top:4px; }
+.list-item{ font-size:12.5px; color:rgba(23,54,20,.62); padding:8px 12px; background:rgba(237,245,232,.5); border-radius:8px; border:1px solid rgba(45,107,34,.07); padding-left:28px; position:relative; }
+.list-item::before{ content:'·'; position:absolute; left:12px; color:#4aab30; font-weight:700; }
+.weakness-item{ background:rgba(122,48,48,.05); border-color:rgba(122,48,48,.1); }
+.weakness-item::before{ color:#c05050; }
+.modal-proponents{ display:flex; flex-wrap:wrap; gap:6px; }
+.proponent-tag{ padding:5px 11px; border-radius:999px; border:1px solid rgba(45,107,34,.12); font-size:11px; color:rgba(23,54,20,.5); background:rgba(237,245,232,.6); }
+
+@media(max-width:760px){
+  .theories-main{ padding:28px 20px 60px; }
+  .theories-hero{ padding:110px 24px 48px; }
+}
+</style>
+</head>
+<body>
+<nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/cases">Cases</a><a href="/phenomena">Phenomena</a><a href="/researchers">Researchers</a><a href="/theories">Theories</a><a href="/traditions">Traditions</a></div><a href="/submit" class="cta-nav">Share Experience</a></nav>
+
+<section class="theories-hero">
+  <div class="hero-content">
+    <div class="eyebrow">Explanatory Frameworks</div>
+    <h1>Theory Matrix</h1>
+    <p>Six competing frameworks for explaining NDEs, past-life memories, and consciousness after death — their core claims, evidence, and limits.</p>
+  </div>
+</section>
+
+<div class="theories-main">
+  <div class="theory-cards" id="theoryCards"></div>
+
+  <div class="matrix-section">
+    <div class="matrix-title">Side-by-Side Comparison</div>
+    <div class="matrix-lede">Select what each theory explains to compare explanations across all six frameworks.</div>
+    <div class="matrix-tabs" id="matrixTabs">
+      <button class="mtab active" data-key="nde">NDEs</button>
+      <button class="mtab" data-key="reincarnation">Reincarnation</button>
+      <button class="mtab" data-key="obeVerification">Verified OBEs</button>
+      <button class="mtab" data-key="enhanced_lucidity">Enhanced Lucidity</button>
+    </div>
+    <div class="matrix-table-wrap">
+      <table class="matrix-table" id="matrixTable"></table>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal"></div>
+</div>
+
+<footer class="footer">
+  <span>Frameworks are presented for research literacy — not as endorsements.</span>
+  <span><a href="/methodology">Methodology</a></span>
+</footer>
+
+<script type="module">
+import { theories } from '/data/theories-data.js';
+
+let activeKey = 'nde';
+const TAB_LABELS = { nde:'NDEs', reincarnation:'Reincarnation', obeVerification:'Verified OBEs', enhanced_lucidity:'Enhanced Lucidity' };
+
+// Render overview cards
+document.getElementById('theoryCards').innerHTML = theories.map(t => `
+  <article class="theory-card" style="background:${t.colorLight};border-color:${t.colorBorder}" onclick="openModal('${t.id}')">
+    <div class="theory-card-icon" style="background:${t.colorLight};border:1px solid ${t.colorBorder}">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="${t.color}"><circle cx="8" cy="8" r="6" fill="${t.color}" opacity=".7"/></svg>
+    </div>
+    <div class="theory-card-name">${t.name}</div>
+    <div class="theory-card-core">${t.core.slice(0, 120)}…</div>
+    <span class="stance-pill stance-${t.stance}">${t.stance.replace('-',' ')}</span>
+  </article>`).join('');
+
+// Matrix tabs
+document.getElementById('matrixTabs').querySelectorAll('.mtab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    activeKey = btn.dataset.key;
+    document.querySelectorAll('.mtab').forEach(b => b.classList.toggle('active', b.dataset.key === activeKey));
+    renderMatrix();
+  });
+});
+
+function renderMatrix() {
+  const label = TAB_LABELS[activeKey];
+  document.getElementById('matrixTable').innerHTML = `
+    <thead>
+      <tr>
+        <th>Theory</th>
+        <th style="color:${theories[0].color}">${theories[0].shortName}</th>
+        <th style="color:${theories[1].color}">${theories[1].shortName}</th>
+        <th style="color:${theories[2].color}">${theories[2].shortName}</th>
+        <th style="color:${theories[3].color}">${theories[3].shortName}</th>
+        <th style="color:${theories[4].color}">${theories[4].shortName}</th>
+        <th style="color:${theories[5].color}">${theories[5].shortName}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>How it explains ${label}</td>
+        ${theories.map(t => `<td>${t.explains[activeKey]}</td>`).join('')}
+      </tr>
+    </tbody>`;
+}
+
+renderMatrix();
+
+window.openModal = function(id) {
+  const t = theories.find(x => x.id === id);
+  if (!t) return;
+  document.getElementById('modal').innerHTML = `
+    <div class="modal-header">
+      <div class="modal-dot" style="background:${t.colorLight};border:1px solid ${t.colorBorder}">
+        <svg width="18" height="18" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="${t.color}" opacity=".8"/></svg>
+      </div>
+      <div>
+        <div class="modal-name">${t.name}</div>
+        <div class="modal-sub">
+          <span class="stance-pill stance-${t.stance}" style="font-size:10px">${t.stance.replace('-',' ')}</span>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-label">Core Claim</div>
+        <div class="modal-text">${t.core}</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-label">Key Proponents</div>
+        <div class="modal-proponents">${t.proponents.map(p=>`<span class="proponent-tag">${p}</span>`).join('')}</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-label">Strengths</div>
+        <div class="list-items">${t.strengths.map(s=>`<div class="list-item">${s}</div>`).join('')}</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-label">Weaknesses</div>
+        <div class="list-items">${t.weaknesses.map(w=>`<div class="list-item weakness-item">${w}</div>`).join('')}</div>
+      </div>
+      <div class="modal-section" style="margin-bottom:0">
+        <div class="modal-label">Explains</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          ${Object.entries(t.explains).map(([k,v])=>`
+            <div>
+              <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(45,107,34,.55);margin-bottom:4px">${TAB_LABELS[k]||k}</div>
+              <div style="font-size:12.5px;color:rgba(23,54,20,.65);line-height:1.65">${v}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeModal = function(e) {
+  if (e && e.target !== document.getElementById('modalOverlay') && !e.target.classList.contains('modal-close')) return;
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+};
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') window.closeModal(); });
+</script>
+<script src="/assets/chat-widget.js" defer></script>
+</body>
+</html>

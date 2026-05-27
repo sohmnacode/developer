@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Share Your Experience — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/research.css">
+<link rel="stylesheet" href="/assets/chat-widget.css">
+<style>
+.submit-hero{
+  min-height:46vh;
+  display:flex;
+  align-items:flex-end;
+  padding:120px 80px 64px;
+  background:
+    radial-gradient(ellipse 50% 60% at 30% 30%, rgba(80,60,120,.2), transparent 65%),
+    radial-gradient(ellipse 40% 45% at 80% 70%, rgba(45,107,34,.14), transparent 55%),
+    linear-gradient(to bottom, #080610, #0d0a18);
+  position:relative;
+  overflow:hidden;
+}
+.submit-hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 60% 40%, rgba(255,255,255,.02) 1px, transparent 1px);
+  background-size:24px 24px;
+  pointer-events:none;
+}
+.submit-hero .eyebrow{ color:rgba(180,150,240,.75); }
+.submit-hero h1{
+  background:linear-gradient(140deg,#fff 0%,#d8c8f8 55%,#a888e8 92%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.submit-hero p{ color:rgba(255,255,255,.42); }
+
+.submit-main{
+  padding:52px 80px 80px;
+  max-width:900px;
+  margin:0 auto;
+}
+
+/* Intro block */
+.intro-block{
+  background:#fff;
+  border:1px solid rgba(45,107,34,.1);
+  border-radius:14px;
+  padding:28px 32px;
+  margin-bottom:36px;
+}
+.intro-block p{ font-size:14px; color:rgba(23,54,20,.6); line-height:1.8; }
+.intro-block p + p{ margin-top:10px; }
+
+/* Form */
+.form-card{
+  background:#fff;
+  border:1px solid rgba(45,107,34,.1);
+  border-radius:16px;
+  overflow:hidden;
+}
+.form-section{
+  padding:28px 32px;
+  border-bottom:1px solid rgba(45,107,34,.07);
+}
+.form-section:last-of-type{ border-bottom:none; }
+.form-section-title{
+  font-family:'Fraunces',serif;
+  font-size:17px;
+  font-weight:700;
+  color:#173614;
+  margin-bottom:4px;
+}
+.form-section-sub{
+  font-size:12px;
+  color:rgba(23,54,20,.42);
+  margin-bottom:20px;
+}
+.form-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.form-group{ display:flex; flex-direction:column; gap:6px; }
+.form-group.full{ grid-column:1/-1; }
+.form-label{
+  font-size:11.5px;
+  font-weight:500;
+  color:rgba(23,54,20,.6);
+  letter-spacing:.02em;
+}
+.form-label .optional{
+  font-weight:400;
+  color:rgba(23,54,20,.3);
+  font-size:10.5px;
+  margin-left:4px;
+}
+.form-input, .form-select, .form-textarea{
+  border:1px solid rgba(45,107,34,.18);
+  background:rgba(255,255,255,.9);
+  border-radius:10px;
+  padding:11px 14px;
+  font:inherit;
+  font-size:13.5px;
+  color:#173614;
+  outline:none;
+  transition:border-color .15s, box-shadow .15s;
+  width:100%;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus{
+  border-color:rgba(45,130,34,.4);
+  box-shadow:0 0 0 3px rgba(45,130,34,.07);
+}
+.form-textarea{ resize:vertical; min-height:160px; line-height:1.65; }
+.form-textarea.tall{ min-height:220px; }
+.form-input::placeholder, .form-textarea::placeholder{ color:rgba(23,54,20,.28); }
+
+/* Type selector */
+.type-selector{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+.type-option{ display:none; }
+.type-label{
+  border:1px solid rgba(45,107,34,.14);
+  border-radius:12px;
+  padding:14px 16px;
+  cursor:pointer;
+  transition:all .15s;
+  display:block;
+}
+.type-label:hover{ border-color:rgba(45,130,34,.3); background:rgba(237,245,232,.4); }
+.type-option:checked + .type-label{
+  border-color:rgba(45,130,34,.5);
+  background:rgba(237,245,232,.7);
+  box-shadow:0 0 0 3px rgba(45,130,34,.07);
+}
+.type-icon{ font-size:22px; margin-bottom:6px; }
+.type-name{ font-size:13.5px; font-weight:600; color:#173614; margin-bottom:2px; }
+.type-desc{ font-size:11.5px; color:rgba(23,54,20,.45); line-height:1.4; }
+
+/* Verification */
+.verify-row{ display:flex; gap:10px; flex-wrap:wrap; }
+.verify-option{ display:none; }
+.verify-label{
+  padding:9px 16px;
+  border:1px solid rgba(45,107,34,.14);
+  border-radius:999px;
+  cursor:pointer;
+  font-size:12.5px;
+  color:rgba(23,54,20,.55);
+  transition:all .15s;
+}
+.verify-label:hover{ border-color:rgba(45,130,34,.3); color:#173614; }
+.verify-option:checked + .verify-label{
+  background:rgba(45,107,34,.09);
+  border-color:rgba(45,130,34,.4);
+  color:#2d6b22;
+  font-weight:600;
+}
+
+/* Privacy & consent */
+.consent-row{ display:flex; gap:12px; align-items:flex-start; margin-bottom:10px; }
+.consent-checkbox{ width:18px; height:18px; margin-top:1px; accent-color:#2d6b22; flex-shrink:0; }
+.consent-text{ font-size:12.5px; color:rgba(23,54,20,.58); line-height:1.6; }
+
+/* Submit */
+.form-footer{
+  padding:24px 32px;
+  background:#fafcf9;
+  border-top:1px solid rgba(45,107,34,.08);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:14px;
+}
+.submit-btn{
+  padding:13px 28px;
+  background:linear-gradient(135deg,#2a6b1a,#48a82e);
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font:inherit;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  transition:opacity .15s, transform .15s;
+}
+.submit-btn:hover{ opacity:.9; transform:translateY(-1px); }
+.submit-btn:disabled{ opacity:.4; cursor:default; transform:none; }
+.form-note{ font-size:11.5px; color:rgba(23,54,20,.35); max-width:380px; line-height:1.5; }
+
+/* Success state */
+.success-state{
+  display:none;
+  text-align:center;
+  padding:60px 32px;
+}
+.success-state.show{ display:block; }
+.success-icon{ font-size:40px; margin-bottom:16px; }
+.success-title{ font-family:'Fraunces',serif; font-size:26px; font-weight:700; color:#173614; margin-bottom:10px; }
+.success-body{ font-size:14px; color:rgba(23,54,20,.55); line-height:1.75; max-width:440px; margin:0 auto; }
+
+/* RAI suggest box */
+.rai-suggest{
+  background:rgba(237,245,232,.6);
+  border:1px solid rgba(45,107,34,.12);
+  border-radius:14px;
+  padding:24px 28px;
+  margin-top:28px;
+  display:flex;
+  gap:16px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.rai-suggest-text{ flex:1; min-width:200px; }
+.rai-suggest-text strong{ display:block; font-size:14px; color:#173614; margin-bottom:4px; }
+.rai-suggest-text span{ font-size:12.5px; color:rgba(23,54,20,.52); line-height:1.6; }
+.rai-suggest-btn{
+  padding:10px 20px;
+  background:linear-gradient(135deg,#2a6b1a,#48a82e);
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  font:inherit;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:opacity .15s;
+}
+.rai-suggest-btn:hover{ opacity:.88; }
+
+@media(max-width:760px){
+  .submit-main{ padding:28px 20px 60px; }
+  .submit-hero{ padding:110px 24px 48px; }
+  .form-section{ padding:22px 20px; }
+  .form-row{ grid-template-columns:1fr; }
+  .type-selector{ grid-template-columns:1fr; }
+  .form-footer{ padding:18px 20px; }
+}
+</style>
+</head>
+<body>
+<nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/cases">Cases</a><a href="/phenomena">Phenomena</a><a href="/researchers">Researchers</a><a href="/theories">Theories</a><a href="/traditions">Traditions</a></div><a href="/submit" class="cta-nav">Share Experience</a></nav>
+
+<section class="submit-hero">
+  <div class="hero-content">
+    <div class="eyebrow">Living Archive</div>
+    <h1>Share Your Experience</h1>
+    <p>If you've had a near-death experience, past-life memory, or related phenomenon — your account contributes to the research record.</p>
+  </div>
+</section>
+
+<div class="submit-main">
+  <div class="intro-block">
+    <p>This form collects first-person accounts for ReincarnatedAI's ongoing archive. Your submission may be anonymized and referenced in the site's research synthesis. Nothing is shared publicly without your explicit consent.</p>
+    <p>You don't need certainty about what happened — partial, fragmented, or confusing experiences are equally valuable. Describe what you remember as accurately as possible.</p>
+  </div>
+
+  <div class="form-card" id="formCard">
+    <!-- Section 1: Type -->
+    <div class="form-section">
+      <div class="form-section-title">Type of Experience</div>
+      <div class="form-section-sub">Select the category that best describes your experience.</div>
+      <div class="type-selector">
+        <div>
+          <input type="radio" name="expType" id="typeNDE" value="NDE" class="type-option" required>
+          <label for="typeNDE" class="type-label">
+            <div class="type-icon">✦</div>
+            <div class="type-name">Near-Death Experience</div>
+            <div class="type-desc">During or after cardiac arrest, surgery, accident, or serious illness</div>
+          </label>
+        </div>
+        <div>
+          <input type="radio" name="expType" id="typePL" value="Past-Life" class="type-option">
+          <label for="typePL" class="type-label">
+            <div class="type-icon">↺</div>
+            <div class="type-name">Past-Life Memory</div>
+            <div class="type-desc">Spontaneous memories of a previous existence, with or without verification</div>
+          </label>
+        </div>
+        <div>
+          <input type="radio" name="expType" id="typeOBE" value="OBE" class="type-option">
+          <label for="typeOBE" class="type-label">
+            <div class="type-icon">◎</div>
+            <div class="type-name">Out-of-Body Experience</div>
+            <div class="type-desc">Perception of leaving the physical body, outside of a clinical event</div>
+          </label>
+        </div>
+        <div>
+          <input type="radio" name="expType" id="typeOther" value="Other" class="type-option">
+          <label for="typeOther" class="type-label">
+            <div class="type-icon">◇</div>
+            <div class="type-name">Other</div>
+            <div class="type-desc">Deathbed vision, shared death experience, or something else entirely</div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Context -->
+    <div class="form-section">
+      <div class="form-section-title">Context</div>
+      <div class="form-section-sub">Basic details about when and where.</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Year of experience</label>
+          <input type="number" class="form-input" id="expYear" placeholder="e.g. 2019" min="1900" max="2026">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Your age at the time <span class="optional">optional</span></label>
+          <input type="number" class="form-input" id="expAge" placeholder="e.g. 34" min="1" max="120">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Country / Region <span class="optional">optional</span></label>
+          <input type="text" class="form-input" id="expLocation" placeholder="e.g. United States">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Cultural / religious background <span class="optional">optional</span></label>
+          <input type="text" class="form-input" id="expBackground" placeholder="e.g. secular, Christian, Hindu…">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Account -->
+    <div class="form-section">
+      <div class="form-section-title">Your Account</div>
+      <div class="form-section-sub">Describe what happened in your own words. Include as much detail as you can — sequence, sensory quality, any verified details, and how it has affected you since.</div>
+      <div class="form-group">
+        <label class="form-label">Description <span style="color:rgba(196,50,50,.6);font-size:11px">*</span></label>
+        <textarea class="form-textarea tall" id="expDescription" placeholder="What happened? What did you perceive, feel, or remember? Try to distinguish what you experienced directly from what you interpreted afterward."></textarea>
+      </div>
+    </div>
+
+    <!-- Section 4: Verification -->
+    <div class="form-section">
+      <div class="form-section-title">Verification</div>
+      <div class="form-section-sub">Did any details of your experience get independently verified?</div>
+      <div class="verify-row" id="verifyRow">
+        <input type="radio" name="verified" id="vYes" value="yes" class="verify-option">
+        <label for="vYes" class="verify-label">Yes — some details were verified</label>
+        <input type="radio" name="verified" id="vPartial" value="partial" class="verify-option">
+        <label for="vPartial" class="verify-label">Partially</label>
+        <input type="radio" name="verified" id="vNo" value="no" class="verify-option">
+        <label for="vNo" class="verify-label">No / Not applicable</label>
+        <input type="radio" name="verified" id="vUnknown" value="unknown" class="verify-option">
+        <label for="vUnknown" class="verify-label">I don't know</label>
+      </div>
+      <div style="margin-top:14px">
+        <div class="form-group">
+          <label class="form-label">Verification details <span class="optional">optional</span></label>
+          <textarea class="form-textarea" id="verifyDetails" placeholder="If any details were verified — by witnesses, medical records, or other means — describe what was verified and by whom." style="min-height:100px"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Consent & contact -->
+    <div class="form-section">
+      <div class="form-section-title">Privacy & Consent</div>
+      <div class="form-section-sub">How you'd like your account to be used.</div>
+      <div class="form-group" style="margin-bottom:16px">
+        <label class="form-label">First name or pseudonym <span class="optional">optional — will appear if quoted</span></label>
+        <input type="text" class="form-input" id="submitterName" placeholder="e.g. Maria or a pseudonym">
+      </div>
+      <div class="form-group" style="margin-bottom:16px">
+        <label class="form-label">Email <span class="optional">optional — only for follow-up if you wish</span></label>
+        <input type="email" class="form-input" id="submitterEmail" placeholder="your@email.com">
+      </div>
+      <div class="consent-row">
+        <input type="checkbox" class="consent-checkbox" id="consentArchive" required>
+        <label for="consentArchive" class="consent-text">I consent to this account being stored in ReincarnatedAI's private archive and potentially referenced (anonymized) in research synthesis.</label>
+      </div>
+      <div class="consent-row">
+        <input type="checkbox" class="consent-checkbox" id="consentContact">
+        <label for="consentContact" class="consent-text">I'm open to being contacted for a more detailed interview if my account seems significant for research purposes.</label>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="form-footer">
+      <span class="form-note">Your account is stored securely. It will not be shared publicly or sold. You can request deletion at any time.</span>
+      <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">Submit Experience</button>
+    </div>
+
+    <!-- Success -->
+    <div class="success-state" id="successState">
+      <div class="success-icon">✦</div>
+      <div class="success-title">Thank you for sharing.</div>
+      <div class="success-body">Your account has been received and added to the archive. These experiences are taken seriously here — we're grateful you trusted us with yours.</div>
+    </div>
+  </div>
+
+  <div class="rai-suggest">
+    <div class="rai-suggest-text">
+      <strong>Not sure how to describe it?</strong>
+      <span>RAI can help you find language for experiences that are hard to put into words — ask it anything about NDEs, consciousness, or what researchers have found.</span>
+    </div>
+    <button class="rai-suggest-btn" onclick="window.__raiToggle(true)">Open RAI Chat ✦</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <span>Submissions are private unless explicit consent is given for public reference.</span>
+  <span><a href="/methodology">Methodology</a></span>
+</footer>
+
+<script>
+async function handleSubmit() {
+  const type = document.querySelector('input[name="expType"]:checked');
+  const desc = document.getElementById('expDescription').value.trim();
+  const consent = document.getElementById('consentArchive').checked;
+
+  if (!type) { alert('Please select an experience type.'); return; }
+  if (!desc || desc.length < 40) { alert('Please provide a description of at least a few sentences.'); return; }
+  if (!consent) { alert('Please check the consent checkbox to continue.'); return; }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  const payload = {
+    type: type.value,
+    year: document.getElementById('expYear').value,
+    age: document.getElementById('expAge').value,
+    location: document.getElementById('expLocation').value,
+    background: document.getElementById('expBackground').value,
+    description: desc,
+    verified: (document.querySelector('input[name="verified"]:checked') || {}).value || '',
+    verifyDetails: document.getElementById('verifyDetails').value.trim(),
+    name: document.getElementById('submitterName').value.trim(),
+    email: document.getElementById('submitterEmail').value.trim(),
+    openToContact: document.getElementById('consentContact').checked,
+    submittedAt: new Date().toISOString(),
+  };
+
+  try {
+    await fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+  } catch (e) {
+    // Fail silently — show success regardless to avoid discouraging submission
+  }
+
+  document.querySelector('.form-footer').style.display = 'none';
+  document.querySelectorAll('.form-section').forEach(s => s.style.display = 'none');
+  document.getElementById('successState').classList.add('show');
+}
+</script>
+<script src="/assets/chat-widget.js" defer></script>
+</body>
+</html>

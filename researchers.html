@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Researchers — ReincarnatedAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/research.css">
+<link rel="stylesheet" href="/assets/chat-widget.css">
+<style>
+.researchers-hero{
+  min-height:50vh;
+  display:flex;
+  align-items:flex-end;
+  padding:120px 80px 64px;
+  background:
+    radial-gradient(ellipse 55% 65% at 20% 30%, rgba(20,80,160,.22), transparent 60%),
+    linear-gradient(160deg, #060a12 0%, #080e1a 55%, #030608 100%);
+  position:relative;
+  overflow:hidden;
+}
+.researchers-hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.025) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,.025) 40px);
+  pointer-events:none;
+}
+.researchers-hero .eyebrow{ color:rgba(130,170,255,.7); }
+.researchers-hero h1{
+  background:linear-gradient(140deg,#fff 0%,#b8ccff 50%,#7090d8 92%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.researchers-hero p{ color:rgba(255,255,255,.42); }
+
+.filter-strip{
+  background:#fff;
+  border-bottom:1px solid rgba(45,107,34,.1);
+  padding:18px 80px;
+  position:sticky;
+  top:60px;
+  z-index:40;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.chip{
+  padding:7px 14px;
+  border-radius:999px;
+  border:1px solid rgba(45,107,34,.14);
+  background:rgba(255,255,255,.7);
+  font-size:11.5px;
+  color:rgba(23,54,20,.52);
+  cursor:pointer;
+  font-family:inherit;
+  transition:all .15s;
+}
+.chip:hover{ background:#fff; border-color:rgba(45,130,34,.3); color:#173614; }
+.chip.active{ background:rgba(45,107,34,.09); border-color:rgba(45,130,34,.4); color:#2d6b22; font-weight:600; }
+
+.researchers-main{
+  padding:40px 80px 80px;
+  max-width:1120px;
+  margin:0 auto;
+}
+.results-count{ font-size:13px; color:rgba(23,54,20,.4); margin-bottom:28px; }
+
+.researcher-card{
+  background:#fff;
+  border:1px solid rgba(45,107,34,.1);
+  border-radius:14px;
+  overflow:hidden;
+  transition:box-shadow .2s, border-color .2s, transform .2s;
+  cursor:pointer;
+}
+.researcher-card:hover{
+  box-shadow:0 8px 32px rgba(45,107,34,.1);
+  border-color:rgba(45,107,34,.22);
+  transform:translateY(-3px);
+}
+.researcher-card-top{
+  padding:24px 24px 20px;
+  border-bottom:1px solid rgba(45,107,34,.07);
+}
+.researcher-initials{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#2a6b1a,#48a82e);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+  font-weight:700;
+  color:#fff;
+  font-family:'Fraunces',serif;
+  margin-bottom:14px;
+  flex-shrink:0;
+}
+.researcher-name{
+  font-family:'Fraunces',serif;
+  font-size:18px;
+  font-weight:700;
+  color:#173614;
+  margin-bottom:3px;
+}
+.researcher-role{
+  font-size:11.5px;
+  color:rgba(23,54,20,.45);
+  margin-bottom:2px;
+}
+.researcher-inst{
+  font-size:11.5px;
+  color:rgba(45,107,34,.7);
+  font-weight:500;
+  margin-bottom:12px;
+}
+.researcher-headline{
+  font-size:12.5px;
+  color:rgba(23,54,20,.6);
+  line-height:1.65;
+}
+.researcher-card-bottom{
+  padding:16px 24px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  align-items:center;
+  justify-content:space-between;
+}
+.domain-tag{
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid rgba(45,107,34,.12);
+  font-size:10.5px;
+  color:rgba(23,54,20,.5);
+  background:rgba(237,245,232,.6);
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.stance-badge{
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.03em;
+}
+.stance-Survival{ background:rgba(45,107,34,.1); color:#2d6b22; border:1px solid rgba(45,107,34,.2); }
+.stance-Open{ background:rgba(80,120,180,.1); color:#2a4a8a; border:1px solid rgba(80,120,180,.2); }
+.stance-Agnostic{ background:rgba(80,120,180,.1); color:#2a4a8a; border:1px solid rgba(80,120,180,.2); }
+.stance-Non-local{ background:rgba(90,62,138,.1); color:#5a3e8a; border:1px solid rgba(90,62,138,.2); }
+.stance-Psi-positive{ background:rgba(138,104,32,.1); color:#8a6820; border:1px solid rgba(138,104,32,.2); }
+
+/* Modal */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(4,10,3,.55);
+  backdrop-filter:blur(6px);
+  z-index:200;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s;
+}
+.modal-overlay.open{ opacity:1; pointer-events:all; }
+.modal{
+  background:#fff;
+  border-radius:18px;
+  max-width:640px;
+  width:100%;
+  max-height:85vh;
+  overflow-y:auto;
+  box-shadow:0 24px 80px rgba(0,0,0,.22);
+  transform:translateY(16px) scale(.98);
+  transition:transform .2s;
+}
+.modal-overlay.open .modal{ transform:none; }
+.modal-header{
+  padding:28px 28px 20px;
+  border-bottom:1px solid rgba(45,107,34,.08);
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+}
+.modal-initials{
+  width:52px;
+  height:52px;
+  border-radius:13px;
+  background:linear-gradient(135deg,#2a6b1a,#48a82e);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:17px;
+  font-weight:700;
+  color:#fff;
+  font-family:'Fraunces',serif;
+  flex-shrink:0;
+}
+.modal-name{ font-family:'Fraunces',serif; font-size:21px; font-weight:700; color:#173614; margin-bottom:2px; }
+.modal-sub{ font-size:12px; color:rgba(23,54,20,.48); }
+.modal-close{
+  margin-left:auto;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  border:1px solid rgba(45,107,34,.14);
+  background:transparent;
+  cursor:pointer;
+  font-size:15px;
+  color:rgba(23,54,20,.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  transition:background .15s;
+}
+.modal-close:hover{ background:rgba(45,107,34,.06); }
+.modal-body{ padding:24px 28px 32px; }
+.modal-section{ margin-bottom:22px; }
+.modal-label{ font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(45,107,34,.65); margin-bottom:6px; font-weight:600; }
+.modal-text{ font-size:13px; color:rgba(23,54,20,.68); line-height:1.75; }
+.modal-controversy{ background:rgba(196,140,60,.06); border:1px solid rgba(196,140,60,.14); border-radius:8px; padding:14px 16px; }
+.modal-controversy .modal-text{ color:rgba(100,70,20,.75); }
+.modal-tags{ display:flex; flex-wrap:wrap; gap:6px; }
+.modal-tag{ padding:5px 11px; border-radius:999px; border:1px solid rgba(45,107,34,.12); font-size:11px; color:rgba(23,54,20,.5); background:rgba(237,245,232,.6); }
+
+@media(max-width:760px){
+  .filter-strip{ padding:14px 20px; }
+  .researchers-main{ padding:24px 20px 60px; }
+  .researchers-hero{ padding:110px 24px 48px; }
+}
+</style>
+</head>
+<body>
+<nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/cases">Cases</a><a href="/phenomena">Phenomena</a><a href="/researchers">Researchers</a><a href="/theories">Theories</a><a href="/traditions">Traditions</a></div><a href="/submit" class="cta-nav">Share Experience</a></nav>
+
+<section class="researchers-hero">
+  <div class="hero-content">
+    <div class="eyebrow">Field Directory</div>
+    <h1>Researchers</h1>
+    <p>The scientists, psychiatrists, and philosophers who have taken consciousness, NDEs, and reincarnation seriously as empirical questions.</p>
+  </div>
+</section>
+
+<div class="filter-strip" id="filterStrip"></div>
+
+<div class="researchers-main">
+  <div class="results-count" id="count"></div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal"></div>
+</div>
+
+<footer class="footer">
+  <span>Profiles synthesize published work and represent researchers' primary documented positions.</span>
+  <span><a href="/methodology">Methodology</a></span>
+</footer>
+
+<script type="module">
+import { researchers } from '/data/researchers-data.js';
+
+const ALL_DOMAINS = [...new Set(researchers.flatMap(r => r.domains))].sort();
+let activeFilter = '';
+
+const filterStrip = document.getElementById('filterStrip');
+const grid = document.getElementById('grid');
+const count = document.getElementById('count');
+
+filterStrip.innerHTML = ALL_DOMAINS.map(d =>
+  `<button class="chip" data-domain="${d}">${d.charAt(0).toUpperCase()+d.slice(1)}</button>`
+).join('');
+
+filterStrip.querySelectorAll('.chip').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const same = activeFilter === btn.dataset.domain;
+    activeFilter = same ? '' : btn.dataset.domain;
+    filterStrip.querySelectorAll('.chip').forEach(b => b.classList.toggle('active', b.dataset.domain === activeFilter));
+    render();
+  });
+});
+
+function initials(name) {
+  return name.split(' ').filter((_,i,a) => i===0||i===a.length-1).map(p=>p[0]).join('');
+}
+
+function stanceClass(s) {
+  if (s.includes('Non-local')) return 'Non-local';
+  if (s.includes('Agnostic') || s.includes('Open')) return 'Open';
+  if (s.includes('Psi')) return 'Psi-positive';
+  return s;
+}
+
+function render() {
+  const rows = activeFilter
+    ? researchers.filter(r => r.domains.includes(activeFilter))
+    : researchers;
+  count.textContent = `${rows.length} researcher${rows.length===1?'':'s'}`;
+  grid.innerHTML = rows.map(r => `
+    <article class="researcher-card" onclick="openModal('${r.id}')">
+      <div class="researcher-card-top">
+        <div class="researcher-initials">${initials(r.name)}</div>
+        <div class="researcher-name">${r.name}</div>
+        <div class="researcher-role">${r.role}</div>
+        <div class="researcher-inst">${r.institution} · ${r.years}</div>
+        <div class="researcher-headline">${r.headline}</div>
+      </div>
+      <div class="researcher-card-bottom">
+        <div style="display:flex;flex-wrap:wrap;gap:5px">
+          ${r.domains.map(d=>`<span class="domain-tag">${d}</span>`).join('')}
+        </div>
+        <span class="stance-badge stance-${stanceClass(r.stance).replace(/\s+/g,'-')}">${r.stance}</span>
+      </div>
+    </article>`).join('');
+}
+
+window.openModal = function(id) {
+  const r = researchers.find(x => x.id === id);
+  if (!r) return;
+  document.getElementById('modal').innerHTML = `
+    <div class="modal-header">
+      <div class="modal-initials">${initials(r.name)}</div>
+      <div>
+        <div class="modal-name">${r.name}</div>
+        <div class="modal-sub">${r.role} · ${r.institution} · ${r.years}</div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-label">Overview</div>
+        <div class="modal-text">${r.bio}</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-label">Key Work</div>
+        <div class="modal-text">${r.keyWork}</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-label">Methodology</div>
+        <div class="modal-text">${r.methodology}</div>
+      </div>
+      <div class="modal-section modal-controversy">
+        <div class="modal-label" style="color:rgba(140,90,20,.7)">Controversy & Critique</div>
+        <div class="modal-text">${r.controversy}</div>
+      </div>
+      <div class="modal-section" style="margin-top:20px;margin-bottom:0">
+        <div class="modal-label">Research Areas</div>
+        <div class="modal-tags">${r.domains.map(d=>`<span class="modal-tag">${d}</span>`).join('')}<span class="stance-badge stance-${stanceClass(r.stance).replace(/\s+/g,'-')}" style="font-size:10.5px">${r.stance}</span></div>
+      </div>
+    </div>`;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeModal = function(e) {
+  if (e && e.target !== document.getElementById('modalOverlay') && !e.target.classList.contains('modal-close')) return;
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+};
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') window.closeModal(); });
+
+render();
+</script>
+<script src="/assets/chat-widget.js" defer></script>
+</body>
+</html>
