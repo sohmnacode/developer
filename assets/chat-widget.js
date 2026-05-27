@@ -1,4 +1,7 @@
 (function () {
+  // Don't render the floating widget on the homepage — it has its own full chat section
+  if (location.pathname === '/' || location.pathname === '/index.html') return;
+
   const MODES = [
     { id: 'researcher', label: 'Researcher' },
     { id: 'skeptic',    label: 'Skeptic' },
@@ -10,32 +13,93 @@
     researcher: [
       'What does the research say about consciousness surviving death?',
       'Explain the Penrose-Hameroff Orch OR theory',
+      'What patterns appear across NDE reports globally?',
+      'How does Ian Stevenson\'s reincarnation research work?',
+      'What is the hard problem of consciousness?',
+      'What did the AWARE study find about near-death experiences?',
+      'How does quantum biology relate to consciousness?',
+      'What evidence exists for veridical NDEs?',
+      'How do children\'s past-life memories get scientifically verified?',
+      'What is Integrated Information Theory and what does it predict?',
+      'What did Pim van Lommel\'s cardiac arrest study conclude?',
+      'What is the Global Consciousness Project and what has it found?',
+      'How does the filter theory of consciousness differ from production theory?',
+      'What brain changes occur during a near-death experience?',
+      'What is the significance of terminal lucidity before death?',
     ],
     skeptic: [
       'What are the strongest objections to NDE survival claims?',
       'How does oxygen deprivation explain near-death experiences?',
+      'What are the methodological problems with reincarnation research?',
+      'Why hasn\'t parapsychology produced accepted science after 140 years?',
+      'Can hallucinations and REM intrusion fully explain NDEs?',
+      'What\'s the best materialist explanation for past-life memories in children?',
+      'How does confirmation bias affect consciousness research?',
+      'Is the filter theory of consciousness actually testable?',
+      'What do mainstream neuroscientists say about the soul?',
+      'How does the brain generate the illusion of a unified self?',
+      'What\'s wrong with the methodology in NDE studies?',
+      'Could expectation and culture explain NDE similarities globally?',
     ],
     guide: [
       'I had an experience I don\'t have words for',
+      'I\'m not sure if what I experienced was real',
       'Someone I love recently died and I\'ve been wondering…',
+      'I\'ve been having vivid dreams about a past life',
+      'I\'m afraid of dying — what does the research actually say?',
+      'I feel like I\'ve lived before. Is that possible?',
+      'How do I process or make sense of a near-death experience?',
+      'Why do I feel like consciousness is bigger than my body?',
+      'I was with someone when they passed and I saw something',
+      'What happens to our awareness in the moments before death?',
+      'Can love survive death? What does the science suggest?',
+      'I feel a deep connection to a place or time I\'ve never known',
     ],
     compare: [
       'How do materialist and filter theories explain NDEs differently?',
       'Compare IIT, Global Workspace Theory, and Orch OR',
+      'What does each major theory say about consciousness after death?',
+      'How does panpsychism differ from the filter theory of mind?',
+      'How do Eastern and Western science view consciousness differently?',
+      'Compare Buddhist, Hindu and scientific frameworks on rebirth',
+      'How do dualism and physicalism differ on the mind-body problem?',
+      'How do NDEs compare to psychedelic experiences scientifically?',
+      'Compare Stevenson\'s methodology with modern past-life research',
+      'What do quantum mechanics and neuroscience disagree about?',
+      'How do the Tibetan Book of the Dead and NDE research compare?',
+      'Compare the survival hypothesis with the super-psi hypothesis',
     ],
   };
 
-  let isOpen = false;
+  const STATE_KEY = 'rai_widget_v1';
   let chatMode = 'researcher';
   let history = [];
   let busy = false;
   let startersShown = true;
 
+  /* ── Persistence ── */
+  function saveState() {
+    try { sessionStorage.setItem(STATE_KEY, JSON.stringify({ history, chatMode, startersShown })); } catch {}
+  }
+  function loadState() {
+    try {
+      const raw = sessionStorage.getItem(STATE_KEY);
+      if (!raw) return;
+      const s = JSON.parse(raw);
+      if (Array.isArray(s.history) && s.history.length) history = s.history;
+      if (s.chatMode) chatMode = s.chatMode;
+      if (typeof s.startersShown === 'boolean') startersShown = s.startersShown;
+    } catch {}
+  }
+
+  /* ── Build UI ── */
   function init() {
+    loadState();
+
     const widget = document.createElement('div');
     widget.id = 'rai-widget';
     widget.innerHTML = `
-      <div class="rai-panel hidden" id="raiPanel">
+      <div class="rai-panel" id="raiPanel">
         <div class="rai-header">
           <div class="rai-header-left">
             <div class="rai-avatar">R</div>
@@ -44,9 +108,7 @@
               <div class="rai-subtitle">Soul Science Research</div>
             </div>
           </div>
-          <div style="display:flex;gap:6px">
-            <button class="rai-hbtn" onclick="window.__raiToggle()" title="Minimize">&#8722;</button>
-          </div>
+          <button class="rai-new-btn" onclick="window.__raiNewChat()" title="Start a new conversation">New chat</button>
         </div>
         <div class="rai-modes" id="raiModes"></div>
         <div class="rai-msgs" id="raiMsgs">
@@ -63,28 +125,15 @@
         </div>
         <div class="rai-disclaimer">RAI synthesizes research — not medical or spiritual advice</div>
       </div>
-      <button class="rai-fab" onclick="window.__raiToggle()" aria-label="Open RAI chat">
-        <span class="rai-fab-icon">✦</span>
-        <span class="rai-fab-label">ASK RAI</span>
-      </button>
     `;
     document.body.appendChild(widget);
 
-    // Intercept all "ASK RAI" nav links
-    document.querySelectorAll('a.cta-nav, a.cta').forEach(el => {
-      const href = el.getAttribute('href') || '';
-      if (href.includes('chatbox') || el.textContent.trim() === 'ASK RAI') {
-        el.addEventListener('click', e => {
-          e.preventDefault();
-          window.__raiToggle(true);
-        });
-        el.removeAttribute('href');
-        el.style.cursor = 'pointer';
-      }
-    });
-
     renderModes();
-    renderStarters();
+    if (history.length) {
+      restoreMessages();
+    } else if (startersShown) {
+      renderStarters();
+    }
   }
 
   function renderModes() {
@@ -97,22 +146,55 @@
   function renderStarters() {
     const el = document.getElementById('raiStarters');
     if (!el) return;
-    el.innerHTML = STARTERS[chatMode].map(q =>
+    const pool = STARTERS[chatMode].slice();
+    const picked = pool.sort(() => Math.random() - 0.5).slice(0, 2);
+    el.innerHTML = picked.map(q =>
       `<button class="rai-starter" onclick="window.__raiSend(this.textContent)">${q}</button>`
     ).join('');
   }
 
-  window.__raiToggle = function (forceOpen) {
-    isOpen = forceOpen !== undefined ? !!forceOpen : !isOpen;
-    const panel = document.getElementById('raiPanel');
-    panel.classList.toggle('hidden', !isOpen);
-    if (isOpen) setTimeout(() => document.getElementById('raiIn').focus(), 250);
+  function restoreMessages() {
+    const msgs = document.getElementById('raiMsgs');
+    const startersEl = document.getElementById('raiStarters');
+    if (startersEl) startersEl.remove();
+
+    for (const m of history) {
+      if (m.role === 'user') {
+        msgs.insertAdjacentHTML('beforeend',
+          `<div class="rai-msg user"><div class="rai-bubble user">${esc(m.content)}</div></div>`
+        );
+      } else {
+        msgs.insertAdjacentHTML('beforeend', `
+          <div class="rai-msg assistant">
+            <div class="rai-avatar-sm">R</div>
+            <div class="rai-bubble assistant">${md(m.content)}</div>
+          </div>
+        `);
+      }
+    }
+    setTimeout(() => { msgs.scrollTop = msgs.scrollHeight; }, 50);
+  }
+
+  /* ── Public API ── */
+  window.__raiNewChat = function () {
+    history = [];
+    chatMode = 'researcher';
+    startersShown = true;
+    saveState();
+    const msgs = document.getElementById('raiMsgs');
+    msgs.innerHTML = '<div class="rai-starters" id="raiStarters"></div>';
+    renderModes();
+    renderStarters();
+    document.getElementById('raiIn').value = '';
+    document.getElementById('raiIn').style.height = 'auto';
+    document.getElementById('raiSend').disabled = true;
   };
 
   window.__raiSetMode = function (mode) {
     chatMode = mode;
     renderModes();
     if (startersShown) renderStarters();
+    saveState();
   };
 
   window.__raiResize = function (el) {
@@ -132,11 +214,11 @@
     const msg     = (typeof text === 'string' ? text : input.value).trim();
     if (!msg || busy) return;
 
-    // Hide starters
     if (startersShown) {
       const s = document.getElementById('raiStarters');
       if (s) s.remove();
       startersShown = false;
+      saveState();
     }
 
     if (typeof text !== 'string') { input.value = ''; input.style.height = 'auto'; }
@@ -144,6 +226,7 @@
     busy = true;
 
     history.push({ role: 'user', content: msg });
+    saveState();
 
     msgs.insertAdjacentHTML('beforeend',
       `<div class="rai-msg user"><div class="rai-bubble user">${esc(msg)}</div></div>`
@@ -156,7 +239,6 @@
         <div class="rai-bubble assistant" id="${assistId}"><span class="rai-cursor"><span>✦</span><span>✦</span><span>✦</span></span></div>
       </div>
     `);
-    // Scroll so the TOP of the assistant bubble is visible — user reads down from there
     const assistRow = document.getElementById(assistId).closest('.rai-msg');
     assistRow.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
@@ -165,7 +247,6 @@
     function setBubble(html) {
       const b = document.getElementById(assistId);
       if (b) b.innerHTML = html;
-      // No auto-scroll — user stays at the top of the response and reads down
     }
 
     function parseSSEChunk(chunk) {
@@ -197,10 +278,10 @@
       if (!res.ok) {
         setBubble('Sorry, something went wrong. Please try again.');
         history.pop();
+        saveState();
         return;
       }
 
-      // Streaming path (modern browsers + desktop)
       if (res.body && typeof res.body.getReader === 'function') {
         const reader  = res.body.getReader();
         const decoder = new TextDecoder();
@@ -209,25 +290,26 @@
           const { done, value } = await reader.read();
           if (done) break;
           buffer += decoder.decode(value, { stream: true });
-          // Pull complete events (separated by \n\n)
           const parts = buffer.split('\n\n');
           buffer = parts.pop() ?? '';
           for (const part of parts) parseSSEChunk(part + '\n\n');
         }
-        // Flush remainder
         if (buffer) parseSSEChunk(buffer);
       } else {
-        // Non-streaming fallback for older mobile browsers
         const raw = await res.text();
         parseSSEChunk(raw);
       }
 
       setBubble(assistContent ? md(assistContent) : 'No response. Please try again.');
-      if (assistContent) history.push({ role: 'assistant', content: assistContent });
+      if (assistContent) {
+        history.push({ role: 'assistant', content: assistContent });
+        saveState();
+      }
 
     } catch {
       setBubble('Connection error. Please try again.');
       history.pop();
+      saveState();
     } finally {
       busy = false;
       sendBtn.disabled = false;

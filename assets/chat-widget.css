@@ -1,9 +1,8 @@
-/* ── RAI Floating Chat Widget ── */
-#rai-widget{position:fixed;bottom:28px;right:28px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-family:'Inter',system-ui,sans-serif}
+/* ── RAI Floating Chat Widget — always-open, no FAB ── */
+#rai-widget{position:fixed;bottom:28px;right:28px;z-index:9999;font-family:'Inter',system-ui,sans-serif}
 
-/* Panel (expanded state) */
-.rai-panel{width:370px;max-height:560px;background:#fff;border-radius:20px;box-shadow:0 12px 48px rgba(0,0,0,.14);overflow:hidden;border:1px solid rgba(100,75,180,.12);display:flex;flex-direction:column;transform-origin:bottom right;transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .25s ease;opacity:1;transform:scale(1)}
-.rai-panel.hidden{opacity:0;transform:scale(.92) translateY(12px);pointer-events:none}
+/* Panel */
+.rai-panel{width:370px;max-height:560px;background:#fff;border-radius:20px;box-shadow:0 12px 48px rgba(0,0,0,.14);overflow:hidden;border:1px solid rgba(100,75,180,.12);display:flex;flex-direction:column}
 
 /* Header */
 .rai-header{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);flex-shrink:0}
@@ -11,8 +10,8 @@
 .rai-avatar{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
 .rai-title{font-size:14px;font-weight:600;color:#fff;letter-spacing:.02em}
 .rai-subtitle{font-size:10px;color:rgba(255,255,255,.65);margin-top:1px}
-.rai-hbtn{background:rgba(255,255,255,.18);border:none;color:#fff;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:background .15s}
-.rai-hbtn:hover{background:rgba(255,255,255,.3)}
+.rai-new-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.9);font-size:10.5px;font-weight:500;font-family:inherit;padding:5px 10px;border-radius:999px;cursor:pointer;letter-spacing:.02em;transition:background .15s,border-color .15s;white-space:nowrap}
+.rai-new-btn:hover{background:rgba(255,255,255,.28);border-color:rgba(255,255,255,.4)}
 
 /* Modes */
 .rai-modes{display:flex;gap:5px;padding:10px 14px 8px;flex-wrap:wrap;border-bottom:1px solid rgba(100,75,180,.08);flex-shrink:0;background:#fafcf9}
@@ -50,24 +49,11 @@
 .rai-send:disabled{opacity:.3;cursor:default}
 .rai-disclaimer{text-align:center;font-size:10px;color:rgba(26,21,53,0.5);padding:5px 14px 10px;flex-shrink:0}
 
-/* Toggle button (always visible) */
-.rai-fab{display:flex;align-items:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border-radius:999px;color:#fff;cursor:pointer;box-shadow:0 4px 20px rgba(100,75,180,.35);transition:transform .15s,box-shadow .15s;user-select:none;border:none;font-family:inherit;animation:fabGlow 2.5s ease-in-out infinite}
-@keyframes fabGlow{
-  0%,100%{box-shadow:0 4px 20px rgba(100,75,180,.35),0 0 14px rgba(120,95,190,.2),0 0 30px rgba(120,95,190,.08)}
-  50%{box-shadow:0 4px 28px rgba(120,95,190,.65),0 0 32px rgba(140,100,220,.45),0 0 60px rgba(120,95,190,.22)}
-}
-.rai-fab:hover{transform:translateY(-2px);animation:none;box-shadow:0 6px 36px rgba(120,95,190,.7),0 0 48px rgba(140,100,220,.45)}
-.rai-fab-icon{font-size:15px;line-height:1}
-.rai-fab-label{font-size:13px;font-weight:600;letter-spacing:.03em}
-
+/* Mobile */
 @media(max-width:600px){
-  #rai-widget{right:0;left:0;bottom:0;padding:0 12px 20px;align-items:flex-end;pointer-events:none}
-  #rai-widget>*{pointer-events:auto}
-  .rai-panel{width:100%;max-height:70vh;max-height:70dvh;border-radius:20px 20px 16px 16px}
-  .rai-fab{padding:13px}
-  .rai-fab-label{display:none}
-  .rai-fab,.rai-send,.rai-starter,.rai-mode-btn,.rai-hbtn{touch-action:manipulation}
-  /* Prevent iOS Safari auto-zoom on textarea focus (triggers below 16px) */
+  #rai-widget{right:0;left:0;bottom:0;padding:0}
+  .rai-panel{width:100%;max-height:60vh;max-height:60dvh;border-radius:20px 20px 0 0;box-shadow:0 -4px 32px rgba(0,0,0,.14)}
+  .rai-send,.rai-starter,.rai-mode-btn,.rai-new-btn{touch-action:manipulation}
   .rai-input-wrap textarea{font-size:16px}
 }
 
