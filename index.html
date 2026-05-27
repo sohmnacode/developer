@@ -793,29 +793,66 @@ const STARTERS = {
     "Explain the Penrose-Hameroff Orch OR theory",
     "What patterns appear across NDE reports globally?",
     "How does Ian Stevenson's reincarnation research work?",
+    "What is the hard problem of consciousness?",
+    "What did the AWARE study find about near-death experiences?",
+    "How does quantum biology relate to consciousness?",
+    "What evidence exists for veridical NDEs?",
+    "How do children's past-life memories get scientifically verified?",
+    "What is Integrated Information Theory and what does it predict?",
+    "What did Pim van Lommel's cardiac arrest study conclude?",
+    "What is the Global Consciousness Project and what has it found?",
+    "How does the filter theory of consciousness differ from production theory?",
+    "What brain changes occur during a near-death experience?",
+    "What is the significance of terminal lucidity before death?",
   ],
   skeptic: [
     "What are the strongest objections to NDE survival claims?",
     "How does oxygen deprivation explain near-death experiences?",
     "What are the methodological problems with reincarnation research?",
     "Why hasn't parapsychology produced accepted science after 140 years?",
+    "Can hallucinations and REM intrusion fully explain NDEs?",
+    "What's the best materialist explanation for past-life memories in children?",
+    "How does confirmation bias affect consciousness research?",
+    "Is the filter theory of consciousness actually testable?",
+    "What do mainstream neuroscientists say about the soul?",
+    "How does the brain generate the illusion of a unified self?",
+    "What's wrong with the methodology in NDE studies?",
+    "Could expectation and culture explain NDE similarities globally?",
   ],
   guide: [
     "I had an experience I don't have words for",
     "I'm not sure if what I experienced was real",
     "Someone I love recently died and I've been wondering…",
     "I've been having vivid dreams about a past life",
+    "I'm afraid of dying — what does the research actually say?",
+    "I feel like I've lived before. Is that possible?",
+    "How do I process or make sense of a near-death experience?",
+    "Why do I feel like consciousness is bigger than my body?",
+    "I was with someone when they passed and I saw something",
+    "What happens to our awareness in the moments before death?",
+    "Can love survive death? What does the science suggest?",
+    "I feel a deep connection to a place or time I've never known",
   ],
   compare: [
     "How do materialist and filter theories explain NDEs differently?",
     "Compare IIT, Global Workspace Theory, and Orch OR",
-    "What does each theory say about consciousness after death?",
+    "What does each major theory say about consciousness after death?",
     "How does panpsychism differ from the filter theory of mind?",
+    "How do Eastern and Western science view consciousness differently?",
+    "Compare Buddhist, Hindu and scientific frameworks on rebirth",
+    "How do dualism and physicalism differ on the mind-body problem?",
+    "How do NDEs compare to psychedelic experiences scientifically?",
+    "Compare Stevenson's methodology with modern past-life research",
+    "What do quantum mechanics and neuroscience disagree about?",
+    "How do the Tibetan Book of the Dead and NDE research compare?",
+    "Compare the survival hypothesis with the super-psi hypothesis",
   ],
 };
 
 function renderStarters() {
-  starters.innerHTML = STARTERS[chatMode]
+  const pool = STARTERS[chatMode].slice();
+  const picked = pool.sort(() => Math.random() - 0.5).slice(0, 4);
+  starters.innerHTML = picked
     .map(q => `<button class="starter-btn" onclick="sendMsg(this.textContent)">${q}</button>`)
     .join('');
 }
