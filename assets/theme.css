@@ -10,6 +10,92 @@
 nav.scrolled .nav-icon-btn{border-color:rgba(45,107,34,.2);color:rgba(23,54,20,.45);}
 nav.scrolled .nav-icon-btn:hover{border-color:rgba(45,107,34,.4);color:#173614;}
 
+/* ── Hamburger (hidden on desktop) ── */
+.nav-hamburger{
+  display:none;
+  width:32px;height:32px;border-radius:50%;
+  align-items:center;justify-content:center;flex-shrink:0;
+  border:1px solid rgba(255,255,255,.18);
+  color:rgba(255,255,255,.55);background:transparent;cursor:pointer;
+  transition:all .15s;
+}
+.nav-hamburger:hover{border-color:rgba(255,255,255,.45);color:#fff;}
+nav.scrolled .nav-hamburger{border-color:rgba(45,107,34,.2);color:rgba(23,54,20,.45);}
+nav.scrolled .nav-hamburger:hover{border-color:rgba(45,107,34,.4);color:#173614;}
+[data-theme="dark"] nav.scrolled .nav-hamburger{border-color:rgba(80,140,70,.3);color:rgba(130,180,120,.7);}
+
+/* ── Mobile nav ── */
+@media(max-width:760px){
+  .nav-hamburger{display:flex;}
+
+  nav{
+    flex-wrap:wrap;
+    align-items:center!important;
+    padding:14px 20px!important;
+    gap:10px!important;
+  }
+
+  /* Hide full link list + CTA by default */
+  nav .links{
+    display:none!important;
+    order:10;
+    width:100%;
+    flex-direction:column;
+    gap:0;
+    border-top:1px solid rgba(255,255,255,.07);
+    padding-top:10px;
+    margin-top:4px;
+  }
+  nav .links a{
+    font-size:15px!important;
+    padding:11px 4px!important;
+    color:rgba(255,255,255,.75)!important;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    display:block;
+    text-decoration:none;
+  }
+  nav .links a:last-child{border-bottom:none;}
+  nav .cta-nav{display:none!important;}
+
+  /* Open state */
+  nav.nav-open .links{display:flex!important;}
+  nav.nav-open .cta-nav{
+    display:block!important;
+    order:11;
+    width:100%;
+    text-align:center;
+    margin:10px 0 4px;
+    padding:10px 20px!important;
+    border-radius:8px;
+    font-size:14px!important;
+  }
+
+  /* Scrolled + open */
+  nav.scrolled.nav-open .links{border-color:rgba(45,107,34,.12);}
+  nav.scrolled .links a{color:rgba(23,54,20,.7)!important;}
+  nav.scrolled.nav-open .links a:hover{color:#173614!important;}
+
+  /* Dark + scrolled + open */
+  [data-theme="dark"] nav.scrolled .links a{color:rgba(130,175,120,.75)!important;}
+  [data-theme="dark"] nav.scrolled.nav-open .links{border-color:rgba(80,140,70,.15);}
+
+  /* Filter strip top must clear the collapsed nav */
+  .filter-strip{top:56px!important;}
+
+  /* Hide ⌘K hint on mobile */
+  .search-shortcut,.search-kbd{display:none!important;}
+
+  /* Push hero CTA clear of ASK RAI widget */
+  .acts{padding-bottom:20px;}
+
+  /* Ease padding on content sections */
+  .researchers-main,
+  .phenomena-main,
+  .theories-main,
+  .cases-main,
+  .search-main{padding-left:16px!important;padding-right:16px!important;}
+}
+
 /* ── Dark mode: universal overrides ── */
 [data-theme="dark"] body{
   background:linear-gradient(to bottom,#080f0a,#0b140d)!important;
