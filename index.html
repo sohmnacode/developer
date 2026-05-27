@@ -429,20 +429,19 @@ const pts=Array.from({length:45},()=>({
   hue:[128,118,142][~~(Math.random()*3)]
 }));
 
-// Glowing orbs that orbit the face image in elliptical rings
-const ORBS=[
-  // Inner ring — 2 orbs, fastest
-  {angle:0,           speed:.0048, rx:.68, ry:.50, sz:9,  hue:128, ph:0},
-  {angle:Math.PI,     speed:.0048, rx:.68, ry:.50, sz:7,  hue:115, ph:1.8},
-  // Middle ring — 3 orbs
-  {angle:Math.PI/3,   speed:.0030, rx:.88, ry:.65, sz:13, hue:138, ph:0.9},
-  {angle:Math.PI,     speed:.0030, rx:.88, ry:.65, sz:11, hue:120, ph:2.4},
-  {angle:Math.PI*5/3, speed:.0030, rx:.88, ry:.65, sz:10, hue:148, ph:4.1},
-  // Outer ring — 3 orbs, slowest
-  {angle:Math.PI/5,   speed:.0017, rx:1.06,ry:.80, sz:18, hue:132, ph:1.3},
-  {angle:Math.PI*4/5, speed:.0017, rx:1.06,ry:.80, sz:15, hue:112, ph:3.6},
-  {angle:Math.PI*7/5, speed:.0019, rx:1.04,ry:.78, sz:16, hue:142, ph:5.2},
-];
+// Free-wandering glowing orbs — each has its own direction and speed
+const ORBS=Array.from({length:8},()=>{
+  const spd=.45+Math.random()*.85;
+  const dir=Math.random()*Math.PI*2;
+  return{
+    x:null,y:null,         // initialized on first draw
+    vx:Math.cos(dir)*spd,vy:Math.sin(dir)*spd,
+    spd,dir,
+    sz:7+Math.random()*13,
+    hue:110+~~(Math.random()*42),
+    ph:Math.random()*Math.PI*2,
+  };
+});
 
 // Scroll-driven split config per layer:
 // sc1/sc2 = scale at rest/split, dy2 = vertical shift at split (fraction of bh),
@@ -461,26 +460,40 @@ function drawOrbs(front){
   const ar=face.naturalWidth>0?(face.naturalHeight/face.naturalWidth):1.25;
   const bw=mobile?Math.min(W*.78,420):Math.min(W*.40,420);
   const bh=bw*ar;
-  const faceCY=mobile?H*.36:H*.46;
+  const fcx=cx, fcy=mobile?H*.36:H*.46;
 
   for(const o of ORBS){
-    // Advance only on the first (back) pass to avoid double-stepping
-    if(!front){o.angle+=o.speed;o.ph+=.018;}
+    // Init position scattered around the face on first draw
+    if(o.x===null){
+      o.x=fcx+(Math.random()-.5)*bw*1.1;
+      o.y=fcy+(Math.random()-.5)*bh*.9;
+    }
 
-    const inFront=Math.sin(o.angle)>=0;
+    if(!front){
+      o.ph+=.018;
+      // Randomly nudge direction each frame for organic wandering
+      o.dir+=(Math.random()-.5)*.055;
+      // Soft pull back toward face when drifting too far out
+      const dx=fcx-o.x, dy=fcy-o.y;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      const maxDist=Math.max(bw,bh)*.78;
+      if(dist>maxDist) o.dir+=(Math.atan2(dy,dx)-o.dir)*.045;
+      o.vx=Math.cos(o.dir)*o.spd;
+      o.vy=Math.sin(o.dir)*o.spd;
+      o.x+=o.vx; o.y+=o.vy;
+    }
+
+    // Depth split: orbs above face center appear behind it
+    const inFront=o.y>=fcy;
     if(front!==inFront)continue;
 
-    const ox=cx+Math.cos(o.angle)*(bw/2)*o.rx;
-    const oy=faceCY+Math.sin(o.angle)*(bh/2)*o.ry;
-
-    // Depth: brighter when in front, dimmer when behind
-    const depth=front?1:.45;
+    const depth=inFront?1:.45;
     const pulse=.72+.28*Math.sin(o.ph);
     const sz=o.sz*pulse;
     const alpha=(.55+.30*Math.sin(o.ph+.5))*depth*ep;
 
     const glowR=sz*4.8;
-    const g=ctx.createRadialGradient(ox,oy,0,ox,oy,glowR);
+    const g=ctx.createRadialGradient(o.x,o.y,0,o.x,o.y,glowR);
     g.addColorStop(0,   `hsla(${o.hue},88%,82%,${alpha})`);
     g.addColorStop(.22, `hsla(${o.hue},80%,68%,${alpha*.7})`);
     g.addColorStop(.55, `hsla(${o.hue},70%,55%,${alpha*.25})`);
@@ -489,10 +502,9 @@ function drawOrbs(front){
     ctx.save();
     ctx.globalCompositeOperation='screen';
     ctx.fillStyle=g;
-    ctx.beginPath();ctx.arc(ox,oy,glowR,0,Math.PI*2);ctx.fill();
-    // Bright core
+    ctx.beginPath();ctx.arc(o.x,o.y,glowR,0,Math.PI*2);ctx.fill();
     ctx.fillStyle=`hsla(${o.hue},95%,92%,${alpha})`;
-    ctx.beginPath();ctx.arc(ox,oy,Math.max(1.5,sz*.38),0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(o.x,o.y,Math.max(1.5,sz*.38),0,Math.PI*2);ctx.fill();
     ctx.restore();
   }
 }
