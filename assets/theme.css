@@ -337,3 +337,15 @@ nav.scrolled .nav-hamburger:hover{border-color:rgba(100,75,180,.4);color:#1A1535
 [data-theme="dark"] .highlight{background:rgba(100,75,180,.08)!important;border-color:rgba(110,85,190,.2)!important;}
 [data-theme="dark"] .ev-item{background:rgba(14,12,28,.8)!important;border-color:rgba(110,85,190,.14)!important;}
 [data-theme="dark"] .ph-item{background:rgba(14,12,28,.8)!important;border-color:rgba(110,85,190,.14)!important;}
+
+/* ── Eliminate 300ms tap delay on all interactive elements ──
+   touch-action:manipulation tells the browser this element doesn't use
+   double-tap zoom, so taps fire immediately instead of after 300ms delay. */
+a,
+button,
+.researcher-card,
+.phenom-card,
+.theory-card,
+.modal-overlay{
+  touch-action:manipulation;
+}
