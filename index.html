@@ -64,7 +64,8 @@ nav.scrolled .cta{background:linear-gradient(135deg,#2d5a1e,#4a9130)}
 @media(max-width:540px){.starters{grid-template-columns:1fr}}
 .mode-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
 .mode-btn{padding:9px 12px;border-radius:999px;border:1px solid rgba(45,107,34,.14);background:rgba(255,255,255,.55);color:rgba(26,58,22,.52);font-size:11.5px;font-weight:500;cursor:pointer;font-family:inherit;transition:background .2s,border-color .2s,color .2s}
-.mode-btn:hover,.mode-btn.active{background:rgba(255,255,255,.95);border-color:rgba(45,130,34,.36);color:#1a3a16}
+.mode-btn:hover{background:rgba(255,255,255,.9);border-color:rgba(45,130,34,.3);color:#1a3a16}
+.mode-btn.active{background:#fff;border-color:rgba(45,130,34,.55);color:#1a3a16;font-weight:600;box-shadow:0 1px 4px rgba(45,107,34,.12)}
 .starter-btn{text-align:left;padding:14px 16px;border-radius:14px;border:1px solid rgba(45,107,34,.13);background:rgba(255,255,255,.55);color:rgba(26,58,22,.58);font-size:13px;cursor:pointer;transition:background .2s,border-color .2s,color .2s;font-family:inherit;line-height:1.4}
 .starter-btn:hover{background:rgba(255,255,255,.9);border-color:rgba(45,130,34,.35);color:#1a3a16}
 .msg{display:flex;gap:10px;align-items:flex-start}
@@ -169,12 +170,7 @@ nav.scrolled .cta{background:linear-gradient(135deg,#2d5a1e,#4a9130)}
       <button class="mode-btn" data-mode="guide" type="button">Gentle Guide</button>
       <button class="mode-btn" data-mode="compare" type="button">Compare Theories</button>
     </div>
-    <div id="starters" class="starters">
-      <button class="starter-btn" onclick="sendMsg(this.textContent)">What does the research say about consciousness surviving death?</button>
-      <button class="starter-btn" onclick="sendMsg(this.textContent)">Explain the Penrose-Hameroff Orch OR theory</button>
-      <button class="starter-btn" onclick="sendMsg(this.textContent)">What patterns appear across NDE reports globally?</button>
-      <button class="starter-btn" onclick="sendMsg(this.textContent)">How does Ian Stevenson's reincarnation research work?</button>
-    </div>
+    <div id="starters" class="starters"></div>
     <div class="chat-msgs" id="chatMsgs"></div>
     <div class="chat-input-row" id="chatbox">
       <textarea id="chatIn" rows="1" placeholder="Ask about consciousness, NDEs, reincarnation research…" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
@@ -417,12 +413,48 @@ const starters = document.getElementById('starters');
 const modeBtns = document.querySelectorAll('.mode-btn');
 let history = [], busy = false, chatMode = 'researcher';
 
+const STARTERS = {
+  researcher: [
+    "What does the research say about consciousness surviving death?",
+    "Explain the Penrose-Hameroff Orch OR theory",
+    "What patterns appear across NDE reports globally?",
+    "How does Ian Stevenson's reincarnation research work?",
+  ],
+  skeptic: [
+    "What are the strongest objections to NDE survival claims?",
+    "How does oxygen deprivation explain near-death experiences?",
+    "What are the methodological problems with reincarnation research?",
+    "Why hasn't parapsychology produced accepted science after 140 years?",
+  ],
+  guide: [
+    "I had an experience I don't have words for",
+    "I'm not sure if what I experienced was real",
+    "Someone I love recently died and I've been wondering…",
+    "I've been having vivid dreams about a past life",
+  ],
+  compare: [
+    "How do materialist and filter theories explain NDEs differently?",
+    "Compare IIT, Global Workspace Theory, and Orch OR",
+    "What does each theory say about consciousness after death?",
+    "How does panpsychism differ from the filter theory of mind?",
+  ],
+};
+
+function renderStarters() {
+  starters.innerHTML = STARTERS[chatMode]
+    .map(q => `<button class="starter-btn" onclick="sendMsg(this.textContent)">${q}</button>`)
+    .join('');
+}
+
 modeBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     chatMode = btn.dataset.mode;
     modeBtns.forEach(b => b.classList.toggle('active', b === btn));
+    renderStarters();
   });
 });
+
+renderStarters();
 
 chatIn.addEventListener('input', () => {
   sendBtn.disabled = !chatIn.value.trim() || busy;
