@@ -3,10 +3,10 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Safely parse body — Vercel may pass string or object depending on runtime
+  // Safely parse body — Vercel may pass string or object
   let body = req.body;
   if (typeof body === 'string') {
-    try { body = JSON.parse(body); } catch { return res.status(400).json({ error: 'Invalid request.' }); }
+    try { body = JSON.parse(body); } catch { return res.status(400).json({ error: 'Invalid request body.' }); }
   }
 
   const name    = (body?.name    || '').trim();
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
 
   const key = process.env.WEB3FORMS_KEY;
   if (!key) {
-    return res.status(500).json({ error: 'Email service not configured.' });
+    return res.status(500).json({ error: 'WEB3FORMS_KEY is not configured in environment variables.' });
   }
 
   try {
@@ -31,27 +31,28 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        access_key:  key,
-        subject:     `New message from ${name} — ReincarnatedAI`,
-        from_name:   'ReincarnatedAI Contact Form',
+        access_key: key,
+        subject:    `New message from ${name} — ReincarnatedAI`,
+        from_name:  'ReincarnatedAI Contact Form',
         name,
         email,
         message,
-        // Tells Web3Forms to send the reply-to as the visitor's email
-        replyto:     email,
+        replyto:    email,
       }),
     });
 
-    const data = await r.json().catch(() => ({}));
+    let data = {};
+    try { data = await r.json(); } catch { /* ignore parse error */ }
 
     if (!r.ok || !data.success) {
-      console.error('Web3Forms error:', r.status, data);
-      return res.status(500).json({ error: data.message || 'Failed to send. Please try again.' });
+      console.error('Web3Forms error:', r.status, JSON.stringify(data));
+      // Surface the exact error so we can debug
+      return res.status(500).json({ error: data.message || `Web3Forms status ${r.status}` });
     }
 
     return res.status(200).json({ ok: true });
   } catch (err) {
-    console.error('Contact handler error:', err);
-    return res.status(500).json({ error: 'Server error. Please try again.' });
+    console.error('Contact handler error:', err.message);
+    return res.status(500).json({ error: `Server error: ${err.message}` });
   }
 }
