@@ -47,7 +47,10 @@
 .rai-input-wrap textarea::placeholder{color:rgba(26,21,53,0.65)}
 .rai-send{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s}
 .rai-send:disabled{opacity:.3;cursor:default}
-.rai-disclaimer{text-align:center;font-size:10px;color:rgba(26,21,53,0.5);padding:5px 14px 10px;flex-shrink:0}
+.rai-footer-row{display:flex;align-items:center;justify-content:center;gap:12px;padding:5px 14px 10px;flex-shrink:0}
+.rai-disclaimer{font-size:10px;color:rgba(26,21,53,0.5);text-align:center}
+.rai-save-btn{font-size:10px;color:rgba(109,40,217,0.6);background:none;border:none;cursor:pointer;padding:0;font-family:inherit;letter-spacing:.04em;transition:color .15s;white-space:nowrap}
+.rai-save-btn:hover{color:rgba(109,40,217,1)}
 
 /* Mobile */
 @media(max-width:600px){
@@ -75,3 +78,5 @@
 [data-theme="dark"] .rai-input-wrap textarea{color:rgba(237,232,224,.88)}
 [data-theme="dark"] .rai-input-wrap textarea::placeholder{color:rgba(110,100,165,.45)}
 [data-theme="dark"] .rai-disclaimer{color:rgba(110,100,165,.45)}
+[data-theme="dark"] .rai-save-btn{color:rgba(160,139,222,.55)}
+[data-theme="dark"] .rai-save-btn:hover{color:rgba(160,139,222,1)}

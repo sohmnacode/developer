@@ -120,7 +120,10 @@
             </svg>
           </button>
         </div>
-        <div class="rai-disclaimer">RAI synthesizes research — not medical or spiritual advice</div>
+        <div class="rai-footer-row">
+          <div class="rai-disclaimer">RAI synthesizes research — not medical or spiritual advice</div>
+          <button class="rai-save-btn" id="raiSave" onclick="window.__raiSaveChat()" hidden>↓ Save</button>
+        </div>
       </div>
     `;
     document.body.appendChild(widget);
@@ -128,6 +131,7 @@
     renderModes();
     if (history.length) {
       restoreMessages();
+      document.getElementById('raiSave').hidden = false;
     } else if (startersShown) {
       renderStarters();
     }
@@ -185,6 +189,31 @@
     document.getElementById('raiIn').value = '';
     document.getElementById('raiIn').style.height = 'auto';
     document.getElementById('raiSend').disabled = true;
+    document.getElementById('raiSave').hidden = true;
+  };
+
+  window.__raiSaveChat = function () {
+    if (!history.length) return;
+    const modeLabel = { researcher: 'Researcher', skeptic: 'Skeptic', guide: 'Gentle Guide', compare: 'Compare Theories' };
+    const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    const lines = [
+      'ReincarnatedAI — Chat Transcript',
+      date + ' · Mode: ' + (modeLabel[chatMode] || chatMode),
+      '',
+      '─'.repeat(48),
+      '',
+    ];
+    for (const m of history) {
+      lines.push(m.role === 'user' ? 'You:' : 'RAI:');
+      lines.push(m.content.trim());
+      lines.push('');
+    }
+    const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'reincarnatedai-chat-' + new Date().toISOString().slice(0, 10) + '.txt';
+    a.click();
+    URL.revokeObjectURL(a.href);
   };
 
   window.__raiSetMode = function (mode) {
@@ -301,6 +330,7 @@
       if (assistContent) {
         history.push({ role: 'assistant', content: assistContent });
         saveState();
+        document.getElementById('raiSave').hidden = false;
       }
 
     } catch {
