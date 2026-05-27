@@ -156,18 +156,16 @@
         <div class="rai-bubble assistant" id="${assistId}"><span class="rai-cursor"><span>✦</span><span>✦</span><span>✦</span></span></div>
       </div>
     `);
-    // Scroll to top of new assistant message
-    document.getElementById(assistId).closest('.rai-msg').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Scroll so the TOP of the assistant bubble is visible — user reads down from there
+    const assistRow = document.getElementById(assistId).closest('.rai-msg');
+    assistRow.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     let assistContent = '';
 
     function setBubble(html) {
       const b = document.getElementById(assistId);
-      if (b) {
-        b.innerHTML = html;
-        const msgContainer = document.getElementById('raiMsgs');
-        if (msgContainer) msgContainer.scrollTop = msgContainer.scrollHeight;
-      }
+      if (b) b.innerHTML = html;
+      // No auto-scroll — user stays at the top of the response and reads down
     }
 
     function parseSSEChunk(chunk) {
