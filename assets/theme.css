@@ -101,6 +101,7 @@ nav.scrolled .nav-hamburger:hover{border-color:rgba(100,75,180,.4);color:#1A1535
   background:linear-gradient(to bottom,#0C0A1A,#100D22)!important;
   color:rgba(237,232,224,.85)!important;
 }
+[data-theme="dark"] main{background:linear-gradient(to bottom,#0C0A1A,#100D22)!important;}
 
 /* Scrolled nav → dark */
 [data-theme="dark"] nav.scrolled{
