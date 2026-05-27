@@ -117,11 +117,24 @@ nav.scrolled .nav-hamburger:hover{border-color:rgba(100,75,180,.4);color:#1A1535
 }
 
 /* Index page sections — opaque dark backgrounds so fixed canvas doesn't bleed through */
-[data-theme="dark"] .s2,
 [data-theme="dark"] .s3,
-[data-theme="dark"] .s4,
-[data-theme="dark"] .s5,
-[data-theme="dark"] .s-tools{background:#0C0A1A!important;}
+[data-theme="dark"] .s-tools{background:#0E0C20!important;}
+[data-theme="dark"] .s4{background:#0C0A1A!important;}
+[data-theme="dark"] .s5{background:#07050F!important;}
+[data-theme="dark"] .s-stats{background:#0C0A1A!important;border-color:rgba(110,85,190,.1)!important;}
+[data-theme="dark"] .stat{border-color:rgba(110,85,190,.12)!important;}
+[data-theme="dark"] .stat-l{color:rgba(145,135,200,.4)!important;}
+[data-theme="dark"] .dc{background:#130E25!important;border-color:rgba(110,85,190,.12)!important;}
+[data-theme="dark"] .dc h3{color:rgba(237,232,224,.9)!important;}
+[data-theme="dark"] .dc p{color:rgba(180,172,225,.65)!important;}
+[data-theme="dark"] .dc-refs{color:rgba(120,95,190,.4)!important;}
+[data-theme="dark"] .tool-card{background:#130E25!important;border-color:rgba(110,85,190,.1)!important;}
+[data-theme="dark"] .tool-card h3{color:rgba(237,232,224,.9)!important;}
+[data-theme="dark"] .tool-card p{color:rgba(180,172,225,.6)!important;}
+[data-theme="dark"] .sh2 h2{color:rgba(237,232,224,.92)!important;}
+[data-theme="dark"] .sh2 p{color:rgba(160,150,210,.6)!important;}
+[data-theme="dark"] .s3h h2{color:rgba(237,232,224,.92)!important;}
+[data-theme="dark"] .s3h p{color:rgba(160,150,210,.6)!important;}
 
 /* Content sections on non-index pages */
 [data-theme="dark"] .section,
