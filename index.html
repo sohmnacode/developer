@@ -134,14 +134,68 @@ nav.scrolled .cta{background:linear-gradient(135deg,#2d5a1e,#4a9130)}
 .s5-foot{margin-top:64px;padding-top:40px;border-top:1px solid rgba(45,107,34,.1);font-size:13px;color:rgba(26,58,22,.3);line-height:1.75}
 @media(max-width:640px){.pillars{grid-template-columns:1fr}.s5{padding:80px 20px}}
 
-/* ── Mobile: double the hero, keep canvas translucency ── */
+/* ── Mobile hero: full visual impact ── */
 @media(max-width:760px){
-  /* Hero grows to 200vh — canvas (position:fixed) stays visible throughout scroll */
-  .hero{height:200vh;}
-  /* Pin title & CTAs to the bottom of the first viewport */
-  .ht{bottom:calc(100vh + 6vh);}
-  /* Scroll indicator would be off-screen; hide it */
-  .sh{display:none;}
+  /* Hero stays at 100vh — the canvas fills the whole screen */
+  .hero{ height:100vh; min-height:640px; }
+
+  /* Stretch .ht to fill the hero, pin content to lower third like a poster */
+  .ht{
+    top:0; bottom:0;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:flex-end;
+    padding:60px 28px 8vh;
+  }
+
+  /* Eyebrow */
+  .ey{ font-size:11px; letter-spacing:.26em; margin-bottom:16px; }
+
+  /* MASSIVE headline */
+  .ht h1{
+    font-size:clamp(52px,17vw,78px) !important;
+    line-height:0.97;
+    letter-spacing:-.04em;
+    margin-bottom:18px;
+  }
+
+  /* Subtitle */
+  .ht p{
+    font-size:15px !important;
+    max-width:300px;
+    margin:0 auto 28px;
+    line-height:1.68;
+    color:rgba(255,255,255,.58) !important;
+  }
+
+  /* Stacked full-width CTAs */
+  .acts{
+    flex-direction:column;
+    width:100%;
+    gap:10px;
+    padding-bottom:0;
+  }
+  .acts .bp,
+  .acts .bs{
+    width:100%;
+    padding:15px;
+    font-size:15px;
+    border-radius:12px;
+    text-align:center;
+    display:block;
+  }
+
+  /* Radial green glow beneath the text block for depth */
+  .ht::after{
+    content:'';
+    position:absolute;
+    left:-60%; right:-60%; bottom:-10%; height:70%;
+    background:radial-gradient(ellipse 70% 60% at 50% 100%, rgba(35,110,15,.55), transparent 68%);
+    pointer-events:none;
+    z-index:-1;
+  }
+
+  /* Hide scroll indicator */
+  .sh{ display:none; }
 }
 </style>
 </head>
