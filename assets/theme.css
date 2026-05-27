@@ -338,6 +338,15 @@ nav.scrolled .nav-hamburger:hover{border-color:rgba(100,75,180,.4);color:#1A1535
 [data-theme="dark"] .ev-item{background:rgba(14,12,28,.8)!important;border-color:rgba(110,85,190,.14)!important;}
 [data-theme="dark"] .ph-item{background:rgba(14,12,28,.8)!important;border-color:rgba(110,85,190,.14)!important;}
 
+/* ── Dark mode: matrix table sticky column ── */
+[data-theme="dark"] .matrix-table-wrap{background-color:#13102A!important;background:linear-gradient(to right,#13102A 30%,rgba(19,16,42,0)),linear-gradient(to right,rgba(19,16,42,0),#13102A 70%) 0 100%,radial-gradient(farthest-side at 0 50%,rgba(110,85,190,.15),transparent),radial-gradient(farthest-side at 100% 50%,rgba(110,85,190,.15),transparent) 0 100%!important;background-repeat:no-repeat!important;background-size:40px 100%,40px 100%,14px 100%,14px 100%!important;background-attachment:local,local,scroll,scroll!important;}
+[data-theme="dark"] .matrix-table th:first-child,[data-theme="dark"] .matrix-table td:first-child{background:#13102A!important;box-shadow:2px 0 8px rgba(0,0,0,.3)!important;}
+[data-theme="dark"] .matrix-table tbody tr:hover td{background:rgba(100,75,180,.08)!important;}
+[data-theme="dark"] .matrix-table tbody tr:hover td:first-child{background:rgba(100,75,180,.12)!important;}
+[data-theme="dark"] .matrix-table td{color:rgba(180,172,225,.75)!important;}
+[data-theme="dark"] .matrix-table th{color:rgba(140,130,200,.5)!important;}
+[data-theme="dark"] .matrix-table td:first-child{color:rgba(200,192,240,.85)!important;}
+
 /* ── Eliminate 300ms tap delay on all interactive elements ──
    touch-action:manipulation tells the browser this element doesn't use
    double-tap zoom, so taps fire immediately instead of after 300ms delay. */

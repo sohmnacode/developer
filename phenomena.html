@@ -272,7 +272,7 @@ filterStrip.querySelectorAll('.chip').forEach(btn => {
 
 function render() {
   const rows = activeFilter ? phenomena.filter(p => p.domain === activeFilter) : phenomena;
-  count.textContent = `${rows.length} phenomenon${rows.length===1?'':'a'}`;
+  count.textContent = `${rows.length} ${rows.length===1?'phenomenon':'phenomena'}`;
   grid.innerHTML = rows.map(p => `
     <article class="phenom-card" onclick="openModal('${p.id}')">
       <div class="phenom-card-top">
