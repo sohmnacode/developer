@@ -358,8 +358,31 @@ let W,H,cx,cy,sy=0,af=0,ep=0,sp=0,tsp=0;
 
 const face=new Image();
 face.src='./face.jpg';
-let faceOk=false;
-face.onload=()=>{faceOk=true};
+let faceOk=false, faceReady=null;
+face.onload=()=>{
+  faceOk=true;
+  // Strip white background + invert dark lines to bright green via pixel
+  // manipulation — works on ALL browsers (ctx.filter unsupported in older Safari)
+  try{
+    const off=document.createElement('canvas');
+    off.width=face.naturalWidth; off.height=face.naturalHeight;
+    const oc=off.getContext('2d');
+    oc.drawImage(face,0,0);
+    const id=oc.getImageData(0,0,off.width,off.height);
+    const d=id.data;
+    for(let i=0;i<d.length;i+=4){
+      const lum=d[i]*.299+d[i+1]*.587+d[i+2]*.114;
+      if(lum>145){d[i+3]=0;} // near-white → fully transparent
+      else{
+        // Dark illustration lines → bright green for screen-blend ghost effect
+        const v=Math.round((145-lum)/145*255);
+        d[i]=Math.round(v*.28); d[i+1]=v; d[i+2]=Math.round(v*.18); d[i+3]=255;
+      }
+    }
+    oc.putImageData(id,0,0);
+    faceReady=off;
+  }catch(e){}
+};
 
 function rsz(){
   const d=devicePixelRatio||1;
@@ -428,8 +451,7 @@ function drawFaceLayers(){
 
     const sc=sc1+(sc2-sc1)*e;
     const yOff=dy2*bh*e;
-    // Mobile: image is ~2× larger so halve opacity to keep the ghost/translucent feel
-    const al=(a1+(a2-a1)*e)*ep*(mobile?.48:1);
+    const al=(a1+(a2-a1)*e)*ep;
 
     if(al<.004)continue;
 
@@ -438,9 +460,17 @@ function drawFaceLayers(){
 
     ctx.save();
     ctx.globalAlpha=al;
-    ctx.filter=`invert(1) contrast(2.4) sepia(1) hue-rotate(${hue}deg) saturate(${sat}) brightness(${br})`;
     ctx.globalCompositeOperation='screen';
-    ctx.drawImage(face,dx,dy,dw,dh);
+    if(faceReady){
+      // Pre-processed: white bg already stripped, lines already green
+      // Apply per-layer hue shift + brightness via filter where supported
+      ctx.filter=`hue-rotate(${hue}deg) saturate(${sat}) brightness(${br})`;
+      ctx.drawImage(faceReady,dx,dy,dw,dh);
+    }else{
+      // Fallback: original image with full filter chain
+      ctx.filter=`invert(1) contrast(2.4) sepia(1) hue-rotate(${hue}deg) saturate(${sat}) brightness(${br})`;
+      ctx.drawImage(face,dx,dy,dw,dh);
+    }
     ctx.restore();
   }
 }
