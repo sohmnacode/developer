@@ -45,7 +45,7 @@ main{position:relative}
 .year{font-size:22px;font-weight:700;color:var(--leaf);font-family:'Space Grotesk',system-ui,sans-serif}
 .footer{padding:34px 80px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:rgba(26,21,53,0.65);font-size:12px}
 .footer a{text-decoration:none;color:rgba(26,21,53,0.75)}
-@media(max-width:760px){nav{padding:16px 20px;align-items:flex-start}.links{gap:12px}.cta-nav{display:none}.hero{padding:110px 24px 48px}.section{padding:58px 24px}.split{grid-template-columns:1fr}.rail{position:static}.event{grid-template-columns:1fr;gap:8px}.footer{padding:28px 24px;flex-direction:column}.links a{font-size:11px}}
+@media(max-width:760px){nav{padding:16px 24px;align-items:flex-start}.links{gap:12px}.cta-nav{display:none}.hero{padding:110px 28px 48px}.section{padding:58px 28px}.split{grid-template-columns:1fr}.rail{position:static}.event{grid-template-columns:1fr;gap:8px}.footer{padding:28px 28px;flex-direction:column}.links a{font-size:11px}}
 
 /* nav-icon-btn styles live in theme.css */
 
