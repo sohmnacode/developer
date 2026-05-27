@@ -47,17 +47,7 @@ main{position:relative}
 .footer a{text-decoration:none;color:rgba(23,54,20,.52)}
 @media(max-width:760px){nav{padding:16px 20px;align-items:flex-start}.links{gap:12px}.cta-nav{display:none}.hero{padding:110px 24px 48px}.section{padding:58px 24px}.split{grid-template-columns:1fr}.rail{position:static}.event{grid-template-columns:1fr;gap:8px}.footer{padding:28px 24px;flex-direction:column}.links a{font-size:11px}}
 
-/* ── Nav icon buttons (search + dark mode toggle) ── */
-.nav-icon-btn{
-  width:32px;height:32px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  border:1px solid rgba(255,255,255,.18);
-  color:rgba(255,255,255,.55);background:transparent;cursor:pointer;
-  text-decoration:none;transition:all .15s;
-}
-.nav-icon-btn:hover{border-color:rgba(255,255,255,.45);color:#fff;}
-nav.scrolled .nav-icon-btn{border-color:rgba(45,107,34,.2);color:rgba(23,54,20,.45);}
-nav.scrolled .nav-icon-btn:hover{border-color:rgba(45,107,34,.4);color:#173614;}
+/* nav-icon-btn styles live in theme.css */
 
 /* ── Dark mode overrides ── */
 [data-theme="dark"]{

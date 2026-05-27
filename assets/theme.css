@@ -1,0 +1,118 @@
+/* ── Nav icon buttons (search + dark mode toggle) ── */
+.nav-icon-btn{
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  border:1px solid rgba(255,255,255,.18);
+  color:rgba(255,255,255,.55);background:transparent;cursor:pointer;
+  text-decoration:none;transition:all .15s;
+}
+.nav-icon-btn:hover{border-color:rgba(255,255,255,.45);color:#fff;}
+nav.scrolled .nav-icon-btn{border-color:rgba(45,107,34,.2);color:rgba(23,54,20,.45);}
+nav.scrolled .nav-icon-btn:hover{border-color:rgba(45,107,34,.4);color:#173614;}
+
+/* ── Dark mode: universal overrides ── */
+[data-theme="dark"] body{
+  background:linear-gradient(to bottom,#080f0a,#0b140d)!important;
+  color:rgba(218,238,210,.85)!important;
+}
+
+/* Scrolled nav → dark */
+[data-theme="dark"] nav.scrolled{
+  background:rgba(8,18,10,.96)!important;
+  border-bottom-color:rgba(80,140,70,.18)!important;
+}
+[data-theme="dark"] nav.scrolled .links a{color:rgba(130,180,120,.6)!important;}
+[data-theme="dark"] nav.scrolled .links a:hover{color:rgba(218,238,210,.9)!important;}
+[data-theme="dark"] nav.scrolled .logo{
+  background:linear-gradient(135deg,#7ad45e,#a8f080)!important;
+  -webkit-background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  background-clip:text!important;
+}
+
+/* Light sections */
+[data-theme="dark"] .s2,
+[data-theme="dark"] .s3,
+[data-theme="dark"] .s4,
+[data-theme="dark"] .s5{background:transparent!important;}
+
+/* Content sections */
+[data-theme="dark"] .section,
+[data-theme="dark"] .section-sm{color:rgba(218,238,210,.8);}
+
+/* White cards → dark */
+[data-theme="dark"] .stat,
+[data-theme="dark"] .tool-card,
+[data-theme="dark"] .card,
+[data-theme="dark"] .feature,
+[data-theme="dark"] .quote-block,
+[data-theme="dark"] .case-card,
+[data-theme="dark"] .tradition-card,
+[data-theme="dark"] .evidence-item{
+  background:rgba(12,22,14,.85)!important;
+  border-color:rgba(80,140,70,.18)!important;
+}
+[data-theme="dark"] .tool-card:hover,
+[data-theme="dark"] .stat:hover,
+[data-theme="dark"] .case-card:hover{
+  background:rgba(16,30,18,.9)!important;
+  border-color:rgba(80,140,70,.32)!important;
+}
+
+/* Card text */
+[data-theme="dark"] .tool-card h3,
+[data-theme="dark"] .stat-n,
+[data-theme="dark"] .case-title{color:rgba(218,238,210,.9)!important;}
+[data-theme="dark"] .tool-card p,
+[data-theme="dark"] .stat-l,
+[data-theme="dark"] .tool-tag,
+[data-theme="dark"] .case-body,
+[data-theme="dark"] .case-location-year{color:rgba(130,175,120,.65)!important;}
+
+/* Quote / text blocks */
+[data-theme="dark"] .s2i p,
+[data-theme="dark"] .s2-quote-text,
+[data-theme="dark"] .s2-quote-attr,
+[data-theme="dark"] .cta-block p,
+[data-theme="dark"] .hero-desc{color:rgba(130,175,120,.62)!important;}
+
+/* Section borders */
+[data-theme="dark"] .cta-block{border-color:rgba(80,140,70,.12)!important;}
+
+/* Common heading text */
+[data-theme="dark"] h1:not([class]),
+[data-theme="dark"] h2:not([class]),
+[data-theme="dark"] h3:not([class]),
+[data-theme="dark"] h4:not([class]){color:rgba(218,238,210,.9);}
+
+/* Footer */
+[data-theme="dark"] .footer{
+  border-color:rgba(80,140,70,.1)!important;
+  color:rgba(100,150,90,.35)!important;
+}
+[data-theme="dark"] .footer a{color:rgba(100,150,90,.55)!important;}
+
+/* Page-specific: case deep-dive */
+[data-theme="dark"] .case-detail-body,
+[data-theme="dark"] .summary-block,
+[data-theme="dark"] .timeline-list,
+[data-theme="dark"] .evidence-list,
+[data-theme="dark"] .counter-list,
+[data-theme="dark"] .sources-list{background:rgba(12,22,14,.85);border-color:rgba(80,140,70,.16);}
+[data-theme="dark"] .ev-item,
+[data-theme="dark"] .counter-arg,
+[data-theme="dark"] .counter-resp,
+[data-theme="dark"] .source-item{background:rgba(8,18,10,.7);border-color:rgba(80,140,70,.12);}
+[data-theme="dark"] .timeline-event-text,
+[data-theme="dark"] .ev-detail,
+[data-theme="dark"] .ev-claim{color:rgba(140,185,130,.7);}
+[data-theme="dark"] .section-label{color:rgba(100,160,90,.65);}
+
+/* Page-specific: search */
+[data-theme="dark"] .search-box{background:rgba(8,18,10,.9);border-color:rgba(80,140,70,.25);}
+[data-theme="dark"] .search-input{background:transparent;color:rgba(218,238,210,.9);}
+[data-theme="dark"] .search-input::placeholder{color:rgba(100,150,90,.45);}
+[data-theme="dark"] .result-group-label{color:rgba(100,160,90,.6);}
+[data-theme="dark"] .result-item{background:rgba(12,22,14,.85);border-color:rgba(80,140,70,.16);color:rgba(140,185,130,.75);}
+[data-theme="dark"] .result-item:hover{background:rgba(16,30,18,.9);border-color:rgba(80,140,70,.3);}
+[data-theme="dark"] .result-item mark{background:rgba(80,180,50,.25);color:rgba(218,238,210,.9);}
