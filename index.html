@@ -856,7 +856,7 @@ const QUOTES = [
 
 (function() {
   const q = QUOTES[Math.floor(Math.random() * QUOTES.length)];
-  document.getElementById('qText').textContent = q.text;
+  document.getElementById('qText').textContent = '“' + q.text + '”';
   document.getElementById('qAttr').textContent = q.name + ' — ' + q.title;
 })();
 </script>
