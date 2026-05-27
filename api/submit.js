@@ -1,3 +1,5 @@
+import { put } from '@vercel/blob';
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -9,20 +11,29 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
-  // Log the submission (in production, persist to a database or email service)
-  console.log('[Experience Submission]', {
+  const timestamp = Date.now();
+  const id = `${timestamp}-${Math.random().toString(36).slice(2, 8)}`;
+
+  const submission = {
+    id,
+    submittedAt: submittedAt || new Date().toISOString(),
     type,
     year,
     age,
     location,
     background,
+    description,
     verified,
-    openToContact,
-    submittedAt,
-    descriptionLength: description?.length,
-    hasEmail: !!email,
-    hasVerifyDetails: !!verifyDetails,
+    verifyDetails: verifyDetails || null,
+    name: name || null,
+    email: email || null,
+    openToContact: openToContact || false,
+  };
+
+  await put(`submissions/${id}.json`, JSON.stringify(submission, null, 2), {
+    access: 'public',
+    contentType: 'application/json',
   });
 
-  return res.status(200).json({ success: true, message: 'Submission received.' });
+  return res.status(200).json({ success: true, message: 'Submission received.', id });
 }
