@@ -1,7 +1,4 @@
 (function () {
-  // Don't render the floating widget on the homepage — it has its own full chat section
-  if (location.pathname === '/' || location.pathname === '/index.html') return;
-
   const MODES = [
     { id: 'researcher', label: 'Researcher' },
     { id: 'skeptic',    label: 'Skeptic' },
