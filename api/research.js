@@ -120,8 +120,10 @@ export default async function handler(req, res) {
         'anthropic-beta': 'prompt-caching-2024-07-31',
       },
       body: JSON.stringify({
-        model: 'claude-opus-4-5',
+        model: 'claude-opus-4-7',
         max_tokens: 4096,
+        thinking: { type: 'adaptive' },
+        output_config: { effort: 'medium' },
         stream: true,
         system: systemBlocks,
         messages,

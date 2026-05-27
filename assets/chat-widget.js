@@ -163,7 +163,11 @@
 
     function setBubble(html) {
       const b = document.getElementById(assistId);
-      if (b) b.innerHTML = html;
+      if (b) {
+        b.innerHTML = html;
+        const msgContainer = document.getElementById('raiMsgs');
+        if (msgContainer) msgContainer.scrollTop = msgContainer.scrollHeight;
+      }
     }
 
     function parseSSEChunk(chunk) {
