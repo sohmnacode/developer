@@ -121,9 +121,8 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: 'claude-opus-4-7',
-        max_tokens: 4096,
+        max_tokens: 16000,
         thinking: { type: 'adaptive' },
-        output_config: { effort: 'medium' },
         stream: true,
         system: systemBlocks,
         messages,
@@ -133,7 +132,9 @@ export default async function handler(req, res) {
     if (!response.ok) {
       const errBody = await response.text();
       console.error('Anthropic API error:', response.status, errBody);
-      res.write(`data: ${JSON.stringify({ error: `API error ${response.status}` })}\n\n`);
+      let errMsg = `API error ${response.status}`;
+      try { errMsg = JSON.parse(errBody)?.error?.message || errMsg; } catch {}
+      res.write(`data: ${JSON.stringify({ error: errMsg })}\n\n`);
       res.write('data: [DONE]\n\n');
       res.end();
       return;
