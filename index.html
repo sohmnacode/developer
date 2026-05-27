@@ -687,7 +687,7 @@ function drawFaceLayers(){
 
   const ar=face.naturalWidth>0?(face.naturalHeight/face.naturalWidth):1.25;
   const mobile=W<600;
-  const bw=mobile ? Math.min(W*.98,600) : Math.min(W*.68,720);
+  const bw=mobile ? Math.min(W*.98,600) : Math.min(W*.48,500);
   const bh=bw*ar;
   // Pin head just below nav: top of image = navHeight + 10px gap
   const navH=navEl ? navEl.offsetHeight : 60;
