@@ -372,9 +372,9 @@ face.onload=()=>{
       const lum=d[i]*.299+d[i+1]*.587+d[i+2]*.114;
       if(lum>145){d[i+3]=0;} // near-white → fully transparent
       else{
-        // Dark illustration lines → bright green for screen-blend ghost effect
+        // Dark illustration lines → gold for screen-blend ghost effect
         const v=Math.round((145-lum)/145*255);
-        d[i]=Math.round(v*.28); d[i+1]=v; d[i+2]=Math.round(v*.18); d[i+3]=255;
+        d[i]=v; d[i+1]=Math.round(v*.79); d[i+2]=Math.round(v*.32); d[i+3]=255;
       }
     }
     oc.putImageData(id,0,0);
