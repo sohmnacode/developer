@@ -539,7 +539,10 @@ function drawFaceLayers(){
 
     const sc=sc1+(sc2-sc1)*e;
     const yOff=dy2*bh*e;
-    const al=(a1+(a2-a1)*e)*ep;
+    // Each layer shimmers at its own phase — subtle brightness + alpha flicker
+    const shimmer=1+.10*Math.sin(af*.068+i*1.15);
+    const al=(a1+(a2-a1)*e)*ep*shimmer;
+    const brS=br*(1+.08*Math.sin(af*.052+i*.85));
 
     if(al<.004)continue;
 
@@ -550,13 +553,10 @@ function drawFaceLayers(){
     ctx.globalAlpha=al;
     ctx.globalCompositeOperation='screen';
     if(faceReady){
-      // Pre-processed: white bg already stripped, lines already green
-      // Apply per-layer hue shift + brightness via filter where supported
-      ctx.filter=`hue-rotate(${hue}deg) saturate(${sat}) brightness(${br})`;
+      ctx.filter=`hue-rotate(${hue}deg) saturate(${sat}) brightness(${brS})`;
       ctx.drawImage(faceReady,dx,dy,dw,dh);
     }else{
-      // Fallback: original image with full filter chain
-      ctx.filter=`invert(1) contrast(2.4) sepia(1) hue-rotate(${hue}deg) saturate(${sat}) brightness(${br})`;
+      ctx.filter=`invert(1) contrast(2.4) sepia(1) hue-rotate(${hue}deg) saturate(${sat}) brightness(${brS})`;
       ctx.drawImage(face,dx,dy,dw,dh);
     }
     ctx.restore();
