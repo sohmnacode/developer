@@ -687,11 +687,11 @@ function drawFaceLayers(){
 
   const ar=face.naturalWidth>0?(face.naturalHeight/face.naturalWidth):1.25;
   const mobile=W<600;
-  // Mobile: ~2× larger (78% of viewport width) so it fills the upper half
   const bw=mobile ? Math.min(W*.78,420) : Math.min(W*.40,420);
   const bh=bw*ar;
-  // Mobile: center the face higher so text block has clear space below
-  const faceCY=mobile ? H*.70 : H*.68;
+  // Pin head just below nav: top of image = navHeight + 10px gap
+  const navH=navEl ? navEl.offsetHeight : 60;
+  const faceCY=navH+bh/2+10;
   const e=ease(sp);
 
   // Draw back-to-front so violet (front) renders on top
