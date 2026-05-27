@@ -43,7 +43,7 @@
 
 .filter-strip{
   background:#fff;
-  border-bottom:1px solid rgba(45,107,34,.1);
+  border-bottom:1px solid rgba(100,75,180,.1);
   padding:18px 80px;
   position:sticky;
   top:60px;
@@ -56,46 +56,46 @@
 .chip{
   padding:7px 14px;
   border-radius:999px;
-  border:1px solid rgba(45,107,34,.14);
+  border:1px solid rgba(100,75,180,.14);
   background:rgba(255,255,255,.7);
   font-size:11.5px;
-  color:rgba(23,54,20,0.75);
+  color:rgba(26,21,53,0.75);
   cursor:pointer;
   font-family:inherit;
   transition:all .15s;
 }
-.chip:hover{ background:#fff; border-color:rgba(45,130,34,.3); color:#173614; }
-.chip.active{ background:rgba(45,107,34,.09); border-color:rgba(45,130,34,.4); color:#2d6b22; font-weight:600; }
+.chip:hover{ background:#fff; border-color:rgba(120,95,190,.3); color:#1A1535; }
+.chip.active{ background:rgba(100,75,180,.09); border-color:rgba(120,95,190,.4); color:#7B4FC9; font-weight:600; }
 
 .researchers-main{
   padding:40px 80px 80px;
   max-width:1120px;
   margin:0 auto;
 }
-.results-count{ font-size:13px; color:rgba(23,54,20,0.65); margin-bottom:28px; }
+.results-count{ font-size:13px; color:rgba(26,21,53,0.65); margin-bottom:28px; }
 
 .researcher-card{
   background:#fff;
-  border:1px solid rgba(45,107,34,.1);
+  border:1px solid rgba(100,75,180,.1);
   border-radius:14px;
   overflow:hidden;
   transition:box-shadow .2s, border-color .2s, transform .2s;
   cursor:pointer;
 }
 .researcher-card:hover{
-  box-shadow:0 8px 32px rgba(45,107,34,.1);
-  border-color:rgba(45,107,34,.22);
+  box-shadow:0 8px 32px rgba(100,75,180,.1);
+  border-color:rgba(100,75,180,.22);
   transform:translateY(-3px);
 }
 .researcher-card-top{
   padding:24px 24px 20px;
-  border-bottom:1px solid rgba(45,107,34,.07);
+  border-bottom:1px solid rgba(100,75,180,.07);
 }
 .researcher-initials{
   width:48px;
   height:48px;
   border-radius:12px;
-  background:linear-gradient(135deg,#2a6b1a,#48a82e);
+  background:linear-gradient(135deg,#A67C00,#D4A843);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -110,23 +110,23 @@
   font-family:'Fraunces',serif;
   font-size:18px;
   font-weight:700;
-  color:#173614;
+  color:#1A1535;
   margin-bottom:3px;
 }
 .researcher-role{
   font-size:11.5px;
-  color:rgba(23,54,20,0.65);
+  color:rgba(26,21,53,0.65);
   margin-bottom:2px;
 }
 .researcher-inst{
   font-size:11.5px;
-  color:rgba(45,107,34,.7);
+  color:rgba(100,75,180,.7);
   font-weight:500;
   margin-bottom:12px;
 }
 .researcher-headline{
   font-size:12.5px;
-  color:rgba(23,54,20,0.75);
+  color:rgba(26,21,53,0.75);
   line-height:1.65;
 }
 .researcher-card-bottom{
@@ -140,10 +140,10 @@
 .domain-tag{
   padding:4px 10px;
   border-radius:999px;
-  border:1px solid rgba(45,107,34,.12);
+  border:1px solid rgba(100,75,180,.12);
   font-size:10.5px;
-  color:rgba(23,54,20,0.75);
-  background:rgba(237,245,232,.6);
+  color:rgba(26,21,53,0.75);
+  background:rgba(248,245,239,.6);
   text-transform:uppercase;
   letter-spacing:.04em;
 }
@@ -154,17 +154,17 @@
   font-weight:600;
   letter-spacing:.03em;
 }
-.stance-Survival{ background:rgba(45,107,34,.1); color:#2d6b22; border:1px solid rgba(45,107,34,.2); }
+.stance-Survival{ background:rgba(100,75,180,.1); color:#7B4FC9; border:1px solid rgba(100,75,180,.2); }
 .stance-Open{ background:rgba(80,120,180,.1); color:#2a4a8a; border:1px solid rgba(80,120,180,.2); }
 .stance-Agnostic{ background:rgba(80,120,180,.1); color:#2a4a8a; border:1px solid rgba(80,120,180,.2); }
 .stance-Non-local{ background:rgba(90,62,138,.1); color:#5a3e8a; border:1px solid rgba(90,62,138,.2); }
-.stance-Psi-positive{ background:rgba(138,104,32,.1); color:#8a6820; border:1px solid rgba(138,104,32,.2); }
+.stance-Psi-positive{ background:rgba(138,104,32,.1); color:#7B4FC9; border:1px solid rgba(138,104,32,.2); }
 
 /* Modal */
 .modal-overlay{
   position:fixed;
   inset:0;
-  background:rgba(4,10,3,.55);
+  background:rgba(6,4,28,.55);
   backdrop-filter:blur(6px);
   z-index:200;
   display:flex;
@@ -190,7 +190,7 @@
 .modal-overlay.open .modal{ transform:none; }
 .modal-header{
   padding:28px 28px 20px;
-  border-bottom:1px solid rgba(45,107,34,.08);
+  border-bottom:1px solid rgba(100,75,180,.08);
   display:flex;
   gap:16px;
   align-items:flex-start;
@@ -199,7 +199,7 @@
   width:52px;
   height:52px;
   border-radius:13px;
-  background:linear-gradient(135deg,#2a6b1a,#48a82e);
+  background:linear-gradient(135deg,#A67C00,#D4A843);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -209,33 +209,33 @@
   font-family:'Fraunces',serif;
   flex-shrink:0;
 }
-.modal-name{ font-family:'Fraunces',serif; font-size:21px; font-weight:700; color:#173614; margin-bottom:2px; }
-.modal-sub{ font-size:12px; color:rgba(23,54,20,0.75); }
+.modal-name{ font-family:'Fraunces',serif; font-size:21px; font-weight:700; color:#1A1535; margin-bottom:2px; }
+.modal-sub{ font-size:12px; color:rgba(26,21,53,0.75); }
 .modal-close{
   margin-left:auto;
   width:32px;
   height:32px;
   border-radius:50%;
-  border:1px solid rgba(45,107,34,.14);
+  border:1px solid rgba(100,75,180,.14);
   background:transparent;
   cursor:pointer;
   font-size:15px;
-  color:rgba(23,54,20,0.65);
+  color:rgba(26,21,53,0.65);
   display:flex;
   align-items:center;
   justify-content:center;
   flex-shrink:0;
   transition:background .15s;
 }
-.modal-close:hover{ background:rgba(45,107,34,.06); }
+.modal-close:hover{ background:rgba(100,75,180,.06); }
 .modal-body{ padding:24px 28px 32px; }
 .modal-section{ margin-bottom:22px; }
-.modal-label{ font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(45,107,34,.65); margin-bottom:6px; font-weight:600; }
-.modal-text{ font-size:13px; color:rgba(23,54,20,.68); line-height:1.75; }
+.modal-label{ font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(100,75,180,.65); margin-bottom:6px; font-weight:600; }
+.modal-text{ font-size:13px; color:rgba(26,21,53,.68); line-height:1.75; }
 .modal-controversy{ background:rgba(196,140,60,.06); border:1px solid rgba(196,140,60,.14); border-radius:8px; padding:14px 16px; }
 .modal-controversy .modal-text{ color:rgba(100,70,20,.75); }
 .modal-tags{ display:flex; flex-wrap:wrap; gap:6px; }
-.modal-tag{ padding:5px 11px; border-radius:999px; border:1px solid rgba(45,107,34,.12); font-size:11px; color:rgba(23,54,20,0.75); background:rgba(237,245,232,.6); }
+.modal-tag{ padding:5px 11px; border-radius:999px; border:1px solid rgba(100,75,180,.12); font-size:11px; color:rgba(26,21,53,0.75); background:rgba(248,245,239,.6); }
 
 @media(max-width:760px){
   .filter-strip{ padding:14px 20px; }

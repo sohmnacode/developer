@@ -19,8 +19,8 @@
   align-items:flex-end;
   padding:120px 80px 64px;
   background:
-    radial-gradient(ellipse 60% 70% at 80% 20%, rgba(80,120,220,.18), transparent 65%),
-    linear-gradient(to bottom, #05080f, #0b1222);
+    radial-gradient(ellipse 60% 70% at 80% 20%, rgba(100,75,200,.18), transparent 65%),
+    linear-gradient(to bottom, #080615, #0D0B22);
   position:relative;
   overflow:hidden;
 }
@@ -44,7 +44,7 @@
 /* ── Search + Filter strip ── */
 .filter-strip{
   background:#fff;
-  border-bottom:1px solid rgba(45,107,34,.1);
+  border-bottom:1px solid rgba(100,75,180,.1);
   padding:22px 80px;
   position:sticky;
   top:60px;
@@ -81,28 +81,28 @@
 }
 .search-input{
   width:100%;
-  border:1px solid rgba(45,107,34,.18);
+  border:1px solid rgba(100,75,180,.18);
   background:rgba(255,255,255,.9);
   border-radius:10px;
   padding:11px 14px 11px 40px;
   font:inherit;
   font-size:13.5px;
-  color:#173614;
+  color:#1A1535;
   outline:none;
   transition:border-color .15s, box-shadow .15s;
 }
 .search-input:focus{
-  border-color:rgba(45,130,34,.4);
-  box-shadow:0 0 0 3px rgba(45,130,34,.08);
+  border-color:rgba(120,95,190,.4);
+  box-shadow:0 0 0 3px rgba(120,95,190,.08);
 }
 .filter-select{
-  border:1px solid rgba(45,107,34,.18);
+  border:1px solid rgba(100,75,180,.18);
   background:rgba(255,255,255,.9);
   border-radius:10px;
   padding:11px 14px;
   font:inherit;
   font-size:13px;
-  color:#173614;
+  color:#1A1535;
   outline:none;
   cursor:pointer;
   min-width:160px;
@@ -110,19 +110,19 @@
 .chip{
   padding:7px 14px;
   border-radius:999px;
-  border:1px solid rgba(45,107,34,.14);
+  border:1px solid rgba(100,75,180,.14);
   background:rgba(255,255,255,.7);
   font-size:11.5px;
-  color:rgba(23,54,20,0.75);
+  color:rgba(26,21,53,0.75);
   cursor:pointer;
   font-family:inherit;
   transition:all .15s;
 }
-.chip:hover{ background:#fff; border-color:rgba(45,130,34,.3); color:#173614; }
+.chip:hover{ background:#fff; border-color:rgba(120,95,190,.3); color:#1A1535; }
 .chip.active{
-  background:rgba(45,107,34,.08);
-  border-color:rgba(45,130,34,.4);
-  color:#2d6b22;
+  background:rgba(100,75,180,.08);
+  border-color:rgba(120,95,190,.4);
+  color:#7B4FC9;
   font-weight:600;
 }
 
@@ -140,7 +140,7 @@
 }
 .results-count{
   font-size:13px;
-  color:rgba(23,54,20,0.65);
+  color:rgba(26,21,53,0.65);
 }
 .cases-grid{
   display:grid;
@@ -151,7 +151,7 @@
 /* ── Case card ── */
 .case-card{
   background:#fff;
-  border:1px solid rgba(45,107,34,.1);
+  border:1px solid rgba(100,75,180,.1);
   border-radius:12px;
   padding:22px;
   display:flex;
@@ -161,35 +161,35 @@
   cursor:default;
 }
 .case-card:hover{
-  box-shadow:0 6px 28px rgba(45,107,34,.1);
-  border-color:rgba(45,107,34,.22);
+  box-shadow:0 6px 28px rgba(100,75,180,.1);
+  border-color:rgba(100,75,180,.22);
   transform:translateY(-2px);
 }
 .case-domain{
   font-size:10px;
   letter-spacing:.16em;
   text-transform:uppercase;
-  color:rgba(45,107,34,.65);
+  color:rgba(100,75,180,.65);
   margin-bottom:6px;
   font-weight:500;
 }
 .case-title{
   font-size:16.5px;
   font-weight:700;
-  color:#173614;
+  color:#1A1535;
   margin-bottom:3px;
   font-family:'Fraunces',serif;
   line-height:1.25;
 }
 .case-location-year{
   font-size:11px;
-  color:rgba(23,54,20,0.65);
+  color:rgba(26,21,53,0.65);
   margin-bottom:12px;
   letter-spacing:.05em;
 }
 .case-body{
   font-size:12.5px;
-  color:rgba(23,54,20,0.75);
+  color:rgba(26,21,53,0.75);
   line-height:1.7;
   flex:1;
   margin-bottom:16px;
@@ -221,30 +221,30 @@
 }
 .strength-pill.Strong{ background:rgba(45,122,34,.1); color:#2d7a22; border:1px solid rgba(45,122,34,.2); }
 .strength-pill.Strong::before{ background:#2d7a22; }
-.strength-pill.Moderate{ background:rgba(62,168,50,.09); color:#3a8020; border:1px solid rgba(62,168,50,.18); }
-.strength-pill.Moderate::before{ background:#4aab30; }
-.strength-pill.Contested{ background:rgba(196,160,80,.1); color:#8a6820; border:1px solid rgba(196,160,80,.2); }
+.strength-pill.Moderate{ background:rgba(100,75,180,.09); color:#B8850A; border:1px solid rgba(100,75,180,.18); }
+.strength-pill.Moderate::before{ background:#D4A843; }
+.strength-pill.Contested{ background:rgba(196,160,80,.1); color:#7B4FC9; border:1px solid rgba(196,160,80,.2); }
 .strength-pill.Contested::before{ background:#c4a050; }
 .strength-pill.Suggestive{ background:rgba(100,180,74,.09); color:#487a25; border:1px solid rgba(100,180,74,.18); }
 .strength-pill.Suggestive::before{ background:#64b44a; }
 .strength-pill.Speculative{ background:rgba(150,160,144,.1); color:#606860; border:1px solid rgba(150,160,144,.2); }
 .strength-pill.Speculative::before{ background:#909888; }
-.strength-pill.Well-supported{ background:rgba(30,130,60,.1); color:#1a7a3c; border:1px solid rgba(30,130,60,.2); }
-.strength-pill.Well-supported::before{ background:#1a7a3c; }
+.strength-pill.Well-supported{ background:rgba(90,65,170,.1); color:#8B6AC9; border:1px solid rgba(90,65,170,.2); }
+.strength-pill.Well-supported::before{ background:#8B6AC9; }
 .case-tag{
   padding:4px 9px;
   border-radius:999px;
-  border:1px solid rgba(45,107,34,.1);
+  border:1px solid rgba(100,75,180,.1);
   font-size:10.5px;
-  color:rgba(23,54,20,0.65);
-  background:rgba(237,245,232,.6);
+  color:rgba(26,21,53,0.65);
+  background:rgba(248,245,239,.6);
   text-transform:uppercase;
   letter-spacing:.04em;
 }
 .case-tag.active-tag{
-  background:rgba(45,107,34,.1);
-  border-color:rgba(45,130,34,.3);
-  color:rgba(23,54,20,.75);
+  background:rgba(100,75,180,.1);
+  border-color:rgba(120,95,190,.3);
+  color:rgba(26,21,53,.75);
 }
 
 /* ── Empty state ── */
@@ -252,7 +252,7 @@
   grid-column:1/-1;
   text-align:center;
   padding:64px 24px;
-  color:rgba(23,54,20,0.65);
+  color:rgba(26,21,53,0.65);
   font-size:14px;
 }
 .empty-state svg{ opacity:.2; margin-bottom:14px; }
@@ -260,13 +260,13 @@
 .deep-dive-link{
   margin-left:auto;
   font-size:11px;
-  color:rgba(45,107,34,.75);
+  color:rgba(100,75,180,.75);
   font-weight:600;
   text-decoration:none;
   white-space:nowrap;
   transition:color .15s;
 }
-.deep-dive-link:hover{ color:#2d6b22; }
+.deep-dive-link:hover{ color:#7B4FC9; }
 
 @media(max-width:760px){
   .filter-strip{ padding:16px 20px; top:56px; }
@@ -290,8 +290,8 @@
   <div class="filter-row">
     <div class="search-wrap">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <circle cx="6.5" cy="6.5" r="5" stroke="#173614" stroke-width="1.5"/>
-        <path d="M10.5 10.5L14 14" stroke="#173614" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="6.5" cy="6.5" r="5" stroke="#1A1535" stroke-width="1.5"/>
+        <path d="M10.5 10.5L14 14" stroke="#1A1535" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
       <input id="q" class="search-input" placeholder="Search cases, researchers, locations…">
     </div>
@@ -365,7 +365,7 @@ function render() {
 
   if (!rows.length) {
     wrap.innerHTML = `<div class="empty-state">
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="17" cy="17" r="12" stroke="#173614" stroke-width="2"/><path d="M26 26L36 36" stroke="#173614" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="17" cy="17" r="12" stroke="#1A1535" stroke-width="2"/><path d="M26 26L36 36" stroke="#1A1535" stroke-width="2" stroke-linecap="round"/></svg>
       <div>No cases match the current filters.</div>
     </div>`;
     return;

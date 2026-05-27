@@ -55,8 +55,8 @@
 }
 .theory-card:hover{ transform:translateY(-3px); box-shadow:0 8px 28px rgba(0,0,0,.1); }
 .theory-card-icon{ width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; margin-bottom:14px; }
-.theory-card-name{ font-family:'Fraunces',serif; font-size:17px; font-weight:700; color:#173614; margin-bottom:6px; }
-.theory-card-core{ font-size:12.5px; color:rgba(23,54,20,0.75); line-height:1.65; margin-bottom:14px; }
+.theory-card-name{ font-family:'Fraunces',serif; font-size:17px; font-weight:700; color:#1A1535; margin-bottom:6px; }
+.theory-card-core{ font-size:12.5px; color:rgba(26,21,53,0.75); line-height:1.65; margin-bottom:14px; }
 .stance-pill{
   display:inline-block;
   padding:4px 10px;
@@ -66,31 +66,31 @@
   letter-spacing:.04em;
   text-transform:uppercase;
 }
-.stance-pro-survival{ background:rgba(45,107,34,.1); color:#2d6b22; border:1px solid rgba(45,107,34,.2); }
+.stance-pro-survival{ background:rgba(100,75,180,.1); color:#7B4FC9; border:1px solid rgba(100,75,180,.2); }
 .stance-neutral{ background:rgba(26,110,122,.1); color:#1a6e7a; border:1px solid rgba(26,110,122,.2); }
 .stance-skeptical{ background:rgba(122,48,48,.1); color:#7a3030; border:1px solid rgba(122,48,48,.2); }
 
 /* Comparison matrix */
 .matrix-section{ margin-top:0; }
-.matrix-title{ font-family:'Fraunces',serif; font-size:28px; font-weight:700; color:#173614; margin-bottom:8px; }
-.matrix-lede{ font-size:14px; color:rgba(23,54,20,0.75); line-height:1.7; max-width:680px; margin-bottom:32px; }
+.matrix-title{ font-family:'Fraunces',serif; font-size:28px; font-weight:700; color:#1A1535; margin-bottom:8px; }
+.matrix-lede{ font-size:14px; color:rgba(26,21,53,0.75); line-height:1.7; max-width:680px; margin-bottom:32px; }
 
 .matrix-tabs{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
 .mtab{
   padding:8px 16px;
   border-radius:999px;
-  border:1px solid rgba(45,107,34,.14);
+  border:1px solid rgba(100,75,180,.14);
   background:rgba(255,255,255,.7);
   font-size:12px;
-  color:rgba(23,54,20,0.75);
+  color:rgba(26,21,53,0.75);
   cursor:pointer;
   font-family:inherit;
   transition:all .15s;
 }
-.mtab:hover{ background:#fff; border-color:rgba(45,130,34,.3); color:#173614; }
-.mtab.active{ background:#173614; border-color:#173614; color:#fff; }
+.mtab:hover{ background:#fff; border-color:rgba(120,95,190,.3); color:#1A1535; }
+.mtab.active{ background:#1A1535; border-color:#1A1535; color:#fff; }
 
-.matrix-table-wrap{ overflow-x:auto; border-radius:14px; border:1px solid rgba(45,107,34,.1); }
+.matrix-table-wrap{ overflow-x:auto; border-radius:14px; border:1px solid rgba(100,75,180,.1); }
 .matrix-table{ width:100%; border-collapse:collapse; min-width:680px; }
 .matrix-table th{
   padding:14px 18px;
@@ -99,34 +99,34 @@
   letter-spacing:.1em;
   text-transform:uppercase;
   font-weight:600;
-  border-bottom:1px solid rgba(45,107,34,.1);
+  border-bottom:1px solid rgba(100,75,180,.1);
   white-space:nowrap;
 }
-.matrix-table th:first-child{ background:#fafcf9; color:rgba(23,54,20,0.65); min-width:160px; }
+.matrix-table th:first-child{ background:#fafcf9; color:rgba(26,21,53,0.65); min-width:160px; }
 .matrix-table td{
   padding:16px 18px;
   font-size:12.5px;
   line-height:1.65;
-  border-bottom:1px solid rgba(45,107,34,.06);
+  border-bottom:1px solid rgba(100,75,180,.06);
   vertical-align:top;
-  color:rgba(23,54,20,.68);
+  color:rgba(26,21,53,.68);
 }
 .matrix-table td:first-child{
   font-weight:600;
-  color:rgba(23,54,20,0.75);
+  color:rgba(26,21,53,0.75);
   font-size:11.5px;
   background:#fafcf9;
   white-space:nowrap;
 }
 .matrix-table tr:last-child td{ border-bottom:none; }
-.matrix-table tbody tr:hover td{ background:rgba(237,245,232,.3); }
-.matrix-table tbody tr:hover td:first-child{ background:rgba(237,245,232,.6); }
+.matrix-table tbody tr:hover td{ background:rgba(248,245,239,.3); }
+.matrix-table tbody tr:hover td:first-child{ background:rgba(248,245,239,.6); }
 
 /* Modal */
 .modal-overlay{
   position:fixed;
   inset:0;
-  background:rgba(4,10,3,.55);
+  background:rgba(6,4,28,.55);
   backdrop-filter:blur(6px);
   z-index:200;
   display:flex;
@@ -150,28 +150,28 @@
   transition:transform .2s;
 }
 .modal-overlay.open .modal{ transform:none; }
-.modal-header{ padding:26px 26px 18px; border-bottom:1px solid rgba(45,107,34,.08); display:flex; align-items:flex-start; gap:14px; }
+.modal-header{ padding:26px 26px 18px; border-bottom:1px solid rgba(100,75,180,.08); display:flex; align-items:flex-start; gap:14px; }
 .modal-dot{ width:48px; height:48px; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
-.modal-name{ font-family:'Fraunces',serif; font-size:21px; font-weight:700; color:#173614; margin-bottom:3px; }
-.modal-sub{ font-size:11.5px; color:rgba(23,54,20,0.65); }
+.modal-name{ font-family:'Fraunces',serif; font-size:21px; font-weight:700; color:#1A1535; margin-bottom:3px; }
+.modal-sub{ font-size:11.5px; color:rgba(26,21,53,0.65); }
 .modal-close{
   margin-left:auto; width:30px; height:30px; border-radius:50%;
-  border:1px solid rgba(45,107,34,.14); background:transparent; cursor:pointer;
-  font-size:14px; color:rgba(23,54,20,0.65); display:flex; align-items:center; justify-content:center;
+  border:1px solid rgba(100,75,180,.14); background:transparent; cursor:pointer;
+  font-size:14px; color:rgba(26,21,53,0.65); display:flex; align-items:center; justify-content:center;
   flex-shrink:0; transition:background .15s;
 }
-.modal-close:hover{ background:rgba(45,107,34,.06); }
+.modal-close:hover{ background:rgba(100,75,180,.06); }
 .modal-body{ padding:22px 26px 30px; }
 .modal-section{ margin-bottom:20px; }
-.modal-label{ font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(45,107,34,.65); margin-bottom:6px; font-weight:600; }
-.modal-text{ font-size:13px; color:rgba(23,54,20,.68); line-height:1.75; }
+.modal-label{ font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(100,75,180,.65); margin-bottom:6px; font-weight:600; }
+.modal-text{ font-size:13px; color:rgba(26,21,53,.68); line-height:1.75; }
 .list-items{ display:flex; flex-direction:column; gap:7px; margin-top:4px; }
-.list-item{ font-size:12.5px; color:rgba(23,54,20,.62); padding:8px 12px; background:rgba(237,245,232,.5); border-radius:8px; border:1px solid rgba(45,107,34,.07); padding-left:28px; position:relative; }
-.list-item::before{ content:'·'; position:absolute; left:12px; color:#4aab30; font-weight:700; }
+.list-item{ font-size:12.5px; color:rgba(26,21,53,.62); padding:8px 12px; background:rgba(248,245,239,.5); border-radius:8px; border:1px solid rgba(100,75,180,.07); padding-left:28px; position:relative; }
+.list-item::before{ content:'·'; position:absolute; left:12px; color:#D4A843; font-weight:700; }
 .weakness-item{ background:rgba(122,48,48,.05); border-color:rgba(122,48,48,.1); }
 .weakness-item::before{ color:#c05050; }
 .modal-proponents{ display:flex; flex-wrap:wrap; gap:6px; }
-.proponent-tag{ padding:5px 11px; border-radius:999px; border:1px solid rgba(45,107,34,.12); font-size:11px; color:rgba(23,54,20,0.75); background:rgba(237,245,232,.6); }
+.proponent-tag{ padding:5px 11px; border-radius:999px; border:1px solid rgba(100,75,180,.12); font-size:11px; color:rgba(26,21,53,0.75); background:rgba(248,245,239,.6); }
 
 @media(max-width:760px){
   .theories-main{ padding:28px 20px 60px; }
@@ -302,8 +302,8 @@ window.openModal = function(id) {
         <div style="display:flex;flex-direction:column;gap:10px">
           ${Object.entries(t.explains).map(([k,v])=>`
             <div>
-              <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(45,107,34,.55);margin-bottom:4px">${TAB_LABELS[k]||k}</div>
-              <div style="font-size:12.5px;color:rgba(23,54,20,.65);line-height:1.65">${v}</div>
+              <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(100,75,180,.55);margin-bottom:4px">${TAB_LABELS[k]||k}</div>
+              <div style="font-size:12.5px;color:rgba(26,21,53,.65);line-height:1.65">${v}</div>
             </div>`).join('')}
         </div>
       </div>
