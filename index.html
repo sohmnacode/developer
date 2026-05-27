@@ -445,9 +445,9 @@ function ease(t){return t<.5?2*t*t:-1+(4-2*t)*t}
 function drawOrbs(front){
   const mobile=W<600;
   const ar=face.naturalWidth>0?(face.naturalHeight/face.naturalWidth):1.25;
-  const bw=mobile?Math.min(W*.78,420):Math.min(W*.40,420);
+  const bw=mobile?Math.min(W*.96,560):Math.min(W*.58,580);
   const bh=bw*ar;
-  const fcx=cx, fcy=mobile?H*.36:H*.46;
+  const fcx=cx, fcy=mobile?H*.34:H*.44;
 
   for(const o of ORBS){
     // Init position scattered around the face on first draw
@@ -499,7 +499,7 @@ function drawOrbs(front){
 function drawFaceGlow(){
   const mobile=W<600;
   const gx=cx,gy=mobile?H*.34:H*.44;
-  const gr=Math.min(W,H)*(mobile?(.58+sp*.16):(.38+sp*.16));
+  const gr=Math.min(W,H)*(mobile?(.72+sp*.16):(.52+sp*.16));
   const g=ctx.createRadialGradient(gx,gy,0,gx,gy,gr);
   g.addColorStop(0,`rgba(50,35,140,${(.18+sp*.14)*ep})`);
   g.addColorStop(.4,`rgba(20,15,80,${(.09+sp*.07)*ep})`);
