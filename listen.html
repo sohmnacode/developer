@@ -45,10 +45,7 @@
   background:linear-gradient(135deg,#0D0B1F 0%,#1a1240 50%,#0f0c28 100%);
   border-radius:20px;
   padding:36px 40px;
-  display:grid;
-  grid-template-columns:auto 1fr;
-  gap:32px;
-  align-items:center;
+  display:block;
   border:1px solid rgba(110,85,190,.2);
   box-shadow:0 16px 56px rgba(0,0,0,.2);
   position:relative;overflow:hidden;
@@ -108,8 +105,7 @@
 .fp-btn.apple{background:#FC3C44;color:#fff}
 .fp-btn.web{background:rgba(255,255,255,.12);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.16)}
 @media(max-width:640px){
-  .featured-player{grid-template-columns:1fr;gap:20px;padding:26px 22px}
-  .fp-art{width:90px;height:90px;font-size:36px}
+  .featured-player{padding:26px 22px}
 }
 
 /* ── Show grid ── */
@@ -130,14 +126,6 @@
   border-color:rgba(120,95,190,.28);
   box-shadow:0 6px 28px rgba(100,75,180,.09);
   transform:translateY(-2px);
-}
-.show-art{
-  width:56px;height:56px;border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:26px;
-  background:linear-gradient(135deg,#2d1b69,#4c1d95);
-  box-shadow:0 4px 14px rgba(100,75,180,.18);
-  flex-shrink:0;
 }
 .show-name{
   font-size:15px;font-weight:700;color:#0D0B1F;
@@ -325,7 +313,6 @@
   <p class="section-lede">If you're new to the research, these episodes are the best entry points into the science.</p>
 
   <div class="featured-player">
-    <div class="fp-art">🔬</div>
     <div class="fp-info">
       <div class="fp-badge">
         <div class="fp-badge-dot"></div>
@@ -354,7 +341,6 @@
   <div class="show-grid">
 
     <div class="show-card">
-      <div class="show-art">🔬</div>
       <div>
         <div class="show-name">Skeptiko</div>
         <div class="show-host">Alex Tsakiris</div>
@@ -373,7 +359,6 @@
     </div>
 
     <div class="show-card">
-      <div class="show-art">🧠</div>
       <div>
         <div class="show-name">New Thinking Allowed</div>
         <div class="show-host">Jeffrey Mishlove, PhD</div>
@@ -392,7 +377,6 @@
     </div>
 
     <div class="show-card">
-      <div class="show-art">✨</div>
       <div>
         <div class="show-name">NDE Radio</div>
         <div class="show-host">Lee Witting</div>
@@ -411,7 +395,6 @@
     </div>
 
     <div class="show-card">
-      <div class="show-art">🌌</div>
       <div>
         <div class="show-name">Noetic Now</div>
         <div class="show-host">Institute of Noetic Sciences</div>
@@ -430,7 +413,6 @@
     </div>
 
     <div class="show-card">
-      <div class="show-art">👁️</div>
       <div>
         <div class="show-name">Surviving Death</div>
         <div class="show-host">IANDS — NDE Accounts</div>
@@ -449,7 +431,6 @@
     </div>
 
     <div class="show-card">
-      <div class="show-art">♾️</div>
       <div>
         <div class="show-name">Waking Up</div>
         <div class="show-host">Sam Harris</div>
@@ -468,7 +449,6 @@
     </div>
 
     <div class="show-card">
-      <div class="show-art">🌀</div>
       <div>
         <div class="show-name">The Past Lives Podcast</div>
         <div class="show-host">Simon Bown</div>
@@ -487,7 +467,6 @@
     </div>
 
     <div class="show-card">
-      <div class="show-art">🎙️</div>
       <div>
         <div class="show-name">The Parapsychology Podcast</div>
         <div class="show-host">Dr. Renaud Evrard</div>
