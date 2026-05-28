@@ -145,8 +145,8 @@
   font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;
   text-decoration:none;transition:opacity .15s;
 }
-.show-link.s{background:#1DB954;color:#000}
-.show-link.a{background:#FC3C44;color:#fff}
+.show-link.s{background:rgba(29,185,84,.1);color:#1DB954;border:1px solid rgba(29,185,84,.22);width:26px;height:26px;padding:0;display:inline-flex;align-items:center;justify-content:center}
+.show-link.a{background:rgba(153,51,204,.08);color:#9933CC;border:1px solid rgba(153,51,204,.18);width:26px;height:26px;padding:0;display:inline-flex;align-items:center;justify-content:center}
 .show-link.w{background:rgba(100,75,180,.1);color:rgba(26,21,53,.7);border:1px solid rgba(100,75,180,.14)}
 .show-link:hover{opacity:.8}
 
@@ -679,6 +679,20 @@
 <script src="/assets/ui.js" defer></script>
 <script src="/assets/chat-widget.js" defer></script>
 <script>
+// ── Spotify & Apple Podcasts icon buttons ─────────────────────────────────
+const spotifySVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>`;
+const appleSVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm7.168 4.704a7.13 7.13 0 017.127 7.127 7.127 7.127 0 01-7.127 7.124A7.128 7.128 0 015.34 11.83a7.13 7.13 0 016.168-7.127zm.67 2.978c-.247.03-.473.127-.64.268-.498.417-.558.994-.558 1.55v3.562c0 .46-.037.926-.108 1.38a4.2 4.2 0 00-.124.882c0 1.158.94 2.098 2.098 2.098s2.098-.94 2.098-2.098c0-.305-.066-.593-.182-.855a4.207 4.207 0 01-.308-1.406V9.5c0-.558-.06-1.134-.558-1.55-.193-.162-.43-.248-.67-.268zm-.67.358c.258 0 .468.21.468.468 0 .258-.21.468-.468.468a.467.467 0 01-.468-.468c0-.258.21-.468.468-.468z"/></svg>`;
+document.querySelectorAll('.show-link.s').forEach(el => {
+  el.innerHTML = spotifySVG;
+  el.title = 'Listen on Spotify';
+  el.setAttribute('aria-label', 'Listen on Spotify');
+});
+document.querySelectorAll('.show-link.a').forEach(el => {
+  el.innerHTML = appleSVG;
+  el.title = 'Listen on Apple Podcasts';
+  el.setAttribute('aria-label', 'Listen on Apple Podcasts');
+});
+
 const navEl = document.querySelector('nav');
 window.addEventListener('scroll', () => {
   navEl.classList.toggle('scrolled', window.scrollY > 60);
