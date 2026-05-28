@@ -156,16 +156,31 @@
   border:1px solid rgba(100,75,180,.1);
   border-radius:16px;padding:22px 24px;
   background:#fff;
-  display:grid;grid-template-columns:auto 1fr auto;
-  gap:18px;align-items:center;
+  display:flex;flex-direction:column;
   transition:border-color .18s,box-shadow .18s;
   cursor:pointer;
   text-decoration:none;color:inherit;
+  overflow:hidden;
 }
 .ep-card:hover{
   border-color:rgba(120,95,190,.28);
   box-shadow:0 4px 22px rgba(100,75,180,.08);
 }
+.ep-card.playing{
+  border-color:rgba(109,40,217,.35);
+  box-shadow:0 4px 28px rgba(109,40,217,.12);
+}
+.ep-card-top{
+  display:grid;grid-template-columns:auto 1fr auto;
+  gap:18px;align-items:center;
+}
+.ep-player{
+  display:none;margin-top:16px;
+  border-radius:10px;overflow:hidden;
+  aspect-ratio:16/9;background:#000;
+}
+.ep-player.open{display:block}
+.ep-player iframe{width:100%;height:100%;border:none;display:block}
 .ep-num{
   font-size:24px;font-weight:800;
   color:rgba(100,75,180,.15);
@@ -204,7 +219,7 @@
 .ep-play:hover{transform:scale(1.08);box-shadow:0 5px 20px rgba(109,40,217,.45)}
 .ep-dur{font-size:11px;color:rgba(26,21,53,.38);white-space:nowrap}
 @media(max-width:640px){
-  .ep-card{grid-template-columns:1fr auto;gap:12px}
+  .ep-card-top{grid-template-columns:1fr auto;gap:12px}
   .ep-num{display:none}
   .ep-actions{flex-direction:row;align-items:center}
 }
@@ -268,6 +283,7 @@
 [data-theme="dark"] .show-link.w{background:rgba(100,75,180,.15);color:rgba(160,150,210,.7);border-color:rgba(110,85,190,.2)}
 [data-theme="dark"] .ep-card{background:#141228;border-color:rgba(110,85,190,.14)}
 [data-theme="dark"] .ep-card:hover{border-color:rgba(110,85,190,.3);box-shadow:0 4px 22px rgba(0,0,0,.35)}
+[data-theme="dark"] .ep-card.playing{border-color:rgba(109,40,217,.4);box-shadow:0 4px 28px rgba(109,40,217,.18)}
 [data-theme="dark"] .ep-show{color:rgba(160,139,222,.6)}
 [data-theme="dark"] .ep-title{color:rgba(237,232,224,.9)}
 [data-theme="dark"] .ep-desc{color:rgba(145,135,200,.55)}
@@ -316,18 +332,20 @@
     <div class="fp-info">
       <div class="fp-badge">
         <div class="fp-badge-dot"></div>
-        Skeptiko — Episode 583
+        Featured · Start Here
       </div>
-      <div class="fp-show-name">Science at the Edge of Knowledge</div>
-      <div class="fp-episode-title">Dr. Pim van Lommel on the AWARE Study, quantum consciousness, and what 344 NDE patients revealed about the mind-brain relationship.</div>
-      <div class="fp-platforms">
-        <a href="https://skeptiko.com" target="_blank" rel="noopener" class="fp-btn web">🌐 skeptiko.com</a>
-        <a href="https://open.spotify.com/show/skeptiko" target="_blank" rel="noopener" class="fp-btn spotify">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-          Spotify
-        </a>
-        <a href="https://podcasts.apple.com" target="_blank" rel="noopener" class="fp-btn apple">Apple Podcasts</a>
-      </div>
+      <div class="fp-show-name">Dr. Pim van Lommel — Consciousness After Death</div>
+      <div class="fp-episode-title">The cardiologist behind the landmark 2001 Lancet NDE study explains what 344 cardiac arrest patients revealed about the mind-brain relationship.</div>
+    </div>
+    <div style="margin-top:20px;border-radius:12px;overflow:hidden;aspect-ratio:16/9;background:#000">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/pVlgzjpTwxo?rel=0&modestbranding=1&color=white"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        style="width:100%;height:100%;border:none;display:block"
+        loading="lazy"
+        title="Dr. Pim van Lommel — Yes, There Is Consciousness After Death"
+      ></iframe>
     </div>
   </div>
 </div>
@@ -495,113 +513,119 @@
 
   <div class="episode-list">
 
-    <a href="https://skeptiko.com" target="_blank" rel="noopener" class="ep-card">
-      <div class="ep-num">01</div>
-      <div class="ep-body">
-        <div class="ep-show">Skeptiko · Ep. 577</div>
-        <div class="ep-title">Dr. Pim van Lommel — Cardiac Arrest, Consciousness, and 25 Years After the Lancet Study</div>
-        <div class="ep-desc">The Dutch cardiologist whose 2001 Lancet paper on NDE in cardiac arrest patients shocked the medical world returns to discuss what science has — and hasn't — learned since.</div>
-        <div class="ep-meta">
-          <span>Dr. Pim van Lommel</span>
-          <span>72 min</span>
-          <span>NDE · Cardiology · Consciousness</span>
+    <div class="ep-card" data-yt="pVlgzjpTwxo">
+      <div class="ep-card-top">
+        <div class="ep-num">01</div>
+        <div class="ep-body">
+          <div class="ep-show">Researcher Interview · NDE</div>
+          <div class="ep-title">Dr. Pim van Lommel — "Yes, There Is Consciousness After Death!" Full Interview</div>
+          <div class="ep-desc">The Dutch cardiologist whose 2001 Lancet paper on NDE in cardiac arrest patients shocked the medical world discusses what science has — and hasn't — learned since.</div>
+          <div class="ep-meta">
+            <span>Dr. Pim van Lommel</span>
+            <span>NDE · Cardiology · Consciousness</span>
+          </div>
+        </div>
+        <div class="ep-actions">
+          <button class="ep-play">▶</button>
         </div>
       </div>
-      <div class="ep-actions">
-        <div class="ep-play">▶</div>
-        <div class="ep-dur">72 min</div>
-      </div>
-    </a>
+      <div class="ep-player"></div>
+    </div>
 
-    <a href="https://newthinkingallowed.org" target="_blank" rel="noopener" class="ep-card">
-      <div class="ep-num">02</div>
-      <div class="ep-body">
-        <div class="ep-show">New Thinking Allowed</div>
-        <div class="ep-title">Dr. Bruce Greyson — After: A Doctor Explores What Near-Death Experiences Reveal About Life and Beyond</div>
-        <div class="ep-desc">The world's foremost NDE researcher and UVA professor discusses 50 years of clinical data, what the accounts share across cultures, and why mainstream science keeps looking away.</div>
-        <div class="ep-meta">
-          <span>Dr. Bruce Greyson</span>
-          <span>88 min</span>
-          <span>NDE · Research · University of Virginia</span>
+    <div class="ep-card" data-yt="2MMJPjnShZs">
+      <div class="ep-card-top">
+        <div class="ep-num">02</div>
+        <div class="ep-body">
+          <div class="ep-show">New Thinking Allowed</div>
+          <div class="ep-title">Dr. Bruce Greyson — Exploring Near-Death Experiences and What They Reveal About Life and Beyond</div>
+          <div class="ep-desc">The world's foremost NDE researcher and UVA professor discusses 50 years of clinical data, what the accounts share across cultures, and why mainstream science keeps looking away.</div>
+          <div class="ep-meta">
+            <span>Dr. Bruce Greyson</span>
+            <span>NDE · Research · University of Virginia</span>
+          </div>
+        </div>
+        <div class="ep-actions">
+          <button class="ep-play">▶</button>
         </div>
       </div>
-      <div class="ep-actions">
-        <div class="ep-play">▶</div>
-        <div class="ep-dur">88 min</div>
-      </div>
-    </a>
+      <div class="ep-player"></div>
+    </div>
 
-    <a href="https://newthinkingallowed.org" target="_blank" rel="noopener" class="ep-card">
-      <div class="ep-num">03</div>
-      <div class="ep-body">
-        <div class="ep-show">New Thinking Allowed</div>
-        <div class="ep-title">Dr. Jim Tucker — Return to Life: Extraordinary Cases of Children Who Remember Past Lives</div>
-        <div class="ep-desc">The successor to Ian Stevenson at UVA presents the most compelling reincarnation cases from decades of research into children who recall specific, verifiable details of previous lives.</div>
-        <div class="ep-meta">
-          <span>Dr. Jim Tucker</span>
-          <span>65 min</span>
-          <span>Past Lives · Children · Reincarnation</span>
+    <div class="ep-card" data-yt="3l7bcb3aoGc">
+      <div class="ep-card-top">
+        <div class="ep-num">03</div>
+        <div class="ep-body">
+          <div class="ep-show">New Thinking Allowed</div>
+          <div class="ep-title">Dr. Jim Tucker — Children Who Remember Previous Lives: Cases of Reincarnation</div>
+          <div class="ep-desc">The successor to Ian Stevenson at UVA presents the most compelling reincarnation cases from decades of research into children who recall specific, verifiable details of previous lives.</div>
+          <div class="ep-meta">
+            <span>Dr. Jim Tucker</span>
+            <span>Past Lives · Children · Reincarnation</span>
+          </div>
+        </div>
+        <div class="ep-actions">
+          <button class="ep-play">▶</button>
         </div>
       </div>
-      <div class="ep-actions">
-        <div class="ep-play">▶</div>
-        <div class="ep-dur">65 min</div>
-      </div>
-    </a>
+      <div class="ep-player"></div>
+    </div>
 
-    <a href="https://skeptiko.com" target="_blank" rel="noopener" class="ep-card">
-      <div class="ep-num">04</div>
-      <div class="ep-body">
-        <div class="ep-show">Skeptiko · Ep. 512</div>
-        <div class="ep-title">Dr. Bernardo Kastrup — Why Materialism Is Baloney: The Philosophical Case for Idealism</div>
-        <div class="ep-desc">Computer scientist turned philosopher Kastrup argues from first principles that consciousness — not matter — is the fundamental nature of reality, and that modern physics points the same way.</div>
-        <div class="ep-meta">
-          <span>Dr. Bernardo Kastrup</span>
-          <span>58 min</span>
-          <span>Philosophy · Idealism · Physics</span>
+    <div class="ep-card" data-yt="ApIRdE2xgdM">
+      <div class="ep-card-top">
+        <div class="ep-num">04</div>
+        <div class="ep-body">
+          <div class="ep-show">Skeptiko · Alex Tsakiris</div>
+          <div class="ep-title">Dr. Bernardo Kastrup — Why Materialism Is Baloney: The Philosophical Case for Idealism</div>
+          <div class="ep-desc">Computer scientist turned philosopher Kastrup argues from first principles that consciousness — not matter — is the fundamental nature of reality, and that modern physics points the same way.</div>
+          <div class="ep-meta">
+            <span>Dr. Bernardo Kastrup</span>
+            <span>Philosophy · Idealism · Physics</span>
+          </div>
+        </div>
+        <div class="ep-actions">
+          <button class="ep-play">▶</button>
         </div>
       </div>
-      <div class="ep-actions">
-        <div class="ep-play">▶</div>
-        <div class="ep-dur">58 min</div>
-      </div>
-    </a>
+      <div class="ep-player"></div>
+    </div>
 
-    <a href="https://iands.org" target="_blank" rel="noopener" class="ep-card">
-      <div class="ep-num">05</div>
-      <div class="ep-body">
-        <div class="ep-show">IANDS · Annual Conference</div>
-        <div class="ep-title">Dr. Sam Parnia — AWARE II: Consciousness During Cardiac Arrest and the Challenge of Verifiable OBE</div>
-        <div class="ep-desc">The AWARE II trial's lead investigator presents findings from the largest scientific study of consciousness and out-of-body experiences during cardiac arrest ever conducted.</div>
-        <div class="ep-meta">
-          <span>Dr. Sam Parnia</span>
-          <span>54 min</span>
-          <span>AWARE · Clinical · OBE · Research</span>
+    <div class="ep-card" data-yt="-4xzm4FsGHU">
+      <div class="ep-card-top">
+        <div class="ep-num">05</div>
+        <div class="ep-body">
+          <div class="ep-show">AWARE-II Study · IANDS</div>
+          <div class="ep-title">Dr. Sam Parnia — Consciousness and Awareness During Cardiac Arrest: AWARE-II Findings</div>
+          <div class="ep-desc">The AWARE II trial's lead investigator presents findings from the largest scientific study of consciousness and out-of-body experiences during cardiac arrest ever conducted.</div>
+          <div class="ep-meta">
+            <span>Dr. Sam Parnia</span>
+            <span>AWARE · Clinical · OBE · Research</span>
+          </div>
+        </div>
+        <div class="ep-actions">
+          <button class="ep-play">▶</button>
         </div>
       </div>
-      <div class="ep-actions">
-        <div class="ep-play">▶</div>
-        <div class="ep-dur">54 min</div>
-      </div>
-    </a>
+      <div class="ep-player"></div>
+    </div>
 
-    <a href="https://noetic.org/podcast" target="_blank" rel="noopener" class="ep-card">
-      <div class="ep-num">06</div>
-      <div class="ep-body">
-        <div class="ep-show">Noetic Now · IONS</div>
-        <div class="ep-title">Dean Radin — Real Magic: Ancient Wisdom, Modern Science, and a Guide to the Secret Power of the Universe</div>
-        <div class="ep-desc">IONS Chief Scientist Dean Radin reviews the meta-analytic evidence for psi phenomena, the replication crisis in parapsychology, and why consciousness may be fundamentally non-local.</div>
-        <div class="ep-meta">
-          <span>Dean Radin, PhD</span>
-          <span>76 min</span>
-          <span>Psi · Meta-Analysis · Non-Local Consciousness</span>
+    <div class="ep-card" data-yt="FsSVHYkfWNI">
+      <div class="ep-card-top">
+        <div class="ep-num">06</div>
+        <div class="ep-body">
+          <div class="ep-show">Institute of Noetic Sciences · IONS</div>
+          <div class="ep-title">Dean Radin — Magic, Ancient Wisdom, and Modern Science: The Evidence for Psi</div>
+          <div class="ep-desc">IONS Chief Scientist Dean Radin reviews the meta-analytic evidence for psi phenomena, the replication crisis in parapsychology, and why consciousness may be fundamentally non-local.</div>
+          <div class="ep-meta">
+            <span>Dean Radin, PhD</span>
+            <span>Psi · Meta-Analysis · Non-Local Consciousness</span>
+          </div>
+        </div>
+        <div class="ep-actions">
+          <button class="ep-play">▶</button>
         </div>
       </div>
-      <div class="ep-actions">
-        <div class="ep-play">▶</div>
-        <div class="ep-dur">76 min</div>
-      </div>
-    </a>
+      <div class="ep-player"></div>
+    </div>
 
   </div>
 
@@ -641,6 +665,50 @@ const navEl = document.querySelector('nav');
 window.addEventListener('scroll', () => {
   navEl.classList.toggle('scrolled', window.scrollY > 60);
 }, {passive:true});
+
+// ── Inline episode player ──────────────────────────────────────────
+document.querySelectorAll('.ep-card[data-yt]').forEach(card => {
+  card.addEventListener('click', function(e) {
+    // Ignore clicks on links inside the card (show-link etc.)
+    if (e.target.closest('a')) return;
+
+    const ytId = this.dataset.yt;
+    const player = this.querySelector('.ep-player');
+    const btn = this.querySelector('.ep-play');
+    const wasOpen = player.classList.contains('open');
+
+    // Close any other open players
+    document.querySelectorAll('.ep-card.playing').forEach(c => {
+      if (c !== this) {
+        c.querySelector('.ep-player').classList.remove('open');
+        c.querySelector('.ep-player').innerHTML = '';
+        c.querySelector('.ep-play').textContent = '▶';
+        c.classList.remove('playing');
+      }
+    });
+
+    if (wasOpen) {
+      // Close this one
+      player.classList.remove('open');
+      player.innerHTML = '';
+      btn.textContent = '▶';
+      this.classList.remove('playing');
+    } else {
+      // Open this one
+      player.innerHTML = `<iframe
+        src="https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&rel=0&modestbranding=1&color=white"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen
+        style="width:100%;height:100%;border:none;display:block"
+      ></iframe>`;
+      player.classList.add('open');
+      btn.textContent = '■';
+      this.classList.add('playing');
+      // Scroll card into view smoothly
+      this.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+  });
+});
 </script>
 </body>
 </html>
