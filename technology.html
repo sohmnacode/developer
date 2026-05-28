@@ -27,15 +27,23 @@ nav.scrolled .cta-nav{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
 .cta-nav{padding:9px 22px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border-radius:8px;font-size:13px;font-weight:600;color:#fff;text-decoration:none;transition:opacity .2s}
 .cta-nav:hover{opacity:.85}
 
-.hero{min-height:56vh;display:flex;align-items:flex-end;justify-content:flex-start;padding:0 80px 72px;background:linear-gradient(160deg,#060410 0%,#0D0B1F 60%,#0A0818 100%);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 90% 15%,rgba(109,40,217,.18),transparent 65%),radial-gradient(ellipse 40% 50% at 5% 85%,rgba(0,160,255,.06),transparent 60%);pointer-events:none}
-.hero::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(139,92,246,.055) 1px,transparent 1px);background-size:30px 30px;pointer-events:none}
-.hero-back{position:absolute;top:88px;left:40px;font-size:12px;color:rgba(255,255,255,.32);text-decoration:none;letter-spacing:.06em;transition:color .2s;z-index:1}
-.hero-back:hover{color:rgba(255,255,255,.65)}
+.hero{min-height:56vh;display:flex;align-items:flex-end;justify-content:flex-start;padding:0 80px 72px;background:linear-gradient(160deg,#F8F5EF 0%,#EDE5FF 60%,#E8E0FF 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 90% 15%,rgba(109,40,217,.1),transparent 65%),radial-gradient(ellipse 40% 50% at 5% 85%,rgba(100,75,200,.06),transparent 60%);pointer-events:none}
+.hero::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(109,40,217,.04) 1px,transparent 1px);background-size:30px 30px;pointer-events:none}
+.hero-back{position:absolute;top:88px;left:40px;font-size:12px;color:rgba(26,21,53,.4);text-decoration:none;letter-spacing:.06em;transition:color .2s;z-index:1}
+.hero-back:hover{color:rgba(26,21,53,.75)}
 .hero-content{position:relative;z-index:1;max-width:700px}
-.tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(160,139,222,.72);margin-bottom:16px;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:600}
-.hero h1{font-size:clamp(34px,5.5vw,68px);font-weight:700;letter-spacing:-.03em;line-height:1.03;margin-bottom:20px;background:linear-gradient(140deg,#fff 0%,#D4C8F5 50%,#A08BDE 92%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-desc{font-size:17px;color:rgba(255,255,255,.42);line-height:1.78;max-width:560px}
+.tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(109,65,180,.8);margin-bottom:16px;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:600}
+.hero h1{font-size:clamp(34px,5.5vw,68px);font-weight:700;letter-spacing:-.03em;line-height:1.03;margin-bottom:20px;background:linear-gradient(140deg,#2D1B69 0%,#5B21B6 52%,#8B5CF6 92%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:17px;color:rgba(26,21,53,.55);line-height:1.78;max-width:560px}
+[data-theme="dark"] .hero{background:linear-gradient(160deg,#060410 0%,#0D0B1F 60%,#0A0818 100%)!important;}
+[data-theme="dark"] .hero::before{background:radial-gradient(ellipse 70% 55% at 90% 15%,rgba(109,40,217,.18),transparent 65%),radial-gradient(ellipse 40% 50% at 5% 85%,rgba(0,160,255,.06),transparent 60%)!important;}
+[data-theme="dark"] .hero::after{background-image:radial-gradient(rgba(139,92,246,.055) 1px,transparent 1px)!important;}
+[data-theme="dark"] .hero h1{background:linear-gradient(140deg,#fff 0%,#D4C8F5 50%,#A08BDE 92%)!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;background-clip:text!important;}
+[data-theme="dark"] .hero-desc{color:rgba(255,255,255,.42)!important;}
+[data-theme="dark"] .hero-back{color:rgba(255,255,255,.32)!important;}
+[data-theme="dark"] .hero-back:hover{color:rgba(255,255,255,.65)!important;}
+[data-theme="dark"] .tag{color:rgba(160,139,222,.72)!important;}
 
 main{background:linear-gradient(to bottom,#F8F5EF,#F0ECE4)}
 .section{padding:80px 80px;max-width:1100px;margin:0 auto}
