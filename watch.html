@@ -477,8 +477,8 @@ function renderGrid() {
     >
       <div class="v-thumb">
         <img
-          src="https://img.youtube.com/vi/${v.id}/maxresdefault.jpg"
-          onerror="this.style.display='none'"
+          src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg"
+          onerror="this.src='https://i.ytimg.com/vi/${v.id}/mqdefault.jpg';this.onerror=function(){this.style.display='none'}"
           alt="${v.title.replace(/"/g,'&quot;')}"
           loading="lazy"
         />
