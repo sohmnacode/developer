@@ -127,6 +127,8 @@
         </div>
         <div class="rai-footer-row">
           <div class="rai-disclaimer">RAI synthesizes research — not medical or spiritual advice</div>
+          <button class="rai-save-btn" id="raiReadingList" onclick="window.__raiReadingList()" hidden>📚 Reading list</button>
+          <button class="rai-save-btn" id="raiShareCard" onclick="window.__raiShareCard()" hidden>✦ Share</button>
           <button class="rai-save-btn" id="raiSave" onclick="window.__raiSaveChat()" hidden>↓ Save</button>
         </div>
       </div>
@@ -141,6 +143,8 @@
     if (history.length) {
       restoreMessages();
       document.getElementById('raiSave').hidden = false;
+      document.getElementById('raiReadingList').hidden = false;
+      document.getElementById('raiShareCard').hidden = false;
     } else if (startersShown) {
       renderStarters();
     }
@@ -206,6 +210,8 @@
     document.getElementById('raiIn').style.height = 'auto';
     document.getElementById('raiSend').disabled = true;
     document.getElementById('raiSave').hidden = true;
+    document.getElementById('raiReadingList').hidden = true;
+    document.getElementById('raiShareCard').hidden = true;
   };
 
   window.__raiSaveChat = function () {
@@ -230,6 +236,64 @@
     a.download = 'reincarnatedai-chat-' + new Date().toISOString().slice(0, 10) + '.txt';
     a.click();
     URL.revokeObjectURL(a.href);
+  };
+
+  window.__raiReadingList = function () {
+    window.__raiSend('Based on our conversation so far, please generate a personalized reading list for me — books, papers, and researchers I should explore next. Organize by topic and include a brief note on why each is relevant to what we discussed.');
+  };
+
+  window.__raiShareCard = function () {
+    const userMsgs = history.filter(m => m.role === 'user');
+    const aiMsgs   = history.filter(m => m.role === 'assistant');
+    if (!userMsgs.length || !aiMsgs.length) return;
+    const question = userMsgs[userMsgs.length - 1].content;
+    const answer   = aiMsgs[aiMsgs.length - 1].content.replace(/[#*`_>]/g, '').replace(/\s+/g, ' ').trim();
+    const W = 1080, H = 580;
+    const canvas = document.createElement('canvas');
+    canvas.width = W * 2; canvas.height = H * 2;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(2, 2);
+    const bg = ctx.createLinearGradient(0, 0, W, H);
+    bg.addColorStop(0, '#0D0B1F'); bg.addColorStop(1, '#170F38');
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+    const glow = ctx.createRadialGradient(W*.12, H*.5, 0, W*.12, H*.5, W*.55);
+    glow.addColorStop(0, 'rgba(109,40,217,.2)'); glow.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = 'rgba(160,139,222,.6)';
+    ctx.font = '600 11px Inter,system-ui,sans-serif';
+    ctx.fillText('REINCARNATEDAI', 52, 52);
+    ctx.fillStyle = 'rgba(139,92,246,.5)';
+    ctx.font = '13px system-ui';
+    ctx.fillText('✦', 52, 88);
+    const qTrunc = question.length > 100 ? question.slice(0, 97) + '…' : question;
+    ctx.fillStyle = 'rgba(255,255,255,.4)';
+    ctx.font = '400 13px Inter,system-ui,sans-serif';
+    ctx.fillText(qTrunc, 52, 120);
+    ctx.strokeStyle = 'rgba(139,92,246,.2)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(52, 140); ctx.lineTo(W - 52, 140); ctx.stroke();
+    ctx.fillStyle = '#fff';
+    ctx.font = '600 20px Inter,system-ui,sans-serif';
+    (function wrapText(text, x, y, maxW, lh, max) {
+      const words = text.split(' '); let line = '', count = 0;
+      for (let i = 0; i < words.length; i++) {
+        const test = line + words[i] + ' ';
+        if (ctx.measureText(test).width > maxW && i > 0) {
+          ctx.fillText(line.trim(), x, y + count * lh); line = words[i] + ' '; count++;
+          if (count >= max) { ctx.fillText(line.trim() + '…', x, y + count * lh); return; }
+        } else { line = test; }
+      }
+      if (line.trim()) ctx.fillText(line.trim(), x, y + count * lh);
+    })(answer, 52, 172, W - 104, 30, 7);
+    const date = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+    ctx.fillStyle = 'rgba(139,92,246,.45)';
+    ctx.font = '500 11px Inter,system-ui,sans-serif';
+    ctx.fillText('reincarnatedai.com', 52, H - 32);
+    ctx.fillStyle = 'rgba(255,255,255,.18)';
+    ctx.fillText(date, W - 52 - ctx.measureText(date).width, H - 32);
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = 'reincarnatedai-' + new Date().toISOString().slice(0, 10) + '.png';
+    a.click();
   };
 
   window.__raiSetMode = function (mode) {
@@ -347,6 +411,8 @@
         history.push({ role: 'assistant', content: assistContent });
         saveState();
         document.getElementById('raiSave').hidden = false;
+        document.getElementById('raiReadingList').hidden = false;
+        document.getElementById('raiShareCard').hidden = false;
       }
 
     } catch {

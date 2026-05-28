@@ -338,6 +338,41 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
   /* Hide scroll indicator */
   .sh{ display:none; }
 }
+
+/* ── Surprise me button ── */
+.bp-surprise{padding:11px 22px;border:1px solid rgba(255,255,255,.15);border-radius:10px;font-size:13px;font-weight:500;color:rgba(255,255,255,.55);background:none;cursor:pointer;font-family:inherit;transition:border-color .2s,color .2s;letter-spacing:.03em}
+.bp-surprise:hover{border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.88)}
+@media(max-width:760px){.bp-surprise{width:100%;padding:15px;font-size:14px;border-radius:12px;text-align:center;display:block}}
+
+/* ── This week in consciousness history ── */
+.s-history{background:#fff;padding:0 40px;display:flex;justify-content:center;position:relative;z-index:2}
+.history-card{max-width:720px;width:100%;background:linear-gradient(135deg,#0D0B1F,#1A1040);border-radius:20px;padding:36px 40px;display:flex;gap:32px;align-items:flex-start;box-shadow:0 8px 40px rgba(80,60,160,.16);margin:-1px 0}
+.history-date{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(160,139,222,.55);font-weight:600;white-space:nowrap;min-width:90px;padding-top:3px;line-height:1.6}
+.history-body{flex:1;min-width:0}
+.history-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(139,92,246,.6);font-weight:600;margin-bottom:10px}
+.history-headline{font-size:17px;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.3;letter-spacing:-.01em}
+.history-desc{font-size:13px;color:rgba(255,255,255,.45);line-height:1.72;margin-bottom:12px}
+.history-source{font-size:10px;color:rgba(139,92,246,.45);letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+@media(max-width:600px){.s-history{padding:0 16px}.history-card{flex-direction:column;gap:10px;padding:24px 20px}.history-date{min-width:auto}}
+
+/* ── Weekly digest signup ── */
+.s-digest{background:#07050F;padding:72px 40px;position:relative;z-index:2;border-top:1px solid rgba(100,75,180,.08)}
+.s-digest-inner{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:48px;flex-wrap:wrap}
+.s-digest-left{flex:1;min-width:200px}
+.s-digest-left .ey{color:rgba(160,139,222,.55);margin-bottom:8px}
+.s-digest-title{font-size:clamp(18px,2.6vw,26px);font-weight:800;letter-spacing:-.03em;color:#fff;margin-bottom:10px;line-height:1.2}
+.s-digest-lede{font-size:13.5px;color:rgba(255,255,255,.35);line-height:1.7}
+.s-digest-form{display:flex;gap:8px;flex:1;min-width:240px}
+.s-digest-input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(100,75,180,.22);border-radius:10px;padding:12px 16px;font-size:14px;color:rgba(237,232,224,.9);font-family:inherit;outline:none;transition:border-color .15s;-webkit-appearance:none;min-width:0}
+.s-digest-input::placeholder{color:rgba(255,255,255,.2)}
+.s-digest-input:focus{border-color:rgba(120,95,200,.5)}
+.s-digest-btn{padding:12px 20px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border:none;border-radius:10px;font-size:13px;font-weight:600;font-family:inherit;color:#fff;cursor:pointer;transition:opacity .15s,transform .15s;white-space:nowrap;touch-action:manipulation;flex-shrink:0}
+.s-digest-btn:hover{opacity:.88;transform:translateY(-1px)}
+.s-digest-btn:disabled{opacity:.4;cursor:default;transform:none}
+.s-digest-status{width:100%;font-size:12.5px;padding-top:2px;min-height:18px}
+.s-digest-status.ok{color:rgba(100,220,140,.85)}
+.s-digest-status.err{color:rgba(255,100,100,.8)}
+@media(max-width:640px){.s-digest{padding:52px 24px}.s-digest-inner{flex-direction:column;gap:20px}.s-digest-form{flex-direction:column}.s-digest-btn{text-align:center}}
 </style>
 </head>
 <body>
@@ -355,6 +390,7 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
     <div class="acts">
       <a href="#explore" class="bp">Start the Journey</a>
       <a href="#research" class="bs">Learn More</a>
+      <button class="bp-surprise" onclick="surpriseMe()" type="button">✦ Surprise me</button>
     </div>
   </div>
   <div class="sh"><div class="sl"></div><span>Scroll</span></div>
@@ -366,6 +402,8 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
   <div class="stat"><div class="stat-n">6</div><div class="stat-l">Competing Theories</div></div>
   <div class="stat"><div class="stat-n">50+</div><div class="stat-l">Years of Research</div></div>
 </div>
+
+<div class="s-history"><div class="history-card" id="historyCard"></div></div>
 
 <section class="s3" id="explore">
   <div class="s2-quote" style="margin-bottom:56px">
@@ -395,11 +433,29 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
     </div>
     <div class="chat-footer-row">
       <p class="chat-disclaimer">ReincarnatedAI synthesizes consciousness research — not medical or spiritual advice</p>
+      <button id="readingListBtn" class="save-chat-btn" onclick="sendReadingList()" hidden>📚 Reading list</button>
+      <button id="shareCardBtn" class="save-chat-btn" onclick="shareAsCard()" hidden>✦ Share</button>
       <button id="saveChat" class="save-chat-btn" onclick="saveChatTranscript()" hidden>↓ Save conversation</button>
     </div>
   </div>
 </section>
 
+<section class="s-digest">
+  <div class="s-digest-inner">
+    <div class="s-digest-left">
+      <div class="ey">Weekly Digest</div>
+      <h2 class="s-digest-title">Stay at the edge of consciousness science</h2>
+      <p class="s-digest-lede">One email per week: a new case, a research update, and a question from RAI.</p>
+    </div>
+    <div>
+      <form class="s-digest-form" id="digestForm" novalidate>
+        <input type="email" id="digestEmail" class="s-digest-input" placeholder="your@email.com" autocomplete="email" required>
+        <button type="submit" class="s-digest-btn" id="digestBtn">Subscribe</button>
+      </form>
+      <p class="s-digest-status" id="digestStatus"></p>
+    </div>
+  </div>
+</section>
 
 <section class="s4" id="research">
   <div class="sh2">
@@ -988,6 +1044,8 @@ async function sendMsg(preset) {
     aiBody.querySelectorAll('.cursor').forEach(c => c.remove());
     history.push({ role: 'assistant', content: aiBody._raw });
     document.getElementById('saveChat').hidden = false;
+    document.getElementById('readingListBtn').hidden = false;
+    document.getElementById('shareCardBtn').hidden = false;
 
   } catch {
     aiBody.querySelectorAll('.cursor').forEach(c => c.remove());
@@ -1178,6 +1236,223 @@ const QUOTES = [
     }
   });
 })();
+</script>
+
+<script>
+// ── Feature: Surprise me ──────────────────────────────────────────
+function surpriseMe() {
+  const pages = ['/nde','/reincarnation','/quantum','/psychedelics','/nonlocal',
+    '/consciousness','/evidence','/cases','/researchers','/theories',
+    '/traditions','/timeline','/glossary','/unknowns','/skeptics'];
+  window.location.href = pages[Math.floor(Math.random() * pages.length)];
+}
+
+// ── Feature: This week in consciousness history ───────────────────
+(function () {
+  const HISTORY = [
+    { w:1,  date:'January 1975',   headline:'Raymond Moody Coins "Near-Death Experience"', desc:'Moody\'s "Life After Life" enters final manuscript, introducing the term NDE to describe consistent accounts from patients resuscitated from clinical death.', source:'Moody · Life After Life · 1975' },
+    { w:2,  date:'January 1977',   headline:'IANDS Founded at University of Virginia', desc:'The International Association for Near-Death Studies is established, becoming the first scholarly organization dedicated to systematic NDE research.', source:'IANDS · University of Virginia · 1977' },
+    { w:3,  date:'January 1983',   headline:'Greyson NDE Scale Published', desc:'Bruce Greyson publishes the standardized 16-item NDE Scale in Psychiatry, providing the field\'s first validated psychometric tool for measuring NDE depth.', source:'Greyson · Psychiatry · 1983' },
+    { w:4,  date:'January 2001',   headline:'Van Lommel\'s Landmark Lancet Study', desc:'Pim van Lommel publishes the first large prospective study of NDEs in cardiac arrest patients in The Lancet, documenting 62 cases with verified cardiac arrest.', source:'van Lommel et al. · The Lancet · 2001' },
+    { w:5,  date:'February 1882',  headline:'Society for Psychical Research Founded', desc:'Founded in London, the SPR becomes the first scientific body to systematically investigate telepathy, clairvoyance, and survival of consciousness — 140 years before mainstream interest.', source:'Society for Psychical Research · 1882' },
+    { w:6,  date:'February 1967',  headline:'Ian Stevenson Publishes "Twenty Cases Suggestive of Reincarnation"', desc:'Stevenson\'s rigorous case documentation of children\'s past-life memories establishes the gold standard methodology for reincarnation research.', source:'Stevenson · University of Virginia Press · 1966' },
+    { w:7,  date:'February 1994',  headline:'Penrose–Hameroff Orch OR Theory Proposed', desc:'Roger Penrose and Stuart Hameroff propose Orchestrated Objective Reduction — the first quantum mechanical theory of consciousness — at a Tucson consciousness conference.', source:'Penrose & Hameroff · 1994' },
+    { w:8,  date:'February 2014',  headline:'AWARE Study Results Published', desc:'Sam Parnia publishes results from AWARE I, the largest prospective cardiac arrest NDE study. One case includes verified out-of-body perception of hidden target.', source:'Parnia et al. · Resuscitation · 2014' },
+    { w:9,  date:'March 1900',     headline:'William James Delivers Gifford Lectures', desc:'James delivers "The Varieties of Religious Experience," arguing that mystical states represent a distinct and legitimate form of consciousness worthy of scientific study.', source:'James · Gifford Lectures · 1901–1902' },
+    { w:10, date:'March 1951',     headline:'Wilder Penfield Maps Consciousness in the Brain', desc:'Penfield\'s surgical stimulation experiments reveal that no area of the cortex produces the sense of a unified self, leading him to speculate consciousness may transcend the brain.', source:'Penfield · Montreal Neurological Institute · 1951' },
+    { w:11, date:'March 1995',     headline:'David Chalmers Names the Hard Problem', desc:'Chalmers introduces "the hard problem of consciousness" at the Tucson conference, crystallizing the philosophical challenge: why does physical brain activity produce subjective experience at all?', source:'Chalmers · Journal of Consciousness Studies · 1995' },
+    { w:12, date:'March 2013',     headline:'Jim Tucker Publishes "Return to Life"', desc:'Tucker\'s systematic analysis of American children\'s past-life memories brings the UVA reincarnation database to 2,500+ cases, with rigorous scoring methodology.', source:'Tucker · St. Martin\'s Press · 2013' },
+    { w:13, date:'April 1954',     headline:'Aldous Huxley Publishes The Doors of Perception', desc:'Huxley\'s account of his mescaline experience proposes the brain as a "reducing valve" for consciousness — the filter theory that still grounds modern NDE interpretations.', source:'Huxley · Chatto & Windus · 1954' },
+    { w:14, date:'April 1927',     headline:'Heisenberg Publishes the Uncertainty Principle', desc:'Heisenberg\'s paper establishing fundamental limits on measurement at the quantum scale opens a century-long debate on whether quantum indeterminacy relates to consciousness and free will.', source:'Heisenberg · Zeitschrift für Physik · 1927' },
+    { w:15, date:'April 1982',     headline:'Gallup NDE Poll Reveals 8 Million Americans', desc:'George Gallup Jr. documents that 5% of American adults report a near-death experience — the first population-level estimate, establishing NDEs as a mainstream phenomenon.', source:'Gallup · Adventures in Immortality · 1982' },
+    { w:16, date:'April 2009',     headline:'Terminal Lucidity Systematically Documented', desc:'Alexander Batthyany begins systematic documentation of terminal lucidity — unexpected cognitive clarity in dying patients with severe brain damage — challenging the brain-as-generator model.', source:'Batthyany · University of Vienna · 2009' },
+    { w:17, date:'May 1927',       headline:'Schrödinger Publishes Wave Mechanics', desc:'Schrödinger\'s quantum wave equations, combined with his later philosophical writings, form the basis of arguments that consciousness is fundamental to physical reality.', source:'Schrödinger · Physical Review · 1927' },
+    { w:18, date:'May 1988',       headline:'Michael Sabom Documents Atlanta NDE Case', desc:'Sabom\'s documentation of Pam Reynolds\'s out-of-body perceptions during deep hypothermic circulatory arrest becomes one of the most studied veridical NDE cases in the literature.', source:'Sabom · Light and Death · 1998' },
+    { w:19, date:'May 2004',       headline:'Consciousness and Its Place in Nature Conference', desc:'A landmark Tucson conference brings together IIT, Global Workspace Theory, and Orch OR researchers for the first major adversarial debate on theories of consciousness.', source:'University of Arizona · 2004' },
+    { w:20, date:'May 1953',       headline:'Crick and Watson Publish the DNA Double Helix', desc:'The discovery of DNA\'s structure establishes the molecular basis of life — and sets the stage for later debates about whether biological complexity alone can explain consciousness.', source:'Watson & Crick · Nature · 1953' },
+    { w:21, date:'May 2023',       headline:'Adversarial Consciousness Study Published', desc:'Melloni et al. publish the first formal adversarial collaboration between IIT and Global Workspace Theory proponents, with results slightly favoring GWT but neither theory confirmed.', source:'Melloni et al. · Nature Human Behaviour · 2023' },
+    { w:22, date:'June 1990',      headline:'Decade of the Brain Proclaimed', desc:'President George H.W. Bush declares the 1990s the "Decade of the Brain," catalyzing $1B+ in neuroscience funding — and inadvertently amplifying debates about what brain imaging cannot explain.', source:'US Presidential Proclamation · 1990' },
+    { w:23, date:'June 2013',      headline:'AWARE II Launched', desc:'Sam Parnia expands the AWARE project to 26 hospitals across the US and UK, with improved hidden-target protocols designed to test out-of-body perception with greater rigor.', source:'Parnia · New York University · 2013' },
+    { w:24, date:'June 1997',      headline:'Stevenson Publishes Reincarnation and Biology', desc:'Stevenson\'s two-volume, 2,268-page documentation of 200+ birthmark cases correlated with previous-life wounds is published — the most detailed physical evidence dataset in the field.', source:'Stevenson · Praeger · 1997' },
+    { w:25, date:'June 2022',      headline:'Largest NDE Survey Published', desc:'A NBER survey finds 10% of Americans — 33 million people — report a near-death experience, tripling earlier estimates and establishing NDEs as one of the most common anomalous human experiences.', source:'NBER Working Paper · Martial et al. · 2022' },
+    { w:26, date:'July 1905',      headline:'Einstein Publishes Special Relativity', desc:'Einstein\'s relativity establishes that time is not absolute — later informing consciousness researchers who argue that the "specious present" of experience cannot be reduced to physics.', source:'Einstein · Annalen der Physik · 1905' },
+    { w:27, date:'July 2023',      headline:'Gamma Burst at Moment of Death Confirmed', desc:'University of Michigan researchers document a surge of gamma-band neural activity at the moment of cardiac arrest, exceeding waking-state levels — reviving the timing debate in NDE research.', source:'Borjigin et al. · PNAS · 2023' },
+    { w:28, date:'July 1951',      headline:'Alan Turing Proposes the Imitation Game', desc:'Turing\'s seminal paper on machine intelligence sharpens the question of whether consciousness requires biology — a debate that defines the AI and consciousness research intersection today.', source:'Turing · Mind · 1950' },
+    { w:29, date:'July 1974',      headline:'Michael Persinger Begins Temporal Lobe Research', desc:'Persinger begins decades of research linking temporal lobe activity to mystical experiences, later developing the "God helmet" — and generating both scientific and cultural controversy.', source:'Persinger · Laurentian University · 1974' },
+    { w:30, date:'August 1984',    headline:'Kenneth Ring Publishes Heading Toward Omega', desc:'Ring\'s longitudinal study of 74 NDErs reveals lasting personality changes including reduced fear of death, increased compassion, and greater spiritual orientation — coining "omega experience."', source:'Ring · William Morrow · 1984' },
+    { w:31, date:'August 2010',    headline:'Quantum Biology Confirmed in Photosynthesis', desc:'Fleming and Engel confirm long-range quantum coherence in photosynthetic energy transfer in living cells, establishing quantum biology as a legitimate field and strengthening Orch OR\'s biological plausibility.', source:'Engel et al. · Nature · 2007–2010' },
+    { w:32, date:'August 1975',    headline:'"Life After Life" Published by Raymond Moody', desc:'Moody\'s 150 case accounts of NDEs, compiled over a decade, is published by Mockingbird Books — launching the modern era of near-death experience research.', source:'Moody · Mockingbird Books · 1975' },
+    { w:33, date:'September 1890', headline:'William James Publishes Principles of Psychology', desc:'James\'s landmark work introduces the "stream of consciousness" concept and argues that psychology cannot ignore subjective experience — foundational to consciousness science today.', source:'James · Henry Holt & Co. · 1890' },
+    { w:34, date:'September 1962', headline:'Thomas Kuhn Publishes The Structure of Scientific Revolutions', desc:'Kuhn introduces paradigm shifts, giving consciousness researchers a framework for understanding why anomalous evidence — NDEs, psi, past-life memories — struggles to reshape mainstream science.', source:'Kuhn · University of Chicago Press · 1962' },
+    { w:35, date:'September 2004', headline:'Pim van Lommel Publishes "Consciousness Beyond Life"', desc:'Van Lommel\'s popular synthesis of NDE research, nonlocal consciousness theory, and quantum biology becomes a landmark in the scientific case for consciousness surviving the brain.', source:'van Lommel · HarperOne · 2010' },
+    { w:36, date:'September 1998', headline:'Global Consciousness Project Launched', desc:'Roger Nelson launches the GCP at Princeton, networking random number generators worldwide to detect correlations during major global events — producing datasets still analyzed today.', source:'Nelson · Princeton · 1998' },
+    { w:37, date:'October 1900',   headline:'Max Planck Introduces the Quantum', desc:'Planck\'s "quantum of action" solves the blackbody radiation problem and inaugurates quantum physics — whose later implications for observation and consciousness remain unresolved.', source:'Planck · Deutsche Physikalische Gesellschaft · 1900' },
+    { w:38, date:'October 1975',   headline:'Elisabeth Kübler-Ross Advocates for NDE Research', desc:'Kübler-Ross, already famous for her death and dying work, publicly endorses NDE research and calls for hospital-based documentation protocols at a major psychiatry conference.', source:'Kübler-Ross · 1975 Symposium' },
+    { w:39, date:'October 2004',   headline:'The Day I Died Airs on BBC', desc:'BBC\'s documentary on NDEs, featuring van Lommel\'s Lancet study and the Pam Reynolds case, reaches millions of viewers and becomes the most-cited public account of NDE research.', source:'BBC Scotland · The Day I Died · 2002' },
+    { w:40, date:'October 2013',   headline:'Shared Death Experiences Documented', desc:'Raymond Moody and Paul Perry publish systematic accounts of "shared death experiences" — cases where bystanders at a death report NDE-like phenomena — expanding the evidence base.', source:'Moody & Perry · Glimpses of Eternity · 2010' },
+    { w:41, date:'November 1926',  headline:'Erwin Schrödinger Publishes "On the Relation…"', desc:'Schrödinger\'s philosophical writings on consciousness, later collected in "What Is Life?" (1944), propose that consciousness is singular and universal — not produced by individual brains.', source:'Schrödinger · Cambridge University Press · 1944' },
+    { w:42, date:'November 2006',  headline:'Greyson Publishes NDE Distressing Cases Study', desc:'Bruce Greyson and Nancy Evans Bush publish systematic documentation of distressing NDEs, expanding the research beyond pleasant experiences and complicating simple survival theories.', source:'Greyson & Bush · Psychiatry · 2006' },
+    { w:43, date:'November 1984',  headline:'David Bohm Publishes Wholeness and the Implicate Order', desc:'Bohm\'s theory of the "implicate order" — a deeper level of reality from which both matter and consciousness unfold — becomes a major framework in consciousness-beyond-brain theories.', source:'Bohm · Routledge · 1980' },
+    { w:44, date:'November 2010',  headline:'Integrated Information Theory Formalized', desc:'Giulio Tononi publishes the formal mathematical version of IIT, proposing phi (Φ) as a measurable quantity of consciousness — the most mathematically precise theory in the field.', source:'Tononi · BMC Neuroscience · 2008' },
+    { w:45, date:'November 2019',  headline:'Francis Crick\'s Astonishing Hypothesis Revisited', desc:'Christof Koch publishes "The Feeling of Life Itself," updating Crick\'s neural correlates of consciousness framework — and acknowledging that the hard problem remains unsolved 25 years on.', source:'Koch · MIT Press · 2019' },
+    { w:46, date:'December 1900',  headline:'The Quantum is Born — and With It, Questions', desc:'Planck\'s December presentation of quantum theory begins a century of debate: if the observer affects the quantum system, what — or who — is observing?', source:'Planck · Berlin Physical Society · December 14, 1900' },
+    { w:47, date:'December 1932',  headline:'John von Neumann on the Measurement Problem', desc:'Von Neumann\'s mathematical formalization of quantum mechanics introduces the measurement problem — why does observation collapse the wave function? — which still has no consensus answer.', source:'von Neumann · Mathematical Foundations of QM · 1932' },
+    { w:48, date:'December 2001',  headline:'Van Lommel\'s Lancet Paper Makes Global Headlines', desc:'The December 2001 Lancet paper on NDEs in cardiac arrest patients reaches mainstream media worldwide, marking the moment NDE research achieved scientific legitimacy in public discourse.', source:'van Lommel · The Lancet · December 15, 2001' },
+    { w:49, date:'December 2022',  headline:'AI Consciousness Debate Enters the Open', desc:'A wave of papers and public statements from AI researchers, including at Google and DeepMind, formally debate whether large language models could have functional analogs to experience.', source:'Various · 2022–2023' },
+    { w:50, date:'December 1953',  headline:'Ciba Foundation Symposium on Consciousness', desc:'One of the first multidisciplinary scientific conferences on the nature of consciousness brings together neurologists, physicists, and philosophers — a template for future Tucson-style events.', source:'Ciba Foundation · London · 1953' },
+    { w:51, date:'December 1968',  headline:'Apollo 8 and the Overview Effect', desc:'As astronauts first see Earth as a whole from lunar orbit, Edgar Mitchell (among others) later reports profound consciousness shifts — leading to the founding of the Institute of Noetic Sciences.', source:'Mitchell · IONS · 1973' },
+    { w:52, date:'December 2023',  headline:'Nature Paper on Dying Brain Activity', desc:'A Nature Communications study documents coordinated gamma-band surges in dying patients with cardiac arrest, suggesting possible neural substrates for end-of-life experiences.', source:'Borjigin lab · University of Michigan · 2023' },
+  ];
+
+  function getWeek(d) {
+    const oneJan = new Date(d.getFullYear(), 0, 1);
+    return Math.ceil(((d - oneJan) / 86400000 + oneJan.getDay() + 1) / 7);
+  }
+
+  const w = Math.min(Math.max(getWeek(new Date()), 1), 52);
+  const entry = HISTORY.find(e => e.w === w) || HISTORY[(w - 1) % HISTORY.length];
+  const card = document.getElementById('historyCard');
+  if (!card || !entry) return;
+  card.innerHTML = `
+    <div class="history-date">${entry.date}</div>
+    <div class="history-body">
+      <div class="history-eyebrow">This Week in Consciousness History</div>
+      <div class="history-headline">${entry.headline}</div>
+      <div class="history-desc">${entry.desc}</div>
+      <div class="history-source">${entry.source}</div>
+    </div>`;
+})();
+
+// ── Feature: Weekly digest signup ────────────────────────────────
+(function () {
+  const form   = document.getElementById('digestForm');
+  const btn    = document.getElementById('digestBtn');
+  const status = document.getElementById('digestStatus');
+  if (!form) return;
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const email = document.getElementById('digestEmail').value.trim();
+    if (!email) return;
+    btn.disabled = true;
+    btn.textContent = 'Subscribing…';
+    status.textContent = '';
+    status.className = 's-digest-status';
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: 'bee91e89-fdb3-4ee9-aaaa-ce280162ddb8',
+          subject:   'New Weekly Digest Subscriber — ReincarnatedAI',
+          from_name: 'ReincarnatedAI Digest',
+          email,
+          message:   `New digest subscriber: ${email}`,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        status.textContent = '✓ Subscribed — first issue coming soon.';
+        status.className = 's-digest-status ok';
+        form.reset();
+      } else {
+        throw new Error(data.message || 'Failed');
+      }
+    } catch (err) {
+      status.textContent = 'Something went wrong — please try again.';
+      status.className = 's-digest-status err';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Subscribe';
+    }
+  });
+})();
+
+// ── Feature: Reading list generator ──────────────────────────────
+function sendReadingList() {
+  sendMsg('Based on our conversation so far, please generate a personalized reading list for me — books, papers, and researchers I should explore next. Organize by topic and include a brief note on why each is relevant to what we discussed.');
+}
+
+// ── Feature: Share conversation as card (Canvas) ──────────────────
+function wrapText(ctx, text, x, y, maxWidth, lineHeight, maxLines) {
+  const words = text.split(' ');
+  let line = '', count = 0;
+  for (let i = 0; i < words.length; i++) {
+    const test = line + words[i] + ' ';
+    if (ctx.measureText(test).width > maxWidth && i > 0) {
+      ctx.fillText(line.trim(), x, y + count * lineHeight);
+      line = words[i] + ' ';
+      count++;
+      if (count >= maxLines) { ctx.fillText(line.trim() + '…', x, y + count * lineHeight); return; }
+    } else { line = test; }
+  }
+  if (line.trim()) ctx.fillText(line.trim(), x, y + count * lineHeight);
+}
+
+function shareAsCard() {
+  const userMsgs = history.filter(m => m.role === 'user');
+  const aiMsgs   = history.filter(m => m.role === 'assistant');
+  if (!userMsgs.length || !aiMsgs.length) return;
+
+  const question = userMsgs[userMsgs.length - 1].content;
+  const answer   = aiMsgs[aiMsgs.length - 1].content.replace(/[#*`_>]/g, '').replace(/\s+/g, ' ').trim();
+
+  const W = 1080, H = 580;
+  const canvas = document.createElement('canvas');
+  canvas.width = W * 2; canvas.height = H * 2;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(2, 2);
+
+  // Background
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, '#0D0B1F'); bg.addColorStop(1, '#170F38');
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+  // Glow
+  const glow = ctx.createRadialGradient(W * 0.12, H * 0.5, 0, W * 0.12, H * 0.5, W * 0.55);
+  glow.addColorStop(0, 'rgba(109,40,217,.2)'); glow.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
+
+  // Branding
+  ctx.fillStyle = 'rgba(160,139,222,.6)';
+  ctx.font = '600 11px Inter,system-ui,sans-serif';
+  ctx.fillText('REINCARNATEDAI', 52, 52);
+
+  // Star
+  ctx.fillStyle = 'rgba(139,92,246,.5)';
+  ctx.font = '13px system-ui';
+  ctx.fillText('✦', 52, 88);
+
+  // Question
+  const qTrunc = question.length > 100 ? question.slice(0, 97) + '…' : question;
+  ctx.fillStyle = 'rgba(255,255,255,.4)';
+  ctx.font = '400 13px Inter,system-ui,sans-serif';
+  ctx.fillText(qTrunc, 52, 120);
+
+  // Divider
+  ctx.strokeStyle = 'rgba(139,92,246,.2)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(52, 140); ctx.lineTo(W - 52, 140); ctx.stroke();
+
+  // Answer
+  ctx.fillStyle = '#fff';
+  ctx.font = '600 20px Inter,system-ui,sans-serif';
+  wrapText(ctx, answer, 52, 172, W - 104, 30, 7);
+
+  // Footer
+  const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  ctx.fillStyle = 'rgba(139,92,246,.45)';
+  ctx.font = '500 11px Inter,system-ui,sans-serif';
+  ctx.fillText('reincarnatedai.com', 52, H - 32);
+  ctx.fillStyle = 'rgba(255,255,255,.18)';
+  ctx.fillText(date, W - 52 - ctx.measureText(date).width, H - 32);
+
+  document.fonts.ready.then(() => {
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = 'reincarnatedai-' + new Date().toISOString().slice(0, 10) + '.png';
+    a.click();
+  });
+}
 </script>
 </body>
 </html>
