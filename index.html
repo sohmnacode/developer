@@ -344,35 +344,52 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
 .bp-surprise:hover{border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.88)}
 @media(max-width:760px){.bp-surprise{width:100%;padding:15px;font-size:14px;border-radius:12px;text-align:center;display:block}}
 
-/* ── This week in consciousness history ── */
-.s-history{background:#fff;padding:0 40px;display:flex;justify-content:center;position:relative;z-index:2}
-.history-card{max-width:720px;width:100%;background:linear-gradient(135deg,#0D0B1F,#1A1040);border-radius:20px;padding:36px 40px;display:flex;gap:32px;align-items:flex-start;box-shadow:0 8px 40px rgba(80,60,160,.16);margin:-1px 0}
-.history-date{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(160,139,222,.55);font-weight:600;white-space:nowrap;min-width:90px;padding-top:3px;line-height:1.6}
+/* ── This week in consciousness history — light mode ── */
+.s-history{background:#F7F6FF;padding:40px;display:flex;justify-content:center;position:relative;z-index:2;border-top:1px solid rgba(100,75,180,.07);border-bottom:1px solid rgba(100,75,180,.07)}
+.history-card{max-width:720px;width:100%;background:#fff;border:1px solid rgba(100,75,180,.12);border-radius:20px;padding:36px 40px;display:flex;gap:32px;align-items:flex-start;box-shadow:0 4px 24px rgba(100,75,180,.07)}
+.history-date{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(120,95,190,.5);font-weight:600;white-space:nowrap;min-width:90px;padding-top:3px;line-height:1.6}
 .history-body{flex:1;min-width:0}
-.history-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(139,92,246,.6);font-weight:600;margin-bottom:10px}
-.history-headline{font-size:17px;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.3;letter-spacing:-.01em}
-.history-desc{font-size:13px;color:rgba(255,255,255,.45);line-height:1.72;margin-bottom:12px}
-.history-source{font-size:10px;color:rgba(139,92,246,.45);letter-spacing:.1em;text-transform:uppercase;font-weight:500}
-@media(max-width:600px){.s-history{padding:0 16px}.history-card{flex-direction:column;gap:10px;padding:24px 20px}.history-date{min-width:auto}}
+.history-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(109,40,217,.6);font-weight:600;margin-bottom:10px}
+.history-headline{font-size:17px;font-weight:700;color:#0D0B1F;margin-bottom:8px;line-height:1.3;letter-spacing:-.01em}
+.history-desc{font-size:13px;color:rgba(26,21,53,.5);line-height:1.72;margin-bottom:12px}
+.history-source{font-size:10px;color:rgba(109,40,217,.4);letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+@media(max-width:600px){.s-history{padding:24px 16px}.history-card{flex-direction:column;gap:10px;padding:24px 20px}.history-date{min-width:auto}}
+/* dark mode */
+[data-theme="dark"] .s-history{background:#0C0A1A;border-color:rgba(100,75,180,.12)}
+[data-theme="dark"] .history-card{background:linear-gradient(135deg,#13102A,#1A1040);border-color:rgba(100,75,180,.18);box-shadow:0 8px 40px rgba(0,0,0,.35)}
+[data-theme="dark"] .history-date{color:rgba(160,139,222,.5)}
+[data-theme="dark"] .history-eyebrow{color:rgba(139,92,246,.65)}
+[data-theme="dark"] .history-headline{color:#fff}
+[data-theme="dark"] .history-desc{color:rgba(255,255,255,.42)}
+[data-theme="dark"] .history-source{color:rgba(139,92,246,.4)}
 
-/* ── Weekly digest signup ── */
-.s-digest{background:#07050F;padding:72px 40px;position:relative;z-index:2;border-top:1px solid rgba(100,75,180,.08)}
+/* ── Weekly digest signup — light mode ── */
+.s-digest{background:#F7F6FF;padding:72px 40px;position:relative;z-index:2;border-top:1px solid rgba(100,75,180,.08)}
 .s-digest-inner{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:48px;flex-wrap:wrap}
 .s-digest-left{flex:1;min-width:200px}
-.s-digest-left .ey{color:rgba(160,139,222,.55);margin-bottom:8px}
-.s-digest-title{font-size:clamp(18px,2.6vw,26px);font-weight:800;letter-spacing:-.03em;color:#fff;margin-bottom:10px;line-height:1.2}
-.s-digest-lede{font-size:13.5px;color:rgba(255,255,255,.35);line-height:1.7}
+.s-digest-left .ey{color:rgba(120,95,190,.65);margin-bottom:8px}
+.s-digest-title{font-size:clamp(18px,2.6vw,26px);font-weight:800;letter-spacing:-.03em;color:#0D0B1F;margin-bottom:10px;line-height:1.2}
+.s-digest-lede{font-size:13.5px;color:rgba(26,21,53,.5);line-height:1.7}
 .s-digest-form{display:flex;gap:8px;flex:1;min-width:240px}
-.s-digest-input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(100,75,180,.22);border-radius:10px;padding:12px 16px;font-size:14px;color:rgba(237,232,224,.9);font-family:inherit;outline:none;transition:border-color .15s;-webkit-appearance:none;min-width:0}
-.s-digest-input::placeholder{color:rgba(255,255,255,.2)}
+.s-digest-input{flex:1;background:#fff;border:1px solid rgba(100,75,180,.2);border-radius:10px;padding:12px 16px;font-size:14px;color:#1A1535;font-family:inherit;outline:none;transition:border-color .15s;-webkit-appearance:none;min-width:0}
+.s-digest-input::placeholder{color:rgba(26,21,53,.35)}
 .s-digest-input:focus{border-color:rgba(120,95,200,.5)}
 .s-digest-btn{padding:12px 20px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border:none;border-radius:10px;font-size:13px;font-weight:600;font-family:inherit;color:#fff;cursor:pointer;transition:opacity .15s,transform .15s;white-space:nowrap;touch-action:manipulation;flex-shrink:0}
 .s-digest-btn:hover{opacity:.88;transform:translateY(-1px)}
 .s-digest-btn:disabled{opacity:.4;cursor:default;transform:none}
 .s-digest-status{width:100%;font-size:12.5px;padding-top:2px;min-height:18px}
-.s-digest-status.ok{color:rgba(100,220,140,.85)}
-.s-digest-status.err{color:rgba(255,100,100,.8)}
+.s-digest-status.ok{color:rgba(40,160,80,.9)}
+.s-digest-status.err{color:rgba(200,60,60,.9)}
 @media(max-width:640px){.s-digest{padding:52px 24px}.s-digest-inner{flex-direction:column;gap:20px}.s-digest-form{flex-direction:column}.s-digest-btn{text-align:center}}
+/* dark mode */
+[data-theme="dark"] .s-digest{background:#0C0A1A;border-color:rgba(100,75,180,.12)}
+[data-theme="dark"] .s-digest-left .ey{color:rgba(160,139,222,.5)}
+[data-theme="dark"] .s-digest-title{color:#fff}
+[data-theme="dark"] .s-digest-lede{color:rgba(255,255,255,.35)}
+[data-theme="dark"] .s-digest-input{background:rgba(255,255,255,.05);border-color:rgba(100,75,180,.22);color:rgba(237,232,224,.9)}
+[data-theme="dark"] .s-digest-input::placeholder{color:rgba(255,255,255,.2)}
+[data-theme="dark"] .s-digest-status.ok{color:rgba(100,220,140,.85)}
+[data-theme="dark"] .s-digest-status.err{color:rgba(255,100,100,.8)}
 </style>
 </head>
 <body>
