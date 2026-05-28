@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="color-scheme" content="light"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Watch — ReincarnatedAI</title>
+<meta name="description" content="Documentaries, researcher talks, and firsthand NDE accounts — the most important recordings in consciousness science, all in one place."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/research.css">
+<link rel="stylesheet" href="/assets/theme.css">
+<link rel="stylesheet" href="/assets/chat-widget.css">
+<style>
+/* ── Filter strip ── */
+.filter-strip{
+  position:sticky;top:64px;z-index:40;
+  background:rgba(248,245,239,.96);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(100,75,180,.1);
+  padding:12px 80px;
+  display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+}
+.chip{
+  padding:7px 16px;border-radius:999px;
+  border:1px solid rgba(100,75,180,.18);
+  background:#fff;color:rgba(26,21,53,.65);
+  font-size:12.5px;font-weight:500;
+  cursor:pointer;font-family:inherit;
+  transition:all .15s;white-space:nowrap;
+}
+.chip:hover{background:rgba(248,245,255,1);border-color:rgba(120,95,190,.32);color:#1A1535}
+.chip.active{
+  background:linear-gradient(135deg,#6D28D9,#8B5CF6);
+  border-color:transparent;color:#fff;
+  box-shadow:0 2px 10px rgba(109,40,217,.25);
+}
+.count-badge{margin-left:auto;font-size:12px;color:rgba(26,21,53,.38);white-space:nowrap}
+
+/* ── Video grid ── */
+.video-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  padding:48px 80px;
+  max-width:1280px;
+  margin:0 auto;
+}
+@media(max-width:960px){.video-grid{grid-template-columns:repeat(2,1fr);padding:32px 40px}}
+@media(max-width:580px){.video-grid{grid-template-columns:1fr;padding:20px 20px}}
+
+/* ── Video card ── */
+.v-card{
+  border-radius:16px;overflow:hidden;
+  background:#fff;border:1px solid rgba(100,75,180,.09);
+  cursor:pointer;
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  display:flex;flex-direction:column;
+}
+.v-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 40px rgba(100,75,180,.13);
+  border-color:rgba(120,95,190,.28);
+}
+.v-thumb{
+  position:relative;aspect-ratio:16/9;overflow:hidden;
+  background:linear-gradient(135deg,#13102A 0%,#1e1440 50%,#0f0b24 100%);
+  flex-shrink:0;
+}
+.v-thumb img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .4s,opacity .3s;
+  opacity:.88;
+}
+.v-card:hover .v-thumb img{transform:scale(1.05);opacity:1}
+.v-thumb-fallback{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;
+}
+.v-thumb-fallback-icon{font-size:32px;opacity:.4}
+.v-play{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(5,3,20,.15);transition:background .2s;
+}
+.v-card:hover .v-play{background:rgba(5,3,20,.3)}
+.v-play-btn{
+  width:56px;height:56px;border-radius:50%;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  padding-left:5px;
+  box-shadow:0 4px 24px rgba(0,0,0,.25);
+  transition:transform .2s,background .2s;
+}
+.v-play-btn svg{width:20px;height:20px;fill:#6D28D9}
+.v-card:hover .v-play-btn{transform:scale(1.12);background:#fff}
+.v-dur{
+  position:absolute;bottom:9px;right:9px;
+  background:rgba(0,0,0,.72);color:#fff;
+  font-size:11px;font-weight:600;
+  padding:3px 8px;border-radius:6px;
+  letter-spacing:.02em;
+}
+.v-body{padding:16px 18px 18px;flex:1;display:flex;flex-direction:column;gap:6px}
+.v-cat-label{
+  font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(120,95,190,.7);font-weight:600;
+}
+.v-title{
+  font-size:14.5px;font-weight:700;color:#0D0B1F;
+  line-height:1.3;font-family:'Space Grotesk',system-ui,sans-serif;
+  margin-bottom:2px;
+}
+.v-by{font-size:12.5px;color:rgba(26,21,53,.48);line-height:1.45;margin-top:auto;padding-top:6px}
+.v-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}
+.v-tag{
+  font-size:10px;padding:3px 9px;border-radius:999px;
+  border:1px solid rgba(100,75,180,.14);
+  color:rgba(26,21,53,.5);background:rgba(248,245,255,.65);
+}
+
+/* ── Player modal ── */
+.modal-overlay{
+  position:fixed;inset:0;z-index:9000;
+  background:rgba(4,3,18,.9);backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+  opacity:0;transition:opacity .22s;pointer-events:none;
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{
+  width:100%;max-width:920px;
+  background:#0D0B1F;border-radius:20px;
+  border:1px solid rgba(110,85,190,.22);
+  overflow:hidden;
+  box-shadow:0 40px 100px rgba(0,0,0,.7);
+  transform:scale(.97);transition:transform .22s;
+}
+.modal-overlay.open .modal-box{transform:scale(1)}
+.modal-top{
+  padding:13px 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  border-bottom:1px solid rgba(110,85,190,.12);
+}
+.modal-vid-title{
+  font-size:13px;font-weight:600;
+  color:rgba(255,255,255,.78);
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.modal-close-btn{
+  flex-shrink:0;
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.45);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:18px;line-height:1;
+  transition:background .15s,color .15s;
+}
+.modal-close-btn:hover{background:rgba(255,255,255,.15);color:#fff}
+.player-ratio{aspect-ratio:16/9;background:#000}
+.player-ratio iframe{width:100%;height:100%;border:none;display:block}
+
+/* ── CTA block ── */
+.cta-block{
+  text-align:center;padding:64px 40px;
+  border-top:1px solid rgba(100,75,180,.1);
+  max-width:680px;margin:0 auto;
+}
+.cta-block h2{
+  font-size:clamp(20px,2.8vw,32px);font-weight:700;letter-spacing:-.02em;
+  margin-bottom:10px;color:#0D0B1F;
+  font-family:'Space Grotesk',system-ui,sans-serif;
+}
+.cta-block p{font-size:15px;color:rgba(26,21,53,.5);line-height:1.7;margin-bottom:24px}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 28px;border-radius:10px;
+  background:linear-gradient(135deg,#6D28D9,#8B5CF6);
+  font-size:14px;font-weight:600;color:#fff;text-decoration:none;
+  transition:opacity .15s,transform .15s;
+}
+.cta-btn:hover{opacity:.88;transform:translateY(-1px)}
+
+/* ── No results ── */
+.no-results{
+  grid-column:1/-1;text-align:center;
+  padding:80px 20px;color:rgba(26,21,53,.35);font-size:15px;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .filter-strip{
+  background:rgba(12,10,26,.97);
+  border-color:rgba(110,85,190,.14);
+}
+[data-theme="dark"] .chip{
+  background:rgba(16,13,32,.8);
+  border-color:rgba(110,85,190,.2);
+  color:rgba(145,135,200,.6);
+}
+[data-theme="dark"] .chip:hover{background:#1A1630;color:rgba(237,232,224,.85)}
+[data-theme="dark"] .chip.active{
+  background:linear-gradient(135deg,#6D28D9,#8B5CF6);
+  color:#fff;border-color:transparent;
+}
+[data-theme="dark"] .count-badge{color:rgba(110,100,165,.4)}
+[data-theme="dark"] .v-card{background:#141228;border-color:rgba(110,85,190,.14)}
+[data-theme="dark"] .v-card:hover{
+  box-shadow:0 10px 40px rgba(0,0,0,.45);
+  border-color:rgba(110,85,190,.3);
+}
+[data-theme="dark"] .v-cat-label{color:rgba(160,139,222,.6)}
+[data-theme="dark"] .v-title{color:rgba(237,232,224,.9)}
+[data-theme="dark"] .v-by{color:rgba(145,135,200,.5)}
+[data-theme="dark"] .v-tag{
+  border-color:rgba(110,85,190,.18);
+  color:rgba(145,135,200,.55);
+  background:rgba(20,18,40,.7);
+}
+[data-theme="dark"] .no-results{color:rgba(110,100,165,.35)}
+[data-theme="dark"] .cta-block h2{color:rgba(237,232,224,.9)}
+[data-theme="dark"] .cta-block p{color:rgba(160,150,210,.55)}
+[data-theme="dark"] .cta-block{border-color:rgba(110,85,190,.1)}
+
+@media(max-width:760px){
+  .filter-strip{padding:10px 20px;gap:6px;top:56px}
+  .count-badge{display:none}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">ReincarnatedAI</a>
+  <div class="links">
+    <a href="/#explore">Explore</a>
+    <a href="/#research">Research</a>
+    <a href="/watch" style="color:#A08BDE">Watch</a>
+    <a href="/listen">Listen</a>
+    <a href="/traditions">Traditions</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Curated Media Library</div>
+    <h1>Watch</h1>
+    <p class="hero-desc">Documentaries, researcher talks, and firsthand accounts — the most important recordings in consciousness science, all in one place.</p>
+  </div>
+</section>
+
+<!-- Filter strip -->
+<div class="filter-strip" id="filterStrip">
+  <button class="chip active" data-cat="all">All</button>
+  <button class="chip" data-cat="documentaries">Documentaries</button>
+  <button class="chip" data-cat="researcher-talks">Researcher Talks</button>
+  <button class="chip" data-cat="nde-stories">NDE Stories</button>
+  <button class="chip" data-cat="consciousness-science">Consciousness Science</button>
+  <button class="chip" data-cat="past-lives">Past Lives</button>
+  <span class="count-badge" id="countBadge"></span>
+</div>
+
+<main>
+  <div class="video-grid" id="videoGrid"></div>
+
+  <div style="max-width:1280px;margin:0 auto;padding:0 80px">
+    <div style="height:1px;background:linear-gradient(to right,transparent,rgba(100,75,180,.12),transparent)"></div>
+  </div>
+
+  <div class="cta-block">
+    <h2>Know a video we should add?</h2>
+    <p>If you've found a documentary, lecture, or testimony that belongs here, we want to hear about it.</p>
+    <a href="/#contact" class="cta-btn">Suggest a video →</a>
+  </div>
+</main>
+
+<footer class="footer">
+  <span>© 2025 ReincarnatedAI — Research Assistant, not spiritual authority</span>
+  <span>Videos stream from YouTube. All rights belong to their original creators.</span>
+</footer>
+
+<!-- Player modal -->
+<div class="modal-overlay" id="playerModal" role="dialog" aria-modal="true" aria-label="Video player">
+  <div class="modal-box">
+    <div class="modal-top">
+      <div class="modal-vid-title" id="modalTitle"></div>
+      <button class="modal-close-btn" id="closeModal" aria-label="Close player">✕</button>
+    </div>
+    <div class="player-ratio">
+      <iframe id="playerIframe" src="" allowfullscreen
+        allow="autoplay; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/ui.js" defer></script>
+<script src="/assets/chat-widget.js" defer></script>
+<script>
+// ── Nav scroll
+const navEl = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive:true});
+
+// ── Video data
+// YouTube IDs: visit youtube.com/watch?v=ID to verify each one.
+// Update the `id` field with the correct 11-character YouTube video ID.
+const VIDEOS = [
+  // ── Researcher Talks ──────────────────────────────────────────────
+  {
+    id: 'uhRhtFFhNzQ',
+    title: 'How Do You Explain Consciousness?',
+    by: 'David Chalmers · TED 2014',
+    cat: 'researcher-talks',
+    dur: '18 min',
+    tags: ['Hard Problem', 'Philosophy', 'TED']
+  },
+  {
+    id: 'i0bGKQOEPiM',
+    title: 'Is Consciousness Produced by the Brain?',
+    by: 'Dr. Bruce Greyson · University of Virginia',
+    cat: 'researcher-talks',
+    dur: '58 min',
+    tags: ['NDE', 'Neuroscience', 'Research']
+  },
+  {
+    id: 'GjKPwJcyVLY',
+    title: 'Near-Death Experiences: Evidence for Their Reality',
+    by: 'Dr. Pim van Lommel · IANDS Conference',
+    cat: 'researcher-talks',
+    dur: '62 min',
+    tags: ['NDE', 'Evidence', 'Cardiology']
+  },
+  {
+    id: 'RHp0mMaMSME',
+    title: 'Children Who Remember Previous Lives',
+    by: 'Dr. Jim Tucker · University of Virginia',
+    cat: 'researcher-talks',
+    dur: '44 min',
+    tags: ['Past Lives', 'Children', 'Research']
+  },
+  {
+    id: 'JXxpRPQRiSA',
+    title: 'What Happens When We Die? The AWARE Study',
+    by: 'Dr. Sam Parnia · AWARE II Results',
+    cat: 'researcher-talks',
+    dur: '52 min',
+    tags: ['NDE', 'Clinical', 'AWARE Study']
+  },
+  {
+    id: 'ufA4GFxb1zE',
+    title: 'The Science of Near-Death Experiences',
+    by: 'Dr. Raymond Moody · Lecture',
+    cat: 'researcher-talks',
+    dur: '36 min',
+    tags: ['NDE', 'Pioneer', 'Raymond Moody']
+  },
+  // ── Documentaries ─────────────────────────────────────────────────
+  {
+    id: 'WNbdUEqDB-k',
+    title: 'The Day I Died',
+    by: 'BBC Two Documentary · 2002',
+    cat: 'documentaries',
+    dur: '48 min',
+    tags: ['NDE', 'Documentary', 'Classic', 'BBC']
+  },
+  {
+    id: 'KRzAbcuXUwE',
+    title: 'The Afterlife Investigations',
+    by: 'Tim Coleman · 2011',
+    cat: 'documentaries',
+    dur: '98 min',
+    tags: ['Afterlife', 'Documentary', 'Research']
+  },
+  {
+    id: 'LpGbzlBbQZs',
+    title: 'Life After Life',
+    by: 'Raymond Moody Documentary',
+    cat: 'documentaries',
+    dur: '62 min',
+    tags: ['NDE', 'Raymond Moody', 'Documentary']
+  },
+  // ── NDE Stories ───────────────────────────────────────────────────
+  {
+    id: 'R-YOL3wEQEE',
+    title: 'Dying to Be Me: My Journey from Cancer to Near Death',
+    by: 'Anita Moorjani · TEDxBayArea',
+    cat: 'nde-stories',
+    dur: '18 min',
+    tags: ['NDE', 'Healing', 'TEDx']
+  },
+  {
+    id: 'J1YQMK64MzM',
+    title: "A Neurosurgeon's Journey Through the Afterlife",
+    by: 'Dr. Eben Alexander',
+    cat: 'nde-stories',
+    dur: '22 min',
+    tags: ['NDE', 'Medical', 'Neurosurgery']
+  },
+  {
+    id: 'Sd9OPBgLwFc',
+    title: 'My Near-Death Experience Changed Everything',
+    by: 'IANDS — International NDE Stories',
+    cat: 'nde-stories',
+    dur: '35 min',
+    tags: ['NDE', 'Testimony', 'IANDS']
+  },
+  // ── Consciousness Science ─────────────────────────────────────────
+  {
+    id: 'piHkfmeU7Wo',
+    title: 'The Consciousness Conundrum',
+    by: 'Christof Koch · IEEE Spectrum',
+    cat: 'consciousness-science',
+    dur: '42 min',
+    tags: ['Neuroscience', 'IIT', 'Theory']
+  },
+  {
+    id: 'LW8PFZQ_-gA',
+    title: 'Quantum Mind and the Problem of Consciousness',
+    by: 'Roger Penrose · Public Lecture',
+    cat: 'consciousness-science',
+    dur: '78 min',
+    tags: ['Quantum', 'Orch OR', 'Physics']
+  },
+  // ── Past Lives ────────────────────────────────────────────────────
+  {
+    id: 'qM5QQAVK6nE',
+    title: 'Scientific Evidence for Reincarnation: 45 Years',
+    by: 'Division of Perceptual Studies · UVA',
+    cat: 'past-lives',
+    dur: '56 min',
+    tags: ['Reincarnation', 'Ian Stevenson', 'Evidence']
+  },
+  {
+    id: 'c4e_7heoicg',
+    title: 'Return to Life: Children with Past-Life Memories',
+    by: 'Dr. Jim Tucker · Book Talk',
+    cat: 'past-lives',
+    dur: '48 min',
+    tags: ['Past Lives', 'Children', 'Memories']
+  },
+];
+
+const CAT_LABELS = {
+  'all': 'All',
+  'documentaries': 'Documentaries',
+  'researcher-talks': 'Researcher Talks',
+  'nde-stories': 'NDE Stories',
+  'consciousness-science': 'Consciousness Science',
+  'past-lives': 'Past Lives',
+};
+
+let activeCat = 'all';
+
+function renderGrid() {
+  const grid = document.getElementById('videoGrid');
+  const filtered = activeCat === 'all'
+    ? VIDEOS
+    : VIDEOS.filter(v => v.cat === activeCat);
+
+  const n = filtered.length;
+  document.getElementById('countBadge').textContent =
+    n + ' video' + (n !== 1 ? 's' : '');
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="no-results">No videos in this category yet — check back soon.</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(v => `
+    <article class="v-card"
+      onclick="openPlayer('${v.id}','${v.title.replace(/'/g,'&#39;').replace(/"/g,'&quot;')}')"
+      role="button" tabindex="0"
+      aria-label="Play: ${v.title.replace(/"/g,'&quot;')}"
+      onkeydown="if(event.key==='Enter'||event.key===' ')openPlayer('${v.id}','${v.title.replace(/'/g,'&#39;').replace(/"/g,'&quot;')}')"
+    >
+      <div class="v-thumb">
+        <img
+          src="https://img.youtube.com/vi/${v.id}/maxresdefault.jpg"
+          onerror="this.style.display='none'"
+          alt="${v.title.replace(/"/g,'&quot;')}"
+          loading="lazy"
+        />
+        <div class="v-thumb-fallback">
+          <div class="v-thumb-fallback-icon">▶</div>
+        </div>
+        <div class="v-play">
+          <div class="v-play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="v-dur">${v.dur}</div>
+      </div>
+      <div class="v-body">
+        <div class="v-cat-label">${CAT_LABELS[v.cat]}</div>
+        <div class="v-title">${v.title}</div>
+        <div class="v-by">${v.by}</div>
+        <div class="v-tags">
+          ${v.tags.map(t => `<span class="v-tag">${t}</span>`).join('')}
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+// Filter chips
+document.querySelectorAll('.chip[data-cat]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    activeCat = btn.dataset.cat;
+    document.querySelectorAll('.chip[data-cat]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderGrid();
+    // Scroll to grid on mobile
+    if (window.innerWidth < 760) {
+      document.getElementById('videoGrid').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  });
+});
+
+// ── Player ──────────────────────────────────────────────────────────
+function openPlayer(id, title) {
+  document.getElementById('playerIframe').src =
+    `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&color=white`;
+  document.getElementById('modalTitle').textContent = title;
+  const modal = document.getElementById('playerModal');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePlayer() {
+  const modal = document.getElementById('playerModal');
+  modal.classList.remove('open');
+  setTimeout(() => { document.getElementById('playerIframe').src = ''; }, 220);
+  document.body.style.overflow = '';
+}
+
+document.getElementById('closeModal').addEventListener('click', closePlayer);
+document.getElementById('playerModal').addEventListener('click', function(e) {
+  if (e.target === this) closePlayer();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closePlayer();
+});
+
+// ── Init
+renderGrid();
+</script>
+</body>
+</html>

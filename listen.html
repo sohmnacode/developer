@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="color-scheme" content="light"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Listen — ReincarnatedAI</title>
+<meta name="description" content="The best podcasts on consciousness, near-death experiences, reincarnation, and the science of the soul — curated and updated weekly."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/research.css">
+<link rel="stylesheet" href="/assets/theme.css">
+<link rel="stylesheet" href="/assets/chat-widget.css">
+<style>
+/* ── Section layout ── */
+.listen-section{
+  max-width:1100px;margin:0 auto;
+  padding:64px 80px;
+}
+.listen-section + .listen-section{
+  border-top:1px solid rgba(100,75,180,.08);
+  padding-top:56px;
+}
+@media(max-width:760px){
+  .listen-section{padding:48px 24px}
+}
+
+.section-eyebrow{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(120,95,190,.65);font-weight:600;margin-bottom:10px;
+}
+.section-heading{
+  font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-.02em;
+  color:#0D0B1F;margin-bottom:10px;
+  font-family:'Space Grotesk',system-ui,sans-serif;
+}
+.section-lede{
+  font-size:15px;color:rgba(26,21,53,.5);line-height:1.75;
+  max-width:640px;margin-bottom:36px;
+}
+
+/* ── Featured player ── */
+.featured-player{
+  background:linear-gradient(135deg,#0D0B1F 0%,#1a1240 50%,#0f0c28 100%);
+  border-radius:20px;
+  padding:36px 40px;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:32px;
+  align-items:center;
+  border:1px solid rgba(110,85,190,.2);
+  box-shadow:0 16px 56px rgba(0,0,0,.2);
+  position:relative;overflow:hidden;
+  margin-bottom:48px;
+}
+.featured-player::before{
+  content:'';position:absolute;
+  top:-40%;right:-10%;
+  width:500px;height:500px;
+  background:radial-gradient(ellipse,rgba(109,40,217,.15),transparent 65%);
+  pointer-events:none;
+}
+.fp-art{
+  width:130px;height:130px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:52px;flex-shrink:0;
+  box-shadow:0 8px 32px rgba(0,0,0,.3);
+  background:linear-gradient(135deg,#2d1b69,#4c1d95);
+  position:relative;z-index:1;
+}
+.fp-info{position:relative;z-index:1;min-width:0}
+.fp-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(160,139,222,.7);font-weight:600;margin-bottom:10px;
+}
+.fp-badge-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:#8B5CF6;
+  box-shadow:0 0 6px rgba(139,92,246,.6);
+  animation:podPulse 2s ease-in-out infinite;
+}
+@keyframes podPulse{
+  0%,100%{opacity:.6;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.3)}
+}
+.fp-show-name{
+  font-size:20px;font-weight:800;color:#fff;
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  letter-spacing:-.02em;margin-bottom:4px;
+}
+.fp-episode-title{
+  font-size:13.5px;color:rgba(255,255,255,.6);
+  line-height:1.5;margin-bottom:16px;
+}
+.fp-platforms{display:flex;gap:8px;flex-wrap:wrap}
+.fp-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:8px 16px;border-radius:999px;
+  font-size:12px;font-weight:600;font-family:inherit;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:opacity .15s,transform .12s;
+  white-space:nowrap;
+}
+.fp-btn:hover{opacity:.88;transform:translateY(-1px)}
+.fp-btn.spotify{background:#1DB954;color:#000}
+.fp-btn.apple{background:#FC3C44;color:#fff}
+.fp-btn.web{background:rgba(255,255,255,.12);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.16)}
+@media(max-width:640px){
+  .featured-player{grid-template-columns:1fr;gap:20px;padding:26px 22px}
+  .fp-art{width:90px;height:90px;font-size:36px}
+}
+
+/* ── Show grid ── */
+.show-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:14px;
+}
+.show-card{
+  border:1px solid rgba(100,75,180,.1);
+  border-radius:16px;padding:22px 22px 20px;
+  background:#fff;
+  transition:border-color .18s,box-shadow .18s,transform .15s;
+  display:flex;flex-direction:column;gap:10px;
+  text-decoration:none;color:inherit;
+}
+.show-card:hover{
+  border-color:rgba(120,95,190,.28);
+  box-shadow:0 6px 28px rgba(100,75,180,.09);
+  transform:translateY(-2px);
+}
+.show-art{
+  width:56px;height:56px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;
+  background:linear-gradient(135deg,#2d1b69,#4c1d95);
+  box-shadow:0 4px 14px rgba(100,75,180,.18);
+  flex-shrink:0;
+}
+.show-name{
+  font-size:15px;font-weight:700;color:#0D0B1F;
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  line-height:1.2;
+}
+.show-host{font-size:11.5px;color:rgba(120,95,190,.75);font-weight:500}
+.show-desc{font-size:12.5px;color:rgba(26,21,53,.5);line-height:1.6;flex:1}
+.show-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
+.show-tag{
+  font-size:10px;padding:3px 8px;border-radius:999px;
+  border:1px solid rgba(100,75,180,.14);
+  color:rgba(26,21,53,.5);background:rgba(248,245,255,.65);
+}
+.show-links{display:flex;gap:6px;margin-top:4px}
+.show-link{
+  font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;
+  text-decoration:none;transition:opacity .15s;
+}
+.show-link.s{background:#1DB954;color:#000}
+.show-link.a{background:#FC3C44;color:#fff}
+.show-link.w{background:rgba(100,75,180,.1);color:rgba(26,21,53,.7);border:1px solid rgba(100,75,180,.14)}
+.show-link:hover{opacity:.8}
+
+/* ── Episode list ── */
+.episode-list{display:flex;flex-direction:column;gap:14px}
+.ep-card{
+  border:1px solid rgba(100,75,180,.1);
+  border-radius:16px;padding:22px 24px;
+  background:#fff;
+  display:grid;grid-template-columns:auto 1fr auto;
+  gap:18px;align-items:center;
+  transition:border-color .18s,box-shadow .18s;
+  cursor:pointer;
+  text-decoration:none;color:inherit;
+}
+.ep-card:hover{
+  border-color:rgba(120,95,190,.28);
+  box-shadow:0 4px 22px rgba(100,75,180,.08);
+}
+.ep-num{
+  font-size:24px;font-weight:800;
+  color:rgba(100,75,180,.15);
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  min-width:36px;text-align:center;
+  line-height:1;
+}
+.ep-body{min-width:0}
+.ep-show{
+  font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(120,95,190,.65);font-weight:600;margin-bottom:5px;
+}
+.ep-title{
+  font-size:15px;font-weight:700;color:#0D0B1F;
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  line-height:1.25;margin-bottom:6px;
+}
+.ep-desc{
+  font-size:13px;color:rgba(26,21,53,.5);line-height:1.6;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.ep-meta{font-size:11px;color:rgba(26,21,53,.35);margin-top:8px;display:flex;gap:12px;flex-wrap:wrap}
+.ep-actions{display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex-shrink:0}
+.ep-play{
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,#6D28D9,#8B5CF6);
+  display:flex;align-items:center;justify-content:center;
+  border:none;cursor:pointer;
+  box-shadow:0 3px 14px rgba(109,40,217,.3);
+  transition:transform .15s,box-shadow .15s;
+  flex-shrink:0;
+  color:#fff;
+  font-size:14px;
+  padding-left:3px;
+}
+.ep-play:hover{transform:scale(1.08);box-shadow:0 5px 20px rgba(109,40,217,.45)}
+.ep-dur{font-size:11px;color:rgba(26,21,53,.38);white-space:nowrap}
+@media(max-width:640px){
+  .ep-card{grid-template-columns:1fr auto;gap:12px}
+  .ep-num{display:none}
+  .ep-actions{flex-direction:row;align-items:center}
+}
+
+/* ── Start your own CTA ── */
+.own-podcast{
+  border:1px solid rgba(100,75,180,.12);
+  border-radius:20px;
+  padding:40px;
+  background:linear-gradient(135deg,rgba(109,40,217,.04),rgba(139,92,246,.02));
+  text-align:center;
+  margin-top:48px;
+}
+.own-podcast h3{
+  font-size:20px;font-weight:700;color:#0D0B1F;
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  margin-bottom:8px;letter-spacing:-.01em;
+}
+.own-podcast p{font-size:14px;color:rgba(26,21,53,.5);line-height:1.7;margin-bottom:20px;max-width:480px;margin-left:auto;margin-right:auto}
+.own-podcast-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.pill-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:10px 20px;border-radius:999px;font-size:13px;font-weight:600;
+  text-decoration:none;transition:opacity .15s,transform .12s;border:none;cursor:pointer;font-family:inherit;
+}
+.pill-btn:hover{opacity:.85;transform:translateY(-1px)}
+.pill-btn.primary{background:linear-gradient(135deg,#6D28D9,#8B5CF6);color:#fff}
+.pill-btn.secondary{border:1px solid rgba(100,75,180,.2);background:#fff;color:rgba(26,21,53,.7)}
+
+/* ── CTA block ── */
+.cta-block{
+  text-align:center;padding:64px 40px;
+  border-top:1px solid rgba(100,75,180,.1);
+  max-width:680px;margin:0 auto;
+}
+.cta-block h2{
+  font-size:clamp(20px,2.8vw,32px);font-weight:700;letter-spacing:-.02em;
+  margin-bottom:10px;color:#0D0B1F;
+  font-family:'Space Grotesk',system-ui,sans-serif;
+}
+.cta-block p{font-size:15px;color:rgba(26,21,53,.5);line-height:1.7;margin-bottom:24px}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 28px;border-radius:10px;
+  background:linear-gradient(135deg,#6D28D9,#8B5CF6);
+  font-size:14px;font-weight:600;color:#fff;text-decoration:none;
+  transition:opacity .15s,transform .15s;
+}
+.cta-btn:hover{opacity:.88;transform:translateY(-1px)}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .section-heading{color:rgba(237,232,224,.9)}
+[data-theme="dark"] .section-lede{color:rgba(160,150,210,.55)}
+[data-theme="dark"] .section-eyebrow{color:rgba(160,139,222,.55)}
+[data-theme="dark"] .show-card{background:#141228;border-color:rgba(110,85,190,.14)}
+[data-theme="dark"] .show-card:hover{border-color:rgba(110,85,190,.3);box-shadow:0 6px 28px rgba(0,0,0,.35)}
+[data-theme="dark"] .show-name{color:rgba(237,232,224,.9)}
+[data-theme="dark"] .show-host{color:rgba(160,139,222,.65)}
+[data-theme="dark"] .show-desc{color:rgba(145,135,200,.55)}
+[data-theme="dark"] .show-tag{border-color:rgba(110,85,190,.18);color:rgba(145,135,200,.55);background:rgba(20,18,40,.7)}
+[data-theme="dark"] .show-link.w{background:rgba(100,75,180,.15);color:rgba(160,150,210,.7);border-color:rgba(110,85,190,.2)}
+[data-theme="dark"] .ep-card{background:#141228;border-color:rgba(110,85,190,.14)}
+[data-theme="dark"] .ep-card:hover{border-color:rgba(110,85,190,.3);box-shadow:0 4px 22px rgba(0,0,0,.35)}
+[data-theme="dark"] .ep-show{color:rgba(160,139,222,.6)}
+[data-theme="dark"] .ep-title{color:rgba(237,232,224,.9)}
+[data-theme="dark"] .ep-desc{color:rgba(145,135,200,.55)}
+[data-theme="dark"] .ep-meta{color:rgba(110,100,165,.45)}
+[data-theme="dark"] .ep-dur{color:rgba(110,100,165,.4)}
+[data-theme="dark"] .ep-num{color:rgba(100,75,180,.2)}
+[data-theme="dark"] .own-podcast{background:rgba(100,75,180,.06);border-color:rgba(110,85,190,.14)}
+[data-theme="dark"] .own-podcast h3{color:rgba(237,232,224,.9)}
+[data-theme="dark"] .own-podcast p{color:rgba(145,135,200,.55)}
+[data-theme="dark"] .pill-btn.secondary{background:rgba(16,13,32,.8);border-color:rgba(110,85,190,.22);color:rgba(145,135,200,.7)}
+[data-theme="dark"] .cta-block h2{color:rgba(237,232,224,.9)}
+[data-theme="dark"] .cta-block p{color:rgba(160,150,210,.55)}
+[data-theme="dark"] .cta-block{border-color:rgba(110,85,190,.1)}
+[data-theme="dark"] .listen-section+.listen-section{border-color:rgba(110,85,190,.1)}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">ReincarnatedAI</a>
+  <div class="links">
+    <a href="/#explore">Explore</a>
+    <a href="/#research">Research</a>
+    <a href="/watch">Watch</a>
+    <a href="/listen" style="color:#A08BDE">Listen</a>
+    <a href="/traditions">Traditions</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Audio Library</div>
+    <h1>Listen</h1>
+    <p class="hero-desc">The best podcasts on consciousness, near-death experience, and the science of the soul — curated so you don't have to hunt for them.</p>
+  </div>
+</section>
+
+<main>
+
+<!-- ── Featured Show ────────────────────────────────────────── -->
+<div class="listen-section">
+  <div class="section-eyebrow">Featured Right Now</div>
+  <div class="section-heading">Start Here</div>
+  <p class="section-lede">If you're new to the research, these episodes are the best entry points into the science.</p>
+
+  <div class="featured-player">
+    <div class="fp-art">🔬</div>
+    <div class="fp-info">
+      <div class="fp-badge">
+        <div class="fp-badge-dot"></div>
+        Skeptiko — Episode 583
+      </div>
+      <div class="fp-show-name">Science at the Edge of Knowledge</div>
+      <div class="fp-episode-title">Dr. Pim van Lommel on the AWARE Study, quantum consciousness, and what 344 NDE patients revealed about the mind-brain relationship.</div>
+      <div class="fp-platforms">
+        <a href="https://skeptiko.com" target="_blank" rel="noopener" class="fp-btn web">🌐 skeptiko.com</a>
+        <a href="https://open.spotify.com/show/skeptiko" target="_blank" rel="noopener" class="fp-btn spotify">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          Spotify
+        </a>
+        <a href="https://podcasts.apple.com" target="_blank" rel="noopener" class="fp-btn apple">Apple Podcasts</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Shows Grid ────────────────────────────────────────────── -->
+<div class="listen-section">
+  <div class="section-eyebrow">Curated Shows</div>
+  <div class="section-heading">Essential Podcasts</div>
+  <p class="section-lede">These shows consistently produce the highest-quality conversations in the field.</p>
+
+  <div class="show-grid">
+
+    <div class="show-card">
+      <div class="show-art">🔬</div>
+      <div>
+        <div class="show-name">Skeptiko</div>
+        <div class="show-host">Alex Tsakiris</div>
+      </div>
+      <div class="show-desc">600+ episodes interviewing scientists and researchers at the frontier of consciousness, NDE, and psi research. The deepest catalog in the field.</div>
+      <div class="show-tags">
+        <span class="show-tag">NDE Research</span>
+        <span class="show-tag">Psi</span>
+        <span class="show-tag">Interviews</span>
+      </div>
+      <div class="show-links">
+        <a href="https://skeptiko.com" target="_blank" rel="noopener" class="show-link w">Web</a>
+        <a href="https://open.spotify.com/show/skeptiko" target="_blank" rel="noopener" class="show-link s">Spotify</a>
+        <a href="https://podcasts.apple.com/podcast/skeptiko/id207815013" target="_blank" rel="noopener" class="show-link a">Apple</a>
+      </div>
+    </div>
+
+    <div class="show-card">
+      <div class="show-art">🧠</div>
+      <div>
+        <div class="show-name">New Thinking Allowed</div>
+        <div class="show-host">Jeffrey Mishlove, PhD</div>
+      </div>
+      <div class="show-desc">Long-form conversations with leading consciousness researchers, parapsychologists, and philosophers. Rigorous, thoughtful, and deeply curious.</div>
+      <div class="show-tags">
+        <span class="show-tag">Consciousness</span>
+        <span class="show-tag">Parapsychology</span>
+        <span class="show-tag">Philosophy</span>
+      </div>
+      <div class="show-links">
+        <a href="https://newthinkingallowed.org" target="_blank" rel="noopener" class="show-link w">Web</a>
+        <a href="https://open.spotify.com/show/newthinkingallowed" target="_blank" rel="noopener" class="show-link s">Spotify</a>
+        <a href="https://podcasts.apple.com" target="_blank" rel="noopener" class="show-link a">Apple</a>
+      </div>
+    </div>
+
+    <div class="show-card">
+      <div class="show-art">✨</div>
+      <div>
+        <div class="show-name">NDE Radio</div>
+        <div class="show-host">Lee Witting</div>
+      </div>
+      <div class="show-desc">Real people, real accounts. The largest archive of firsthand near-death experience interviews on the internet — raw and unfiltered.</div>
+      <div class="show-tags">
+        <span class="show-tag">NDE Stories</span>
+        <span class="show-tag">Testimony</span>
+        <span class="show-tag">Firsthand</span>
+      </div>
+      <div class="show-links">
+        <a href="https://nderadio.org" target="_blank" rel="noopener" class="show-link w">Web</a>
+        <a href="https://open.spotify.com/show/nderadio" target="_blank" rel="noopener" class="show-link s">Spotify</a>
+        <a href="https://podcasts.apple.com" target="_blank" rel="noopener" class="show-link a">Apple</a>
+      </div>
+    </div>
+
+    <div class="show-card">
+      <div class="show-art">🌌</div>
+      <div>
+        <div class="show-name">Noetic Now</div>
+        <div class="show-host">Institute of Noetic Sciences</div>
+      </div>
+      <div class="show-desc">IONS brings together the world's top scientists studying mind and consciousness. Academic but accessible — science-first spiritual exploration.</div>
+      <div class="show-tags">
+        <span class="show-tag">IONS</span>
+        <span class="show-tag">Science</span>
+        <span class="show-tag">Mind</span>
+      </div>
+      <div class="show-links">
+        <a href="https://noetic.org/podcast" target="_blank" rel="noopener" class="show-link w">Web</a>
+        <a href="https://open.spotify.com/show/noeticnow" target="_blank" rel="noopener" class="show-link s">Spotify</a>
+        <a href="https://podcasts.apple.com" target="_blank" rel="noopener" class="show-link a">Apple</a>
+      </div>
+    </div>
+
+    <div class="show-card">
+      <div class="show-art">👁️</div>
+      <div>
+        <div class="show-name">Surviving Death</div>
+        <div class="show-host">IANDS — NDE Accounts</div>
+      </div>
+      <div class="show-desc">Official podcast from the International Association for Near-Death Studies — featuring researchers, clinicians, and experiencers in conversation.</div>
+      <div class="show-tags">
+        <span class="show-tag">IANDS</span>
+        <span class="show-tag">NDE</span>
+        <span class="show-tag">Clinical</span>
+      </div>
+      <div class="show-links">
+        <a href="https://iands.org" target="_blank" rel="noopener" class="show-link w">Web</a>
+        <a href="https://open.spotify.com/show/iands" target="_blank" rel="noopener" class="show-link s">Spotify</a>
+        <a href="https://podcasts.apple.com" target="_blank" rel="noopener" class="show-link a">Apple</a>
+      </div>
+    </div>
+
+    <div class="show-card">
+      <div class="show-art">♾️</div>
+      <div>
+        <div class="show-name">Waking Up</div>
+        <div class="show-host">Sam Harris</div>
+      </div>
+      <div class="show-desc">A secular but rigorous exploration of consciousness, meditation, and the nature of the self. Harris interviews leading scientists and philosophers without spiritual wishful thinking.</div>
+      <div class="show-tags">
+        <span class="show-tag">Consciousness</span>
+        <span class="show-tag">Meditation</span>
+        <span class="show-tag">Philosophy</span>
+      </div>
+      <div class="show-links">
+        <a href="https://wakingup.com" target="_blank" rel="noopener" class="show-link w">Web</a>
+        <a href="https://open.spotify.com/show/wakingup" target="_blank" rel="noopener" class="show-link s">Spotify</a>
+        <a href="https://podcasts.apple.com" target="_blank" rel="noopener" class="show-link a">Apple</a>
+      </div>
+    </div>
+
+    <div class="show-card">
+      <div class="show-art">🌀</div>
+      <div>
+        <div class="show-name">The Past Lives Podcast</div>
+        <div class="show-host">Simon Bown</div>
+      </div>
+      <div class="show-desc">Focused entirely on reincarnation evidence — past-life regression, children's memories, and the research of Ian Stevenson and Jim Tucker.</div>
+      <div class="show-tags">
+        <span class="show-tag">Past Lives</span>
+        <span class="show-tag">Reincarnation</span>
+        <span class="show-tag">Regression</span>
+      </div>
+      <div class="show-links">
+        <a href="https://pastlivespodcast.com" target="_blank" rel="noopener" class="show-link w">Web</a>
+        <a href="https://open.spotify.com/show/pastlives" target="_blank" rel="noopener" class="show-link s">Spotify</a>
+        <a href="https://podcasts.apple.com" target="_blank" rel="noopener" class="show-link a">Apple</a>
+      </div>
+    </div>
+
+    <div class="show-card">
+      <div class="show-art">🎙️</div>
+      <div>
+        <div class="show-name">The Parapsychology Podcast</div>
+        <div class="show-host">Dr. Renaud Evrard</div>
+      </div>
+      <div class="show-desc">Academic conversations about psi, telepathy, remote viewing, and anomalous cognition. Peer-reviewed science without the sensationalism.</div>
+      <div class="show-tags">
+        <span class="show-tag">Parapsychology</span>
+        <span class="show-tag">Psi</span>
+        <span class="show-tag">Academic</span>
+      </div>
+      <div class="show-links">
+        <a href="https://parapsychology.org" target="_blank" rel="noopener" class="show-link w">Web</a>
+        <a href="https://open.spotify.com/show/parapsychology" target="_blank" rel="noopener" class="show-link s">Spotify</a>
+        <a href="https://podcasts.apple.com" target="_blank" rel="noopener" class="show-link a">Apple</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── Featured Episodes ─────────────────────────────────────── -->
+<div class="listen-section">
+  <div class="section-eyebrow">Essential Episodes</div>
+  <div class="section-heading">Must-Listen Conversations</div>
+  <p class="section-lede">Individually outstanding episodes — the ones researchers keep referencing. Click to listen on the show's platform.</p>
+
+  <div class="episode-list">
+
+    <a href="https://skeptiko.com" target="_blank" rel="noopener" class="ep-card">
+      <div class="ep-num">01</div>
+      <div class="ep-body">
+        <div class="ep-show">Skeptiko · Ep. 577</div>
+        <div class="ep-title">Dr. Pim van Lommel — Cardiac Arrest, Consciousness, and 25 Years After the Lancet Study</div>
+        <div class="ep-desc">The Dutch cardiologist whose 2001 Lancet paper on NDE in cardiac arrest patients shocked the medical world returns to discuss what science has — and hasn't — learned since.</div>
+        <div class="ep-meta">
+          <span>Dr. Pim van Lommel</span>
+          <span>72 min</span>
+          <span>NDE · Cardiology · Consciousness</span>
+        </div>
+      </div>
+      <div class="ep-actions">
+        <div class="ep-play">▶</div>
+        <div class="ep-dur">72 min</div>
+      </div>
+    </a>
+
+    <a href="https://newthinkingallowed.org" target="_blank" rel="noopener" class="ep-card">
+      <div class="ep-num">02</div>
+      <div class="ep-body">
+        <div class="ep-show">New Thinking Allowed</div>
+        <div class="ep-title">Dr. Bruce Greyson — After: A Doctor Explores What Near-Death Experiences Reveal About Life and Beyond</div>
+        <div class="ep-desc">The world's foremost NDE researcher and UVA professor discusses 50 years of clinical data, what the accounts share across cultures, and why mainstream science keeps looking away.</div>
+        <div class="ep-meta">
+          <span>Dr. Bruce Greyson</span>
+          <span>88 min</span>
+          <span>NDE · Research · University of Virginia</span>
+        </div>
+      </div>
+      <div class="ep-actions">
+        <div class="ep-play">▶</div>
+        <div class="ep-dur">88 min</div>
+      </div>
+    </a>
+
+    <a href="https://newthinkingallowed.org" target="_blank" rel="noopener" class="ep-card">
+      <div class="ep-num">03</div>
+      <div class="ep-body">
+        <div class="ep-show">New Thinking Allowed</div>
+        <div class="ep-title">Dr. Jim Tucker — Return to Life: Extraordinary Cases of Children Who Remember Past Lives</div>
+        <div class="ep-desc">The successor to Ian Stevenson at UVA presents the most compelling reincarnation cases from decades of research into children who recall specific, verifiable details of previous lives.</div>
+        <div class="ep-meta">
+          <span>Dr. Jim Tucker</span>
+          <span>65 min</span>
+          <span>Past Lives · Children · Reincarnation</span>
+        </div>
+      </div>
+      <div class="ep-actions">
+        <div class="ep-play">▶</div>
+        <div class="ep-dur">65 min</div>
+      </div>
+    </a>
+
+    <a href="https://skeptiko.com" target="_blank" rel="noopener" class="ep-card">
+      <div class="ep-num">04</div>
+      <div class="ep-body">
+        <div class="ep-show">Skeptiko · Ep. 512</div>
+        <div class="ep-title">Dr. Bernardo Kastrup — Why Materialism Is Baloney: The Philosophical Case for Idealism</div>
+        <div class="ep-desc">Computer scientist turned philosopher Kastrup argues from first principles that consciousness — not matter — is the fundamental nature of reality, and that modern physics points the same way.</div>
+        <div class="ep-meta">
+          <span>Dr. Bernardo Kastrup</span>
+          <span>58 min</span>
+          <span>Philosophy · Idealism · Physics</span>
+        </div>
+      </div>
+      <div class="ep-actions">
+        <div class="ep-play">▶</div>
+        <div class="ep-dur">58 min</div>
+      </div>
+    </a>
+
+    <a href="https://iands.org" target="_blank" rel="noopener" class="ep-card">
+      <div class="ep-num">05</div>
+      <div class="ep-body">
+        <div class="ep-show">IANDS · Annual Conference</div>
+        <div class="ep-title">Dr. Sam Parnia — AWARE II: Consciousness During Cardiac Arrest and the Challenge of Verifiable OBE</div>
+        <div class="ep-desc">The AWARE II trial's lead investigator presents findings from the largest scientific study of consciousness and out-of-body experiences during cardiac arrest ever conducted.</div>
+        <div class="ep-meta">
+          <span>Dr. Sam Parnia</span>
+          <span>54 min</span>
+          <span>AWARE · Clinical · OBE · Research</span>
+        </div>
+      </div>
+      <div class="ep-actions">
+        <div class="ep-play">▶</div>
+        <div class="ep-dur">54 min</div>
+      </div>
+    </a>
+
+    <a href="https://noetic.org/podcast" target="_blank" rel="noopener" class="ep-card">
+      <div class="ep-num">06</div>
+      <div class="ep-body">
+        <div class="ep-show">Noetic Now · IONS</div>
+        <div class="ep-title">Dean Radin — Real Magic: Ancient Wisdom, Modern Science, and a Guide to the Secret Power of the Universe</div>
+        <div class="ep-desc">IONS Chief Scientist Dean Radin reviews the meta-analytic evidence for psi phenomena, the replication crisis in parapsychology, and why consciousness may be fundamentally non-local.</div>
+        <div class="ep-meta">
+          <span>Dean Radin, PhD</span>
+          <span>76 min</span>
+          <span>Psi · Meta-Analysis · Non-Local Consciousness</span>
+        </div>
+      </div>
+      <div class="ep-actions">
+        <div class="ep-play">▶</div>
+        <div class="ep-dur">76 min</div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Own podcast CTA -->
+  <div class="own-podcast">
+    <h3>🎙️ Want to start your own consciousness podcast?</h3>
+    <p>Platforms like Buzzsprout and Transistor make it simple to launch, distribute to Spotify & Apple, and embed episodes anywhere on the web. We can help set that up.</p>
+    <div class="own-podcast-btns">
+      <a href="https://www.buzzsprout.com" target="_blank" rel="noopener" class="pill-btn primary">Try Buzzsprout →</a>
+      <a href="/#contact" class="pill-btn secondary">Talk to us first</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── Bottom CTA ─────────────────────────────────────────────── -->
+<div style="max-width:1100px;margin:0 auto;padding:0 80px">
+  <div style="height:1px;background:linear-gradient(to right,transparent,rgba(100,75,180,.12),transparent)"></div>
+</div>
+
+<div class="cta-block">
+  <h2>Know a podcast we're missing?</h2>
+  <p>The field is growing fast. If there's a show producing serious work in this space, let us know and we'll add it.</p>
+  <a href="/#contact" class="cta-btn">Suggest a podcast →</a>
+</div>
+
+</main>
+
+<footer class="footer">
+  <span>© 2025 ReincarnatedAI — Research Assistant, not spiritual authority</span>
+  <span>All podcast links open on their respective platforms. We are not affiliated with any show.</span>
+</footer>
+
+<script src="/assets/ui.js" defer></script>
+<script src="/assets/chat-widget.js" defer></script>
+<script>
+const navEl = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive:true});
+</script>
+</body>
+</html>
