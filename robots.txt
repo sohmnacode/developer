@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://reincarnatedai.com/sitemap.xml
