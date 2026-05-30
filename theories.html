@@ -37,8 +37,8 @@
   align-items:flex-end;
   padding:120px 80px 64px;
   background:
-    radial-gradient(ellipse 60% 55% at 75% 25%, rgba(160,100,20,.2), transparent 60%),
-    linear-gradient(to bottom, #0d0905, #13100a);
+    radial-gradient(ellipse 60% 55% at 75% 25%, rgba(160,100,20,.1), transparent 60%),
+    linear-gradient(to bottom, #FAF6EF, #F5ECD8);
   position:relative;
   overflow:hidden;
 }
@@ -48,18 +48,37 @@
   inset:0;
   background:repeating-linear-gradient(
     45deg, transparent, transparent 24px,
-    rgba(255,255,255,.018) 24px, rgba(255,255,255,.018) 25px
+    rgba(0,0,0,.018) 24px, rgba(0,0,0,.018) 25px
   );
   pointer-events:none;
 }
-.theories-hero .eyebrow{ color:rgba(220,170,80,.75); }
+.theories-hero .eyebrow{ color:rgba(140,80,10,.65); }
 .theories-hero h1{
-  background:linear-gradient(140deg,#fff 0%,#f0d090 50%,#d0a030 92%);
+  background:linear-gradient(140deg,#3d2000 0%,#7a4500 52%,#b87020 92%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
 }
-.theories-hero p{ color:rgba(255,255,255,.42); }
+.theories-hero p{ color:rgba(26,21,53,.5); }
+[data-theme="dark"] .theories-hero{
+  background:
+    radial-gradient(ellipse 60% 55% at 75% 25%, rgba(160,100,20,.2), transparent 60%),
+    linear-gradient(to bottom, #0d0905, #13100a)!important;
+}
+[data-theme="dark"] .theories-hero::before{
+  background:repeating-linear-gradient(
+    45deg, transparent, transparent 24px,
+    rgba(255,255,255,.018) 24px, rgba(255,255,255,.018) 25px
+  )!important;
+}
+[data-theme="dark"] .theories-hero .eyebrow{ color:rgba(220,170,80,.75)!important; }
+[data-theme="dark"] .theories-hero h1{
+  background:linear-gradient(140deg,#fff 0%,#f0d090 50%,#d0a030 92%)!important;
+  -webkit-background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  background-clip:text!important;
+}
+[data-theme="dark"] .theories-hero p{ color:rgba(255,255,255,.42)!important; }
 
 .theories-main{ padding:52px 80px 80px; max-width:1200px; margin:0 auto; }
 

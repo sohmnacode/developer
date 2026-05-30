@@ -37,8 +37,8 @@
   align-items:flex-end;
   padding:120px 80px 64px;
   background:
-    radial-gradient(ellipse 55% 65% at 20% 30%, rgba(20,80,160,.22), transparent 60%),
-    linear-gradient(160deg, #060a12 0%, #080e1a 55%, #030608 100%);
+    radial-gradient(ellipse 55% 65% at 20% 30%, rgba(20,80,160,.08), transparent 60%),
+    linear-gradient(160deg, #F8F5EF 0%, #EDE5FF 55%, #E8E0FF 100%);
   position:relative;
   overflow:hidden;
 }
@@ -47,18 +47,36 @@
   position:absolute;
   inset:0;
   background:
-    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.025) 40px),
-    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,.025) 40px);
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(0,0,0,.018) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(0,0,0,.018) 40px);
   pointer-events:none;
 }
-.researchers-hero .eyebrow{ color:rgba(130,170,255,.7); }
+.researchers-hero .eyebrow{ color:rgba(60,90,180,.7); }
 .researchers-hero h1{
-  background:linear-gradient(140deg,#fff 0%,#b8ccff 50%,#7090d8 92%);
+  background:linear-gradient(140deg,#1a2060 0%,#3050a0 50%,#5070c0 92%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
 }
-.researchers-hero p{ color:rgba(255,255,255,.42); }
+.researchers-hero p{ color:rgba(26,21,53,.5); }
+[data-theme="dark"] .researchers-hero{
+  background:
+    radial-gradient(ellipse 55% 65% at 20% 30%, rgba(20,80,160,.22), transparent 60%),
+    linear-gradient(160deg, #060a12 0%, #080e1a 55%, #030608 100%)!important;
+}
+[data-theme="dark"] .researchers-hero::before{
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.025) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,.025) 40px)!important;
+}
+[data-theme="dark"] .researchers-hero .eyebrow{ color:rgba(130,170,255,.7)!important; }
+[data-theme="dark"] .researchers-hero h1{
+  background:linear-gradient(140deg,#fff 0%,#b8ccff 50%,#7090d8 92%)!important;
+  -webkit-background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  background-clip:text!important;
+}
+[data-theme="dark"] .researchers-hero p{ color:rgba(255,255,255,.42)!important; }
 
 .filter-strip{
   background:#fff;
