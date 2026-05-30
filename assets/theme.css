@@ -3,11 +3,35 @@
 /* ── Global quote typography ── */
 .quote-block blockquote,
 .quote-block p,
-.intro-quote {
+.intro-quote,
+.trad-lede,
+.s2-quote-text {
   font-family: 'Bodoni Moda', Georgia, serif !important;
-  font-size: 18px !important;
   font-style: italic !important;
   line-height: 1.75 !important;
+}
+
+/* Gradient text for all quote elements */
+.quote-block blockquote,
+.quote-block p,
+.intro-quote,
+.trad-lede {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, #6D28D9, #9B72E8, #C5A8F5) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+[data-theme="dark"] .quote-block blockquote,
+[data-theme="dark"] .quote-block p,
+[data-theme="dark"] .intro-quote,
+[data-theme="dark"] .trad-lede {
+  background: linear-gradient(135deg, #B09AE8, #D4C3F5, #EDE0FF) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }
 
 /* ── Nav icon buttons (search + dark mode toggle) ── */
