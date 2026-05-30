@@ -181,6 +181,223 @@
 .stance-Non-local{ background:rgba(90,62,138,.1); color:#5a3e8a; border:1px solid rgba(90,62,138,.2); }
 .stance-Psi-positive{ background:rgba(138,104,32,.1); color:#7B4FC9; border:1px solid rgba(138,104,32,.2); }
 
+/* Spotlight */
+.spotlight-wrap{
+  background:linear-gradient(160deg,#f7f5ff 0%,#eee8ff 60%,#f3f0ff 100%);
+  border-bottom:1px solid rgba(100,75,180,.1);
+  padding:48px 80px;
+  position:relative;
+  overflow:hidden;
+}
+.spotlight-wrap::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 60% 80% at 70% 50%, rgba(100,75,180,.06), transparent 65%);
+  pointer-events:none;
+}
+[data-theme="dark"] .spotlight-wrap{
+  background:linear-gradient(160deg,#07091a 0%,#0c1128 60%,#060a18 100%)!important;
+  border-bottom-color:rgba(110,85,190,.12)!important;
+}
+[data-theme="dark"] .spotlight-wrap::before{
+  background:radial-gradient(ellipse 60% 80% at 70% 50%, rgba(100,75,180,.12), transparent 65%)!important;
+}
+.spotlight-label{
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(100,75,180,.6);
+  font-weight:600;
+  margin-bottom:24px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+[data-theme="dark"] .spotlight-label{ color:rgba(130,170,255,.55)!important; }
+.spotlight-label::before{
+  content:'';
+  display:inline-block;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#7B4FC9;
+  animation:pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot{
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%{ opacity:.5; transform:scale(.7); }
+}
+.spotlight-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  align-items:center;
+  max-width:900px;
+}
+.spotlight-text{ position:relative; z-index:1; }
+.spotlight-name{
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  font-size:32px;
+  font-weight:700;
+  color:#1A1535;
+  margin-bottom:4px;
+  transition:opacity .4s;
+}
+.spotlight-role{
+  font-size:12.5px;
+  color:rgba(100,75,180,.7);
+  margin-bottom:18px;
+  transition:opacity .4s;
+}
+.spotlight-headline{
+  font-size:14px;
+  color:rgba(26,21,53,.55);
+  line-height:1.75;
+  margin-bottom:24px;
+  transition:opacity .4s;
+}
+[data-theme="dark"] .spotlight-name{ color:#fff!important; }
+[data-theme="dark"] .spotlight-role{ color:rgba(130,170,255,.7)!important; }
+[data-theme="dark"] .spotlight-headline{ color:rgba(255,255,255,.55)!important; }
+.spotlight-actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.spotlight-btn{
+  padding:9px 20px;
+  border-radius:999px;
+  background:rgba(123,79,201,.2);
+  border:1px solid rgba(123,79,201,.35);
+  color:rgba(190,160,255,.9);
+  font-size:12px;
+  font-weight:600;
+  cursor:pointer;
+  font-family:inherit;
+  transition:background .15s, border-color .15s;
+  text-decoration:none;
+}
+.spotlight-btn:hover{ background:rgba(123,79,201,.35); border-color:rgba(123,79,201,.55); }
+.spotlight-btn.primary{
+  background:rgba(123,79,201,.9);
+  border-color:transparent;
+  color:#fff;
+}
+.spotlight-btn.primary:hover{ background:#7B4FC9; }
+.spotlight-stats{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  position:relative;
+  z-index:1;
+}
+.spotlight-stat{
+  background:rgba(255,255,255,.7);
+  border:1px solid rgba(100,75,180,.12);
+  border-radius:10px;
+  padding:14px 18px;
+  transition:opacity .4s;
+}
+.spotlight-stat-label{ font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:rgba(100,75,180,.6); margin-bottom:5px; }
+.spotlight-stat-val{ font-size:13px; color:rgba(26,21,53,.75); line-height:1.5; }
+[data-theme="dark"] .spotlight-stat{ background:rgba(255,255,255,.04)!important; border-color:rgba(255,255,255,.07)!important; }
+[data-theme="dark"] .spotlight-stat-label{ color:rgba(130,170,255,.5)!important; }
+[data-theme="dark"] .spotlight-stat-val{ color:rgba(255,255,255,.75)!important; }
+.spotlight-nav{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:28px;
+}
+.spotlight-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:rgba(100,75,180,.2);
+  border:none;
+  cursor:pointer;
+  padding:0;
+  transition:background .2s, transform .2s;
+}
+.spotlight-dot.active{ background:#7B4FC9; transform:scale(1.3); }
+.spotlight-arrow{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  border:1px solid rgba(100,75,180,.2);
+  background:transparent;
+  color:rgba(26,21,53,.45);
+  font-size:13px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:background .15s, border-color .15s;
+  margin-left:auto;
+}
+.spotlight-arrow:hover{ background:rgba(100,75,180,.07); border-color:rgba(100,75,180,.35); }
+[data-theme="dark"] .spotlight-dot{ background:rgba(255,255,255,.18)!important; }
+[data-theme="dark"] .spotlight-arrow{ border-color:rgba(255,255,255,.12)!important; color:rgba(255,255,255,.5)!important; }
+[data-theme="dark"] .spotlight-arrow:hover{ background:rgba(255,255,255,.07)!important; border-color:rgba(255,255,255,.22)!important; }
+.spotlight-fading .spotlight-name,
+.spotlight-fading .spotlight-role,
+.spotlight-fading .spotlight-headline,
+.spotlight-fading .spotlight-stat{ opacity:0; }
+
+/* Modal links & papers */
+.modal-links{ display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.modal-link{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:5px 12px;
+  border-radius:999px;
+  border:1px solid rgba(100,75,180,.18);
+  background:rgba(100,75,180,.05);
+  font-size:11.5px;
+  color:rgba(100,75,180,.85);
+  text-decoration:none;
+  transition:background .15s, border-color .15s;
+}
+.modal-link:hover{ background:rgba(100,75,180,.1); border-color:rgba(100,75,180,.3); }
+.modal-link svg{ width:11px; height:11px; flex-shrink:0; }
+.papers-list{ display:flex; flex-direction:column; gap:8px; }
+.paper-item{
+  padding:10px 13px;
+  background:rgba(248,245,255,.6);
+  border:1px solid rgba(100,75,180,.08);
+  border-radius:8px;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+}
+.paper-year{
+  font-size:10.5px;
+  font-weight:700;
+  color:rgba(100,75,180,.65);
+  white-space:nowrap;
+  padding-top:1px;
+  min-width:32px;
+}
+.paper-info{ flex:1; min-width:0; }
+.paper-title{ font-size:12px; color:rgba(26,21,53,.8); line-height:1.5; }
+.paper-journal{ font-size:10.5px; color:rgba(26,21,53,.45); margin-top:2px; }
+.paper-link{
+  display:flex;
+  align-items:center;
+  margin-top:4px;
+  font-size:10.5px;
+  color:rgba(100,75,180,.7);
+  text-decoration:none;
+  gap:3px;
+}
+.paper-link:hover{ color:#7B4FC9; }
+
+@media(max-width:760px){
+  .spotlight-wrap{ padding:36px 20px; }
+  .spotlight-inner{ grid-template-columns:1fr; gap:24px; }
+  .spotlight-stats{ flex-direction:row; flex-wrap:wrap; }
+  .spotlight-stat{ flex:1; min-width:140px; }
+  .spotlight-name{ font-size:24px; }
+}
+
 /* Modal */
 .modal-overlay{
   position:fixed;
@@ -276,6 +493,27 @@
   </div>
 </section>
 
+<div class="spotlight-wrap" id="spotlightWrap">
+  <div class="spotlight-label">Researcher Spotlight</div>
+  <div class="spotlight-inner">
+    <div class="spotlight-text">
+      <div class="spotlight-name" id="slName"></div>
+      <div class="spotlight-role" id="slRole"></div>
+      <div class="spotlight-headline" id="slHeadline"></div>
+      <div class="spotlight-actions">
+        <button class="spotlight-btn primary" id="slView">View Full Profile</button>
+        <a class="spotlight-btn" id="slSite" href="#" target="_blank" rel="noopener" style="display:none">Visit Site ↗</a>
+      </div>
+      <div class="spotlight-nav">
+        <div id="slDots" style="display:flex;gap:7px;align-items:center;"></div>
+        <button class="spotlight-arrow" id="slPrev">&#8592;</button>
+        <button class="spotlight-arrow" id="slNext">&#8594;</button>
+      </div>
+    </div>
+    <div class="spotlight-stats" id="slStats"></div>
+  </div>
+</div>
+
 <div class="filter-strip" id="filterStrip"></div>
 
 <div class="researchers-main">
@@ -295,6 +533,89 @@
 <script type="module">
 import { researchers } from '/data/researchers-data.js';
 
+// ── Spotlight ──────────────────────────────────────────────────────────────
+const SPOTLIGHT_IDS = ['jim-tucker','pim-van-lommel','sam-parnia','bruce-greyson','dean-radin','rupert-sheldrake'];
+const spotlightList = SPOTLIGHT_IDS.map(id => researchers.find(r => r.id === id)).filter(Boolean);
+let slIdx = 0;
+let slTimer = null;
+
+const slWrap     = document.getElementById('spotlightWrap');
+const slName     = document.getElementById('slName');
+const slRole     = document.getElementById('slRole');
+const slHeadline = document.getElementById('slHeadline');
+const slView     = document.getElementById('slView');
+const slSite     = document.getElementById('slSite');
+const slDots     = document.getElementById('slDots');
+const slStats    = document.getElementById('slStats');
+const slPrev     = document.getElementById('slPrev');
+const slNext     = document.getElementById('slNext');
+
+function renderSpotlight(idx, animate) {
+  const r = spotlightList[idx];
+  if (animate) {
+    slWrap.classList.add('spotlight-fading');
+    setTimeout(() => {
+      populateSpotlight(r);
+      slWrap.classList.remove('spotlight-fading');
+    }, 300);
+  } else {
+    populateSpotlight(r);
+  }
+  slDots.querySelectorAll('.spotlight-dot').forEach((d,i) => d.classList.toggle('active', i === idx));
+}
+
+function populateSpotlight(r) {
+  slName.textContent = r.name;
+  slRole.textContent = r.role + ' · ' + r.institution;
+  slHeadline.textContent = r.headline;
+  slView.onclick = () => openModal(r.id);
+  const siteUrl = r.links && (r.links.website || r.links.archive);
+  if (siteUrl) {
+    slSite.href = siteUrl;
+    slSite.style.display = '';
+  } else {
+    slSite.style.display = 'none';
+  }
+  slStats.innerHTML = [
+    { label: 'Institution', val: r.institution },
+    { label: 'Active Years', val: r.years },
+    { label: 'Primary Domains', val: r.domains.map(d => d.charAt(0).toUpperCase()+d.slice(1)).join(' · ') },
+    { label: 'Position', val: r.stance },
+  ].map(s => `
+    <div class="spotlight-stat">
+      <div class="spotlight-stat-label">${s.label}</div>
+      <div class="spotlight-stat-val">${s.val}</div>
+    </div>`).join('');
+}
+
+function buildDots() {
+  slDots.innerHTML = spotlightList.map((_,i) =>
+    `<button class="spotlight-dot${i===0?' active':''}" aria-label="Spotlight ${i+1}"></button>`
+  ).join('');
+  slDots.querySelectorAll('.spotlight-dot').forEach((dot, i) => {
+    dot.addEventListener('click', () => goSpotlight(i));
+  });
+}
+
+function goSpotlight(idx) {
+  slIdx = (idx + spotlightList.length) % spotlightList.length;
+  renderSpotlight(slIdx, true);
+  resetTimer();
+}
+
+function resetTimer() {
+  clearInterval(slTimer);
+  slTimer = setInterval(() => goSpotlight(slIdx + 1), 6000);
+}
+
+slPrev.addEventListener('click', () => goSpotlight(slIdx - 1));
+slNext.addEventListener('click', () => goSpotlight(slIdx + 1));
+
+buildDots();
+renderSpotlight(0, false);
+resetTimer();
+
+// ── Filter + Grid ──────────────────────────────────────────────────────────
 const ALL_DOMAINS = [...new Set(researchers.flatMap(r => r.domains))].sort();
 let activeFilter = '';
 
@@ -349,15 +670,54 @@ function render() {
     </article>`).join('');
 }
 
+// ── Modal ──────────────────────────────────────────────────────────────────
+const LINK_ICON = `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2H2a1 1 0 00-1 1v7a1 1 0 001 1h7a1 1 0 001-1V7M8 1h3m0 0v3m0-3L5.5 6.5"/></svg>`;
+
+function buildLinks(links) {
+  if (!links) return '';
+  const entries = Object.entries(links).filter(([,v]) => v);
+  if (!entries.length) return '';
+  const labels = { website: 'Website', googleScholar: 'Google Scholar', archive: 'Archive', lab: 'Lab' };
+  return `
+    <div class="modal-section">
+      <div class="modal-label">Links</div>
+      <div class="modal-links">
+        ${entries.map(([k,v]) => `<a class="modal-link" href="${v}" target="_blank" rel="noopener">${LINK_ICON}${labels[k]||k}</a>`).join('')}
+      </div>
+    </div>`;
+}
+
+function buildPapers(papers) {
+  if (!papers || !papers.length) return '';
+  return `
+    <div class="modal-section">
+      <div class="modal-label">Key Publications</div>
+      <div class="papers-list">
+        ${papers.map(p => `
+          <div class="paper-item">
+            <div class="paper-year">${p.year}</div>
+            <div class="paper-info">
+              <div class="paper-title">${p.title}</div>
+              <div class="paper-journal">${p.journal}</div>
+              ${p.url ? `<a class="paper-link" href="${p.url}" target="_blank" rel="noopener">${LINK_ICON} View paper</a>` : ''}
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+}
+
 window.openModal = function(id) {
   const r = researchers.find(x => x.id === id);
   if (!r) return;
+  const instLine = r.institutionUrl
+    ? `<a href="${r.institutionUrl}" target="_blank" rel="noopener" style="color:rgba(100,75,180,.7);text-decoration:none;">${r.institution}</a>`
+    : r.institution;
   document.getElementById('modal').innerHTML = `
     <div class="modal-header">
       <div class="modal-initials">${initials(r.name)}</div>
       <div>
         <div class="modal-name">${r.name}</div>
-        <div class="modal-sub">${r.role} · ${r.institution} · ${r.years}</div>
+        <div class="modal-sub">${r.role} · ${instLine} · ${r.years}</div>
       </div>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
@@ -366,10 +726,8 @@ window.openModal = function(id) {
         <div class="modal-label">Overview</div>
         <div class="modal-text">${r.bio}</div>
       </div>
-      <div class="modal-section">
-        <div class="modal-label">Key Work</div>
-        <div class="modal-text">${r.keyWork}</div>
-      </div>
+      ${buildLinks(r.links)}
+      ${buildPapers(r.recentPapers)}
       <div class="modal-section">
         <div class="modal-label">Methodology</div>
         <div class="modal-text">${r.methodology}</div>
