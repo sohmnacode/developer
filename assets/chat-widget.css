@@ -37,8 +37,18 @@
 .rai-subtitle{font-size:11px;color:rgba(255,255,255,.65);margin-top:1px}
 .rai-new-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.9);font-size:12px;font-weight:500;font-family:inherit;padding:5px 12px;border-radius:999px;cursor:pointer;letter-spacing:.02em;transition:background .15s,border-color .15s;white-space:nowrap}
 .rai-new-btn:hover{background:rgba(255,255,255,.28);border-color:rgba(255,255,255,.4)}
+.rai-min-btn{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:14px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;flex-shrink:0}
+.rai-min-btn:hover{background:rgba(255,255,255,.3)}
 .rai-close-btn{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:14px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;flex-shrink:0}
 .rai-close-btn:hover{background:rgba(220,60,60,.55);border-color:rgba(255,120,120,.5)}
+
+/* Minimized state — collapses to header only */
+.rai-panel.rai-minimized{max-height:none}
+.rai-panel.rai-minimized .rai-modes,
+.rai-panel.rai-minimized .rai-msgs,
+.rai-panel.rai-minimized .rai-input-wrap,
+.rai-panel.rai-minimized .rai-footer-row{display:none}
+.rai-panel.rai-minimized{border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,.12)}
 
 /* Modes */
 .rai-modes{display:flex;gap:5px;padding:10px 14px 8px;flex-wrap:wrap;border-bottom:1px solid rgba(100,75,180,.08);flex-shrink:0;background:#fafcf9}

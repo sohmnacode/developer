@@ -162,6 +162,7 @@ class ChatWindow {
           </div>
           <div class="rai-header-actions">
             <button class="rai-new-btn" title="Open a new chat window">New chat</button>
+            <button class="rai-min-btn" title="Minimize">&#8722;</button>
             <button class="rai-close-btn" title="Close this window">&#x2715;</button>
           </div>
         </div>
@@ -200,6 +201,14 @@ class ChatWindow {
   _bindEvents() {
     /* Close */
     this._q('.rai-close-btn').addEventListener('click', () => RaiManager.closeWindow(this));
+
+    /* Minimize / restore */
+    this._q('.rai-min-btn').addEventListener('click', () => {
+      const panel = this._q('.rai-panel');
+      const minimized = panel.classList.toggle('rai-minimized');
+      this._q('.rai-min-btn').innerHTML = minimized ? '&#9650;' : '&#8722;';
+      this._q('.rai-min-btn').title = minimized ? 'Restore' : 'Minimize';
+    });
 
     /* New chat window */
     this._q('.rai-new-btn').addEventListener('click', () => RaiManager.openWindow());
