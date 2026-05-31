@@ -387,6 +387,28 @@ export const researchers = [
     ],
   },
   {
+    id: 'mary-neal',
+    name: 'Mary Neal',
+    role: 'Orthopaedic Spine Surgeon & NDE Witness',
+    institution: 'Wyoming Spine & Neurosurgery Associates',
+    institutionUrl: 'https://www.drmaryneal.com/',
+    years: '1956–present',
+    domains: ['nde', 'consciousness', 'clinical study'],
+    stance: 'Survival',
+    headline: 'Board-certified spine surgeon who drowned and was clinically dead for over 30 minutes, returning with detailed NDE testimony that sparked a medical and spiritual career shift.',
+    bio: 'Neal was kayaking in southern Chile in 1999 when her boat became pinned underwater. She was clinically dead for over 30 minutes. During that time she reports a vivid NDE including encounters with heavenly beings, a life review, and a prophetic message about her son\'s future death — which she documented before it occurred in 2009. A practicing Christian and physician, she approaches her experience as compatible with both medicine and faith. Her account is notable for the length of clinical death, the veridical detail she provided, and her credibility as a medical professional. She has since lectured widely in medical, academic, and religious settings.',
+    keyWork: 'To Heaven and Back (2012); 7 Lessons from Heaven (2017)',
+    methodology: 'First-person clinical testimony · Pre-event documentation of prophetic content · Integration of medical and experiential evidence',
+    controversy: 'Critics note that the exact duration and nature of clinical death is difficult to verify retrospectively, and that her Christian interpretive framework may shape recall. Some medical skeptics attribute her experience to hypoxia-induced hallucination during drowning and resuscitation.',
+    links: {
+      website: 'https://www.drmaryneal.com/',
+    },
+    recentPapers: [
+      { title: 'To Heaven and Back: A Doctor\'s Extraordinary Account of Her Death, Heaven, Angels, and Life Again', year: 2012, journal: 'WaterBrook Press', url: null },
+      { title: '7 Lessons from Heaven: How Dying Taught Me to Live a Joy-Filled Life', year: 2017, journal: 'Convergent Books', url: null },
+    ],
+  },
+  {
     id: 'elisaberth-kubler-ross',
     name: 'Elisabeth Kübler-Ross',
     role: 'Psychiatrist & Thanatologist',
