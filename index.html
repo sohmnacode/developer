@@ -361,6 +361,31 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
 [data-theme="dark"] .history-source{color:rgba(139,92,246,.4)}
 
 /* ── Weekly digest signup — light mode ── */
+/* Case of the Week section */
+.s-cotw{background:linear-gradient(135deg,#1a0a50 0%,#3b1085 50%,#6D28D9 100%);padding:80px 40px;position:relative;z-index:2;overflow:hidden}
+.s-cotw::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.cotw-home-inner{max-width:1000px;margin:0 auto;position:relative;z-index:1}
+.cotw-home-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:600;margin-bottom:28px;display:flex;align-items:center;gap:8px}
+.cotw-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#a78bfa;animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+.cotw-home-grid{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:start}
+.cotw-home-domain{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(167,139,250,.7);margin-bottom:10px;font-weight:500}
+.cotw-home-title{font-family:'Space Grotesk',system-ui,sans-serif;font-size:clamp(24px,3.5vw,40px);font-weight:700;color:#fff;margin-bottom:8px;line-height:1.15;letter-spacing:-.02em}
+.cotw-home-meta{font-size:12.5px;color:rgba(255,255,255,.45);margin-bottom:18px}
+.cotw-home-summary{font-size:15px;color:rgba(255,255,255,.72);line-height:1.75;max-width:580px;margin-bottom:24px}
+.cotw-home-footer{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.cotw-home-strength{display:inline-flex;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);font-size:10.5px;font-weight:600;color:rgba(255,255,255,.85);letter-spacing:.07em;text-transform:uppercase}
+.cotw-home-link{font-size:13px;color:rgba(167,139,250,.9);font-weight:600;text-decoration:none;transition:color .15s}
+.cotw-home-link:hover{color:#fff}
+.cotw-home-score-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:28px 24px;text-align:center;min-width:130px;backdrop-filter:blur(8px)}
+.cotw-home-score-num{font-family:'Space Grotesk',system-ui,sans-serif;font-size:52px;font-weight:700;color:#fff;line-height:1;margin-bottom:6px}
+.cotw-home-score-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px}
+.cotw-home-score-bar{height:5px;background:rgba(255,255,255,.15);border-radius:3px;overflow:hidden;margin-bottom:8px}
+.cotw-home-score-fill{height:100%;background:linear-gradient(90deg,#a78bfa,#fff);border-radius:3px;transition:width .6s ease}
+.cotw-home-score-sub{font-size:10px;color:rgba(255,255,255,.3)}
+@media(max-width:640px){.s-cotw{padding:56px 24px}.cotw-home-grid{grid-template-columns:1fr}.cotw-home-score-card{display:flex;gap:16px;align-items:center;text-align:left;padding:20px}.cotw-home-score-num{font-size:36px}}
+[data-theme="dark"] .s-cotw{background:linear-gradient(135deg,#0c0520 0%,#1e0850 50%,#3b1085 100%)}
+
 .s-digest{background:#F7F6FF;padding:72px 40px;position:relative;z-index:2;border-top:1px solid rgba(100,75,180,.08)}
 .s-digest-inner{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:48px;flex-wrap:wrap}
 .s-digest-left{flex:1;min-width:200px}
@@ -467,6 +492,34 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
         <button type="submit" class="s-digest-btn" id="digestBtn">Subscribe</button>
       </form>
       <p class="s-digest-status" id="digestStatus"></p>
+    </div>
+  </div>
+</section>
+
+<section class="s-cotw" id="caseOfWeek">
+  <div class="cotw-home-inner">
+    <div class="cotw-home-label">
+      <span class="cotw-dot"></span>Case of the Week
+    </div>
+    <div class="cotw-home-grid">
+      <div class="cotw-home-text">
+        <div class="cotw-home-domain" id="hw-domain"></div>
+        <h2 class="cotw-home-title" id="hw-title"></h2>
+        <div class="cotw-home-meta" id="hw-meta"></div>
+        <p class="cotw-home-summary" id="hw-summary"></p>
+        <div class="cotw-home-footer">
+          <span class="cotw-home-strength" id="hw-strength"></span>
+          <a href="/cases" class="cotw-home-link">Explore all cases →</a>
+        </div>
+      </div>
+      <div class="cotw-home-score-wrap">
+        <div class="cotw-home-score-card">
+          <div class="cotw-home-score-num" id="hw-score"></div>
+          <div class="cotw-home-score-label">Evidence Score</div>
+          <div class="cotw-home-score-bar"><div class="cotw-home-score-fill" id="hw-fill"></div></div>
+          <div class="cotw-home-score-sub">Out of 100</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1189,6 +1242,21 @@ const QUOTES = [
   document.getElementById('qText').textContent = '“' + q.text + '”';
   document.getElementById('qAttr').textContent = q.name + ' — ' + q.title;
 })();
+</script>
+<script type="module">
+import { caseIndex } from '/data/research-data.js';
+const FEATURED = caseIndex.filter(c => c.evidenceScore >= 68 && (c.domain === 'NDE' || c.domain === 'Reincarnation'));
+if (FEATURED.length) {
+  const weekIdx = Math.floor(Date.now() / 604800000) % FEATURED.length;
+  const fw = FEATURED[weekIdx];
+  document.getElementById('hw-domain').textContent = fw.domain + ' · ' + fw.type;
+  document.getElementById('hw-title').textContent = fw.title;
+  document.getElementById('hw-meta').textContent = fw.location + ' · ' + fw.year;
+  document.getElementById('hw-summary').textContent = fw.summary;
+  document.getElementById('hw-strength').textContent = fw.strength;
+  document.getElementById('hw-score').textContent = fw.evidenceScore;
+  document.getElementById('hw-fill').style.width = fw.evidenceScore + '%';
+}
 </script>
 <script src="/assets/ui.js" defer></script>
 <script src="/assets/chat-widget.js" defer></script>

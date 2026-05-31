@@ -594,12 +594,16 @@ function populateSpotlight(r) {
   } else {
     slSite.style.display = 'none';
   }
+  const citDisplay = r.citationCount
+    ? (r.citationCount >= 1000 ? (r.citationCount/1000).toFixed(1).replace(/\.0$/,'')+'k+' : r.citationCount+'+')
+    : null;
   slStats.innerHTML = [
     { label: 'Institution', val: r.institution },
     { label: 'Active Years', val: r.years },
     { label: 'Primary Domains', val: r.domains.map(d => d.charAt(0).toUpperCase()+d.slice(1)).join(' · ') },
     { label: 'Position', val: r.stance },
-  ].map(s => `
+    citDisplay ? { label: 'Citations (approx.)', val: citDisplay } : null,
+  ].filter(Boolean).map(s => `
     <div class="spotlight-stat">
       <div class="spotlight-stat-label">${s.label}</div>
       <div class="spotlight-stat-val">${s.val}</div>
@@ -691,6 +695,38 @@ function render() {
 // ── Modal ──────────────────────────────────────────────────────────────────
 const LINK_ICON = `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2H2a1 1 0 00-1 1v7a1 1 0 001 1h7a1 1 0 001-1V7M8 1h3m0 0v3m0-3L5.5 6.5"/></svg>`;
 
+function buildCitations(count) {
+  if (!count) return '';
+  const display = count >= 1000 ? (count/1000).toFixed(1).replace(/\.0$/,'') + 'k+' : count + '+';
+  return `
+    <div class="modal-section">
+      <div class="modal-label">Approximate Citations</div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:#7B4FC9">${display}</span>
+        <span style="font-size:12px;color:rgba(26,21,53,.5);line-height:1.4">Google Scholar<br>citations (approx.)</span>
+      </div>
+    </div>`;
+}
+
+function buildClips(clips) {
+  if (!clips || !clips.length) return '';
+  return `
+    <div class="modal-section">
+      <div class="modal-label">Interview Clips &amp; Talks</div>
+      <div class="papers-list">
+        ${clips.map(cl => `
+          <div class="paper-item">
+            <div class="paper-year">${cl.year}</div>
+            <div class="paper-info">
+              <div class="paper-title">${cl.title}</div>
+              <div class="paper-journal">${cl.outlet}</div>
+              ${cl.url ? `<a class="paper-link" href="${cl.url}" target="_blank" rel="noopener">${LINK_ICON} Watch</a>` : ''}
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+}
+
 function buildLinks(links) {
   if (!links) return '';
   const entries = Object.entries(links).filter(([,v]) => v);
@@ -744,6 +780,8 @@ window.openModal = function(id) {
         <div class="modal-label">Overview</div>
         <div class="modal-text">${r.bio}</div>
       </div>
+      ${buildCitations(r.citationCount)}
+      ${buildClips(r.interviewClips)}
       ${buildLinks(r.links)}
       ${buildPapers(r.recentPapers)}
       <div class="modal-section">

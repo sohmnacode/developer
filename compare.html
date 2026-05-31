@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="color-scheme" content="light"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Cross-Cultural Soul Comparison: Buddhism, Hinduism, Druze &amp; More | ReincarnatedAI</title>
+<meta name="description" content="Side-by-side comparison of how Buddhism, Hinduism, Tibetan Buddhism, Druze, Jainism, Spiritism, and Indigenous traditions describe the soul, rebirth, and the afterlife."/>
+<link rel="canonical" href="https://reincarnatedai.com/compare"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://reincarnatedai.com/compare"/>
+<meta property="og:site_name" content="ReincarnatedAI"/>
+<meta property="og:title" content="Cross-Cultural Soul Comparison | ReincarnatedAI"/>
+<meta property="og:description" content="How do the world's traditions describe the soul, rebirth, and the afterlife? A side-by-side comparison across eight major frameworks."/>
+<meta property="og:image" content="https://reincarnatedai.com/og-image.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Cross-Cultural Soul Comparison | ReincarnatedAI"/>
+<meta name="twitter:image" content="https://reincarnatedai.com/og-image.jpg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/theme.css">
+<link rel="stylesheet" href="/assets/research.css">
+<link rel="stylesheet" href="/assets/chat-widget.css">
+<style>
+.compare-hero{
+  min-height:50vh;
+  display:flex;
+  align-items:flex-end;
+  padding:120px 80px 64px;
+  background:
+    radial-gradient(ellipse 65% 70% at 75% 25%, rgba(80,120,200,.1), transparent 65%),
+    linear-gradient(to bottom, #F8F5EF, #E5EBF8);
+  position:relative;
+  overflow:hidden;
+}
+.compare-hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(0,0,0,.015) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(0,0,0,.015) 40px);
+  pointer-events:none;
+}
+.compare-hero .eyebrow{ color:rgba(60,90,180,.7); }
+.compare-hero h1{
+  background:linear-gradient(140deg,#1a2060 0%,#3050c0 50%,#5080e0 92%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.compare-hero p{ color:rgba(26,21,53,.5); }
+[data-theme="dark"] .compare-hero{
+  background:
+    radial-gradient(ellipse 65% 70% at 75% 25%, rgba(80,120,200,.2), transparent 65%),
+    linear-gradient(to bottom, #060a14, #080e1e)!important;
+}
+[data-theme="dark"] .compare-hero::before{
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.02) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,.02) 40px)!important;
+}
+[data-theme="dark"] .compare-hero .eyebrow{ color:rgba(130,160,255,.7)!important; }
+[data-theme="dark"] .compare-hero h1{
+  background:linear-gradient(140deg,#fff 0%,#b8ccff 50%,#8090d8 92%)!important;
+  -webkit-background-clip:text!important; -webkit-text-fill-color:transparent!important; background-clip:text!important;
+}
+[data-theme="dark"] .compare-hero p{ color:rgba(255,255,255,.42)!important; }
+
+/* ── Controls ── */
+.compare-controls{
+  background:#fff;
+  border-bottom:1px solid rgba(100,75,180,.1);
+  padding:18px 80px;
+  position:sticky;
+  top:60px;
+  z-index:40;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+[data-theme="dark"] .compare-controls{
+  background:#0c0a1e!important;
+  border-bottom-color:rgba(100,75,180,.18)!important;
+}
+.tradition-chip{
+  padding:7px 14px;
+  border-radius:999px;
+  border:2px solid transparent;
+  font-size:11.5px;
+  font-weight:600;
+  cursor:pointer;
+  font-family:inherit;
+  transition:all .15s;
+  touch-action:manipulation;
+}
+.tradition-chip:hover{ opacity:.85; }
+.tradition-chip.inactive{ background:rgba(255,255,255,.7)!important; border-color:rgba(100,75,180,.14)!important; color:rgba(26,21,53,.55)!important; }
+
+/* ── Main layout ── */
+.compare-main{
+  padding:48px 80px 80px;
+  max-width:1300px;
+  margin:0 auto;
+}
+.dimension-label{
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(26,21,53,.35);
+  font-weight:600;
+  padding:32px 0 14px;
+  border-top:1px solid rgba(100,75,180,.08);
+  margin-top:8px;
+}
+.dimension-label:first-child{ border-top:none; padding-top:0; }
+[data-theme="dark"] .dimension-label{ color:rgba(255,255,255,.25)!important; border-color:rgba(255,255,255,.07)!important; }
+
+.cards-row{
+  display:grid;
+  gap:12px;
+  margin-bottom:8px;
+}
+
+.tradition-card{
+  border-radius:12px;
+  padding:18px 20px;
+  border:1px solid;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  transition:box-shadow .2s, transform .2s;
+}
+.tradition-card:hover{
+  box-shadow:0 4px 18px rgba(0,0,0,.06);
+  transform:translateY(-1px);
+}
+.tc-header{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:2px;
+}
+.tc-dot{
+  width:8px; height:8px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+.tc-name{
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.tc-value{
+  font-size:14px;
+  line-height:1.65;
+}
+.tc-note{
+  font-size:11.5px;
+  font-style:italic;
+  opacity:.65;
+  line-height:1.5;
+}
+
+/* ── Convergence box ── */
+.convergence-box{
+  background:linear-gradient(135deg,#f3f0ff 0%,#ede8ff 100%);
+  border:1px solid rgba(100,75,180,.15);
+  border-radius:14px;
+  padding:28px 32px;
+  margin:48px 0 0;
+}
+[data-theme="dark"] .convergence-box{
+  background:linear-gradient(135deg,#0e0a22 0%,#140e2e 100%)!important;
+  border-color:rgba(100,75,180,.2)!important;
+}
+.convergence-box h3{
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  font-size:18px;
+  font-weight:700;
+  color:#1A1535;
+  margin-bottom:16px;
+}
+[data-theme="dark"] .convergence-box h3{ color:#fff!important; }
+.convergence-points{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+}
+.convergence-point{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+}
+.cp-dot{
+  width:6px; height:6px;
+  border-radius:50%;
+  background:#7B4FC9;
+  margin-top:6px;
+  flex-shrink:0;
+}
+.cp-text{
+  font-size:13px;
+  color:rgba(26,21,53,.75);
+  line-height:1.6;
+}
+[data-theme="dark"] .cp-text{ color:rgba(255,255,255,.65)!important; }
+
+/* Science badge */
+.sci-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(100,75,180,.08);
+  border:1px solid rgba(100,75,180,.18);
+  font-size:10px;
+  color:rgba(100,75,180,.85);
+  font-weight:600;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+@media(max-width:760px){
+  .compare-hero{ padding:110px 24px 48px; }
+  .compare-controls{ padding:16px 20px; top:56px; }
+  .compare-main{ padding:32px 20px 60px; }
+  .cards-row{ grid-template-columns:1fr!important; }
+}
+</style>
+</head>
+<body>
+<nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/cases">Cases</a><a href="/researchers">Researchers</a><a href="/traditions">Traditions</a><a href="/compare">Compare</a><a href="/evidence">Evidence</a><a href="/glossary">Glossary</a></div></nav>
+
+<section class="compare-hero">
+  <div class="hero-content">
+    <div class="eyebrow">Cross-Cultural Tool</div>
+    <h1>Tradition Comparison</h1>
+    <p>How do the world's major spiritual traditions describe the soul, rebirth, the between-life state, and liberation? Filter by tradition and explore dimension by dimension.</p>
+  </div>
+</section>
+
+<div class="compare-controls" id="controls"></div>
+
+<div class="compare-main" id="compareMain">
+  <div id="dimensionView"></div>
+  <div class="convergence-box" id="convergenceBox">
+    <h3>Points of Convergence Across Traditions</h3>
+    <div class="convergence-points">
+      <div class="convergence-point"><div class="cp-dot"></div><div class="cp-text">All traditions posit some continuity of identity beyond physical death — though what persists varies from a permanent self to an impersonal stream of consciousness.</div></div>
+      <div class="convergence-point"><div class="cp-dot"></div><div class="cp-text">Moral causality (karma, merit, consequence) is near-universal: how one lives shapes what comes next, across traditions as different as Jainism and Spiritism.</div></div>
+      <div class="convergence-point"><div class="cp-dot"></div><div class="cp-text">Most frameworks describe an intermediate state between lives — a period of reflection, review, or preparation before re-embodiment.</div></div>
+      <div class="convergence-point"><div class="cp-dot"></div><div class="cp-text">Children's spontaneous past-life memories cluster most heavily in communities where reincarnation is culturally expected: Druze, Tlingit, Thai, Sri Lankan, and Indian populations.</div></div>
+      <div class="convergence-point"><div class="cp-dot"></div><div class="cp-text">The UVA case database shows cross-cultural consistency in the types of evidence produced: verified statements, birthmarks, behavioral memories, and family recognition appear in every major case-producing culture.</div></div>
+      <div class="convergence-point"><div class="cp-dot"></div><div class="cp-text">Liberation or release from rebirth cycles appears in most traditions as the highest goal — suggesting a shared intuition that repeated embodiment is not the final state of the soul.</div></div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <span>Traditions are complex — summaries here capture dominant interpretations, not every school within each tradition.</span>
+  <span><a href="/traditions">Full Traditions Guide</a></span>
+</footer>
+
+<script type="module">
+const TRADITIONS = [
+  {
+    id: 'hindu',
+    name: 'Hinduism',
+    origin: 'India, ~1500 BCE',
+    color: '#b8720a',
+    bg: 'rgba(210,140,40,.07)',
+    border: 'rgba(210,140,40,.2)',
+    dims: {
+      soul: 'Ātman — an eternal, unchanging individual self identical with Brahman (universal consciousness). The soul neither is born nor dies; the body is its temporary vehicle.',
+      lives: 'Potentially unlimited. Cycles of birth, death, and rebirth (saṃsāra) continue until liberation (moksha) is achieved.',
+      karma: 'Karma (action + intention) accumulates across lives. Dharma (righteous duty) determines the quality of future rebirths. Desire and attachment drive the cycle.',
+      bardo: 'Pitr̥loka — a realm of ancestors where the soul rests before returning. In some texts, Yama\'s court judges deeds and assigns the next birth according to karmic balance.',
+      memory: 'Ordinary souls do not remember past lives (veil of māyā). Advanced yogis and some children may retain fragments; specific recall is considered evidence of spiritual development.',
+      goal: 'Moksha — liberation from the cycle of rebirth. Achieved through jñāna (knowledge), bhakti (devotion), karma yoga (right action), or raja yoga (meditation).',
+      science: 'UVA birthmark cases concentrate heavily in India. Stevenson\'s strongest cases (Shanti Devi, Swarnlata Mishra, Kumkum Verma) are from Hindu families.',
+    },
+  },
+  {
+    id: 'theravada',
+    name: 'Theravāda Buddhism',
+    origin: 'South/SE Asia, ~3rd c. BCE',
+    color: '#c07820',
+    bg: 'rgba(200,130,30,.07)',
+    border: 'rgba(200,130,30,.2)',
+    dims: {
+      soul: 'Anattā (no-self) — there is no permanent, unchanging soul. What transmigrates is a stream of consciousness (viññāna-sota) conditioned by karma, not a fixed entity.',
+      lives: 'Potentially unlimited. Rebirth is driven by craving (taṇhā) and ignorance (avijjā). Even the gods will eventually die and be reborn.',
+      karma: 'Intentional action (kamma) leaves impressions in the consciousness stream. The last moment of consciousness at death strongly influences the next birth.',
+      bardo: 'Rebirth is nearly instantaneous — a new consciousness arises at conception in the next life. No prolonged intermediate state in classical Theravāda.',
+      memory: 'Ordinary beings do not remember past lives. Monks with deep concentration (samādhi) can develop pubbenivāsānussati-ñāṇa — recollection of past lives — as a meditative attainment.',
+      goal: 'Nibbāna — cessation of the cycle through the extinguishing of craving, hatred, and delusion. The arahant achieves no further rebirth.',
+      science: 'Sri Lanka and Myanmar are the two strongest per-capita producers of reincarnation cases in the UVA database. Buddhist cultural framework may facilitate children\'s reporting.',
+    },
+  },
+  {
+    id: 'tibetan',
+    name: 'Tibetan Buddhism',
+    origin: 'Tibet, ~7th c. CE',
+    color: '#8a3820',
+    bg: 'rgba(180,80,60,.07)',
+    border: 'rgba(180,80,60,.2)',
+    dims: {
+      soul: 'Rigpa — the nature of mind is luminous awareness (buddha-nature), present in all beings. The "I" that appears to transmigrate is a conventional designation, not an ultimate entity.',
+      lives: 'Unlimited. The Bardo Thodol (Tibetan Book of the Dead) describes the process in detail. Tulkus (reincarnate lamas) are identified and recognized across multiple lives.',
+      karma: 'Karma operates through the three doors of body, speech, and mind. The recognition of one\'s true nature (rigpa) at the moment of death can break the karmic chain.',
+      bardo: 'Three bardos: chikhai (dying), chönyid (dharmata visions), and sidpa (seeking rebirth). The complete process lasts up to 49 days. The quality of awareness during this period determines rebirth.',
+      memory: 'Tulku recognition is systematic and institutionalized — children are tested with objects belonging to the previous incarnation. Past-life recall is considered a confirmable skill in advanced practitioners.',
+      goal: 'Enlightenment for the benefit of all beings (bodhicitta). The bodhisattva vow to return until all beings are liberated may lead to intentional rebirth rather than its cessation.',
+      science: 'Tulku recognition practices provide a structured, institutionalized parallel to UVA-style verification. Ian Stevenson documented cases in Tibetan exile communities in India.',
+    },
+  },
+  {
+    id: 'druze',
+    name: 'Druze',
+    origin: 'Levant, ~11th c. CE',
+    color: '#1e6e4a',
+    bg: 'rgba(30,110,74,.07)',
+    border: 'rgba(30,110,74,.22)',
+    dims: {
+      soul: 'An individual soul (nafs) that transmigrates at the moment of death into a new body, always human, always within the Druze community. The soul does not change; only the body does.',
+      lives: 'The number of souls in the world is fixed. Each soul reincarnates repeatedly, exclusively among Druze. No soul ever enters a non-Druze body.',
+      karma: 'Moral accountability is immediate and specific: wrongs will be experienced in the very next life. The community takes past-life claims seriously as behavioral explanations.',
+      bardo: 'Essentially none — transmigration is nearly instantaneous at death. The soul enters a new body at the moment another is born, with no intermediate state described.',
+      memory: 'Past-life memory in children is expected and socially accepted. Children who claim to remember a previous life are taken seriously; families often investigate the claims.',
+      goal: 'Purification across lives until the soul achieves spiritual purity and union with the divine Mind (ʿAql). The process is gradual and community-bound.',
+      science: 'Lebanon and Syria (Druze-majority regions) have the highest per-capita rate of reincarnation cases in Stevenson\'s database. The cultural acceptance of past-life claims creates a strong reporting environment.',
+    },
+  },
+  {
+    id: 'jainism',
+    name: 'Jainism',
+    origin: 'India, ~6th c. BCE',
+    color: '#1e6e8a',
+    bg: 'rgba(40,120,160,.07)',
+    border: 'rgba(40,120,160,.2)',
+    dims: {
+      soul: 'Jīva — an eternal, individual soul with infinite knowledge, bliss, and energy when pure. The soul is literally weighed down and obscured by karma particles (kārmaṇa pudgala).',
+      lives: 'Unlimited. The soul has transmigrated through all forms of life (earth, water, fire, air, plant, animal, human, divine) over infinite past time.',
+      karma: 'Karma is understood as subtle matter that clings to the soul based on mental, verbal, and physical activity. The influx (āsrava) and shedding (nirjarā) of karma is the core of Jain ethics.',
+      bardo: 'The soul leaves the body and immediately enters a new one — or may spend a short time as a formless soul (vigraha-gati) traveling to its next birth. No extended intermediate state.',
+      memory: 'Highly advanced ascetics (kevalins) have omniscient recall of all past lives. Ordinary souls do not, as karma obscures the soul\'s natural knowledge.',
+      goal: 'Moksha — complete liberation of the jīva from all karma, resulting in residence at the apex of the universe (siddha-śilā) in eternal, omniscient bliss. No further rebirth.',
+      science: 'Jain philosophy\'s detailed account of karma as a literal physical substance has been compared to UVA birthmark evidence — a physical imprint of a previous identity on the current body.',
+    },
+  },
+  {
+    id: 'spiritism',
+    name: 'Spiritism (Kardecism)',
+    origin: 'France/Brazil, ~1857 CE',
+    color: '#6b3fa8',
+    bg: 'rgba(120,80,200,.07)',
+    border: 'rgba(120,80,200,.2)',
+    dims: {
+      soul: 'The perispirit — a semi-material fluidic body that carries the soul\'s moral and intellectual faculties across lives. The spirit is an individual entity that progressively develops.',
+      lives: 'Multiple and progressive. Each incarnation provides specific lessons; the spirit chooses its trials before birth in consultation with guides. Regression is possible but rare.',
+      karma: 'Moral law operates across lives: suffering experienced may be the consequence of past actions, or the result of lessons chosen for growth. The spirit is ultimately responsible for its path.',
+      bardo: 'The spirit world (spiritual colony) is a realm where spirits between lives continue to develop, receive guidance, and plan future incarnations with their spiritual mentors.',
+      memory: 'Spirits in the spiritual world have access to past-life memories. In incarnation, the veil of forgetfulness operates — but spontaneous memories in children or under trance are recognized as valid.',
+      goal: 'Moral and intellectual perfection across many lives — eventually achieving a state of pure spirit no longer requiring incarnation. Service to others accelerates progress.',
+      science: 'Brazil, with its large Spiritist population, contributes cases to the UVA database. Brazilian researchers have documented past-life claims within the Spiritist framework.',
+    },
+  },
+  {
+    id: 'indigenous',
+    name: 'Indigenous / Shamanic',
+    origin: 'Global (diverse)',
+    color: '#5a3e1a',
+    bg: 'rgba(140,90,40,.07)',
+    border: 'rgba(140,90,40,.2)',
+    dims: {
+      soul: 'Multiple soul components are recognized in many traditions (e.g., Tlingit: yéik and enduring name-soul; Inuit: multiple souls including breath, free, and name-souls). The human is a relational being within a web of spirits.',
+      lives: 'Rebirth is expected, often within the same family or clan. The Tlingit of Alaska have one of the highest per-capita rates of past-life claims documented by Stevenson. The returning soul often announces itself before birth.',
+      karma: 'Less systematized than Asian traditions. Right relationship with land, community, and spirit is the ethical core. Disrupted relations across lives may require healing or reconciliation.',
+      bardo: 'The spirit world (various names) is a parallel realm accessible through shamanic trance. The shaman mediates between worlds; the dead may be encountered, consulted, or helped toward proper rebirth.',
+      memory: 'Past-life birthmarks and memories are culturally expected. In Tlingit tradition, birthmarks placed on a dying elder\'s body to mark for identification appear on the reborn child — a practice that parallels Stevenson\'s birthmark cases.',
+      goal: 'Varies by tradition. Continuity of the ancestral line, proper relationship with the living and the dead, and integration of spirit and community are common themes rather than final liberation from rebirth.',
+      science: 'The Tlingit (Alaska) and some Burmese minority groups have the strongest per-capita case rates in Stevenson\'s database. The pre-mortem marking practice provides a testable natural experiment for birthmark correspondence.',
+    },
+  },
+  {
+    id: 'early-christian',
+    name: 'Early Christianity / Gnosticism',
+    origin: 'Mediterranean, 1st–4th c. CE',
+    color: '#3a5080',
+    bg: 'rgba(60,80,140,.07)',
+    border: 'rgba(60,80,140,.2)',
+    dims: {
+      soul: 'Pneuma (spirit), psyche (soul), and soma (body) — the three-part human. In Gnostic traditions, the divine spark (pneuma) is trapped in matter and seeks return to the pleroma (divine fullness).',
+      lives: 'Preexistence of souls is attested in Origen of Alexandria (c. 185–253 CE), who argued souls inhabit multiple bodies across time. The Council of Constantinople (553 CE) condemned this view; it was largely eliminated from mainstream Christianity.',
+      karma: 'Origen\'s system involved a "trial by fire" — souls descend from a primordial unity into bodies based on their prior actions in a pre-physical realm. Earthly life is a school for moral development.',
+      bardo: 'Gnostic tradition describes the soul\'s ascent through cosmic spheres (archons) after death, each requiring knowledge of the correct passwords (gnosis) to pass through. Purgatory (Catholic) functions similarly as a purification period.',
+      memory: 'Pre-birth knowledge is implied by Plato\'s doctrine of anamnesis, incorporated by some early Christian Platonists. Most orthodox Christianity rejects past-life memory as theologically incompatible with a single resurrection.',
+      goal: 'Return to the divine source — the pleroma — through gnosis (salvific knowledge). For Origen: eventual universal restoration (apokatastasis) of all souls to unity with God.',
+      science: 'Origen\'s framework of preexisting souls and moral development across embodiments is the closest early Christian parallel to the modern reincarnation research framework, though historically suppressed.',
+    },
+  },
+];
+
+const DIMENSIONS = [
+  { key: 'soul',   label: 'Soul Concept — What persists across lives?' },
+  { key: 'lives',  label: 'Number of Lives — How many rebirths?' },
+  { key: 'karma',  label: 'What Drives Rebirth — Karma, craving, or choice?' },
+  { key: 'bardo',  label: 'Between-Life State — What happens between incarnations?' },
+  { key: 'memory', label: 'Past-Life Memory — Can souls remember?' },
+  { key: 'goal',   label: 'Goal / Liberation — What is the final destination?' },
+  { key: 'science',label: 'Modern Research Parallel — Where science intersects' },
+];
+
+let active = new Set(TRADITIONS.map(t => t.id));
+
+// Build chips
+const controls = document.getElementById('controls');
+TRADITIONS.forEach(t => {
+  const btn = document.createElement('button');
+  btn.className = 'tradition-chip';
+  btn.textContent = t.name;
+  btn.style.background = t.bg;
+  btn.style.borderColor = t.border;
+  btn.style.color = t.color;
+  btn.dataset.id = t.id;
+  btn.addEventListener('click', () => {
+    if (active.has(t.id)) {
+      if (active.size === 1) return; // keep at least one
+      active.delete(t.id);
+      btn.classList.add('inactive');
+    } else {
+      active.add(t.id);
+      btn.classList.remove('inactive');
+    }
+    render();
+  });
+  controls.appendChild(btn);
+});
+
+function render() {
+  const visible = TRADITIONS.filter(t => active.has(t.id));
+  const cols = Math.min(visible.length, 4);
+  const view = document.getElementById('dimensionView');
+  view.innerHTML = DIMENSIONS.map(dim => `
+    <div class="dimension-label">${dim.label}${dim.key === 'science' ? ' <span class="sci-badge">UVA Research Link</span>' : ''}</div>
+    <div class="cards-row" style="grid-template-columns:repeat(${cols},1fr)">
+      ${visible.map(t => `
+        <div class="tradition-card" style="background:${t.bg};border-color:${t.border}">
+          <div class="tc-header">
+            <div class="tc-dot" style="background:${t.color}"></div>
+            <div class="tc-name" style="color:${t.color}">${t.name}</div>
+          </div>
+          <div class="tc-value">${t.dims[dim.key]}</div>
+        </div>`).join('')}
+    </div>`).join('');
+}
+
+render();
+</script>
+<script src="/assets/ui.js" defer></script>
+<script src="/assets/chat-widget.js" defer></script>
+</body>
+</html>

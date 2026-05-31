@@ -304,10 +304,147 @@
 }
 .deep-dive-link:hover{ color:#7B4FC9; }
 
+/* ── Evidence score bar ── */
+.score-bar-wrap{
+  margin-top:14px;
+  margin-bottom:0;
+}
+.score-bar-label{
+  display:flex;
+  justify-content:space-between;
+  font-size:9.5px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(26,21,53,.4);
+  margin-bottom:5px;
+}
+.score-bar-track{
+  height:4px;
+  background:rgba(100,75,180,.1);
+  border-radius:2px;
+  overflow:hidden;
+}
+.score-bar-fill{
+  height:100%;
+  border-radius:2px;
+  transition:width .4s ease;
+}
+.score-bar-fill.score-high{ background:linear-gradient(90deg,#6D28D9,#8B5CF6); }
+.score-bar-fill.score-mid{ background:linear-gradient(90deg,#8B5CF6,#a78bfa); }
+.score-bar-fill.score-low{ background:linear-gradient(90deg,#c4a050,#d4b06a); }
+.score-bar-fill.score-spec{ background:linear-gradient(90deg,#909888,#b0b8a8); }
+
+/* ── Case of the week banner ── */
+.cotw-banner{
+  background:linear-gradient(135deg,#1e1060 0%,#4c1d95 55%,#6D28D9 100%);
+  padding:36px 80px;
+  position:relative;
+  overflow:hidden;
+}
+.cotw-banner::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size:28px 28px;
+  pointer-events:none;
+}
+.cotw-inner{
+  max-width:1120px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:28px;
+  align-items:center;
+  position:relative;
+  z-index:1;
+}
+.cotw-label{
+  font-size:9.5px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+  font-weight:600;
+  margin-bottom:6px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+.cotw-label::before{
+  content:'';
+  display:inline-block;
+  width:5px; height:5px;
+  border-radius:50%;
+  background:#a78bfa;
+  animation:pulse-dot 2s ease-in-out infinite;
+}
+.cotw-title{
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  font-size:clamp(18px,2.5vw,26px);
+  font-weight:700;
+  color:#fff;
+  margin-bottom:4px;
+}
+.cotw-meta{
+  font-size:12px;
+  color:rgba(255,255,255,.55);
+  margin-bottom:8px;
+}
+.cotw-summary{
+  font-size:13px;
+  color:rgba(255,255,255,.72);
+  line-height:1.65;
+  max-width:620px;
+}
+.cotw-score{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  padding:16px 20px;
+  min-width:88px;
+  text-align:center;
+  flex-shrink:0;
+}
+.cotw-score-num{
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  font-size:32px;
+  font-weight:700;
+  color:#fff;
+  line-height:1;
+}
+.cotw-score-label{
+  font-size:9px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.45);
+}
+.cotw-strength{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.2);
+  font-size:10px;
+  font-weight:600;
+  color:rgba(255,255,255,.85);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  margin-top:4px;
+}
+
 @media(max-width:760px){
   .filter-strip{ padding:16px 20px; top:56px; }
   .cases-main{ padding:24px 20px 60px; }
   .cases-hero{ padding:110px 24px 48px; }
+  .cotw-banner{ padding:28px 20px; }
+  .cotw-inner{ grid-template-columns:1fr; gap:16px; }
+  .cotw-score{ flex-direction:row; min-width:unset; padding:12px 16px; }
 }
 </style>
 </head>
@@ -322,6 +459,23 @@
   </div>
 </section>
 
+<div id="cotwBanner" class="cotw-banner" style="display:none">
+  <div class="cotw-inner">
+    <div>
+      <div class="cotw-label">Case of the Week</div>
+      <div class="cotw-title" id="cotwTitle"></div>
+      <div class="cotw-meta" id="cotwMeta"></div>
+      <div class="cotw-summary" id="cotwSummary"></div>
+      <div class="cotw-strength" id="cotwStrength"></div>
+    </div>
+    <div></div>
+    <div class="cotw-score">
+      <div class="cotw-score-num" id="cotwScore"></div>
+      <div class="cotw-score-label">Evidence<br>Score</div>
+    </div>
+  </div>
+</div>
+
 <div class="filter-strip">
   <div class="filter-row">
     <div class="search-wrap">
@@ -333,6 +487,14 @@
     </div>
     <select id="domain" class="filter-select"><option value="">All domains</option></select>
     <select id="strength" class="filter-select"><option value="">All strengths</option></select>
+    <select id="country" class="filter-select"><option value="">All countries</option></select>
+    <select id="sortBy" class="filter-select">
+      <option value="">Sort: Default</option>
+      <option value="score-desc">Score: High → Low</option>
+      <option value="score-asc">Score: Low → High</option>
+      <option value="year-desc">Newest first</option>
+      <option value="year-asc">Oldest first</option>
+    </select>
   </div>
   <div class="filter-chips" id="typeTags"></div>
 </div>
@@ -355,15 +517,34 @@ import { caseIndex } from '/data/research-data.js';
 const q        = document.getElementById('q');
 const domain   = document.getElementById('domain');
 const strength = document.getElementById('strength');
+const country  = document.getElementById('country');
+const sortBy   = document.getElementById('sortBy');
 const wrap     = document.getElementById('cases');
 const count    = document.getElementById('count');
 const typeTags = document.getElementById('typeTags');
 
-for (const v of [...new Set(caseIndex.map(c=>c.domain))])
+// Populate filter dropdowns
+for (const v of [...new Set(caseIndex.map(c=>c.domain))].sort())
   domain.insertAdjacentHTML('beforeend', `<option>${v}</option>`);
-for (const v of [...new Set(caseIndex.map(c=>c.strength))])
+for (const v of [...new Set(caseIndex.map(c=>c.strength))].sort())
   strength.insertAdjacentHTML('beforeend', `<option>${v}</option>`);
+for (const v of [...new Set(caseIndex.map(c=>c.country).filter(Boolean))].sort())
+  country.insertAdjacentHTML('beforeend', `<option>${v}</option>`);
 
+// ── Case of the Week ──────────────────────────────────────────────────────
+const FEATURED = caseIndex.filter(c => c.evidenceScore >= 68 && (c.domain === 'NDE' || c.domain === 'Reincarnation'));
+if (FEATURED.length) {
+  const weekIdx = Math.floor(Date.now() / 604800000) % FEATURED.length;
+  const fw = FEATURED[weekIdx];
+  document.getElementById('cotwTitle').textContent = fw.title;
+  document.getElementById('cotwMeta').textContent = `${fw.domain} · ${fw.location} · ${fw.year}`;
+  document.getElementById('cotwSummary').textContent = fw.summary;
+  document.getElementById('cotwStrength').textContent = fw.strength;
+  document.getElementById('cotwScore').textContent = fw.evidenceScore;
+  document.getElementById('cotwBanner').style.display = '';
+}
+
+// ── Type chip filters ─────────────────────────────────────────────────────
 const TYPE_FILTERS = [
   { label:'Verified perception', tag:'verified perception' },
   { label:'Birthmark evidence',  tag:'birthmark evidence'  },
@@ -387,15 +568,31 @@ typeTags.querySelectorAll('.chip').forEach(btn => {
   });
 });
 
+// ── Score bar helper ──────────────────────────────────────────────────────
+function scoreBarClass(s) {
+  if (s >= 80) return 'score-high';
+  if (s >= 60) return 'score-mid';
+  if (s >= 40) return 'score-low';
+  return 'score-spec';
+}
+
+// ── Render ────────────────────────────────────────────────────────────────
 function render() {
   const query = q.value.trim().toLowerCase();
-  const rows = caseIndex.filter(c => {
+  let rows = caseIndex.filter(c => {
     if (domain.value   && c.domain   !== domain.value)   return false;
     if (strength.value && c.strength !== strength.value) return false;
+    if (country.value  && c.country  !== country.value)  return false;
     if (activeType && !c.tags.includes(activeType))       return false;
     if (query && ![c.title,c.domain,c.type,c.location,c.year,c.summary,...c.tags].join(' ').toLowerCase().includes(query)) return false;
     return true;
   });
+
+  // Sort
+  if (sortBy.value === 'score-desc') rows = [...rows].sort((a,b) => (b.evidenceScore||0)-(a.evidenceScore||0));
+  else if (sortBy.value === 'score-asc') rows = [...rows].sort((a,b) => (a.evidenceScore||0)-(b.evidenceScore||0));
+  else if (sortBy.value === 'year-desc') rows = [...rows].sort((a,b) => String(b.year).localeCompare(String(a.year)));
+  else if (sortBy.value === 'year-asc')  rows = [...rows].sort((a,b) => String(a.year).localeCompare(String(b.year)));
 
   count.textContent = `${rows.length} case${rows.length===1?'':'s'} shown`;
 
@@ -417,13 +614,19 @@ function render() {
 
   wrap.innerHTML = rows.map(c => {
     const deepId = deepDiveMap[c.title.toLowerCase()];
+    const score = c.evidenceScore;
     return `
     <article class="case-card">
-      <div class="case-domain">${c.domain} · ${c.type}</div>
+      <div class="case-domain">${c.domain} · ${c.type}${c.country ? ` · ${c.country}` : ''}</div>
       <div class="case-title">${c.title}</div>
       <div class="case-location-year">${c.location} · ${c.year}</div>
       <p class="case-body">${c.summary}</p>
-      <div class="case-footer">
+      ${score != null ? `
+      <div class="score-bar-wrap">
+        <div class="score-bar-label"><span>Evidence Score</span><span>${score}/100</span></div>
+        <div class="score-bar-track"><div class="score-bar-fill ${scoreBarClass(score)}" style="width:${score}%"></div></div>
+      </div>` : ''}
+      <div class="case-footer" style="margin-top:14px">
         <span class="strength-pill ${c.strength}">${c.strength}</span>
         ${c.tags.map(t=>`<span class="case-tag${t===activeType?' active-tag':''}">${t}</span>`).join('')}
         ${deepId ? `<a href="/case?id=${deepId}" class="deep-dive-link" onclick="event.stopPropagation()">Deep Dive →</a>` : ''}
@@ -432,7 +635,7 @@ function render() {
   }).join('');
 }
 
-[q, domain, strength].forEach(el => el.addEventListener('input', render));
+[q, domain, strength, country, sortBy].forEach(el => el.addEventListener('input', render));
 render();
 </script>
 <script src="/assets/ui.js" defer></script>

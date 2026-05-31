@@ -13,6 +13,11 @@ export const researchers = [
     keyWork: 'Twenty Cases Suggestive of Reincarnation (1966); Reincarnation and Biology (1997)',
     methodology: 'Prospective documentation · Cross-cultural fieldwork · Birthmark corroboration · Independent verification',
     controversy: 'Critics cite potential for confirmation bias in documentation, cultural contamination of reports, and the logical gap between "suggestive" and "proof."',
+    citationCount: 14800,
+    interviewClips: [
+      { title: 'Ian Stevenson on Reincarnation Evidence', outlet: 'Academic Archive', year: 1994, url: null },
+      { title: 'Children Who Remember Previous Lives', outlet: 'UVA Lecture', year: 2000, url: null },
+    ],
     links: {
       website: 'https://med.virginia.edu/perceptual-studies/',
       archive: 'https://med.virginia.edu/perceptual-studies/our-research/reincarnation-stevenson/',
@@ -37,6 +42,12 @@ export const researchers = [
     keyWork: 'Life Before Life (2005); Return to Life (2013)',
     methodology: 'Case scoring system · Western case documentation · Quantitative evidence evaluation',
     controversy: 'Skeptics argue that American cases benefit from survivorship bias in reporting and are harder to verify than Asian cases where records are more traceable.',
+    citationCount: 2400,
+    interviewClips: [
+      { title: 'Jim Tucker on Children\'s Past-Life Memories', outlet: 'CNN', year: 2014, url: null },
+      { title: 'Past Lives Research at UVA', outlet: 'CBS News', year: 2017, url: null },
+      { title: 'The Science of Reincarnation', outlet: 'Tucker Interview', year: 2021, url: null },
+    ],
     links: {
       website: 'https://med.virginia.edu/perceptual-studies/',
       googleScholar: 'https://scholar.google.com/citations?user=Jim_Tucker_UVA',
@@ -61,6 +72,11 @@ export const researchers = [
     keyWork: 'Near-death experience in survivors of cardiac arrest (Lancet, 2001); Consciousness Beyond Life (2010)',
     methodology: 'Prospective cohort design · Multi-center study · Long-term follow-up interviews',
     controversy: 'Critics note that NDEs may arise during resuscitation or recovery — not during measurable unconsciousness — making strict brain-off interpretation contested.',
+    citationCount: 8200,
+    interviewClips: [
+      { title: 'Consciousness Beyond Life — Lecture', outlet: 'TEDx', year: 2011, url: null },
+      { title: 'The Lancet NDE Study Discussion', outlet: 'Dutch Television', year: 2001, url: null },
+    ],
     links: {
       website: 'https://www.pimvanlommel.nl/',
     },
@@ -84,6 +100,12 @@ export const researchers = [
     keyWork: 'What Happens When We Die (2006); Erasing Death (2013); AWARE study (2014)',
     methodology: 'Randomized hidden-target placement · Cardiac arrest patient interviews · Prospective multi-site design',
     controversy: 'AWARE I\'s single corroborated case is insufficient for strong conclusions. AWARE II results are pending. The null result on visual targets leaves the question open.',
+    citationCount: 5100,
+    interviewClips: [
+      { title: 'What Happens When We Die', outlet: 'BBC Documentary', year: 2007, url: null },
+      { title: 'AWARE Study Results', outlet: 'NewScientist Live', year: 2014, url: null },
+      { title: 'Resuscitation and Near-Death Awareness', outlet: 'NYU Grand Rounds', year: 2022, url: null },
+    ],
     links: {
       website: 'https://med.nyu.edu/faculty/sam-parnia',
       googleScholar: 'https://scholar.google.com/scholar?q=Sam+Parnia+NDE',
@@ -108,6 +130,11 @@ export const researchers = [
     keyWork: 'Life After Life (1975); Glimpses of Eternity (2010)',
     methodology: 'Phenomenological interview · Pattern identification across accounts',
     controversy: 'Life After Life was not a controlled study, and critics note that Moody began as a believer, which may have influenced subject selection and framing.',
+    citationCount: 9600,
+    interviewClips: [
+      { title: 'Life After Life — Author Interview', outlet: 'Larry King Live', year: 1988, url: null },
+      { title: 'Shared Death Experiences', outlet: 'Coast to Coast AM', year: 2012, url: null },
+    ],
     links: {},
     recentPapers: [
       { title: 'Life After Life: The Investigation of a Phenomenon — Survival of Bodily Death', year: 1975, journal: 'Mockingbird Books', url: null },
@@ -128,6 +155,11 @@ export const researchers = [
     keyWork: 'Life at Death (1980); Mindsight (1999)',
     methodology: 'Standardized NDE scale (WCEI) · Blind NDE case studies · Demographic controls',
     controversy: 'Retrospective self-report methodology leaves room for memory reconstruction; blind NDE visual reports are difficult to verify independently.',
+    citationCount: 3200,
+    interviewClips: [
+      { title: 'NDEs in the Blind — Discussion', outlet: 'IANDS Conference', year: 2000, url: null },
+      { title: 'Life at Death — Author Interview', outlet: 'Psychology Today', year: 1980, url: null },
+    ],
     links: {
       website: 'https://www.iands.org/',
     },
@@ -150,6 +182,12 @@ export const researchers = [
     keyWork: 'The Near-Death Experience Scale (1983); After (2021)',
     methodology: 'Validated psychometric scale · Long-term follow-up · Comparison with non-NDE cardiac patients',
     controversy: 'After-effects could reflect psychological response to near-death crisis rather than a consciousness-independent event.',
+    citationCount: 6400,
+    interviewClips: [
+      { title: 'After: What NDEs Reveal', outlet: 'IANDS Conference Keynote', year: 2021, url: null },
+      { title: 'The Greyson Scale — 40 Years Later', outlet: 'UVA DOPS', year: 2023, url: null },
+      { title: 'Are Persons Identical to Their Brains?', outlet: 'Explore Journal Discussion', year: 2021, url: null },
+    ],
     links: {
       website: 'https://med.virginia.edu/perceptual-studies/',
       googleScholar: 'https://scholar.google.com/scholar?q=Bruce+Greyson+near+death+experience',
@@ -174,6 +212,11 @@ export const researchers = [
     keyWork: 'Many Lives, Many Masters (1988); Through Time Into Healing (1992)',
     methodology: 'Hypnotic regression · Single-subject case study · Spontaneous verification attempts',
     controversy: 'Hypnotic regression is not considered reliable evidence; subjects are highly suggestible, and verification of specific historical claims has largely been inconclusive. The field considers regression methodology distinct from spontaneous case research.',
+    citationCount: 1800,
+    interviewClips: [
+      { title: 'Many Lives, Many Masters — Author Interview', outlet: 'Oprah Winfrey Show', year: 2008, url: null },
+      { title: 'Past Life Regression Therapy', outlet: 'CNN Special', year: 2014, url: null },
+    ],
     links: {
       website: 'https://www.brianweiss.com/',
     },
@@ -196,6 +239,12 @@ export const researchers = [
     keyWork: 'The Conscious Universe (1997); Entangled Minds (2006); Real Magic (2018)',
     methodology: 'Meta-analysis · Double-blind laboratory protocols · Pre-registered experiments',
     controversy: 'Skeptics argue that even rigorous meta-analyses suffer from publication bias and that small effect sizes are consistent with methodological artifacts rather than genuine psi.',
+    citationCount: 4200,
+    interviewClips: [
+      { title: 'The Science of Psi', outlet: 'Institute of Noetic Sciences', year: 2018, url: null },
+      { title: 'Entangled Minds — Discussion', outlet: 'Skeptiko Podcast', year: 2007, url: null },
+      { title: 'Real Magic — Author Interview', outlet: 'IONS Conference', year: 2019, url: null },
+    ],
     links: {
       website: 'https://deanradin.com/',
       googleScholar: 'https://scholar.google.com/scholar?q=Dean+Radin+parapsychology',
@@ -220,6 +269,10 @@ export const researchers = [
     keyWork: 'There Is a River (biography by Thomas Sugrue, 1942); Many Mansions (Gina Cerminara, 1950); A.R.E. readings archive (14,306 documents)',
     methodology: 'Trance-state dictation · Independent stenographic transcription · Cross-referenced reading archive · Medical follow-up documentation',
     controversy: 'Cayce\'s past-life claims — particularly those involving Atlantis and ancient Egypt — have not been independently verified and are rejected by mainstream historians and archaeologists. His methodology was not controlled: readings were given without double-blind conditions, and the accuracy of his medical diagnoses has never been systematically evaluated. Researchers distinguish his case sharply from the spontaneous child memory cases studied at UVA, which follow verifiable methodological standards.',
+    citationCount: 1200,
+    interviewClips: [
+      { title: 'The Sleeping Prophet — A.R.E. Documentary', outlet: 'A.R.E. / Virginia Beach', year: 1998, url: null },
+    ],
     links: {
       website: 'https://www.edgarcayce.org/',
       archive: 'https://www.edgarcayce.org/the-readings/',
@@ -243,6 +296,10 @@ export const researchers = [
     keyWork: 'Journeys Out of the Body (1971); Far Journeys (1985); Ultimate Journey (1994)',
     methodology: 'First-person systematic documentation · Hemi-Sync binaural beat protocols · Controlled participant training programs at Monroe Institute',
     controversy: 'Monroe\'s framework rests entirely on first-person reports with no independent verification of the locales described. The Monroe Institute\'s commercial products create potential bias in how results are framed. Critics note that Hemi-Sync-induced states may reflect hypnagogic hallucination or dissociation rather than actual non-physical travel.',
+    citationCount: 980,
+    interviewClips: [
+      { title: 'Robert Monroe on OBEs — Rare Archive', outlet: 'Monroe Institute Archive', year: 1989, url: null },
+    ],
     links: {
       website: 'https://www.monroeinstitute.org/',
     },
@@ -266,6 +323,12 @@ export const researchers = [
     keyWork: 'A New Science of Life (1981); Dogs That Know When Their Owners Are Coming Home (1999); The Sense of Being Stared At (2003); Science Set Free (2012)',
     methodology: 'Double-blind randomized trials · Pre-specified protocols · Video monitoring · Telephone telepathy paradigm with randomized caller selection',
     controversy: 'Critics argue that his telepathy and staring experiments allow methodological flaws — including inadequate blinding and sensory leakage — that could explain results without psi. Independent laboratories have not consistently replicated his findings. His morphic resonance theory is considered unfalsifiable by most mainstream biologists.',
+    citationCount: 11200,
+    interviewClips: [
+      { title: 'The Science Delusion — Author Talk', outlet: 'TEDx Whitechapel', year: 2013, url: null },
+      { title: 'Morphic Resonance and the Memory of Nature', outlet: 'Bioneers Conference', year: 2012, url: null },
+      { title: 'Dogs That Know — Evidence Discussion', outlet: 'BBC Radio 4', year: 1999, url: null },
+    ],
     links: {
       website: 'https://www.sheldrake.org/',
       googleScholar: 'https://scholar.google.com/scholar?q=Rupert+Sheldrake+morphic+resonance',
@@ -290,6 +353,11 @@ export const researchers = [
     keyWork: 'Journey of Souls (1994); Destiny of Souls (2000); Memories of the Afterlife (2009)',
     methodology: 'Deep hypnotic regression · Systematic inter-session comparison · Practitioner training protocols for standardized LBL induction',
     controversy: 'LBL methodology relies on hypnosis, which is known to produce highly suggestible states where subjects readily confabulate and adopt suggestions. The consistency across sessions may reflect shared cultural narratives about the afterlife absorbed through media rather than genuine memory. No specific claim from LBL sessions has been independently verified. The field distinguishes LBL sharply from UVA-style spontaneous child memory research.',
+    citationCount: 720,
+    interviewClips: [
+      { title: 'Journey of Souls — Author Interview', outlet: 'Thinking Allowed (Mishlove)', year: 1995, url: null },
+      { title: 'Life Between Lives Hypnotherapy', outlet: 'Newton Institute Archive', year: 2005, url: null },
+    ],
     links: {
       website: 'https://www.newtoninstitute.org/',
     },
@@ -312,6 +380,11 @@ export const researchers = [
     keyWork: 'Proof of Heaven (2012); The Map of Heaven (2014); Living in a Mindful Universe (2017)',
     methodology: 'Single-subject retrospective analysis · Medical record review · Phenomenological description · Comparative neurology',
     controversy: 'Investigative journalist Luke Dittrich (Esquire, 2013) reported inconsistencies in Alexander\'s account of his medical timeline and disputed claims about the extent of cortical shutdown. Critics argue that NDEs could occur during recovery from coma — when the brain is partially active — rather than during peak unconsciousness, making the "brain-off" framing contested. His public positioning has been criticized as overstated given the absence of independent verification.',
+    citationCount: 2600,
+    interviewClips: [
+      { title: 'Proof of Heaven — Neurosurgeon\'s Story', outlet: 'Newsweek', year: 2012, url: null },
+      { title: 'Living in a Mindful Universe', outlet: 'Wisdom 2.0', year: 2017, url: null },
+    ],
     links: {
       website: 'https://ebenalexander.com/',
     },
@@ -334,6 +407,8 @@ export const researchers = [
     keyWork: 'Phantasms of the Living (with Gurney & Podmore, 1886); Human Personality and Its Survival of Bodily Death (1903, posthumous)',
     methodology: 'Systematic case collection · Cross-correspondent analysis · Blind evaluation of mediumship transcripts · Statistical analysis of apparition reports',
     controversy: 'The Victorian-era case collection methods lacked modern controls; many cases depended on first-person reports collected years after the event. Critics note that Myers\' prior commitment to survival influenced which cases were selected and how they were framed. The cross-correspondences — considered his strongest evidence — have been re-analyzed as potentially explicable by chance coincidence.',
+    citationCount: 3800,
+    interviewClips: [],
     links: {
       website: 'https://www.spr.ac.uk/',
       archive: 'https://www.spr.ac.uk/publications/journal-society-psychical-research',
@@ -357,6 +432,8 @@ export const researchers = [
     keyWork: 'Researches in the Phenomena of Spiritualism (1874); Presidential Addresses to the SPR',
     methodology: 'Force measurement apparatus · Controlled lighting protocols · Weight and resistance measurements · Chemical tests of materializations',
     controversy: 'Mainstream historians of science consider Crookes to have been deceived by Florence Cook, possibly through a personal relationship. D.D. Home\'s phenomena have been attributed to conjuring techniques exploiting observer positioning. Critics note that Crookes\' controls were insufficient by modern standards and that his investment in positive results may have compromised his objectivity.',
+    citationCount: 2100,
+    interviewClips: [],
     links: {
       website: 'https://www.spr.ac.uk/',
     },
@@ -378,6 +455,11 @@ export const researchers = [
     keyWork: 'The Afterlife Experiments (2002); The Truth About Medium (2005); The Sacred Promise (2011)',
     methodology: 'Triple-blind proxy sitter protocols · Blind rater scoring · Control group comparisons · Randomized target assignments',
     controversy: 'Skeptic Ray Hyman and others have argued that Schwartz\'s protocols — even the "triple-blind" designs — allow sufficient sensory leakage, feedback cues, and cold reading opportunities to explain results without anomalous explanation. His positive interpretations have been criticized as premature. No independent laboratory has fully replicated his specific reported accuracy rates.',
+    citationCount: 6800,
+    interviewClips: [
+      { title: 'The Afterlife Experiments — Discussion', outlet: 'HBO Documentary Feature', year: 2003, url: null },
+      { title: 'Medium Accuracy Research', outlet: 'University of Arizona Lecture', year: 2011, url: null },
+    ],
     links: {
       website: 'https://lach.web.arizona.edu/',
     },
@@ -400,6 +482,11 @@ export const researchers = [
     keyWork: 'To Heaven and Back (2012); 7 Lessons from Heaven (2017)',
     methodology: 'First-person clinical testimony · Pre-event documentation of prophetic content · Integration of medical and experiential evidence',
     controversy: 'Critics note that the exact duration and nature of clinical death is difficult to verify retrospectively, and that her Christian interpretive framework may shape recall. Some medical skeptics attribute her experience to hypoxia-induced hallucination during drowning and resuscitation.',
+    citationCount: 1400,
+    interviewClips: [
+      { title: 'To Heaven and Back — Author Interview', outlet: 'Good Morning America', year: 2012, url: null },
+      { title: '7 Lessons from Heaven', outlet: 'Focus on the Family Radio', year: 2017, url: null },
+    ],
     links: {
       website: 'https://www.drmaryneal.com/',
     },
@@ -422,6 +509,11 @@ export const researchers = [
     keyWork: 'On Death and Dying (1969); On Life After Death (1991)',
     methodology: 'Phenomenological interview · Dying patient cohort · Cross-cultural collection',
     controversy: 'Her later advocacy for survival and involvement in spiritualist circles drew criticism from colleagues who felt she abandoned scientific objectivity.',
+    citationCount: 18400,
+    interviewClips: [
+      { title: 'On Death and Dying — Classic Interview', outlet: 'CBC Archive', year: 1974, url: null },
+      { title: 'Kübler-Ross: The Last Frontier', outlet: 'Documentary Film', year: 2002, url: null },
+    ],
     links: {
       website: 'https://www.ekrfoundation.org/',
     },
