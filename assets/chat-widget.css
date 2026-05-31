@@ -1,12 +1,32 @@
 /* ── RAI Floating Chat Widget ── */
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
-#rai-widget{position:fixed;bottom:28px;right:28px;z-index:9999;font-family:'Lora',Georgia,serif;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
 
 /* Show / hide toggle */
 .rai-hidden{display:none!important}
 
+/* ── FAB (always visible) ── */
+.rai-manager-fab{position:fixed;bottom:28px;right:28px;z-index:9999;font-family:'Lora',Georgia,serif}
+.rai-fab{display:flex;align-items:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border-radius:999px;color:#fff;cursor:pointer;border:none;font-family:inherit;box-shadow:0 4px 20px rgba(100,75,180,.35);transition:transform .15s,box-shadow .15s;user-select:none;animation:fabGlow 2.5s ease-in-out infinite}
+.rai-fab:hover{transform:translateY(-2px);animation:none;box-shadow:0 6px 36px rgba(120,95,190,.7)}
+.rai-fab-icon{font-size:15px;line-height:1}
+.rai-fab-label{font-size:14px;font-weight:600;letter-spacing:.03em}
+@keyframes fabGlow{
+  0%,100%{box-shadow:0 4px 20px rgba(100,75,180,.35),0 0 14px rgba(120,95,190,.2)}
+  50%{box-shadow:0 4px 28px rgba(120,95,190,.65),0 0 32px rgba(140,100,220,.45)}
+}
+
+/* ── Individual chat window ── */
+.rai-window{
+  position:fixed;
+  bottom:28px;
+  z-index:9998;
+  font-family:'Lora',Georgia,serif;
+  /* right is set dynamically via JS */
+}
+
 /* Panel */
-.rai-panel{width:390px;max-height:600px;background:#fff;border-radius:20px;box-shadow:0 12px 48px rgba(0,0,0,.14);overflow:hidden;border:1px solid rgba(100,75,180,.12);display:flex;flex-direction:column}
+.rai-panel{width:390px;max-height:600px;background:#fff;border-radius:20px;box-shadow:0 12px 48px rgba(0,0,0,.14);overflow:hidden;border:1px solid rgba(100,75,180,.12);display:flex;flex-direction:column;animation:raiPanelIn .2s ease}
+@keyframes raiPanelIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
 
 /* Header */
 .rai-header{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);flex-shrink:0}
@@ -17,18 +37,8 @@
 .rai-subtitle{font-size:11px;color:rgba(255,255,255,.65);margin-top:1px}
 .rai-new-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.9);font-size:12px;font-weight:500;font-family:inherit;padding:5px 12px;border-radius:999px;cursor:pointer;letter-spacing:.02em;transition:background .15s,border-color .15s;white-space:nowrap}
 .rai-new-btn:hover{background:rgba(255,255,255,.28);border-color:rgba(255,255,255,.4)}
-.rai-min-btn{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:16px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;flex-shrink:0}
-.rai-min-btn:hover{background:rgba(255,255,255,.3)}
-
-/* FAB (minimized state) */
-.rai-fab{display:flex;align-items:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border-radius:999px;color:#fff;cursor:pointer;border:none;font-family:inherit;box-shadow:0 4px 20px rgba(100,75,180,.35);transition:transform .15s,box-shadow .15s;user-select:none;animation:fabGlow 2.5s ease-in-out infinite}
-.rai-fab:hover{transform:translateY(-2px);animation:none;box-shadow:0 6px 36px rgba(120,95,190,.7)}
-.rai-fab-icon{font-size:15px;line-height:1}
-.rai-fab-label{font-size:14px;font-weight:600;letter-spacing:.03em}
-@keyframes fabGlow{
-  0%,100%{box-shadow:0 4px 20px rgba(100,75,180,.35),0 0 14px rgba(120,95,190,.2)}
-  50%{box-shadow:0 4px 28px rgba(120,95,190,.65),0 0 32px rgba(140,100,220,.45)}
-}
+.rai-close-btn{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:14px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;flex-shrink:0}
+.rai-close-btn:hover{background:rgba(220,60,60,.55);border-color:rgba(255,120,120,.5)}
 
 /* Modes */
 .rai-modes{display:flex;gap:5px;padding:10px 14px 8px;flex-wrap:wrap;border-bottom:1px solid rgba(100,75,180,.08);flex-shrink:0;background:#fafcf9}
@@ -69,14 +79,14 @@
 .rai-save-btn{font-size:11.5px;color:rgba(109,40,217,0.6);background:none;border:none;cursor:pointer;padding:0;font-family:inherit;letter-spacing:.04em;transition:color .15s;white-space:nowrap}
 .rai-save-btn:hover{color:rgba(109,40,217,1)}
 
-/* Mobile */
+/* Mobile: single window, full-width */
 @media(max-width:600px){
-  #rai-widget{right:0;left:0;bottom:0;padding:0 12px 20px;align-items:flex-end}
-  .rai-panel{width:100%;max-height:60vh;max-height:60dvh;border-radius:20px 20px 0 0;box-shadow:0 -4px 32px rgba(0,0,0,.14)}
-  .rai-fab{align-self:flex-end}
+  .rai-manager-fab{right:12px;bottom:16px}
+  .rai-window{right:0!important;left:0!important;bottom:0!important}
+  .rai-panel{width:100%;max-height:70dvh;border-radius:20px 20px 0 0;box-shadow:0 -4px 32px rgba(0,0,0,.14)}
   .rai-fab-label{display:none}
   .rai-fab{padding:13px}
-  .rai-send,.rai-starter,.rai-mode-btn,.rai-new-btn,.rai-min-btn,.rai-fab{touch-action:manipulation}
+  .rai-send,.rai-starter,.rai-mode-btn,.rai-new-btn,.rai-close-btn,.rai-fab{touch-action:manipulation}
   .rai-input-wrap textarea{font-size:16px}
 }
 
