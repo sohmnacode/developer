@@ -73,6 +73,7 @@ const STARTERS = {
 const WINDOW_WIDTH  = 390;
 const WINDOW_GAP    = 14;
 const FAB_ZONE      = 100; // right space reserved for FAB
+const MAX_COLS      = 3;   // beyond this, windows stack with cascade offset
 
 /* ── RaiManager — owns all open windows and the FAB ── */
 const RaiManager = (() => {
@@ -98,10 +99,14 @@ const RaiManager = (() => {
   }
 
   function reposition() {
-    /* Tile windows right→left, accounting for FAB zone */
     windows.forEach((win, i) => {
-      const rightOffset = FAB_ZONE + i * (WINDOW_WIDTH + WINDOW_GAP);
-      win.el.style.right = rightOffset + 'px';
+      const col        = Math.min(i, MAX_COLS - 1);
+      const stackDepth = i >= MAX_COLS ? i - MAX_COLS + 1 : 0;
+      // Tile across columns; overflow windows cascade up+left over the last column
+      win.el.style.right  = (FAB_ZONE + col * (WINDOW_WIDTH + WINDOW_GAP) - stackDepth * 24) + 'px';
+      win.el.style.bottom = (28 + stackDepth * 24) + 'px';
+      // Bring later stacked windows to front so newest is always on top
+      win.el.style.zIndex = 9998 + stackDepth;
     });
   }
 
