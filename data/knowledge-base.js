@@ -635,12 +635,70 @@ His key theoretical proposition: If consciousness is a product of the brain and 
 
 ];
 
-// Simple keyword-based retrieval
+import { caseDetails } from './cases-detail-data.js';
+import { researchers } from './researchers-data.js';
+
+function casesToEntries(cases) {
+  return cases.map(c => {
+    const evidenceSummary = c.evidence
+      .map(e => `- ${e.claim} [${e.status}]: ${e.detail}`)
+      .join('\n');
+    const counterSummary = c.counterarguments
+      .map(ca => `- ${ca.argument} → ${ca.response}`)
+      .join('\n');
+    return {
+      id: c.id,
+      category: c.domain,
+      title: `${c.name} (${c.type}, ${c.year}) — ${c.headline}`,
+      keywords: [
+        c.name.toLowerCase(),
+        c.type.toLowerCase(),
+        c.domain,
+        c.location.toLowerCase(),
+        ...c.phenomena,
+        ...c.theories,
+        ...c.researchers,
+      ],
+      content: `${c.summary}\n\n**Evidence:**\n${evidenceSummary}\n\n**Counterarguments:**\n${counterSummary}`,
+      source: c.sources.join('; '),
+    };
+  });
+}
+
+function researchersToEntries(rs) {
+  return rs.map(r => {
+    const papers = r.recentPapers
+      .map(p => `- ${p.title} (${p.year}, ${p.journal})`)
+      .join('\n');
+    return {
+      id: r.id,
+      category: 'researcher',
+      title: `${r.name} — ${r.headline}`,
+      keywords: [
+        r.name.toLowerCase(),
+        r.id,
+        r.institution.toLowerCase(),
+        r.stance.toLowerCase(),
+        ...r.domains,
+      ],
+      content: `**Role:** ${r.role}, ${r.institution} (${r.years})\n**Stance:** ${r.stance}\n\n${r.bio}\n\n**Key Work:** ${r.keyWork}\n**Methodology:** ${r.methodology}\n**Controversy:** ${r.controversy}\n\n**Recent Papers:**\n${papers}`,
+      source: `${r.name}, ${r.institution}`,
+    };
+  });
+}
+
+// Simple keyword-based retrieval across all knowledge sources
 export function getRelevantKnowledge(query, maxEntries = 8) {
   const q = query.toLowerCase();
   const words = q.split(/\s+/).filter(w => w.length > 3);
 
-  const scored = knowledgeBase.map(entry => {
+  const allEntries = [
+    ...knowledgeBase,
+    ...casesToEntries(caseDetails),
+    ...researchersToEntries(researchers),
+  ];
+
+  const scored = allEntries.map(entry => {
     let score = 0;
     for (const kw of entry.keywords) {
       if (q.includes(kw)) score += 2;
