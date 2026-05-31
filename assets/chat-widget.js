@@ -72,7 +72,8 @@ const STARTERS = {
 /* ── Window gap + width for tiling ── */
 const WINDOW_WIDTH  = 390;
 const WINDOW_GAP    = 14;
-const FAB_ZONE      = 100; // right space reserved for FAB
+const WIN_RIGHT     = 28;  // right edge of first window — lines up with FAB
+const WIN_BOTTOM    = 90;  // bottom of windows — sits above the FAB button
 const MAX_COLS      = 3;   // beyond this, windows stack with cascade offset
 
 /* ── RaiManager — owns all open windows and the FAB ── */
@@ -102,10 +103,10 @@ const RaiManager = (() => {
     windows.forEach((win, i) => {
       const col        = Math.min(i, MAX_COLS - 1);
       const stackDepth = i >= MAX_COLS ? i - MAX_COLS + 1 : 0;
-      // Tile across columns; overflow windows cascade up+left over the last column
-      win.el.style.right  = (FAB_ZONE + col * (WINDOW_WIDTH + WINDOW_GAP) - stackDepth * 24) + 'px';
-      win.el.style.bottom = (28 + stackDepth * 24) + 'px';
-      // Bring later stacked windows to front so newest is always on top
+      // Window 0 sits above the FAB at the same right edge; each next window tiles left
+      win.el.style.right  = (WIN_RIGHT + col * (WINDOW_WIDTH + WINDOW_GAP) - stackDepth * 24) + 'px';
+      win.el.style.bottom = (WIN_BOTTOM + stackDepth * 24) + 'px';
+      // Newest stacked window always on top
       win.el.style.zIndex = 9998 + stackDepth;
     });
   }
