@@ -91,11 +91,20 @@ function getEra(yearStr) {
   return ERAS[ERAS.length-1].label;
 }
 
+function parseYear(y) {
+  const s = y.replace(/[~\s]/g, '');
+  if (s.includes('BC')) return -parseInt(s);
+  if (s.includes('AD')) return parseInt(s);
+  return parseInt(s) || 0;
+}
+
+const sorted = [...timelineEvents].sort((a, b) => parseYear(a.year) - parseYear(b.year));
+
 const container = document.getElementById('timeline');
 let lastEra = null;
 let html = '<div class="tl">';
 
-for (const e of timelineEvents) {
+for (const e of sorted) {
   const era = getEra(e.year);
   if (era !== lastEra) {
     html += `</div><div class="era-label">${era}</div><div class="tl">`;
