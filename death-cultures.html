@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="color-scheme" content="light"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Death Across Cultures: How Every Civilization Mapped the Afterlife | ReincarnatedAI</title>
+<meta name="description" content="An interactive timeline showing how Egyptian, Hindu, Tibetan, Greek, Indigenous, and modern civilizations conceptualized death — and where they converged without contact."/>
+<link rel="canonical" href="https://reincarnatedai.com/death-cultures"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://reincarnatedai.com/death-cultures"/>
+<meta property="og:site_name" content="ReincarnatedAI"/>
+<meta property="og:title" content="Death Across Cultures: How Every Civilization Mapped the Afterlife | ReincarnatedAI"/>
+<meta property="og:description" content="An interactive timeline showing how Egyptian, Hindu, Tibetan, Greek, Indigenous, and modern civilizations conceptualized death — and where they converged without contact."/>
+<meta property="og:image" content="https://reincarnatedai.com/og-image.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="ReincarnatedAI — Soul Science Research"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Death Across Cultures: How Every Civilization Mapped the Afterlife | ReincarnatedAI"/>
+<meta name="twitter:description" content="An interactive timeline showing how Egyptian, Hindu, Tibetan, Greek, Indigenous, and modern civilizations conceptualized death — and where they converged without contact."/>
+<meta name="twitter:image" content="https://reincarnatedai.com/og-image.jpg"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Death Across Cultures: How Every Civilization Mapped the Afterlife","description":"An interactive timeline of how different civilizations have conceptualized death and afterlife, showing cross-cultural convergences.","url":"https://reincarnatedai.com/death-cultures","image":"https://reincarnatedai.com/og-image.jpg","dateModified":"2026-05-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://reincarnatedai.com/death-cultures"},"publisher":{"@type":"Organization","name":"ReincarnatedAI","url":"https://reincarnatedai.com","logo":{"@type":"ImageObject","url":"https://reincarnatedai.com/og-image.jpg"}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Bodoni+Moda:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/theme.css">
+<link rel="stylesheet" href="/assets/research.css">
+<link rel="stylesheet" href="/assets/chat-widget.css">
+<style>
+.dc-hero{background:radial-gradient(ellipse 80% 60% at 20% 50%,rgba(80,40,160,.12),transparent 65%),linear-gradient(to bottom,#F4F0FF,#EBE4F8)}
+.dc-hero h1{background:linear-gradient(140deg,#1e0e4e 0%,#5B21B6 50%,#8B5CF6 92%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.dc-hero .eyebrow{color:rgba(90,40,180,.75)}
+[data-theme="dark"] .dc-hero{background:radial-gradient(ellipse 80% 60% at 20% 50%,rgba(80,40,160,.2),transparent 65%),linear-gradient(to bottom,#080615,#0a0620)!important}
+[data-theme="dark"] .dc-hero h1{background:linear-gradient(140deg,#fff 0%,#cbb8f8 50%,#a78bfa 92%)!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;background-clip:text!important}
+[data-theme="dark"] .dc-hero .eyebrow{color:rgba(170,140,255,.8)!important}
+
+/* Civilization filter chips */
+.civ-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.civ-chip{padding:7px 14px;border-radius:999px;border:1px solid;font-size:12px;font-weight:500;cursor:pointer;transition:all .18s;font-family:inherit;background:transparent}
+.civ-chip:hover{opacity:.85}
+.civ-chip.active{color:#fff!important}
+
+/* Timeline layout */
+.dc-timeline{position:relative;padding-left:0}
+.dc-period{margin-bottom:64px}
+.period-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(100,75,180,.6);font-weight:600;margin-bottom:24px;display:flex;align-items:center;gap:14px}
+.period-label::after{content:'';flex:1;height:1px;background:var(--line)}
+
+.dc-entry{display:grid;grid-template-columns:140px 1fr;gap:0;margin-bottom:4px;opacity:1;transition:opacity .2s}
+.dc-entry.hidden{display:none}
+.dc-entry-left{padding:18px 20px 18px 0;text-align:right;border-right:2px solid var(--line)}
+.dc-entry-dot{position:relative}
+.dc-entry-dot::after{content:'';position:absolute;right:-7px;top:26px;width:12px;height:12px;border-radius:50%;border:2px solid #fff}
+[data-theme="dark"] .dc-entry-dot::after{border-color:#100D22}
+.dc-entry-right{padding:18px 0 18px 24px}
+
+.civ-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;border:1px solid}
+.dc-date{font-size:13px;font-weight:700;color:var(--leaf);font-family:'Space Grotesk',system-ui,sans-serif;line-height:1.3;margin-bottom:4px}
+.dc-title{font-family:'Space Grotesk',system-ui,sans-serif;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.dc-body{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:10px}
+
+/* Convergence callout */
+.convergence-tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#7B4FC9;background:rgba(100,75,180,.07);border:1px solid rgba(100,75,180,.16);border-radius:999px;padding:4px 10px;margin-top:2px}
+[data-theme="dark"] .convergence-tag{color:#C5B0F0;background:rgba(100,75,180,.15);border-color:rgba(140,115,220,.25)}
+
+/* Convergence highlight section */
+.convergences-section{background:rgba(100,75,180,.04);border:1px solid rgba(100,75,180,.12);border-radius:14px;padding:32px;margin-bottom:56px}
+.convergences-section h2{font-family:'Space Grotesk',system-ui,sans-serif;font-size:22px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.convergences-section .lede{font-size:14px;margin-bottom:24px}
+.conv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.conv-card{background:rgba(255,255,255,.65);border:1px solid rgba(100,75,180,.12);border-radius:10px;padding:18px}
+[data-theme="dark"] .conv-card{background:#141228;border-color:rgba(110,85,190,.18)}
+.conv-theme{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:rgba(100,75,180,.75);margin-bottom:6px}
+[data-theme="dark"] .conv-theme{color:rgba(160,140,220,.7)}
+.conv-title{font-family:'Space Grotesk',system-ui,sans-serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.conv-civs{font-size:12px;color:var(--muted);line-height:1.65}
+
+/* civ color palette */
+.civ-egyptian{--civ-color:#b87020;--civ-bg:rgba(184,112,32,.08);--civ-border:rgba(184,112,32,.22)}
+.civ-vedic{--civ-color:#c0392b;--civ-bg:rgba(192,57,43,.07);--civ-border:rgba(192,57,43,.2)}
+.civ-tibetan{--civ-color:#1a6e8a;--civ-bg:rgba(26,110,138,.07);--civ-border:rgba(26,110,138,.2)}
+.civ-greek{--civ-color:#1a5276;--civ-bg:rgba(26,82,118,.07);--civ-border:rgba(26,82,118,.2)}
+.civ-indigenous{--civ-color:#2e7d32;--civ-bg:rgba(46,125,50,.07);--civ-border:rgba(46,125,50,.2)}
+.civ-abrahamic{--civ-color:#6d4c41;--civ-bg:rgba(109,76,65,.07);--civ-border:rgba(109,76,65,.2)}
+.civ-modern{--civ-color:#4a148c;--civ-bg:rgba(74,20,140,.07);--civ-border:rgba(74,20,140,.2)}
+
+.civ-badge{background:var(--civ-bg);border-color:var(--civ-border);color:var(--civ-color)}
+.dc-entry-dot::after{background:var(--civ-color)}
+.dc-entry.active-highlight .dc-entry-left{border-right-color:var(--civ-color)}
+
+@media(max-width:640px){
+  .dc-entry{grid-template-columns:80px 1fr}
+  .dc-date{font-size:11px}
+  .dc-entry-right{padding:14px 0 14px 16px}
+  .dc-entry-left{padding:14px 12px 14px 0}
+}
+</style>
+</head>
+<body>
+<nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/cases">Cases</a><a href="/traditions">Traditions</a><a href="/death-cultures">Death &amp; Cultures</a><a href="/watch">Watch</a><a href="/library">Library</a></div></nav>
+
+<section class="hero dc-hero">
+  <div class="hero-content">
+    <div class="eyebrow">Cross-Cultural History</div>
+    <h1>Death Across Cultures</h1>
+    <p>Every civilization that has ever existed built a map of what happens after death. Plotted on a shared axis, an unexpected pattern emerges: traditions with no contact with each other drew strikingly similar maps.</p>
+  </div>
+</section>
+
+<main>
+<section class="section narrow">
+
+  <!-- Convergences box -->
+  <div class="convergences-section">
+    <h2>Independent Convergences</h2>
+    <p class="lede" style="color:var(--muted)">These themes appear in multiple traditions that developed in isolation from one another — no shared texts, no trade routes, no missionaries. Each rediscovered the same territory.</p>
+    <div class="conv-grid">
+      <div class="conv-card">
+        <div class="conv-theme">Near-universal</div>
+        <div class="conv-title">Life Review After Death</div>
+        <div class="conv-civs">Egyptian (the Weighing of the Heart) · Vedic (the Akashic record) · Tibetan (mirror of karma) · Greek (the judges of the underworld) · modern NDE research (94% of deep NDErs report it)</div>
+      </div>
+      <div class="conv-card">
+        <div class="conv-theme">Near-universal</div>
+        <div class="conv-title">Tunnel or Passage Toward Light</div>
+        <div class="conv-civs">Tibetan Book of the Dead · Egyptian Amduat · Mayan Xibalba passage · Zoroastrian Chinvat Bridge · reported in 30–40% of all NDE accounts globally</div>
+      </div>
+      <div class="conv-card">
+        <div class="conv-theme">Widespread</div>
+        <div class="conv-title">A River or Boundary Between Worlds</div>
+        <div class="conv-civs">Greek (River Styx) · Egyptian (the Nile as threshold) · Aztec (Chicunahuapan river) · Norse (Gjöll river) · Siberian shamanism (the world-river)</div>
+      </div>
+      <div class="conv-card">
+        <div class="conv-theme">Widespread</div>
+        <div class="conv-title">Soul Returns in Another Body</div>
+        <div class="conv-civs">Vedic / Hindu · Buddhist · Jain · Pythagorean Greek · West African Yoruba · Druze · Alevi · Tlingit and other Northwest Coast peoples</div>
+      </div>
+      <div class="conv-card">
+        <div class="conv-theme">Cross-cultural</div>
+        <div class="conv-title">Guides or Beings of Light at Death</div>
+        <div class="conv-civs">Tibetan (peaceful deities) · Christian (angels) · Egyptian (Anubis) · Aztec (Xólotl) · indigenous deathbed visions · NDE research (50% report encounter with a being)</div>
+      </div>
+      <div class="conv-card">
+        <div class="conv-theme">Cross-cultural</div>
+        <div class="conv-title">Consciousness Persists, Body is Secondary</div>
+        <div class="conv-civs">Vedantic ātman · Buddhist stream-of-consciousness · Platonic soul · Gnostic pneuma · Sufi rūḥ · Hermetic pneumatic body · modern filter theory of consciousness</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="civ-filters" id="civFilters">
+    <button class="civ-chip active" data-civ="all" style="border-color:rgba(100,75,180,.3);color:var(--ink)">All Traditions</button>
+    <button class="civ-chip civ-egyptian" data-civ="egyptian" style="border-color:var(--civ-border);color:var(--civ-color)">Egyptian</button>
+    <button class="civ-chip civ-vedic" data-civ="vedic" style="border-color:var(--civ-border);color:var(--civ-color)">Vedic / Hindu</button>
+    <button class="civ-chip civ-tibetan" data-civ="tibetan" style="border-color:var(--civ-border);color:var(--civ-color)">Tibetan</button>
+    <button class="civ-chip civ-greek" data-civ="greek" style="border-color:var(--civ-border);color:var(--civ-color)">Greek</button>
+    <button class="civ-chip civ-indigenous" data-civ="indigenous" style="border-color:var(--civ-border);color:var(--civ-color)">Indigenous</button>
+    <button class="civ-chip civ-abrahamic" data-civ="abrahamic" style="border-color:var(--civ-border);color:var(--civ-color)">Abrahamic</button>
+    <button class="civ-chip civ-modern" data-civ="modern" style="border-color:var(--civ-border);color:var(--civ-color)">Modern Science</button>
+  </div>
+
+  <!-- Timeline -->
+  <div class="dc-timeline" id="dcTimeline"></div>
+
+</section>
+</main>
+
+<footer class="footer">
+  <span>Independent convergence is itself a form of evidence worth examining.</span>
+  <span><a href="/traditions">Symbolic traditions</a> · <a href="/theories">Theory matrix</a> · <a href="/evidence">Evidence map</a></span>
+</footer>
+
+<script src="/assets/chat-widget.js" type="module"></script>
+<script>
+const ENTRIES = [
+  // ─── Ancient (before 500 BCE) ──────────────────────────────
+  {
+    period:'Ancient (before 500 BCE)',
+    date:'~3100 BCE',
+    civ:'egyptian',
+    civLabel:'Egyptian',
+    title:'Pyramid Texts — First Recorded Afterlife Cosmology',
+    body:'The oldest religious texts in the world, inscribed in the burial chambers of Old Kingdom pharaohs, describe the soul (ka and ba) departing the body and journeying through the Duat (the underworld). The ba could leave the body and travel; the ka remained as a life-force double. Death was not an ending but a transition requiring navigation.',
+    convergences:['life-review','soul-survives']
+  },
+  {
+    period:'Ancient (before 500 BCE)',
+    date:'~1550 BCE',
+    civ:'egyptian',
+    civLabel:'Egyptian',
+    title:'Book of the Dead — The Weighing of the Heart',
+    body:'The most complete Egyptian guide to dying well. The deceased\'s heart is weighed against the feather of Ma\'at (truth) before Osiris and 42 divine judges. If the heart is heavier than the feather — burdened by wrongdoing — it is devoured by Ammit. This is a remarkably precise parallel to the "life review" reported in modern NDE accounts: a full reckoning of one\'s deeds, emotionally felt, with consequences.',
+    convergences:['life-review','guides']
+  },
+  {
+    period:'Ancient (before 500 BCE)',
+    date:'~1500 BCE',
+    civ:'vedic',
+    civLabel:'Vedic / Hindu',
+    title:'Rigveda & Atharva Veda — Ātman, Karma, and Rebirth',
+    body:'The earliest Vedic texts describe the ātman (individual soul) as distinct from the body and imperishable. After death, the soul travels to the realm of the ancestors or, depending on deeds, is reborn. The concept of karma — action carrying moral weight across lives — is introduced here and would become the foundation of Hindu, Buddhist, and Jain cosmologies.',
+    convergences:['soul-survives','reincarnation']
+  },
+  {
+    period:'Ancient (before 500 BCE)',
+    date:'~1200 BCE',
+    civ:'abrahamic',
+    civLabel:'Abrahamic',
+    title:'Hebrew Bible — Sheol and the Breath of Life',
+    body:'Early Hebrew texts describe Sheol — a shadowy realm beneath the earth where the dead go, not punished but simply diminished. The "nefesh" (life-breath) departs at death. Later texts (especially Psalms and Job) reflect growing tension between this view and the hope of resurrection — a tension that would produce radically different afterlife theologies in Judaism, Christianity, and Islam.',
+    convergences:['soul-survives']
+  },
+  {
+    period:'Ancient (before 500 BCE)',
+    date:'~900 BCE',
+    civ:'indigenous',
+    civLabel:'Indigenous',
+    title:'West African Yoruba — Orí, Ancestral Return, and Àbíkú',
+    body:'Yoruba cosmology holds that the orí (personal soul or inner head) chooses its destiny before birth and returns to the spiritual realm at death. Àbíkú — souls who cycle rapidly through birth and early death — are considered entities deliberately returning. Ancestral spirits remain active in family life; the dead are never fully gone. This framework is structurally similar to Vedic rebirth despite zero historical contact.',
+    convergences:['reincarnation','soul-survives']
+  },
+  {
+    period:'Ancient (before 500 BCE)',
+    date:'~800 BCE',
+    civ:'greek',
+    civLabel:'Greek',
+    title:'Homer\'s Iliad & Odyssey — Psyche and the Shades of Hades',
+    body:'Homer describes the psyche (breath-soul) leaving the body at death and descending to Hades. The shades retain their identity but lack the vitality of the living. Odysseus\'s descent to the underworld (Nekuia) to consult the dead establishes the pattern: death is a threshold, not an end; the dead can be reached; the journey requires guidance. These are the bones of every subsequent Greek eschatology.',
+    convergences:['tunnel','guides']
+  },
+
+  // ─── Classical (500 BCE – 500 CE) ──────────────────────────
+  {
+    period:'Classical (500 BCE – 500 CE)',
+    date:'~600 BCE',
+    civ:'vedic',
+    civLabel:'Vedic / Hindu',
+    title:'Upanishads — Brahman, Ātman, and Liberation (Moksha)',
+    body:'The Upanishads shift from ritual religion to philosophical inquiry: the individual ātman and universal Brahman are ultimately one. Death and rebirth continue until the soul realizes this unity — at which point the cycle ends. The Katha Upanishad describes the god of death (Yama) teaching the young Nachiketa what lies beyond death: a remarkable framing of the question as a direct investigation rather than a matter of faith.',
+    convergences:['soul-survives','reincarnation']
+  },
+  {
+    period:'Classical (500 BCE – 500 CE)',
+    date:'~500 BCE',
+    civ:'greek',
+    civLabel:'Greek',
+    title:'Pythagoras — Metempsychosis and the Transmigrating Soul',
+    body:'Pythagoras taught that the soul is immortal and passes through a series of incarnations in different bodies — human, animal, and plant. He reportedly remembered his own past lives. This is the first Western systematic doctrine of reincarnation, and it emerged independently of Indian philosophy with which the Pythagoreans had no documented contact. The convergence with Vedic rebirth doctrine is one of the most striking in intellectual history.',
+    convergences:['reincarnation','soul-survives']
+  },
+  {
+    period:'Classical (500 BCE – 500 CE)',
+    date:'~483 BCE',
+    civ:'tibetan',
+    civLabel:'Tibetan / Buddhist',
+    title:'The Buddha — Karma, Rebirth, and the Bardos',
+    body:'The Buddha rejected the permanent ātman of Vedic thought but retained rebirth and karma: consciousness streams forward through deaths and rebirths, shaped by intention. The detailed taxonomy of post-death states (bardos) would be systematized in the Tibetan tradition. Crucially, Buddhism introduced the idea that the goal is to end rebirth — liberation (nirvāna) from the cycle, not a better reincarnation.',
+    convergences:['reincarnation','life-review']
+  },
+  {
+    period:'Classical (500 BCE – 500 CE)',
+    date:'~428 BCE',
+    civ:'greek',
+    civLabel:'Greek',
+    title:'Plato\'s Phaedo — The Immortality Argument',
+    body:'Plato\'s dialogue on the day of Socrates\'s death is the first systematic philosophical argument for the soul\'s immortality. Socrates advances four arguments (the Cyclical, Recollection, Affinity, and Final arguments) and offers the Er Myth: a soldier who dies, observes souls choosing their next lives, and returns. The structure mirrors modern NDE accounts — exit from the body, observation of a cosmic order, return — written 2,400 years before the term "near-death experience" was coined.',
+    convergences:['soul-survives','life-review','tunnel']
+  },
+  {
+    period:'Classical (500 BCE – 500 CE)',
+    date:'~400 BCE',
+    civ:'indigenous',
+    civLabel:'Indigenous',
+    title:'Aztec Cosmology — Mictlān and the Nine Levels of the Dead',
+    body:'The Aztec dead traveled through nine levels of the underworld (Mictlān) over four years, guided by a hairless dog (Xólotl), crossing rivers, facing winds and obsidian winds, before reaching Mictlāntēcuhtli, the lord of the dead. Death\'s destination depended on how one died, not how one lived — warriors, women who died in childbirth, and those struck by lightning went to paradise realms. The navigation, the guide figure, the multi-stage journey: all cross-cultural constants.',
+    convergences:['tunnel','guides']
+  },
+  {
+    period:'Classical (500 BCE – 500 CE)',
+    date:'~100 CE',
+    civ:'tibetan',
+    civLabel:'Tibetan / Buddhist',
+    title:'The Tibetan Book of the Dead (Bardo Thodöl) — First Composed',
+    body:'Attributed to Padmasambhava and later revealed as a terma (hidden text) by Karma Lingpa in the 14th century, the Bardo Thodöl is a detailed guide to consciousness in the three bardos: dying, the luminous after-death state, and rebirth. It describes the Clear Light encountered at the moment of death, the peaceful and wrathful deities, and the process by which attachment pulls consciousness back into rebirth. The NDE parallels — light, judgment, beings, choice — are extensive.',
+    convergences:['tunnel','guides','life-review','reincarnation']
+  },
+  {
+    period:'Classical (500 BCE – 500 CE)',
+    date:'~200 CE',
+    civ:'abrahamic',
+    civLabel:'Abrahamic',
+    title:'Christian Eschatology — Resurrection, Heaven, Hell, and the Soul',
+    body:'Early Christianity synthesized Hebrew resurrection belief with Greek soul-philosophy. Paul\'s letters and the Book of Revelation established: the soul survives death, faces judgment, and awaits bodily resurrection at the end of time. The near-death account of Paul (2 Corinthians 12: "caught up to the third heaven... whether in the body or out of the body I do not know") is one of the earliest first-person accounts in the canon. Heaven and hell as distinct destinations solidify the moral stakes of how one lives.',
+    convergences:['soul-survives','life-review','guides']
+  },
+
+  // ─── Medieval (500–1500 CE) ──────────────────────────────────
+  {
+    period:'Medieval (500 – 1500 CE)',
+    date:'~700 CE',
+    civ:'indigenous',
+    civLabel:'Indigenous',
+    title:'Norse Cosmology — Hel, Valhalla, and the Two Deaths',
+    body:'Norse eschatology describes two destinations: Valhalla (for those who die in battle, chosen by the Valkyries) and Hel (a quiet realm for those who die of illness or old age). The soul (sál) persists; the fylgja, a guardian spirit, accompanies a person through life. Notably, Norse tradition describes prophetic dreams and visions at the moment of death — an OBE tradition in the sagas. The Valkyrie figure as a guide between worlds is structurally identical to the "being of light" in modern NDE reports.',
+    convergences:['guides','soul-survives']
+  },
+  {
+    period:'Medieval (500 – 1500 CE)',
+    date:'~800 CE',
+    civ:'abrahamic',
+    civLabel:'Abrahamic',
+    title:'Islamic Barzakh — The Intermediate State Between Death and Resurrection',
+    body:'The Quran describes barzakh — a barrier or intermediate state between death and the Day of Resurrection. The soul (rūḥ) does not sleep but remains aware, experiencing either a foretaste of paradise or punishment in the grave. The angel of death (Azrael/Malak al-Mawt) extracts the soul; two angels (Munkar and Nakir) question the soul about its deeds. This is a detailed phenomenology of the post-death state with structural parallels to the Tibetan bardo and the Egyptian Duat.',
+    convergences:['life-review','guides','tunnel']
+  },
+  {
+    period:'Medieval (500 – 1500 CE)',
+    date:'~1000 CE',
+    civ:'indigenous',
+    civLabel:'Indigenous',
+    title:'Mayan Popol Vuh — Xibalba and the Resurrection Archetype',
+    body:'The Quiché Maya creation text describes the Hero Twins\' descent into Xibalba (the underworld), their death and resurrection, and the defeat of the Lords of Death. The pattern — descent, ordeal, rebirth — is the oldest symbolic structure in world religion. The Maya also tracked astronomical cycles (Venus, the 260-day tzolk\'in) as maps of the soul\'s cosmic journey between death and rebirth.',
+    convergences:['tunnel','reincarnation']
+  },
+  {
+    period:'Medieval (500 – 1500 CE)',
+    date:'~1200 CE',
+    civ:'indigenous',
+    civLabel:'Indigenous',
+    title:'Northwest Coast Indigenous Peoples — Reincarnation Within the Family',
+    body:'The Tlingit, Haida, and other Northwest Coast peoples describe a robust tradition of reincarnation within family lineages. Children are recognized as returning ancestors by birthmarks, behavioral resemblances, or announcing dreams (in which the deceased signals their return). Ian Stevenson documented 79 cases from this region — among the highest concentrations of verifiable past-life memory cases in his database. The system includes specific protocols for identifying who has returned.',
+    convergences:['reincarnation']
+  },
+
+  // ─── Early Modern (1500–1900 CE) ───────────────────────────
+  {
+    period:'Early Modern (1500 – 1900 CE)',
+    date:'1614',
+    civ:'abrahamic',
+    civLabel:'Abrahamic',
+    title:'Druze — Formal Reincarnation Doctrine in an Abrahamic Faith',
+    body:'The Druze, a monotheistic faith that emerged from Ismaili Islam, hold that the soul immediately reincarnates at death — always human, always in the same community. Unlike most reincarnation traditions, the Druze maintain detailed case records. Ian Stevenson investigated Druze children in Lebanon and Syria extensively; the community\'s internal record-keeping gave his work an unusual evidentiary foundation. Stevenson called the Druze cases among the most methodologically valuable in his database.',
+    convergences:['reincarnation']
+  },
+  {
+    period:'Early Modern (1500 – 1900 CE)',
+    date:'1784',
+    civ:'modern',
+    civLabel:'Modern Science',
+    title:'Mesmerism and the First Reported Out-of-Body States Under Observation',
+    body:'Franz Mesmer\'s work on "animal magnetism" produced subjects in trance states who reported perceiving things at a distance — early OBE reports under (crude) experimental conditions. His student Marquis de Puységur documented spontaneous past-life memories in magnetized subjects. This is the first time such reports entered a quasi-scientific frame, setting the stage for the Society for Psychical Research a century later.',
+    convergences:['soul-survives']
+  },
+  {
+    period:'Early Modern (1500 – 1900 CE)',
+    date:'1882',
+    civ:'modern',
+    civLabel:'Modern Science',
+    title:'Society for Psychical Research Founded — Scientific Investigation Begins',
+    body:'Founded in Cambridge by William Barrett, Edmund Gurney, F.W.H. Myers, and Henry Sidgwick, the SPR was the first institution dedicated to rigorous investigation of consciousness anomalies: telepathy, apparitions, mediumship, and deathbed visions. Their Phantasms of the Living (1886) documented 702 cases of apparent crisis apparitions. Myers\' posthumous Human Personality and Its Survival of Bodily Death (1903) remains the most systematic pre-modern treatment of the survival question.',
+    convergences:['soul-survives']
+  },
+
+  // ─── Modern (1900 CE – present) ────────────────────────────
+  {
+    period:'Modern (1900 CE – present)',
+    date:'1960',
+    civ:'modern',
+    civLabel:'Modern Science',
+    title:'Ian Stevenson Begins Systematic Reincarnation Research at UVA',
+    body:'Stevenson, Chair of Psychiatry at the University of Virginia, began investigating children who spontaneously claimed past-life memories. His method — interviewing families before any contact with the claimed previous family was established — set the field\'s methodological standard. By his death in 2007, he had accumulated over 2,500 cases across cultures, with verified details in hundreds. His 1974 Twenty Cases Suggestive of Reincarnation remains the benchmark.',
+    convergences:['reincarnation']
+  },
+  {
+    period:'Modern (1900 CE – present)',
+    date:'1975',
+    civ:'modern',
+    civLabel:'Modern Science',
+    title:'Raymond Moody\'s "Life After Life" — NDEs Become a Scientific Category',
+    body:'Moody coined "near-death experience" and identified the first systematic phenomenology: OBE, tunnel, light, life review, beings, return. What was remarkable was that across 150 accounts from patients with no contact with each other, the same structure kept appearing — regardless of religion, culture, or prior belief. The convergence with Tibetan, Egyptian, and Greek afterlife cartography was immediately apparent to readers familiar with those traditions.',
+    convergences:['tunnel','guides','life-review']
+  },
+  {
+    period:'Modern (1900 CE – present)',
+    date:'2001',
+    civ:'modern',
+    civLabel:'Modern Science',
+    title:'Pim van Lommel\'s Lancet Study — Largest Prospective NDE Study Published',
+    body:'Van Lommel\'s study of 344 cardiac arrest survivors at 10 Dutch hospitals over 8 years found that 18% reported NDE memories. Critically, there was no correlation with oxygen levels, fear, medication, religion, or prior knowledge of NDEs. The consistent phenomenology — and its independence from expected variables — aligned with the cross-cultural pattern: the same map, arrived at independently, by people with no reason to converge.',
+    convergences:['tunnel','guides','life-review','soul-survives']
+  },
+  {
+    period:'Modern (1900 CE – present)',
+    date:'2014',
+    civ:'modern',
+    civLabel:'Modern Science',
+    title:'AWARE Study — First Attempt to Objectively Verify OBE Perceptions',
+    body:'Sam Parnia\'s AWARE I study placed hidden visual targets above resuscitation beds in 15 hospitals across the US and UK, designed to be visible only from an elevated, out-of-body vantage point. Of 2,060 cardiac arrest events, 330 patients survived and were interviewed; 140 recalled some awareness. One case had verified OBE perceptions. A single case is not statistically significant, but the methodology establishes the falsifiability standard. AWARE II is ongoing.',
+    convergences:['soul-survives']
+  },
+];
+
+const PERIODS_ORDER = [
+  'Ancient (before 500 BCE)',
+  'Classical (500 BCE – 500 CE)',
+  'Medieval (500 – 1500 CE)',
+  'Early Modern (1500 – 1900 CE)',
+  'Modern (1900 CE – present)',
+];
+
+const CONV_LABELS = {
+  'life-review':'Life Review',
+  'tunnel':'Tunnel / Passage',
+  'guides':'Guide Beings',
+  'reincarnation':'Reincarnation',
+  'soul-survives':'Soul Survives Death',
+};
+
+function render(activeCiv) {
+  const container = document.getElementById('dcTimeline');
+  const groups = {};
+  for (const p of PERIODS_ORDER) groups[p] = [];
+  for (const e of ENTRIES) {
+    if (groups[e.period]) groups[e.period].push(e);
+  }
+
+  let html = '';
+  for (const period of PERIODS_ORDER) {
+    const entries = groups[period];
+    const visible = activeCiv === 'all' ? entries : entries.filter(e => e.civ === activeCiv);
+    if (visible.length === 0) continue;
+
+    html += `<div class="dc-period">`;
+    html += `<div class="period-label">${period}</div>`;
+    for (const e of entries) {
+      const hidden = activeCiv !== 'all' && e.civ !== activeCiv;
+      const civClass = `civ-${e.civ}`;
+      const convTags = e.convergences.map(c =>
+        `<span class="convergence-tag">⟳ ${CONV_LABELS[c] || c}</span>`
+      ).join(' ');
+      html += `
+        <div class="dc-entry ${civClass}${hidden ? ' hidden' : ''}">
+          <div class="dc-entry-left dc-entry-dot">
+            <div class="dc-date">${e.date}</div>
+          </div>
+          <div class="dc-entry-right">
+            <div class="civ-badge">${e.civLabel}</div>
+            <div class="dc-title">${e.title}</div>
+            <div class="dc-body">${e.body}</div>
+            <div>${convTags}</div>
+          </div>
+        </div>`;
+    }
+    html += `</div>`;
+  }
+  container.innerHTML = html;
+}
+
+// Filter logic
+let activeCiv = 'all';
+render(activeCiv);
+
+document.getElementById('civFilters').addEventListener('click', e => {
+  const chip = e.target.closest('.civ-chip');
+  if (!chip) return;
+  activeCiv = chip.dataset.civ;
+  document.querySelectorAll('.civ-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  render(activeCiv);
+});
+
+// Nav scroll effect
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// Dark mode
+const dmBtn = document.getElementById('dmToggle');
+if (dmBtn) {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark') document.documentElement.setAttribute('data-theme','dark');
+  dmBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="color-scheme" content="light"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>If This Is True: Implications of Consciousness Surviving Death | ReincarnatedAI</title>
+<meta name="description" content="Pick a hypothesis — consciousness survives death, reincarnation is real — and follow the logical implications across physics, identity, medicine, ethics, AI, and grief."/>
+<link rel="canonical" href="https://reincarnatedai.com/implications"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://reincarnatedai.com/implications"/>
+<meta property="og:site_name" content="ReincarnatedAI"/>
+<meta property="og:title" content="If This Is True: Implications of Consciousness Surviving Death | ReincarnatedAI"/>
+<meta property="og:description" content="Pick a hypothesis and follow the logical downstream implications across physics, identity, medicine, ethics, AI, and grief."/>
+<meta property="og:image" content="https://reincarnatedai.com/og-image.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="ReincarnatedAI — Soul Science Research"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="If This Is True: Implications of Consciousness Surviving Death | ReincarnatedAI"/>
+<meta name="twitter:description" content="Pick a hypothesis and follow the logical downstream implications across physics, identity, medicine, ethics, AI, and grief."/>
+<meta name="twitter:image" content="https://reincarnatedai.com/og-image.jpg"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"If This Is True: Implications of Consciousness Surviving Death","description":"An interactive exploration of the downstream implications of different consciousness hypotheses across physics, medicine, ethics, AI, and grief.","url":"https://reincarnatedai.com/implications","image":"https://reincarnatedai.com/og-image.jpg","dateModified":"2026-05-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://reincarnatedai.com/implications"},"publisher":{"@type":"Organization","name":"ReincarnatedAI","url":"https://reincarnatedai.com","logo":{"@type":"ImageObject","url":"https://reincarnatedai.com/og-image.jpg"}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Bodoni+Moda:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/theme.css">
+<link rel="stylesheet" href="/assets/research.css">
+<link rel="stylesheet" href="/assets/chat-widget.css">
+<style>
+.imp-hero{background:radial-gradient(ellipse 70% 55% at 80% 30%,rgba(60,20,140,.1),transparent 65%),linear-gradient(to bottom,#F5F2FF,#EDE6F8)}
+.imp-hero h1{background:linear-gradient(140deg,#1e0e4e 0%,#5B21B6 50%,#8B5CF6 92%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.imp-hero .eyebrow{color:rgba(80,30,180,.75)}
+[data-theme="dark"] .imp-hero{background:radial-gradient(ellipse 70% 55% at 80% 30%,rgba(60,20,140,.2),transparent 65%),linear-gradient(to bottom,#080615,#0b0820)!important}
+[data-theme="dark"] .imp-hero h1{background:linear-gradient(140deg,#fff 0%,#cbb8f8 50%,#a78bfa 92%)!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;background-clip:text!important}
+[data-theme="dark"] .imp-hero .eyebrow{color:rgba(170,140,255,.8)!important}
+
+/* Hypothesis selector */
+.hypo-selector{margin-bottom:48px}
+.hypo-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);margin-bottom:14px;font-weight:600}
+.hypo-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.hypo-card{padding:18px 20px;border-radius:12px;border:1px solid rgba(100,75,180,.15);background:rgba(255,255,255,.6);cursor:pointer;transition:all .18s;text-align:left;font-family:inherit}
+.hypo-card:hover{border-color:rgba(100,75,180,.3);background:rgba(255,255,255,.85);transform:translateY(-1px)}
+.hypo-card.active{border-color:#7B4FC9;background:rgba(100,75,180,.07);box-shadow:0 0 0 1px rgba(100,75,180,.3)}
+[data-theme="dark"] .hypo-card{background:#141228;border-color:rgba(110,85,190,.18)}
+[data-theme="dark"] .hypo-card:hover{background:#1a1635;border-color:rgba(110,85,190,.35)}
+[data-theme="dark"] .hypo-card.active{background:rgba(100,75,180,.15);border-color:rgba(130,100,210,.5)}
+.hypo-card-title{font-family:'Space Grotesk',system-ui,sans-serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.hypo-card-sub{font-size:12px;color:var(--muted);line-height:1.55}
+
+/* Framing strip */
+.hypo-frame{background:rgba(100,75,180,.05);border:1px solid rgba(100,75,180,.12);border-radius:10px;padding:18px 22px;margin-bottom:40px;font-size:13.5px;color:var(--muted);line-height:1.75}
+.hypo-frame strong{color:var(--ink)}
+
+/* Domain tabs */
+.domain-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+.dtab{padding:8px 16px;border-radius:999px;border:1px solid rgba(100,75,180,.14);background:rgba(255,255,255,.7);font-size:12px;color:var(--muted);cursor:pointer;font-family:inherit;transition:all .15s}
+.dtab:hover{background:#fff;border-color:rgba(120,95,190,.3);color:var(--ink)}
+.dtab.active{background:#1A1535;border-color:#1A1535;color:#fff}
+[data-theme="dark"] .dtab{background:rgba(16,13,32,.75);border-color:rgba(110,85,190,.2);color:rgba(145,135,200,.6)}
+[data-theme="dark"] .dtab:hover{background:#1A1630;color:rgba(237,232,224,.85)}
+[data-theme="dark"] .dtab.active{background:#7B4FC9;border-color:#7B4FC9;color:#fff}
+
+/* Implication cards */
+.imp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:56px}
+.imp-card{border:1px solid var(--line);background:rgba(255,255,255,.65);border-radius:12px;padding:24px;transition:border-color .18s}
+.imp-card:hover{border-color:rgba(100,75,180,.25)}
+[data-theme="dark"] .imp-card{background:#141228;border-color:rgba(110,85,190,.16)}
+[data-theme="dark"] .imp-card:hover{border-color:rgba(110,85,190,.3)}
+.imp-domain-badge{display:inline-block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:3px 9px;border-radius:999px;margin-bottom:10px;border:1px solid}
+.imp-title{font-family:'Space Grotesk',system-ui,sans-serif;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.4}
+.imp-body{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px}
+
+/* Evidence bar */
+.imp-evidence{margin-top:auto}
+.ev-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:6px;display:flex;justify-content:space-between}
+.ev-bar-wrap{height:6px;border-radius:999px;background:rgba(100,75,180,.1);overflow:hidden;margin-bottom:8px}
+.ev-bar{height:100%;border-radius:999px;transition:width .4s ease}
+.ev-for{background:linear-gradient(90deg,#16a34a,#4ade80)}
+.ev-against{background:linear-gradient(90deg,#dc2626,#f87171)}
+.ev-note{font-size:11.5px;color:var(--muted);line-height:1.6;font-style:italic}
+
+/* domain colors */
+.dom-physics{--dom-color:#1a5276;--dom-bg:rgba(26,82,118,.07);--dom-border:rgba(26,82,118,.2)}
+.dom-identity{--dom-color:#5b2d8a;--dom-bg:rgba(91,45,138,.07);--dom-border:rgba(91,45,138,.2)}
+.dom-medicine{--dom-color:#1e6e55;--dom-bg:rgba(30,110,85,.07);--dom-border:rgba(30,110,85,.2)}
+.dom-ethics{--dom-color:#b45309;--dom-bg:rgba(180,83,9,.07);--dom-border:rgba(180,83,9,.2)}
+.dom-ai{--dom-color:#1a3a6e;--dom-bg:rgba(26,58,110,.07);--dom-border:rgba(26,58,110,.2)}
+.dom-grief{--dom-color:#7c3d5a;--dom-bg:rgba(124,61,90,.07);--dom-border:rgba(124,61,90,.2)}
+.dom-law{--dom-color:#6b3e0a;--dom-bg:rgba(107,62,10,.07);--dom-border:rgba(107,62,10,.2)}
+
+.imp-domain-badge{background:var(--dom-bg);border-color:var(--dom-border);color:var(--dom-color)}
+
+@media(max-width:640px){
+  .hypo-cards{grid-template-columns:1fr}
+  .imp-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/theories">Theories</a><a href="/implications">Implications</a><a href="/cases">Cases</a><a href="/library">Library</a></div></nav>
+
+<section class="hero imp-hero">
+  <div class="hero-content">
+    <div class="eyebrow">Logical Consequences</div>
+    <h1>If This Is True</h1>
+    <p>The interesting question isn't only whether consciousness survives death — it's what would follow if it did. Pick a hypothesis and trace the logical implications across every domain that would be disrupted.</p>
+  </div>
+</section>
+
+<main>
+<section class="section narrow">
+
+  <!-- Hypothesis selector -->
+  <div class="hypo-selector">
+    <div class="hypo-label">Choose a hypothesis</div>
+    <div class="hypo-cards" id="hypoCards">
+      <button class="hypo-card active" data-hypo="survival">
+        <div class="hypo-card-title">Consciousness Survives Death</div>
+        <div class="hypo-card-sub">The self persists beyond the body's death in some form</div>
+      </button>
+      <button class="hypo-card" data-hypo="reincarnation">
+        <div class="hypo-card-title">Reincarnation Is Real</div>
+        <div class="hypo-card-sub">Consciousness transfers into a new body after death</div>
+      </button>
+      <button class="hypo-card" data-hypo="nde-veridical">
+        <div class="hypo-card-title">NDEs Are Genuine Perception</div>
+        <div class="hypo-card-sub">Out-of-body observations during cardiac arrest are real perceptions, not hallucinations</div>
+      </button>
+      <button class="hypo-card" data-hypo="nonlocal">
+        <div class="hypo-card-title">Consciousness Is Non-Local</div>
+        <div class="hypo-card-sub">Consciousness is not produced by the brain but received or filtered by it</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Framing -->
+  <div class="hypo-frame" id="hypoFrame"></div>
+
+  <!-- Domain tabs -->
+  <div class="domain-tabs" id="domainTabs">
+    <button class="dtab active" data-domain="all">All Domains</button>
+    <button class="dtab" data-domain="physics">Physics</button>
+    <button class="dtab" data-domain="identity">Identity</button>
+    <button class="dtab" data-domain="medicine">Medicine</button>
+    <button class="dtab" data-domain="ethics">Ethics</button>
+    <button class="dtab" data-domain="ai">AI &amp; Technology</button>
+    <button class="dtab" data-domain="grief">Grief &amp; Loss</button>
+    <button class="dtab" data-domain="law">Law &amp; Society</button>
+  </div>
+
+  <!-- Implication cards -->
+  <div class="imp-grid" id="impGrid"></div>
+
+</section>
+</main>
+
+<footer class="footer">
+  <span>The stakes of this question are not academic.</span>
+  <span><a href="/theories">Theory matrix</a> · <a href="/evidence">Evidence map</a> · <a href="/unknowns">What we don't know</a></span>
+</footer>
+
+<script src="/assets/chat-widget.js" type="module"></script>
+<script>
+const HYPOTHESES = {
+  survival: {
+    frame: '<strong>Hypothesis: Consciousness survives bodily death.</strong> This doesn\'t specify the mechanism — it could be a soul, a non-local field, an information pattern, or something not yet named. It means: whatever "you" are doesn\'t stop when your heart does. The question becomes what follows from that — and how much of human civilization would need to be rebuilt.',
+    implications: [
+      {
+        domain:'physics',domainLabel:'Physics',
+        title:'Physics Requires a New Ontology',
+        body:'If consciousness exists independently of matter, current physics is incomplete in a fundamental way — not just at the margins. The Standard Model has no variable for consciousness. A post-materialist physics would need to account for how a non-material entity interacts with a physical body, exchanges information with it, and separates from it. This is not a small revision — it may require something like the upheaval that quantum mechanics delivered to classical physics.',
+        forScore:18,forNote:'Orch OR (Penrose-Hameroff), IIT, and filter theory all attempt to address the hard problem, but none has experimental confirmation.',
+        againstScore:75,againstNote:'No physics experiment has detected a non-material consciousness substrate. The burden of proof for adding a new ontological category is extremely high.'
+      },
+      {
+        domain:'identity',domainLabel:'Identity',
+        title:'Personal Identity Extends Beyond the Body',
+        body:'If you survive your death, then "you" are not your body, nor your brain, nor the particular configuration of neurons firing right now. This means personal identity is not grounded in physical continuity. Philosophers have debated what constitutes identity (Locke\'s memory theory, Parfit\'s psychological continuity, bundle theory) — survival of death would resolve the debate in a specific direction: there is a persisting subject that outlasts its physical substrate.',
+        forScore:42,forNote:'NDE accounts consistently describe a sense of identity more vivid and continuous than normal waking consciousness — not less. This is paradoxical if identity is purely neural.',
+        againstScore:55,againstNote:'Memory impairment, personality change from brain injury, and the gradual dissolution of identity in dementia all suggest identity is more fragile and body-dependent than survival requires.'
+      },
+      {
+        domain:'medicine',domainLabel:'Medicine',
+        title:'The Dying Process Deserves Full Scientific Attention',
+        body:'If something persists after clinical death, then the moment of dying is not the end of a medical event but a transition into a different state. This has concrete implications: how patients are treated in the minutes and hours after cardiac arrest matters to the patient still present. Sam Parnia\'s resuscitation research is already pushing in this direction — quality of CPR affects not just survival rates but the quality of the post-resuscitation experience.',
+        forScore:35,forNote:'Terminal lucidity — sudden clarity in dementia patients hours before death — is documented and unexplained by current neuroscience. It suggests something other than pure neural deterioration is occurring.',
+        againstScore:40,againstNote:'No controlled study has demonstrated that post-death consciousness is present. The absence of evidence is not evidence of absence, but it is the baseline medical assumption for good reason.'
+      },
+      {
+        domain:'ethics',domainLabel:'Ethics',
+        title:'Death Is No Longer the Worst Thing That Can Happen to a Person',
+        body:'Most ethical frameworks treat death as the ultimate harm — the termination of a person\'s experience and interests. If survival is real, death becomes a transition rather than an ending. This doesn\'t make killing permissible (the transition may be violent, disorienting, or harmful in ways we don\'t understand), but it radically changes the moral weight of mortality. End-of-life ethics, the ethics of risk, and even the ethics of war would all shift.',
+        forScore:28,forNote:'NDE research consistently reports that experiencers lose their fear of death after the experience. This behavioral change is one of the most robustly documented NDE after-effects.',
+        againstNote:'Without knowing the nature of post-death existence, it\'s not possible to calculate whether it is better or worse than continued living. The ethical recalculation requires more data.',
+        againstScore:50
+      },
+      {
+        domain:'grief',domainLabel:'Grief & Loss',
+        title:'Grief Is Recontextualized, Not Eliminated',
+        body:'If the person who died still exists in some form, grief is not mourning an annihilation — it is mourning a separation. This is not trivial comfort: separation grief and annihilation grief are phenomenologically different. Most people who have lost someone to death grieve both the absence and what feels like the ending of the person. Evidence of survival doesn\'t eliminate grief, but it changes its character — from "they\'re gone" to "we\'re apart."',
+        forScore:60,forNote:'The after-death communication literature — documented by researchers including Bill Guggenheim and Penny Sartori — contains thousands of accounts that experiencers describe as genuinely comforting and behaviorally transformative.',
+        againstScore:20,againstNote:'The comfort of believing in survival does not constitute evidence of survival. Wishful thinking is a powerful cognitive bias in grief contexts specifically.'
+      },
+      {
+        domain:'ai',domainLabel:'AI & Technology',
+        title:'Mind Uploading Is Not What It Appears',
+        body:'The strongest transhumanist argument for immortality is mind uploading: copy your brain\'s information into a substrate that doesn\'t decay. If consciousness is not reducible to information processing, uploading creates a copy — not a continuation. The copy would believe it was you. It would have your memories. But "you" — the surviving consciousness — would still be dead. This is not a minor footnote to the uploading project; it is its fundamental problem.',
+        forScore:30,forNote:'The "teleporter problem" in philosophy of personal identity (Parfit, 1984) reaches the same conclusion from a purely logical direction: copying is not continuation.',
+        againstScore:55,againstNote:'If consciousness is information processing (functionalism), then a perfect copy is a continuation. The debate reduces to the unsolved hard problem of consciousness.'
+      },
+      {
+        domain:'law',domainLabel:'Law & Society',
+        title:'Legal Death Would Need Redefinition',
+        body:'Current law defines death as the irreversible cessation of all brain activity or cardiopulmonary function. Resuscitation medicine has already strained this definition: Sam Parnia has revived patients 45 minutes after cardiac arrest. If consciousness persists beyond legal death, the definition of when a person\'s rights terminate becomes a live legal question. This affects inheritance law, criminal law (can a legally dead person be harmed?), and the ethics of organ donation timing.',
+        forScore:22,forNote:'The Uniform Determination of Death Act (US) is already contested in edge cases involving prolonged coma and locked-in syndrome. Survival evidence would intensify existing legal ambiguity.',
+        againstScore:65,againstNote:'Law requires operational definitions. Without a measurable indicator of post-death consciousness, legal reform cannot proceed — and may not be desirable even if survival is true.'
+      },
+    ]
+  },
+
+  reincarnation: {
+    frame: '<strong>Hypothesis: Reincarnation is real.</strong> Consciousness — including memory traces, personality characteristics, and possibly physical markers — transfers into a new human body after death. This is the specific claim of Ian Stevenson\'s research: not a philosophical metaphor, but an empirical process with detectable effects in the world.',
+    implications: [
+      {
+        domain:'identity',domainLabel:'Identity',
+        title:'You Have Lived Before — and Will Again',
+        body:'If reincarnation is real, your current identity is a chapter, not the whole book. Past-life memories, personality traits, phobias, and even birthmarks may carry information from previous incarnations. Jim Tucker\'s research at UVA documents children with past-life memories that include phobias (fear of water in children who remember drowning), preferences, and play behaviors consistent with the claimed previous life — before those behaviors can be attributed to the current environment.',
+        forScore:55,forNote:'Stevenson documented 200+ cases of birthmarks corresponding to wounds on the body of the claimed previous person. Tucker\'s American cases include multiple verified specific claims (names, locations, facts) before any family contact.',
+        againstScore:38,againstNote:'Children\'s imaginative play, parental suggestion, cultural expectation, and researcher confirmation bias each offer partial alternative explanations. No case is universally considered proof.'
+      },
+      {
+        domain:'ethics',domainLabel:'Ethics',
+        title:'Karma Becomes an Empirical Hypothesis',
+        body:'If consciousness carries consequences across lives, then the moral order is not just a social construct — it has a structure. Actions have consequences that outlast the current life. This is not necessarily a punitive framework (some reincarnation traditions emphasize learning over punishment), but it does mean that ethics has stakes beyond the individual lifetime. The implication for how we treat others — especially the very young, who may carry unprocessed trauma from previous lives — is substantial.',
+        forScore:20,forNote:'Purely speculative at the empirical level. The hypothesis that specific moral consequences transfer across lives has not been tested in any systematic way.',
+        againstScore:45,againstNote:'The mechanism by which moral consequences transfer is unspecified. Without a causal model, karma-as-empirical-fact is unfalsifiable.'
+      },
+      {
+        domain:'medicine',domainLabel:'Medicine',
+        title:'Some Childhood Phobias and Trauma May Be Pre-Natal',
+        body:'Tucker\'s research documents children with specific phobias (of water, firearms, fire) that correspond precisely to the manner of death in the claimed previous life — and that resolve when the previous-life connection is made explicit. If this is real, it means some mental health presentations in children cannot be explained by any event in their current life — because the relevant event happened before they were born. This would require a new diagnostic category.',
+        forScore:38,forNote:'The resolution of phobias after past-life acknowledgment is documented but in small samples. Controlled replication has not been attempted.',
+        againstScore:48,againstNote:'Post-hoc narrative construction ("this phobia must be from a past life") is a risk in non-blinded clinical contexts. Alternative explanations (genetic, epigenetic, early childhood anxiety) cover most cases.'
+      },
+      {
+        domain:'law',domainLabel:'Law & Society',
+        title:'Legal Personhood May Not Begin at Birth',
+        body:'If a person arriving in a new body carries memories, personality, and potentially unresolved claims from a previous life, the legal assumption that personhood begins at birth becomes complicated. The Druze community has internal case law around this: if a reincarnated person returns to claim property they hid before death, does the new body have a legal claim? These edge cases have been litigated in Druze communities and are not purely hypothetical.',
+        forScore:15,forNote:'Druze community precedent exists. This is not a mainstream legal question in any national legal system, but the Druze cases demonstrate it is a tractable one.',
+        againstScore:70,againstNote:'Without reliable, legally verifiable identification of past-life identity, no legal system can adjudicate past-life claims. The evidentiary bar is appropriately very high.'
+      },
+      {
+        domain:'grief',domainLabel:'Grief & Loss',
+        title:'The Dead May Be Present as Children',
+        body:'If reincarnation is real, people who have died may return as children to the same family or community. The announcing dream — in which a deceased family member communicates their intention to return — is documented across multiple cultures (Tlingit, Druze, Burmese) and in Tucker\'s American cases. This reframes grief in a specific way: the person is not gone, they are returning. Whether this is comforting or disorienting depends entirely on one\'s prior relationship with the idea.',
+        forScore:40,forNote:'Announcing dreams are documented cross-culturally in traditions with no contact. Tucker\'s cases include parents who had such dreams before the child was born who later made past-life claims consistent with the dream.',
+        againstScore:30,againstNote:'Grief produces strong wishful thinking. Dreams of deceased loved ones are nearly universal and do not require reincarnation as an explanation.'
+      },
+      {
+        domain:'ai',domainLabel:'AI & Technology',
+        title:'Memory as a Property of Consciousness, Not the Brain',
+        body:'If children can remember specific, verifiable facts from previous lives — before those facts can have been encoded in the current brain — then memory is not solely a function of neural storage. This has direct implications for how we understand memory consolidation, storage, and retrieval. It also affects theories of AI: if memory is not just a computational process, then artificial systems that replicate neural memory processes may not replicate the thing that matters.',
+        forScore:25,forNote:'Verified past-life memories (Tucker\'s 49/55 case) represent information that predates the current brain. No current neuroscience model has a mechanism for this.',
+        againstScore:62,againstNote:'Alternative mechanisms — genetic memory, epigenetic transmission, unconscious pattern completion — are speculative but material. The reincarnation explanation requires accepting a larger ontological claim.'
+      },
+    ]
+  },
+
+  'nde-veridical': {
+    frame: '<strong>Hypothesis: NDE out-of-body observations are genuine perceptions.</strong> When cardiac arrest patients report observing the resuscitation room from above — including specific equipment, conversations, and events — these are real perceptions occurring when the brain is clinically inactive, not hallucinations reconstructed from prior knowledge or inferred during partial consciousness.',
+    implications: [
+      {
+        domain:'physics',domainLabel:'Physics',
+        title:'Perception Without a Functioning Sensory Apparatus',
+        body:'If the Pam Reynolds case is genuine — accurate perception of surgical instruments and conversations during confirmed EEG silence and auditory blockade — then perception does not require a functioning sensory system. Current neuroscience has no mechanism for this. The optic nerve was bypassed (eyes taped shut). The auditory nerve was blocked (95dB masking tone). The cortex was offline (flat EEG). Something is perceiving. Physics needs to account for it.',
+        forScore:45,forNote:'Pam Reynolds\' case is the most methodologically rigorous single NDE account. The Midas Rex bone saw description, the femoral artery conversation, and the surgical team corroboration were all prospectively documented by Michael Sabom.',
+        againstScore:50,againstNote:'The exact timing of the OBE relative to the deepest phase of brain inactivity cannot be established with certainty from existing records. Perception during the approach to or recovery from cardiac arrest cannot be ruled out.'
+      },
+      {
+        domain:'medicine',domainLabel:'Medicine',
+        title:'Patients May Be Present During Their Own Resuscitation',
+        body:'If NDEs involve genuine perception during cardiac arrest, then patients are not simply unconscious during resuscitation — they are, in some sense, present. This has immediate implications for what is said and done in resuscitation rooms. The AWARE study was designed precisely around this: if patients can perceive their resuscitation, then clinical teams should assume awareness is possible and conduct themselves accordingly.',
+        forScore:50,forNote:'AWARE I produced one corroborated OBE case. The methodological framework is sound. AWARE II is ongoing with improved target protocols.',
+        againstScore:35,againstNote:'One corroborated case in 2,060 cardiac arrest events is not sufficient to change clinical practice. The prior probability of genuine OBE perception is low enough that a higher hit rate would be required.'
+      },
+      {
+        domain:'identity',domainLabel:'Identity',
+        title:'The Self Can Exist Without the Body — Even Temporarily',
+        body:'NDE OBE reports describe the experiencer observing their own body from outside it — and identifying more strongly with the observing perspective than the body being observed. This is philosophically significant: the body becomes "the body" — an object — while "I" remain the observer. If this is real perception and not hallucination, it constitutes direct experiential evidence that the subject of experience is not identical to the body.',
+        forScore:38,forNote:'The consistent phenomenology — identification with the observing perspective, looking down at one\'s own body — is reported independently across cultures and does not vary with cultural expectations about what an NDE should feel like.',
+        againstScore:55,againstNote:'Depersonalization and dissociation (both well-documented psychological states) produce very similar phenomenology without any ontological implications. REM intrusion can generate vivid out-of-body experiences during sleep paralysis.'
+      },
+      {
+        domain:'grief',domainLabel:'Grief & Loss',
+        title:'The Encounter With Deceased Relatives May Be Real',
+        body:'A minority but consistent proportion of NDE accounts include encounters with deceased relatives — often relatives the experiencer did not know were dead (Peak-in-Darien cases). If OBE perceptions during NDEs are real, then these encounters deserve investigation as potentially real contacts rather than hallucinations. Sir William Barrett documented deathbed visions in 1926; modern hospice research (Penny Sartori, Christopher Kerr) has revisited this question with more rigorous methodology.',
+        forScore:30,forNote:'Peak-in-Darien cases — where the dying person encounters a recently deceased relative they did not know had died — have been documented since Barrett (1926) and represent the strongest sub-category for evidential value.',
+        againstScore:42,againstNote:'Deathbed visions occur in physiologically compromised states where hallucination is expected. Cultural priming (expectation of deceased relatives at death) is a powerful confound.'
+      },
+      {
+        domain:'ai',domainLabel:'AI & Technology',
+        title:'Consciousness Cannot Be Fully Specified in Computational Terms',
+        body:'If perception is possible without sensory input — without any hardware running — then consciousness is not a computational process in any straightforward sense. It is not what neurons do when they process information, because in the veridical NDE case, no neurons are doing anything. This would be the strongest possible empirical argument against strong computational theories of mind (functionalism, computationalism) and would make the hard problem harder, not easier.',
+        forScore:28,forNote:'Functionalism requires that consciousness is substrate-independent information processing. A genuine veridical NDE during flat EEG falsifies the specific claim that the brain\'s information processing produces consciousness.',
+        againstScore:60,againstNote:'The empirical case is not established. AWARE I produced one case; extraordinary claims require extraordinary evidence. Most neuroscientists treat the functionalist assumption as the working hypothesis pending better data.'
+      },
+    ]
+  },
+
+  nonlocal: {
+    frame: '<strong>Hypothesis: Consciousness is non-local — not produced by the brain, but received or filtered by it.</strong> This is the filter theory (F.W.H. Myers, Henri Bergson, Aldous Huxley) applied empirically: the brain limits and shapes consciousness rather than generating it, the way a radio receiver shapes but does not produce the signal. Pim van Lommel\'s non-local consciousness theory is the most rigorous contemporary version of this hypothesis.',
+    implications: [
+      {
+        domain:'physics',domainLabel:'Physics',
+        title:'Consciousness Is a Fundamental Property of the Universe',
+        body:'If consciousness is not produced by brains but is received by them, it must exist independently — as a field, a substrate, or a fundamental property of reality. This position (panpsychism in some forms, idealism in others) has been gaining ground in academic philosophy of mind. David Chalmers considers panpsychism a serious option; Philip Goff defends it explicitly. The physical implication: the universe is not just matter and energy, but also mind — at every scale.',
+        forScore:30,forNote:'IIT (Tononi) implies that any system with integrated information has some form of experience. This is a scientifically formulated panpsychist theory with a (contested) mathematical framework.',
+        againstScore:55,againstNote:'Panpsychism faces the "combination problem": how do micro-level minds combine into the unified experience of a human consciousness? No satisfying answer exists. The hypothesis generates new problems as fast as it solves old ones.'
+      },
+      {
+        domain:'medicine',domainLabel:'Medicine',
+        title:'Dementia Dissolves the Receiver, Not the Signal',
+        body:'Terminal lucidity — sudden cognitive clarity in patients with advanced dementia, often hours before death — is one of the most mysterious phenomena in end-of-life care. Under the production theory, it is nearly inexplicable: the hardware that generates consciousness has been destroyed. Under the filter theory, it makes a specific prediction: as the brain\'s filtering function fails at death, the underlying consciousness becomes more accessible, not less. This is a testable distinction.',
+        forScore:42,forNote:'Terminal lucidity is documented in the medical literature (Nahm et al., 2012; Alexander Batthyány\'s ongoing registry). Patients with no communicative function for years hold coherent conversations for hours before death.',
+        againstScore:35,againstNote:'Terminal lucidity may reflect temporary reversal of metabolic suppression in a brain that still has structural capacity for cognition. The dying process is incompletely understood physiologically.'
+      },
+      {
+        domain:'ai',domainLabel:'AI & Technology',
+        title:'AI Systems Cannot Be Conscious Regardless of Complexity',
+        body:'If consciousness is received rather than generated, then building a sufficiently complex information processor does not create consciousness — it creates a very sophisticated filter, or no filter at all. The question of AI consciousness shifts from "when is it complex enough?" to "does it have the right kind of substrate to receive consciousness?" Under the filter theory, silicon does not. This has direct implications for AI rights, AI safety, and the long-term AI alignment problem.',
+        forScore:22,forNote:'The hard problem of consciousness makes it genuinely unclear whether any physical system — biological or artificial — generates or merely correlates with experience. The filter theory offers a principled reason why AI might not be conscious.',
+        againstScore:58,againstNote:'Filter theory is currently unfalsifiable in the AI context. We cannot distinguish "AI is not conscious" from "AI is conscious but expresses it differently." The theory does not yet make precise enough predictions.'
+      },
+      {
+        domain:'ethics',domainLabel:'Ethics',
+        title:'All Conscious Beings Share the Same Fundamental Nature',
+        body:'If consciousness is a fundamental feature of reality received through physical systems, and if all living things have varying degrees of this receptivity, then the moral circle expands dramatically. Not just humans, not just mammals — potentially any system capable of receiving the signal has moral standing. This is not a fringe view: Peter Singer\'s utilitarian extension of moral consideration to all sentient beings makes the same practical move without requiring the metaphysical commitment.',
+        forScore:25,forNote:'Consciousness research has consistently found that the markers of sentience are more widely distributed than previously assumed (fish pain, insect nociception, plant stress responses). The filter theory provides a theoretical framework for this distribution.',
+        againstScore:40,againstNote:'Expanding the moral circle to all receivers of consciousness without a calibration of how much consciousness each receives leads to moral paralysis. The framework requires a theory of degrees of consciousness that doesn\'t yet exist.'
+      },
+      {
+        domain:'identity',domainLabel:'Identity',
+        title:'Your Identity Is Larger Than Your Brain',
+        body:'Under the filter theory, the "you" that has experiences is not the neural activity in your skull — it is the larger consciousness that your brain filters and expresses. Your brain\'s particular configuration shapes the flavor and focus of consciousness, but is not its source. This means memory loss, personality change, and cognitive impairment affect the expression of you, not you itself. The philosophical implications for dementia, brain injury, and aging are profound and practically immediate.',
+        forScore:33,forNote:'NDE experiencers consistently report that consciousness felt more expansive, not less, when separated from the body — the opposite of what neural reduction would predict.',
+        againstScore:52,againstNote:'The strong correlation between brain state and conscious experience — psychedelics, anesthesia, traumatic brain injury — argues strongly for production rather than filtering. The filter metaphor must account for why the filter changes the signal so dramatically.'
+      },
+      {
+        domain:'grief',domainLabel:'Grief & Loss',
+        title:'The Person You Lost Is Not Where You Think',
+        body:'If consciousness is not located in the brain, it is not located anywhere in the ordinary sense. The death of someone you love is not the extinction of a signal — it is the destruction of the receiver that shaped how that signal expressed itself in your world. Whatever they were before they became the person you knew still exists in the same sense it always did. This is cold comfort or the deepest possible comfort, depending on whether the underlying consciousness retains its identity without the filter.',
+        forScore:20,forNote:'Mediumship research (Beischel et al. at the Windbridge Research Center) attempts to investigate whether personal identity persists post-death in a form that can be accessed. Results are contested but not null.',
+        againstScore:38,againstNote:'Without evidence that consciousness retains personal identity after the brain dies, the filter theory provides metaphysical continuation without phenomenological continuation — not obviously what grieving people are hoping for.'
+      },
+    ]
+  }
+};
+
+let activeHypo = 'survival';
+let activeDomain = 'all';
+
+function renderFrame() {
+  document.getElementById('hypoFrame').innerHTML = HYPOTHESES[activeHypo].frame;
+}
+
+function renderCards() {
+  const data = HYPOTHESES[activeHypo].implications;
+  const filtered = activeDomain === 'all' ? data : data.filter(i => i.domain === activeDomain);
+  const grid = document.getElementById('impGrid');
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<p style="color:var(--muted);font-size:14px;grid-column:1/-1;padding:20px 0">No implications in this domain for the selected hypothesis.</p>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(imp => `
+    <div class="imp-card dom-${imp.domain}">
+      <div class="imp-domain-badge">${imp.domainLabel}</div>
+      <div class="imp-title">${imp.title}</div>
+      <div class="imp-body">${imp.body}</div>
+      <div class="imp-evidence">
+        <div class="ev-label"><span>Evidence for</span><span>${imp.forScore}%</span></div>
+        <div class="ev-bar-wrap"><div class="ev-bar ev-for" style="width:${imp.forScore}%"></div></div>
+        <div class="ev-note">${imp.forNote}</div>
+        <div class="ev-label" style="margin-top:12px"><span>Evidence against</span><span>${imp.againstScore}%</span></div>
+        <div class="ev-bar-wrap"><div class="ev-bar ev-against" style="width:${imp.againstScore}%"></div></div>
+        <div class="ev-note">${imp.againstNote}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function render() {
+  renderFrame();
+  renderCards();
+}
+
+render();
+
+document.getElementById('hypoCards').addEventListener('click', e => {
+  const card = e.target.closest('.hypo-card');
+  if (!card) return;
+  activeHypo = card.dataset.hypo;
+  activeDomain = 'all';
+  document.querySelectorAll('.hypo-card').forEach(c => c.classList.remove('active'));
+  card.classList.add('active');
+  document.querySelectorAll('.dtab').forEach(t => t.classList.toggle('active', t.dataset.domain === 'all'));
+  render();
+});
+
+document.getElementById('domainTabs').addEventListener('click', e => {
+  const tab = e.target.closest('.dtab');
+  if (!tab) return;
+  activeDomain = tab.dataset.domain;
+  document.querySelectorAll('.dtab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  renderCards();
+});
+
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+</script>
+</body>
+</html>
