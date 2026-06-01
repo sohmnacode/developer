@@ -97,6 +97,8 @@ const RaiManager = (() => {
     win.destroy();
     windows.splice(idx, 1);
     reposition();
+    // Clear saved state so a closed window doesn't auto-reopen on next page load
+    try { sessionStorage.removeItem('rai_widget_v1'); } catch {}
   }
 
   function reposition() {
