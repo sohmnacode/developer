@@ -7,7 +7,7 @@ const MODES = [
   { id: 'compare',    label: 'Compare' },
 ];
 
-const STARTERS = {
+const RAI_STARTERS = {
   researcher: [
     'What does the research say about consciousness surviving death?',
     'Explain the Penrose-Hameroff Orch OR theory',
@@ -261,7 +261,7 @@ class ChatWindow {
   _renderStarters() {
     const el = this._q('.rai-starters');
     if (!el) return;
-    const pool = STARTERS[this.chatMode].slice();
+    const pool = RAI_STARTERS[this.chatMode].slice();
     const picked = pool.sort(() => Math.random() - 0.5).slice(0, 2);
     el.innerHTML = picked.map(q =>
       `<button class="rai-starter">${q}</button>`
