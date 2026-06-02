@@ -75,7 +75,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { messages, mode = 'researcher' } = req.body;
+  const { messages, mode = 'researcher', pageContext } = req.body;
 
   if (!process.env.ANTHROPIC_API_KEY) {
     return res.status(500).json({ error: 'API key not configured' });
@@ -98,6 +98,13 @@ export default async function handler(req, res) {
     systemBlocks.push({
       type: 'text',
       text: `## Retrieved Knowledge Base Entries\n\nThe following sourced entries are directly relevant to the current query. Draw on them specifically — cite cases by name, studies by author and year, texts by title.\n\n${relevantKnowledge}`,
+    });
+  }
+
+  if (pageContext?.title) {
+    systemBlocks.push({
+      type: 'text',
+      text: `## Current Page Context\n\nThe user is currently reading the page titled "${pageContext.title}"${pageContext.desc ? ` — "${pageContext.desc}"` : ''}. Tailor your responses to be especially relevant to this topic when appropriate, without forcing it when the user asks something unrelated.`,
     });
   }
 

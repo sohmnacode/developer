@@ -60,6 +60,8 @@
 .rai-starters{display:flex;flex-direction:column;gap:7px}
 .rai-starter{text-align:left;padding:10px 13px;border-radius:10px;border:1px solid rgba(100,75,180,.12);background:rgba(248,245,239,.55);color:rgba(26,21,53,0.75);font-size:13.5px;cursor:pointer;font-family:inherit;line-height:1.4;transition:background .15s,border-color .15s,color .15s}
 .rai-starter:hover{background:rgba(248,245,239,1);border-color:rgba(120,95,190,.28);color:#1A1535}
+.rai-starter-page{background:linear-gradient(135deg,rgba(109,40,217,.07),rgba(139,92,246,.1));border-color:rgba(120,95,190,.22);color:rgba(109,40,217,.85);font-weight:500}
+.rai-starter-page:hover{background:linear-gradient(135deg,rgba(109,40,217,.13),rgba(139,92,246,.17));border-color:rgba(120,95,190,.4);color:#5B21B6}
 .rai-msg{display:flex;gap:8px;align-items:flex-start}
 .rai-msg.user{justify-content:flex-end}
 .rai-avatar-sm{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#7B4FC9,#9B6FE0);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px}

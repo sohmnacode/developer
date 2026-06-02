@@ -69,6 +69,15 @@ const RAI_STARTERS = {
   ],
 };
 
+/* ── Page context (auto-detected from current page) ── */
+const PAGE_CTX = (() => {
+  const path  = window.location.pathname.replace(/\/$/, '') || '/';
+  const title = document.title.replace(/\s*\|.*$/, '').trim();
+  const desc  = document.querySelector('meta[name="description"]')?.content || '';
+  if (path === '/' || !title) return null;
+  return { path, title, desc };
+})();
+
 /* ── Window gap + width for tiling ── */
 const WINDOW_WIDTH  = 390;
 const WINDOW_GAP    = 14;
@@ -263,12 +272,23 @@ class ChatWindow {
     if (!el) return;
     const pool = RAI_STARTERS[this.chatMode].slice();
     const picked = pool.sort(() => Math.random() - 0.5).slice(0, 2);
-    el.innerHTML = picked.map(q =>
-      `<button class="rai-starter">${q}</button>`
-    ).join('');
-    el.querySelectorAll('.rai-starter').forEach(btn => {
+
+    let html = picked.map(q => `<button class="rai-starter">${q}</button>`).join('');
+
+    if (PAGE_CTX) {
+      html += `<button class="rai-starter rai-starter-page" data-page-ask>✦ Ask about this page</button>`;
+    }
+
+    el.innerHTML = html;
+    el.querySelectorAll('.rai-starter:not([data-page-ask])').forEach(btn => {
       btn.addEventListener('click', () => this.send(btn.textContent));
     });
+    const pageBtn = el.querySelector('[data-page-ask]');
+    if (pageBtn) {
+      pageBtn.addEventListener('click', () => {
+        this.send(`I'm reading your page on "${PAGE_CTX.title}". Can you give me a deeper synthesis of the key research, evidence, and open questions covered here?`);
+      });
+    }
   }
 
   _restoreMessages() {
@@ -368,7 +388,7 @@ class ChatWindow {
       const res = await fetch('/api/research', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: this.history, mode: this.chatMode }),
+        body: JSON.stringify({ messages: this.history, mode: this.chatMode, pageContext: PAGE_CTX }),
       });
 
       if (!res.ok) {

@@ -34,7 +34,7 @@
   background-clip: text !important;
 }
 
-/* ── Nav icon buttons (search + dark mode toggle) ── */
+/* ── Nav icon buttons (search + dark mode toggle + bookmark) ── */
 .nav-icon-btn{
   width:32px;height:32px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
@@ -45,6 +45,12 @@
 .nav-icon-btn:hover{border-color:rgba(255,255,255,.45);color:#fff;}
 nav.scrolled .nav-icon-btn{border-color:rgba(100,75,180,.2);color:rgba(26,21,53,0.65);}
 nav.scrolled .nav-icon-btn:hover{border-color:rgba(100,75,180,.4);color:#1A1535;}
+
+/* Bookmark button active (saved) state */
+.nav-bookmark-btn.active{color:rgba(139,92,246,.9);border-color:rgba(109,40,217,.3);}
+nav.scrolled .nav-bookmark-btn.active{color:#6D28D9;border-color:rgba(109,40,217,.4);}
+.nav-bookmark-btn.active:hover{color:#5B21B6;}
+[data-theme="dark"] nav.scrolled .nav-bookmark-btn.active{color:rgba(160,139,222,.9);border-color:rgba(139,92,246,.4);}
 
 /* ── Hamburger (hidden on desktop) ── */
 .nav-hamburger{

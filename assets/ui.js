@@ -5,6 +5,14 @@
   }
 })();
 
+// Load bookmarks module on every page
+(function () {
+  const s = document.createElement('script');
+  s.src = '/assets/bookmarks.js';
+  s.defer = true;
+  document.head.appendChild(s);
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('nav');
   if (!nav || nav.querySelector('.nav-icon-btn')) return;
