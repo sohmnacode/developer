@@ -34,7 +34,7 @@ const RaiBookmarks = (() => {
 })();
 
 /* ── Inject bookmark button into nav ── */
-document.addEventListener('DOMContentLoaded', () => {
+function _initBookmarkBtn() {
   const nav = document.querySelector('nav');
   if (!nav) return;
 
@@ -69,7 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const firstIcon = nav.querySelector('.nav-icon-btn');
   if (firstIcon) nav.insertBefore(btn, firstIcon);
   else nav.appendChild(btn);
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', _initBookmarkBtn);
+} else {
+  _initBookmarkBtn();
+}
 
 function showToast(msg, positive) {
   const existing = document.querySelector('.rai-bookmark-toast');
