@@ -513,6 +513,7 @@
 
 <script type="module">
 import { caseIndex } from '/data/research-data.js';
+import { caseDetails } from '/data/cases-detail-data.js';
 
 const q        = document.getElementById('q');
 const domain   = document.getElementById('domain');
@@ -604,16 +605,12 @@ function render() {
     return;
   }
 
-  const deepDiveMap = {
-    'james leininger': 'james-leininger',
-    'shanti devi': 'shanti-devi',
-    'pam reynolds': 'pam-reynolds',
-    'maria case (tennis shoe)': 'maria-shoe',
-    'ryan hammons': 'ryan-hammons',
-  };
+  const normalizeTitle = title => title.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  const deepDiveMap = Object.fromEntries(caseDetails.map(d => [normalizeTitle(d.name), d.id]));
+  deepDiveMap[normalizeTitle('Maria Case (tennis shoe)')] = 'maria-shoe';
 
   wrap.innerHTML = rows.map(c => {
-    const deepId = deepDiveMap[c.title.toLowerCase()];
+    const deepId = deepDiveMap[normalizeTitle(c.title)];
     const score = c.evidenceScore;
     return `
     <article class="case-card">
