@@ -149,6 +149,9 @@ const RaiManager = (() => {
   return { init, openWindow, closeWindow };
 })();
 
+/* Backward-compatible hook used by inline page CTAs. */
+window.__raiToggle = () => RaiManager.openWindow();
+
 /* ── ChatWindow — fully self-contained chat instance ── */
 class ChatWindow {
   constructor(savedState) {
