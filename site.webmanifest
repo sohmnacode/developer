@@ -1,0 +1,15 @@
+{
+  "name": "ReincarnatedAI — Technological Soul Science Research",
+  "short_name": "ReincarnatedAI",
+  "description": "The first AI built to explore the science of consciousness, near-death experience, technology and the enduring human soul.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0C0A1A",
+  "theme_color": "#0C0A1A",
+  "icons": [
+    { "src": "/assets/icons/icon-96.png", "sizes": "96x96", "type": "image/png" },
+    { "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
