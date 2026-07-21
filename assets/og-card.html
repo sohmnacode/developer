@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>ReincarnatedAI — OG card generator (1200×630)</title>
+<meta name="robots" content="noindex"/>
+<!--
+  Source for /og-image.jpg — the image shown when reincarnatedai.com is shared
+  on X, Slack, iMessage, LinkedIn.
+
+  Draws the card on a real 1200x630 canvas (same idiom as the Deep Thought share
+  card in index.html) so the export is pixel-exact rather than a screenshot.
+  Open this page and click Download to regenerate after a brand change.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0A0818;color:#C3AEF5;font:400 14px 'Inter',system-ui,sans-serif;
+       min-height:100vh;display:flex;flex-direction:column;align-items:center;
+       justify-content:center;gap:18px;padding:20px}
+  canvas{width:min(1200px,96vw);height:auto;border-radius:10px;
+         box-shadow:0 20px 60px rgba(0,0,0,.6)}
+  button{font:600 13px 'Inter',system-ui,sans-serif;color:#0A0818;background:#C5A8F5;
+         border:0;border-radius:999px;padding:10px 22px;cursor:pointer}
+  .hint{opacity:.5;font-size:12px}
+</style>
+</head>
+<body>
+<canvas id="og" width="1200" height="630"></canvas>
+<button id="dl">Download og-image.jpg</button>
+<div class="hint">1200×630 · regenerate after brand changes</div>
+
+<script>
+const W = 1200, H = 630;
+const ICON = '/reincarnatedai-app-icon.png';
+
+const EYEBROW = 'TECHNOLOGICAL SOUL SCIENCE RESEARCH';
+const HEADLINE = 'AI, Reincarnated.';
+const BLURB = 'The first AI built to explore the science of consciousness, near-death experience, and the enduring human soul.';
+const URL_TEXT = 'reincarnatedai.com';
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+// deterministic starfield so re-renders are stable
+let seed = 20260721;
+function rnd() { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff; }
+
+function wrap(ctx, text, maxW) {
+  const words = text.split(' ');
+  const lines = [];
+  let line = '';
+  for (const word of words) {
+    const test = line ? line + ' ' + word : word;
+    if (ctx.measureText(test).width > maxW && line) { lines.push(line); line = word; }
+    else line = test;
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+function draw(icon) {
+  const ctx = document.getElementById('og').getContext('2d');
+  ctx.clearRect(0, 0, W, H);
+
+  // ---- background: base gradient + two brand glows
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, '#0C0A1A'); bg.addColorStop(0.55, '#120F26'); bg.addColorStop(1, '#0A0818');
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+  let g = ctx.createRadialGradient(W * 0.74, H * 0.28, 0, W * 0.74, H * 0.28, W * 0.52);
+  g.addColorStop(0, 'rgba(109,40,217,.34)'); g.addColorStop(1, 'rgba(109,40,217,0)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+  g = ctx.createRadialGradient(W * 0.10, H * 0.86, 0, W * 0.10, H * 0.86, W * 0.42);
+  g.addColorStop(0, 'rgba(155,114,232,.18)'); g.addColorStop(1, 'rgba(155,114,232,0)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+  // ---- starfield
+  for (let i = 0; i < 70; i++) {
+    const x = rnd() * W, y = rnd() * H, r = rnd() * 1.5 + 0.5;
+    ctx.fillStyle = 'rgba(255,255,255,' + (rnd() * 0.45 + 0.06).toFixed(3) + ')';
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+  }
+
+  // ---- icon tile with halo
+  const S = 218, IX = 92, IY = (H - S) / 2 - 6;
+  g = ctx.createRadialGradient(IX + S / 2, IY + S / 2, 0, IX + S / 2, IY + S / 2, S * 0.92);
+  g.addColorStop(0, 'rgba(155,114,232,.30)'); g.addColorStop(1, 'rgba(155,114,232,0)');
+  ctx.fillStyle = g; ctx.fillRect(IX - S, IY - S, S * 3, S * 3);
+
+  ctx.save();
+  ctx.shadowColor = 'rgba(0,0,0,.55)'; ctx.shadowBlur = 48; ctx.shadowOffsetY = 20;
+  roundRect(ctx, IX, IY, S, S, 49); ctx.fillStyle = '#20222E'; ctx.fill();
+  ctx.restore();
+  ctx.drawImage(icon, IX, IY, S, S);
+  ctx.save();
+  roundRect(ctx, IX + 0.5, IY + 0.5, S - 1, S - 1, 48.5);
+  ctx.strokeStyle = 'rgba(255,255,255,.07)'; ctx.lineWidth = 1; ctx.stroke();
+  ctx.restore();
+
+  // ---- copy column
+  const TX = IX + S + 74;
+  const MAXW = W - 84 - TX;
+  ctx.textBaseline = 'top';
+
+  ctx.letterSpacing = '4.4px';
+  ctx.font = '600 15px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#9B84E8';
+  ctx.fillText(EYEBROW, TX, 160);
+  ctx.letterSpacing = '0px';
+
+  // headline: shrink to fit the column
+  let size = 82;
+  ctx.letterSpacing = '-2px';
+  do {
+    ctx.font = '700 ' + size + 'px "Space Grotesk", system-ui, sans-serif';
+    if (ctx.measureText(HEADLINE).width <= MAXW) break;
+    size -= 1;
+  } while (size > 40);
+  const grad = ctx.createLinearGradient(TX, 0, TX + MAXW, H * 0.6);
+  grad.addColorStop(0, '#FFFFFF'); grad.addColorStop(0.55, '#DCCFFA'); grad.addColorStop(1, '#B79BF0');
+  ctx.fillStyle = grad;
+  ctx.fillText(HEADLINE, TX, 202);
+  ctx.letterSpacing = '0px';
+
+  ctx.font = '300 21px Inter, system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,.60)';
+  wrap(ctx, BLURB, MAXW).forEach((line, i) => ctx.fillText(line, TX, 318 + i * 31));
+
+  // ---- url with glowing dot
+  const UY = 444;
+  ctx.save();
+  ctx.shadowColor = 'rgba(197,168,245,.85)'; ctx.shadowBlur = 16;
+  ctx.fillStyle = '#C5A8F5';
+  ctx.beginPath(); ctx.arc(TX + 5, UY + 10, 5, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+  ctx.font = '600 20px "Space Grotesk", system-ui, sans-serif';
+  ctx.fillStyle = '#C3AEF5';
+  ctx.fillText(URL_TEXT, TX + 22, UY);
+
+  // ---- bottom accent rule
+  const rule = ctx.createLinearGradient(0, 0, W, 0);
+  rule.addColorStop(0, '#6D28D9'); rule.addColorStop(0.42, '#9B72E8');
+  rule.addColorStop(0.72, '#C5A8F5'); rule.addColorStop(1, 'rgba(197,168,245,0)');
+  ctx.fillStyle = rule; ctx.fillRect(0, H - 6, W, 6);
+}
+
+function loadIcon() {
+  return new Promise((res, rej) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => res(img);
+    img.onerror = rej;
+    img.src = ICON;
+  });
+}
+
+window.__ogReady = (async () => {
+  await document.fonts.load('700 82px "Space Grotesk"');
+  await document.fonts.load('600 15px Inter');
+  await document.fonts.load('300 21px Inter');
+  await document.fonts.ready;
+  draw(await loadIcon());
+  window.__ogDataURL = document.getElementById('og').toDataURL('image/jpeg', 0.92);
+  return window.__ogDataURL.length;
+})();
+
+document.getElementById('dl').addEventListener('click', () => {
+  const a = document.createElement('a');
+  a.href = window.__ogDataURL;
+  a.download = 'og-image.jpg';
+  a.click();
+});
+</script>
+</body>
+</html>
