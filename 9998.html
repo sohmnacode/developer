@@ -30,6 +30,7 @@
 nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(8,6,21,.88);backdrop-filter:blur(18px);border-bottom:1px solid rgba(197,176,240,.12)}
 .logo{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;background:linear-gradient(135deg,#A08BDE,#D9CCF5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.nav-back{color:rgba(255,255,255,.62);font-size:13px;text-decoration:none}.nav-back:hover{color:#fff}
 .hero{position:relative;overflow:hidden;padding:96px 32px 70px;text-align:center;border-bottom:1px solid rgba(160,139,222,.13)}.hero:before{content:"";position:absolute;inset:-40%;background:radial-gradient(circle at 50% 45%,rgba(109,40,217,.26),transparent 35%);pointer-events:none}.eyebrow{position:relative;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#b7a1ed;font-weight:600;margin-bottom:20px}.hero h1{position:relative;margin:0;font:700 clamp(72px,17vw,190px)/.8 'Space Grotesk',sans-serif;letter-spacing:-.075em;background:linear-gradient(150deg,#fff 10%,#d9ccf5 52%,#8d6fcd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.byline{position:relative;margin:30px 0 0;color:rgba(255,255,255,.58);font-size:15px;letter-spacing:.02em}.actions{position:relative;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:600;color:#fff;background:linear-gradient(135deg,#6D28D9,#8B5CF6);border:1px solid transparent;transition:transform .18s,opacity .18s}.button:hover{transform:translateY(-2px);opacity:.9}.button.secondary{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.18);color:rgba(255,255,255,.78)}
+.preface{position:relative;padding:92px 28px 104px;background:#0b0819;border-bottom:1px solid rgba(160,139,222,.12)}.preface:before{content:"";position:absolute;left:50%;top:0;width:1px;height:44px;background:linear-gradient(to bottom,rgba(183,161,237,.7),transparent)}.preface-inner{max-width:760px;margin:0 auto}.preface-label{text-align:center;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#a990e5;font-weight:600;margin-bottom:42px}.preface-copy{font-family:Georgia,'Times New Roman',serif;font-size:clamp(18px,2.1vw,22px);line-height:1.85;color:rgba(245,241,255,.78)}.preface-copy p{margin:0 0 1.35em}.preface-copy .questions{color:#e5dafb;font-style:italic}.dedication{margin-top:62px;padding-top:34px;border-top:1px solid rgba(197,176,240,.14);text-align:center}.dedication span{display:block;color:rgba(255,255,255,.48);font:italic 18px/1.6 Georgia,'Times New Roman',serif}.dedication strong{display:block;margin-top:10px;font:700 30px/1 'Space Grotesk',sans-serif;letter-spacing:.16em;color:#cbb9f2}
 .reader-section{padding:54px 28px 78px;background:linear-gradient(180deg,#0b0819,#110d24)}.reader-head{max-width:1100px;margin:0 auto 20px;display:flex;justify-content:space-between;align-items:end;gap:20px}.reader-head h2{font:700 clamp(24px,4vw,38px)/1.1 'Space Grotesk',sans-serif;margin:0;letter-spacing:-.03em}.reader-head p{margin:0;color:rgba(255,255,255,.42);font-size:13px}.reader-shell{max-width:1100px;height:min(78vh,920px);margin:0 auto;background:#2a2732;border:1px solid rgba(197,176,240,.17);border-radius:16px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.38)}.reader-shell object{width:100%;height:100%;border:0}.fallback{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:32px;color:rgba(255,255,255,.65)}.fallback a{color:#c9b8f3}
 .note{max-width:760px;margin:28px auto 0;text-align:center;color:rgba(255,255,255,.38);font-size:12px;line-height:1.7}.footer{display:flex;justify-content:space-between;gap:20px;padding:26px 40px;border-top:1px solid rgba(197,176,240,.1);color:rgba(255,255,255,.28);font-size:12px}.footer a{color:rgba(197,176,240,.65);text-decoration:none}
 @media(max-width:700px){nav{padding:16px 22px}.hero{padding:70px 20px 56px}.reader-section{padding:42px 14px 60px}.reader-head{align-items:start;flex-direction:column;gap:6px}.reader-shell{height:72vh;border-radius:12px}.footer{padding:24px 22px;flex-direction:column}.actions{flex-direction:column;max-width:300px;margin-left:auto;margin-right:auto}.button{width:100%}}
@@ -43,9 +44,27 @@ nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-con
     <h1>9998</h1>
     <p class="byline">Written by Lawrence Ligad Jr.</p>
     <div class="actions">
-      <a class="button" href="#read">Read the screenplay</a>
+      <a class="button" href="#preface">Begin reading</a>
       <a class="button secondary" href="/assets/9998/9998-screenplay.pdf" download>Download PDF</a>
       <a class="button secondary" href="/assets/9998/9998-screenplay.docx" download>Download Word document</a>
+    </div>
+  </section>
+  <section class="preface" id="preface" aria-labelledby="preface-title">
+    <div class="preface-inner">
+      <div class="preface-label" id="preface-title">Before you read</div>
+      <div class="preface-copy">
+        <p>I’ve had this film idea about reincarnation for a long time—an idea I’ve been writing and exploring through questions I couldn’t quite answer.</p>
+        <p class="questions">If a soul returns in a different body, are they still the same person? Would they know why they came back? Did they leave something unfinished in a past life? Are they being punished by being forced to live again? Or is it something much simpler?</p>
+        <p>For a long time, I didn’t know how to end the story. I knew what I wanted to say, but I couldn’t find the ending that felt true.</p>
+        <p>Then, a few weeks ago, my father passed away.<br>I didn’t know how to react. I didn’t know what I was supposed to feel. When he died, I felt almost nothing. Not anger. Not sadness. Just emptiness.</p>
+        <p>I later learned that he had been sick around the same time I had begun writing this story. He had kept his illness from the family, and I had no idea.</p>
+        <p>Over the past few weeks, I took everything I was carrying—the anger, frustration, sadness, confusion, and pain—and poured it into the script. And somehow, by finishing it, I began to let go of those feelings.</p>
+        <p>Looking back at the story now, I realize that I may have been searching for an answer without knowing the question I was really asking.</p>
+        <p class="questions">Is reincarnation real?<br>Where do we really go when we die?<br>Is there a heaven?</p>
+        <p>I have my own beliefs. Above all, I have my faith. But this story isn't meant to prove what happens after we die. It's about what we leave behind. It's about the love we carry with us.</p>
+        <p>And perhaps, if reincarnation is real, it is about the possibility that love is the one thing that can survive across lifetimes? I'd like to believe so.</p>
+      </div>
+      <div class="dedication"><span>For my father, Lawrence Ligad.</span><strong>9998</strong></div>
     </div>
   </section>
   <section class="reader-section" id="read">
