@@ -34,6 +34,7 @@ nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-con
 .rights{padding:38px 28px;background:#090716;border-bottom:1px solid rgba(160,139,222,.12)}.rights-inner{max-width:900px;margin:0 auto;padding:24px 28px;border:1px solid rgba(197,176,240,.16);border-radius:12px;background:rgba(255,255,255,.025);text-align:center}.rights h2{margin:0 0 12px;font:600 11px/1.3 'Space Grotesk',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#b7a1ed}.rights p{margin:7px auto;max-width:780px;font-size:12px;line-height:1.75;color:rgba(255,255,255,.48)}.rights .rights-primary{color:rgba(255,255,255,.72);font-weight:600}.rights .rights-marks{color:rgba(215,202,245,.66)}
 .reader-section{padding:54px 28px 78px;background:linear-gradient(180deg,#0b0819,#110d24)}.reader-head{max-width:1100px;margin:0 auto 20px;display:flex;justify-content:space-between;align-items:end;gap:20px}.reader-head h2{font:700 clamp(24px,4vw,38px)/1.1 'Space Grotesk',sans-serif;margin:0;letter-spacing:-.03em}.reader-head p{margin:0;color:rgba(255,255,255,.42);font-size:13px}.reader-shell{max-width:1100px;height:min(78vh,920px);margin:0 auto;background:#2a2732;border:1px solid rgba(197,176,240,.17);border-radius:16px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.38)}.reader-shell object{width:100%;height:100%;border:0}.fallback{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:32px;color:rgba(255,255,255,.65)}.fallback a{color:#c9b8f3}
 .note{max-width:760px;margin:28px auto 0;text-align:center;color:rgba(255,255,255,.38);font-size:12px;line-height:1.7}.footer{display:flex;justify-content:space-between;gap:20px;padding:26px 40px;border-top:1px solid rgba(197,176,240,.1);color:rgba(255,255,255,.28);font-size:12px}.footer a{color:rgba(197,176,240,.65);text-decoration:none}
+.download-modal[hidden]{display:none}.download-modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:rgba(4,3,12,.78);backdrop-filter:blur(14px)}.download-dialog{position:relative;width:min(100%,460px);padding:34px;border:1px solid rgba(197,176,240,.22);border-radius:18px;background:#100c22;box-shadow:0 32px 100px rgba(0,0,0,.58)}.download-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border:0;border-radius:50%;background:rgba(255,255,255,.06);color:rgba(255,255,255,.72);font-size:24px;line-height:1;cursor:pointer}.download-dialog h2{margin:0 42px 9px 0;font:700 28px/1.1 'Space Grotesk',sans-serif;letter-spacing:-.03em}.download-intro{margin:0 0 24px;color:rgba(255,255,255,.55);font-size:13px;line-height:1.65}.download-field{display:block;margin-bottom:16px}.download-field span{display:block;margin-bottom:7px;color:rgba(255,255,255,.72);font-size:12px;font-weight:600}.download-field input{width:100%;height:46px;padding:0 14px;border:1px solid rgba(197,176,240,.2);border-radius:9px;background:rgba(255,255,255,.045);color:#fff;font:14px Inter,sans-serif;outline:none}.download-field input:focus{border-color:#9b7be1;box-shadow:0 0 0 3px rgba(139,92,246,.14)}.download-consent{display:flex;align-items:flex-start;gap:10px;margin:3px 0 20px;color:rgba(255,255,255,.49);font-size:11px;line-height:1.55}.download-consent input{flex:0 0 auto;margin-top:3px;accent-color:#8B5CF6}.download-submit{width:100%;border:0;cursor:pointer}.download-submit:disabled{cursor:wait;opacity:.62}.download-status{min-height:20px;margin:12px 0 0;color:#d4c5f5;font-size:12px;line-height:1.5;text-align:center}.download-honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
 @media(max-width:700px){nav{padding:16px 22px}.hero{padding:70px 20px 56px}.reader-section{padding:42px 14px 60px}.reader-head{align-items:start;flex-direction:column;gap:6px}.reader-shell{height:72vh;border-radius:12px}.footer{padding:24px 22px;flex-direction:column}.actions{flex-direction:column;max-width:300px;margin-left:auto;margin-right:auto}.button{width:100%}}
 </style>
 </head>
@@ -46,7 +47,7 @@ nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-con
     <p class="byline">Written by Lawrence Ligad Jr.</p>
     <div class="actions">
       <a class="button" href="#preface">Begin reading</a>
-      <a class="button secondary" href="/assets/9998/9998-screenplay.pdf" download>Download PDF</a>
+      <a class="button secondary" href="/assets/9998/9998-screenplay-READER-COPY.pdf" id="downloadPdf">Download PDF</a>
     </div>
   </section>
   <section class="preface" id="preface" aria-labelledby="preface-title">
@@ -78,14 +79,96 @@ nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-con
   <section class="reader-section" id="read">
     <div class="reader-head"><h2>The complete screenplay</h2><p>Use the viewer controls to zoom, search, or open full screen.</p></div>
     <div class="reader-shell">
-      <object data="/assets/9998/9998-screenplay.pdf#view=FitH" type="application/pdf">
-        <div class="fallback">Your browser cannot display the reader here. <a href="/assets/9998/9998-screenplay.pdf">Open the screenplay as a PDF</a>.</div>
+      <object data="/assets/9998/9998-screenplay-READER-COPY.pdf#view=FitH" type="application/pdf">
+        <div class="fallback">Your browser cannot display the reader here. Return to the download button above to request the screenplay.</div>
       </object>
     </div>
     <p class="note">All rights reserved. This screenplay is presented for reading and consideration. Please do not reproduce or distribute it without permission.</p>
   </section>
 </main>
+<div class="download-modal" id="downloadModal" hidden>
+  <section class="download-dialog" role="dialog" aria-modal="true" aria-labelledby="download-title">
+    <button class="download-close" id="downloadClose" type="button" aria-label="Close download form">&times;</button>
+    <h2 id="download-title">Download 9998</h2>
+    <p class="download-intro">Enter your name and email to receive access to the complete watermarked screenplay.</p>
+    <form id="downloadForm">
+      <label class="download-field"><span>Name</span><input id="downloadName" name="name" type="text" autocomplete="name" required maxlength="100"></label>
+      <label class="download-field"><span>Email</span><input id="downloadEmail" name="email" type="email" autocomplete="email" required maxlength="200"></label>
+      <label class="download-honeypot" aria-hidden="true">Website<input id="downloadWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></label>
+      <label class="download-consent"><input id="downloadConsent" type="checkbox" required><span>I agree that ReincarnatedAI may store my name, email, and download time to provide this screenplay and maintain a record of access.</span></label>
+      <button class="button download-submit" id="downloadSubmit" type="submit">Continue to PDF</button>
+      <p class="download-status" id="downloadStatus" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</div>
 <footer class="footer"><span>© 2025 Lawrence Ligad Jr.</span><span><a href="/">ReincarnatedAI</a> · Exploring consciousness, identity, and what survives us.</span></footer>
+<script>
+(function(){
+  const trigger=document.getElementById('downloadPdf');
+  const modal=document.getElementById('downloadModal');
+  const close=document.getElementById('downloadClose');
+  const form=document.getElementById('downloadForm');
+  const submit=document.getElementById('downloadSubmit');
+  const status=document.getElementById('downloadStatus');
+  const nameInput=document.getElementById('downloadName');
+  let previousFocus=null;
+
+  function openModal(event){
+    event.preventDefault();
+    previousFocus=document.activeElement;
+    modal.hidden=false;
+    document.body.style.overflow='hidden';
+    window.setTimeout(function(){nameInput.focus();},0);
+  }
+  function closeModal(){
+    modal.hidden=true;
+    document.body.style.overflow='';
+    status.textContent='';
+    if(previousFocus) previousFocus.focus();
+  }
+
+  trigger.addEventListener('click',openModal);
+  close.addEventListener('click',closeModal);
+  modal.addEventListener('click',function(event){if(event.target===modal) closeModal();});
+  document.addEventListener('keydown',function(event){if(event.key==='Escape'&&!modal.hidden) closeModal();});
+
+  form.addEventListener('submit',async function(event){
+    event.preventDefault();
+    submit.disabled=true;
+    submit.textContent='Preparing download…';
+    status.textContent='';
+    try{
+      const response=await fetch('/api/screenplay-download',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          name:document.getElementById('downloadName').value.trim(),
+          email:document.getElementById('downloadEmail').value.trim(),
+          consent:document.getElementById('downloadConsent').checked,
+          website:document.getElementById('downloadWebsite').value,
+          source:window.location.pathname
+        })
+      });
+      const data=await response.json();
+      if(!response.ok||!data.ok) throw new Error(data.error||'Unable to prepare the download.');
+      status.textContent='Access recorded. Your download is starting.';
+      const link=document.createElement('a');
+      link.href=data.downloadUrl;
+      link.download='9998-screenplay.pdf';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      form.reset();
+      window.setTimeout(closeModal,900);
+    }catch(error){
+      status.textContent=error.message||'Unable to prepare the download. Please try again.';
+    }finally{
+      submit.disabled=false;
+      submit.textContent='Continue to PDF';
+    }
+  });
+})();
+</script>
 <script src="/assets/ui.js" defer></script>
 </body>
 </html>
