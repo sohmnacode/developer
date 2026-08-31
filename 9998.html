@@ -95,7 +95,7 @@ nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-con
       <label class="download-field"><span>Name</span><input id="downloadName" name="name" type="text" autocomplete="name" required maxlength="100"></label>
       <label class="download-field"><span>Email</span><input id="downloadEmail" name="email" type="email" autocomplete="email" required maxlength="200"></label>
       <label class="download-honeypot" aria-hidden="true">Website<input id="downloadWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></label>
-      <label class="download-consent"><input id="downloadConsent" type="checkbox" required><span>I agree that ReincarnatedAI may store my name, email, and download time to provide this screenplay and maintain a record of access.</span></label>
+      <label class="download-consent"><input id="downloadConsent" type="checkbox" required><span>I agree that ReincarnatedAI and its form provider may process my name, email, and download time to provide this screenplay and maintain a record of access.</span></label>
       <button class="button download-submit" id="downloadSubmit" type="submit">Continue to PDF</button>
       <p class="download-status" id="downloadStatus" role="status" aria-live="polite"></p>
     </form>
@@ -138,22 +138,35 @@ nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-con
     submit.textContent='Preparing download…';
     status.textContent='';
     try{
-      const response=await fetch('/api/screenplay-download',{
+      const name=document.getElementById('downloadName').value.trim();
+      const email=document.getElementById('downloadEmail').value.trim();
+      const downloadedAt=new Date().toISOString();
+      const response=await fetch('https://api.web3forms.com/submit',{
         method:'POST',
-        headers:{'Content-Type':'application/json'},
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
         body:JSON.stringify({
-          name:document.getElementById('downloadName').value.trim(),
-          email:document.getElementById('downloadEmail').value.trim(),
-          consent:document.getElementById('downloadConsent').checked,
-          website:document.getElementById('downloadWebsite').value,
-          source:window.location.pathname
+          access_key:'bee91e89-fdb3-4ee9-aaaa-ce280162ddb8',
+          subject:'9998 screenplay downloaded by '+name,
+          from_name:'ReincarnatedAI Download Access',
+          name:name,
+          email:email,
+          replyto:email,
+          botcheck:document.getElementById('downloadWebsite').value,
+          message:[
+            'A visitor requested the 9998 screenplay PDF.',
+            'Name: '+name,
+            'Email: '+email,
+            'Downloaded at: '+downloadedAt,
+            'Source page: '+window.location.pathname,
+            'Consent to access-record processing: Yes'
+          ].join('\n')
         })
       });
       const data=await response.json();
-      if(!response.ok||!data.ok) throw new Error(data.error||'Unable to prepare the download.');
+      if(!response.ok||!data.success) throw new Error(data.message||'Unable to prepare the download.');
       status.textContent='Access recorded. Your download is starting.';
       const link=document.createElement('a');
-      link.href=data.downloadUrl;
+      link.href='/assets/9998/9998-screenplay-READER-COPY.pdf';
       link.download='9998-screenplay.pdf';
       document.body.appendChild(link);
       link.click();
