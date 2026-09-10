@@ -419,6 +419,8 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
 [data-theme="dark"] .s-digest-status.ok{color:rgba(100,220,140,.85)}
 [data-theme="dark"] .s-digest-status.err{color:rgba(255,100,100,.8)}
 </style>
+<script src="/assets/safe.js"></script>
+<script src="/assets/chat-client.js" defer></script>
 </head>
 <body>
 <nav>
@@ -469,10 +471,10 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
       <button class="mode-btn" data-mode="compare" type="button">Compare Theories</button>
     </div>
     <div id="starters" class="starters"></div>
-    <div class="chat-msgs" id="chatMsgs"></div>
+    <div class="chat-msgs" id="chatMsgs" role="log" aria-label="Research conversation"></div>
     <div class="chat-input-row" id="chatbox">
-      <textarea id="chatIn" rows="1" placeholder="Ask about consciousness, NDEs, reincarnation research…" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
-      <button class="send-btn" id="sendBtn" onclick="sendMsg()" disabled>
+      <textarea aria-label="Your research question" maxlength="6000" id="chatIn" rows="1" placeholder="Ask about consciousness, NDEs, reincarnation research…" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <button class="send-btn" id="sendBtn" aria-label="Send research question" onclick="sendMsg()" disabled>
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M14 8L2 2l2.5 6L2 14l12-6z" fill="white"/></svg>
       </button>
     </div>
@@ -488,14 +490,14 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
 <section class="s-digest">
   <div class="s-digest-inner">
     <div class="s-digest-left">
-      <div class="ey">Weekly Digest</div>
+      <div class="ey">Research Updates</div>
       <h2 class="s-digest-title">Stay at the edge of consciousness science</h2>
-      <p class="s-digest-lede">One email per week: a new case, a research update, and a question from RAI.</p>
+      <p class="s-digest-lede">Request occasional research updates. We’ll confirm availability by email.</p>
     </div>
     <div>
       <form class="s-digest-form" id="digestForm" novalidate>
-        <input type="email" id="digestEmail" class="s-digest-input" placeholder="your@email.com" autocomplete="email" required>
-        <button type="submit" class="s-digest-btn" id="digestBtn">Subscribe</button>
+        <input type="email" id="digestEmail" aria-label="Email for research updates" maxlength="254" class="s-digest-input" placeholder="your@email.com" autocomplete="email" required>
+        <button type="submit" class="s-digest-btn" id="digestBtn">Request updates</button>
       </form>
       <p class="s-digest-status" id="digestStatus"></p>
     </div>
@@ -534,7 +536,7 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
   <div class="sh2">
     <div class="ey">The Science</div>
     <h2>What We're Exploring</h2>
-    <p>Five frontier domains where rigorous research is quietly rewriting what science thinks it knows about the human soul.</p>
+    <p>Seven frontier domains where rigorous research is quietly rewriting what science thinks it knows about the human soul.</p>
   </div>
   <div class="domains">
     <a class="dc" href="/nde">
@@ -659,16 +661,16 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
       <div class="contact-row">
         <div class="cf-field">
           <label for="cf-name">Name</label>
-          <input type="text" id="cf-name" name="name" placeholder="Your name" autocomplete="name" required>
+          <input type="text" id="cf-name" maxlength="100" name="name" placeholder="Your name" autocomplete="name" required>
         </div>
         <div class="cf-field">
           <label for="cf-email">Email</label>
-          <input type="email" id="cf-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          <input type="email" id="cf-email" maxlength="254" name="email" placeholder="you@example.com" autocomplete="email" required>
         </div>
       </div>
       <div class="cf-field">
         <label for="cf-msg">Message</label>
-        <textarea id="cf-msg" name="message" placeholder="What's on your mind?" required></textarea>
+        <textarea id="cf-msg" maxlength="6000" name="message" placeholder="What's on your mind?" required></textarea>
       </div>
       <div class="contact-submit">
         <button type="submit" class="cf-btn" id="cfSubmit">Send Message</button>
@@ -690,7 +692,7 @@ const cv=document.getElementById('c'),ctx=cv.getContext('2d');
 let W,H,cx,cy,sy=0,af=0,ep=0,sp=0,tsp=0;
 
 const face=new Image();
-face.src='./face.jpg';
+face.src='/face.jpg';
 let faceOk=false, faceReady=null;
 face.onload=()=>{
   faceOk=true;
@@ -876,8 +878,16 @@ function drawFaceLayers(){
   }
 }
 
+const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+let frameId = null;
+function scheduleDraw() {
+  if (frameId === null && !document.hidden && sy < innerHeight * 1.2 && !motionPreference.matches) frameId = requestAnimationFrame(draw);
+}
 function draw(){
-  af++;requestAnimationFrame(draw);
+  frameId = null;
+  if (document.hidden || sy >= innerHeight * 1.2) return;
+  af++; scheduleDraw();
+  if (motionPreference.matches) { ep = 1; sp = tsp; }
 
   // Smooth scroll progress toward target
   sp+=(tsp-sp)*.09;
@@ -907,6 +917,11 @@ function draw(){
     ctx.restore();
   }
 }
+document.addEventListener('visibilitychange', scheduleDraw);
+window.addEventListener('scroll', () => { if (motionPreference.matches) draw(); else scheduleDraw(); }, {passive:true});
+window.addEventListener('resize', () => { if (motionPreference.matches) draw(); else scheduleDraw(); });
+motionPreference.addEventListener('change', () => { if (frameId !== null) cancelAnimationFrame(frameId); frameId = null; draw(); });
+face.addEventListener('load', () => { if (motionPreference.matches) draw(); });
 draw();
 </script>
 
@@ -985,7 +1000,7 @@ function renderStarters() {
   const pool = STARTERS[chatMode].slice();
   const picked = pool.sort(() => Math.random() - 0.5).slice(0, 4);
   starters.innerHTML = picked
-    .map(q => `<button class="starter-btn" onclick="sendMsg(this.textContent)">${q}</button>`)
+    .map(q => `<button class="starter-btn" data-rai-starter>${q}</button>`)
     .join('');
 }
 
@@ -998,6 +1013,7 @@ modeBtns.forEach(btn => {
 });
 
 renderStarters();
+starters.addEventListener('click', e => { const button = e.target.closest('[data-rai-starter]'); if (button) sendMsg(button.textContent); });
 
 chatIn.addEventListener('input', () => {
   sendBtn.disabled = !chatIn.value.trim() || busy;
@@ -1077,41 +1093,10 @@ async function sendMsg(preset) {
   const aiBody = appendMsg('ai', '', true);
 
   try {
-    const res = await fetch('/api/research', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: history, mode: chatMode }),
+    aiBody._raw = await RaiChat.request({ messages: history, mode: chatMode }, text => {
+      aiBody._raw = text;
+      aiBody.innerHTML = `<p>${md(text)}</p><span class="cursor" aria-hidden="true">✦</span>`;
     });
-
-    const reader = res.body.getReader();
-    const dec = new TextDecoder();
-    let buf = '';
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      buf += dec.decode(value, { stream: true });
-      const lines = buf.split('\n\n');
-      buf = lines.pop() ?? '';
-
-      for (const line of lines) {
-        if (!line.startsWith('data: ')) continue;
-        const d = line.slice(6);
-        if (d === '[DONE]') break;
-        try {
-          const { text: chunk } = JSON.parse(d);
-          if (chunk) {
-            aiBody._raw += chunk;
-            aiBody.innerHTML = `<p>${md(aiBody._raw)}</p>`;
-            const cur = document.createElement('span');
-            cur.className = 'cursor';
-            cur.innerHTML = '<s>✦</s><s>✦</s><s>✦</s>';
-            aiBody.appendChild(cur);
-            // no auto-scroll during streaming — user reads from top
-          }
-        } catch {}
-      }
-    }
 
     // Remove cursor, finalise
     aiBody.querySelectorAll('.cursor').forEach(c => c.remove());
@@ -1120,9 +1105,11 @@ async function sendMsg(preset) {
     document.getElementById('readingListBtn').hidden = false;
     document.getElementById('shareCardBtn').hidden = false;
 
-  } catch {
+  } catch (error) {
+    history.pop();
+    chatIn.value = text; autoResize(chatIn);
     aiBody.querySelectorAll('.cursor').forEach(c => c.remove());
-    aiBody.innerHTML = '<p style="color:rgba(255,80,80,.7)">Connection error — please try again.</p>';
+    aiBody.textContent = error.message || 'Connection error — please try again.';
   }
 
   busy = false;
@@ -1293,15 +1280,11 @@ if (FEATURED.length) {
     status.className = 'cf-status';
 
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          access_key: 'bee91e89-fdb3-4ee9-aaaa-ce280162ddb8',
-          subject: `New message from ${name} — ReincarnatedAI`,
-          from_name: 'ReincarnatedAI Contact Form',
-          name, email, message,
-          replyto: email,
+          kind: 'contact', name, email, message,
         }),
       });
 
@@ -1404,7 +1387,7 @@ function surpriseMe() {
   card.innerHTML = `
     <div class="history-date">${entry.date}</div>
     <div class="history-body">
-      <div class="history-eyebrow">This Week in Consciousness History</div>
+      <div class="history-eyebrow">From Consciousness History</div>
       <div class="history-headline">${entry.headline}</div>
       <div class="history-desc">${entry.desc}</div>
       <div class="history-source">${entry.source}</div>
@@ -1420,26 +1403,22 @@ function surpriseMe() {
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     const email = document.getElementById('digestEmail').value.trim();
-    if (!email) return;
+    if (!document.getElementById('digestEmail').reportValidity()) return;
     btn.disabled = true;
-    btn.textContent = 'Subscribing…';
+    btn.textContent = 'Sending request…';
     status.textContent = '';
     status.className = 's-digest-status';
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          access_key: 'bee91e89-fdb3-4ee9-aaaa-ce280162ddb8',
-          subject:   'New Weekly Digest Subscriber — ReincarnatedAI',
-          from_name: 'ReincarnatedAI Digest',
-          email,
-          message:   `New digest subscriber: ${email}`,
+          kind: 'digest', email, consent: true,
         }),
       });
       const data = await res.json();
       if (res.ok && data.success) {
-        status.textContent = '✓ Subscribed — first issue coming soon.';
+        status.textContent = '✓ Request received. We’ll confirm update availability by email.';
         status.className = 's-digest-status ok';
         form.reset();
       } else {
@@ -1450,7 +1429,7 @@ function surpriseMe() {
       status.className = 's-digest-status err';
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Subscribe';
+      btn.textContent = 'Request updates';
     }
   });
 })();

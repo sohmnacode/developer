@@ -1,10 +1,12 @@
+(function () {
+if (window.RaiBookmarks) return;
 /* ── RAI Bookmarks ── */
 
-const RaiBookmarks = (() => {
+const RaiBookmarks = window.RaiBookmarks = (() => {
   const KEY = 'rai_bookmarks_v1';
 
   function get() {
-    try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch { return []; }
+    try { return RaiSafe.bookmarks(JSON.parse(localStorage.getItem(KEY))); } catch { return []; }
   }
 
   function save(list) {
@@ -36,9 +38,9 @@ const RaiBookmarks = (() => {
 /* ── Inject bookmark button into nav ── */
 function _initBookmarkBtn() {
   const nav = document.querySelector('nav');
-  if (!nav) return;
+  if (!nav || nav.querySelector('.nav-bookmark-btn')) return;
 
-  const url   = window.location.pathname.replace(/\/$/, '') || '/';
+  const url   = RaiSafe.pageUrl();
   const title = document.title.replace(/\s*\|.*$/, '').trim();
   const desc  = document.querySelector('meta[name="description"]')?.content || '';
 
@@ -51,15 +53,18 @@ function _initBookmarkBtn() {
   const btn = document.createElement('button');
   btn.className = 'nav-icon-btn nav-bookmark-btn';
   btn.title = RaiBookmarks.has(url) ? 'Remove bookmark' : 'Bookmark this page';
-  btn.setAttribute('aria-label', 'Bookmark this page');
+  btn.setAttribute('aria-label', RaiBookmarks.has(url) ? 'Remove bookmark' : 'Bookmark this page');
+  btn.setAttribute('aria-pressed', String(RaiBookmarks.has(url)));
   btn.innerHTML = RaiBookmarks.has(url) ? bookmarkedSVG : bookmarkSVG;
   if (RaiBookmarks.has(url)) btn.classList.add('active');
 
   btn.addEventListener('click', () => {
-    const added = RaiBookmarks.toggle({ url, title, desc, date: new Date().toISOString() });
+    const added = RaiBookmarks.toggle({ url: RaiSafe.pageUrl(), title: document.title.replace(/\s*\|.*$/, '').trim(), desc: document.querySelector('meta[name="description"]')?.content || '', date: new Date().toISOString() });
     btn.innerHTML = added ? bookmarkedSVG : bookmarkSVG;
     btn.title = added ? 'Remove bookmark' : 'Bookmark this page';
     btn.classList.toggle('active', added);
+    btn.setAttribute('aria-label', added ? 'Remove bookmark' : 'Bookmark this page');
+    btn.setAttribute('aria-pressed', String(added));
 
     /* Toast feedback */
     showToast(added ? 'Page bookmarked' : 'Bookmark removed', added);
@@ -101,3 +106,5 @@ function showToast(msg, positive) {
   setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity .25s'; }, 1800);
   setTimeout(() => toast.remove(), 2100);
 }
+
+})();

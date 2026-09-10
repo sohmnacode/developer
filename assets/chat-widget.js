@@ -191,8 +191,8 @@ class ChatWindow {
           <div class="rai-starters"></div>
         </div>
         <div class="rai-input-wrap">
-          <textarea placeholder="Ask about consciousness, NDEs…" rows="1"></textarea>
-          <button class="rai-send" disabled>
+          <textarea aria-label="Your research question" maxlength="6000" placeholder="Ask about consciousness, NDEs…" rows="1"></textarea>
+          <button aria-label="Send research question" class="rai-send" disabled>
             <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
               <path d="M14 8L2 2l2.5 6L2 14l12-6z" fill="white"/>
             </svg>
@@ -325,6 +325,7 @@ class ChatWindow {
   }
 
   destroy() {
+    this.controller?.abort();
     this.el.style.animation = 'raiPanelIn .15s ease reverse';
     setTimeout(() => this.el.remove(), 140);
   }
@@ -371,52 +372,13 @@ class ChatWindow {
       if (b) b.innerHTML = html;
     };
 
-    const parseChunk = chunk => {
-      for (const line of chunk.split('\n\n')) {
-        if (!line.startsWith('data: ')) continue;
-        const data = line.slice(6).trim();
-        if (data === '[DONE]') continue;
-        try {
-          const ev = JSON.parse(data);
-          if (ev.error) throw new Error(ev.error);
-          if (ev.text) {
-            content += ev.text;
-            setBubble(_md(content) + '<span class="rai-cursor"><span>✦</span><span>✦</span><span>✦</span></span>');
-          }
-        } catch (e) { if (e.message && !e.message.startsWith('Unexpected')) throw e; }
-      }
-    };
 
     try {
-      const res = await fetch('/api/research', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: this.history, mode: this.chatMode, pageContext: PAGE_CTX }),
-      });
-
-      if (!res.ok) {
-        setBubble('Sorry, something went wrong. Please try again.');
-        this.history.pop();
-        this._save();
-        return;
-      }
-
-      if (res.body?.getReader) {
-        const reader = res.body.getReader();
-        const dec    = new TextDecoder();
-        let buf = '';
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          buf += dec.decode(value, { stream: true });
-          const parts = buf.split('\n\n');
-          buf = parts.pop() ?? '';
-          for (const p of parts) parseChunk(p + '\n\n');
-        }
-        if (buf) parseChunk(buf);
-      } else {
-        parseChunk(await res.text());
-      }
+      this.controller = new AbortController();
+      content = await RaiChat.request({ messages:this.history, mode:this.chatMode, pageContext:PAGE_CTX }, text => {
+        content = text;
+        setBubble(_md(text) + '<span class="rai-cursor" aria-hidden="true">✦</span>');
+      }, this.controller);
 
       setBubble(content ? _md(content) : 'No response. Please try again.');
       if (content) {
@@ -424,8 +386,9 @@ class ChatWindow {
         this._save();
         this._showActions();
       }
-    } catch {
-      setBubble('Connection error. Please try again.');
+    } catch (error) {
+      setBubble(_esc(error.message || 'Connection error. Please try again.'));
+      ta.value = msg;
       this.history.pop();
       this._save();
     } finally {

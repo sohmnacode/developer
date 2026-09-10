@@ -31,6 +31,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/theme.css">
 <link rel="stylesheet" href="/assets/research.css">
 <link rel="stylesheet" href="/assets/chat-widget.css">
+<script src="/assets/safe.js"></script>
+<script src="/assets/chat-client.js" defer></script>
 </head>
 <body>
 <nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/methodology">Methodology</a><a href="/glossary">Glossary</a><a href="/unknowns">Unknowns</a><a href="/traditions">Traditions</a><a href="/watch">Watch</a><a href="/listen">Listen</a></div></nav>
@@ -40,23 +42,16 @@
 <div class="meta">Saved only in this browser</div>
 <h2 class="section-title" style="font-size:32px">Record an Experience</h2>
 <p class="lede">This form stores entries locally on your device. It does not submit anything to ReincarnatedAI.</p>
-<p><input class="input" id="title" placeholder="Short title"></p><br>
-<p><select class="select" id="type"><option>NDE or medical crisis</option><option>Previous-life memory</option><option>Psychedelic experience</option><option>Dream or visitation</option><option>Synchronicity</option><option>Other</option></select></p><br>
-<textarea class="textarea" id="body" placeholder="Describe what happened. What was directly perceived? What was later verified? What might be ordinary context?"></textarea><br><br>
+<p><label for="title">Title</label><input class="input" id="title" maxlength="200" placeholder="Short title"></p><br>
+<p><label for="type">Experience type</label><select class="select" id="type"><option>NDE or medical crisis</option><option>Previous-life memory</option><option>Psychedelic experience</option><option>Dream or visitation</option><option>Synchronicity</option><option>Other</option></select></p><br>
+<label for="body">Experience</label><textarea class="textarea" id="body" maxlength="20000" placeholder="Describe what happened. What was directly perceived? What was later verified? What might be ordinary context?"></textarea><br><br>
 <button class="button" type="submit">Save entry</button> <button class="button secondary" type="button" id="export">Export JSON</button>
+<p id="journalStatus" role="status"></p><button class="button secondary" type="button" id="undoDelete" hidden>Undo deletion</button>
 </form>
 <aside class="rail card"><div class="meta">Research prompts</div><ul><li>What happened before the experience?</li><li>What sensory qualities stood out?</li><li>Was anything later verified?</li><li>Who knew what, and when?</li><li>What changed afterward?</li></ul></aside>
 </section><section class="section"><h2 class="section-title">Saved Entries</h2><div id="entries" class="grid"></div></section></main>
 <footer class="footer"><span>Private notes are not clinical, spiritual, or medical advice.</span><span><a href="/#chatbox">Discuss with RAI</a></span></footer>
-<script>
-const key='rai-experience-journal', form=document.getElementById('form'), entries=document.getElementById('entries');
-function load(){return JSON.parse(localStorage.getItem(key)||'[]')}
-function save(rows){localStorage.setItem(key,JSON.stringify(rows))}
-function render(){const rows=load();entries.innerHTML=rows.length?rows.map((r,i)=>`<article class="card"><div class="meta">${r.type} · ${r.date}</div><h3>${r.title}</h3><p>${r.body}</p><button class="button secondary" data-i="${i}">Delete</button></article>`).join(''):'<p class="lede">No entries saved yet.</p>';entries.querySelectorAll('button').forEach(b=>b.onclick=()=>{const rows=load();rows.splice(Number(b.dataset.i),1);save(rows);render()})}
-form.onsubmit=e=>{e.preventDefault();const rows=load();rows.unshift({title:title.value||'Untitled experience',type:type.value,body:body.value,date:new Date().toLocaleDateString()});save(rows);form.reset();render()};
-document.getElementById('export').onclick=()=>{const blob=new Blob([JSON.stringify(load(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='reincarnatedai-experience-journal.json';a.click();URL.revokeObjectURL(a.href)};
-render();
-</script>
+<script src="/assets/journal.js" defer></script>
 <script src="/assets/ui.js" defer></script>
 <script src="/assets/chat-widget.js?v=4" defer></script>
 </body></html>

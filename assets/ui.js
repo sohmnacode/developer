@@ -1,12 +1,13 @@
 // Apply saved theme immediately to prevent flash of unstyled content
 (function () {
-  if (localStorage.getItem('rai-theme') === 'dark') {
+  try { if (localStorage.getItem('rai-theme') === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
-  }
+  } } catch {}
 })();
 
 // Load bookmarks module on every page
 (function () {
+  if (document.querySelector('script[src="/assets/bookmarks.js"]') || window.RaiBookmarks) return;
   const s = document.createElement('script');
   s.src = '/assets/bookmarks.js';
   s.defer = true;
@@ -29,26 +30,25 @@ document.addEventListener('DOMContentLoaded', () => {
   hamburger.className = 'nav-hamburger';
   hamburger.setAttribute('aria-label', 'Menu');
   hamburger.innerHTML = burgerSVG;
-  hamburger.addEventListener('click', () => {
-    const open = nav.classList.toggle('nav-open');
+  const links = nav.querySelector('.links');
+  if (links) { links.id ||= 'site-navigation'; hamburger.setAttribute('aria-controls', links.id); }
+  const setMenu = open => {
+    nav.classList.toggle('nav-open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
     hamburger.innerHTML = open ? closeSVG : burgerSVG;
+  };
+  setMenu(false);
+  hamburger.addEventListener('click', e => {
+    e.stopPropagation();
+    setMenu(!nav.classList.contains('nav-open'));
   });
-
-  // Close menu when clicking outside nav
-  document.addEventListener('click', (e) => {
-    if (!nav.contains(e.target) && nav.classList.contains('nav-open')) {
-      nav.classList.remove('nav-open');
-      hamburger.innerHTML = burgerSVG;
-    }
+  document.addEventListener('click', e => {
+    if (!e.composedPath().includes(nav)) setMenu(false);
   });
-
-  // Close menu when a nav link is tapped
-  nav.querySelectorAll('.links a').forEach(a => {
-    a.addEventListener('click', () => {
-      nav.classList.remove('nav-open');
-      hamburger.innerHTML = burgerSVG;
-    });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && nav.classList.contains('nav-open')) { setMenu(false); hamburger.focus(); }
   });
+  nav.querySelectorAll('.links a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
   // Search icon
   const searchEl = document.createElement('a');
@@ -68,16 +68,16 @@ document.addEventListener('DOMContentLoaded', () => {
   themeBtn.addEventListener('click', () => {
     if (isDark()) {
       document.documentElement.removeAttribute('data-theme');
-      localStorage.setItem('rai-theme', 'light');
+      try { localStorage.setItem('rai-theme', 'light'); } catch {}
       themeBtn.innerHTML = moonSVG;
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
-      localStorage.setItem('rai-theme', 'dark');
+      try { localStorage.setItem('rai-theme', 'dark'); } catch {}
       themeBtn.innerHTML = sunSVG;
     }
   });
 
-  nav.appendChild(hamburger);
+  if (links) nav.appendChild(hamburger);
   nav.appendChild(searchEl);
   nav.appendChild(themeBtn);
 });

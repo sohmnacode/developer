@@ -322,6 +322,8 @@
 [data-theme="dark"] .listen-section+.listen-section{border-color:rgba(110,85,190,.1)}
 [data-theme="dark"] .featured-player{background:linear-gradient(135deg,#0D0B1F 0%,#1a1240 50%,#0f0c28 100%)!important;}
 </style>
+<script src="/assets/safe.js"></script>
+<script src="/assets/chat-client.js" defer></script>
 </head>
 <body>
 <nav>
@@ -695,6 +697,10 @@ window.addEventListener('scroll', () => {
 
 // ── Inline episode player ──────────────────────────────────────────
 document.querySelectorAll('.ep-card[data-yt]').forEach(card => {
+  const title = card.querySelector('.ep-title').textContent.trim();
+  const control = card.querySelector('.ep-play');
+  control.setAttribute('aria-label', `Play: ${title}`);
+  control.setAttribute('aria-expanded', 'false');
   card.addEventListener('click', function(e) {
     // Ignore clicks on links inside the card (show-link etc.)
     if (e.target.closest('a')) return;
@@ -710,6 +716,8 @@ document.querySelectorAll('.ep-card[data-yt]').forEach(card => {
         c.querySelector('.ep-player').classList.remove('open');
         c.querySelector('.ep-player').innerHTML = '';
         c.querySelector('.ep-play').textContent = '▶';
+        c.querySelector('.ep-play').setAttribute('aria-expanded','false');
+        c.querySelector('.ep-play').setAttribute('aria-label', `Play: ${c.querySelector('.ep-title').textContent.trim()}`);
         c.classList.remove('playing');
       }
     });
@@ -719,10 +727,12 @@ document.querySelectorAll('.ep-card[data-yt]').forEach(card => {
       player.classList.remove('open');
       player.innerHTML = '';
       btn.textContent = '▶';
+      btn.setAttribute('aria-label', `Play: ${title}`);
+      btn.setAttribute('aria-expanded','false');
       this.classList.remove('playing');
     } else {
       // Open this one
-      player.innerHTML = `<iframe
+      player.innerHTML = `<iframe title="${RaiSafe.escape(title)}"
         src="https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&rel=0&modestbranding=1&color=white"
         allow="autoplay; encrypted-media; picture-in-picture"
         allowfullscreen
@@ -730,6 +740,8 @@ document.querySelectorAll('.ep-card[data-yt]').forEach(card => {
       ></iframe>`;
       player.classList.add('open');
       btn.textContent = '■';
+      btn.setAttribute('aria-label', `Stop: ${title}`);
+      btn.setAttribute('aria-expanded','true');
       this.classList.add('playing');
       // Scroll card into view smoothly
       this.scrollIntoView({behavior:'smooth', block:'nearest'});

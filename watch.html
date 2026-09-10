@@ -320,6 +320,8 @@
   .count-badge{display:none}
 }
 </style>
+<script src="/assets/safe.js"></script>
+<script src="/assets/chat-client.js" defer></script>
 </head>
 <body>
 <nav>
@@ -646,15 +648,14 @@ function renderGrid() {
 
   grid.innerHTML = filtered.map(v => `
     <article class="v-card"
-      onclick="openPlayer('${v.id}','${v.title.replace(/'/g,'&#39;').replace(/"/g,'&quot;')}')"
+      data-video-id="${v.id}" data-video-title="${RaiSafe.escape(v.title)}"
       role="button" tabindex="0"
       aria-label="Play: ${v.title.replace(/"/g,'&quot;')}"
-      onkeydown="if(event.key==='Enter'||event.key===' ')openPlayer('${v.id}','${v.title.replace(/'/g,'&#39;').replace(/"/g,'&quot;')}')"
     >
       <div class="v-thumb">
         <img
           src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg"
-          onerror="this.src='https://i.ytimg.com/vi/${v.id}/mqdefault.jpg';this.onerror=function(){this.style.display='none'}"
+          data-fallback="https://i.ytimg.com/vi/${v.id}/mqdefault.jpg"
           alt="${v.title.replace(/"/g,'&quot;')}"
           loading="lazy"
         />
@@ -721,6 +722,18 @@ document.addEventListener('keydown', e => {
 
 // ── Init
 renderGrid();
+document.addEventListener('click', event => {
+  const card = event.target.closest('[data-video-id]');
+  if (card) openPlayer(card.dataset.videoId, card.dataset.videoTitle);
+});
+document.addEventListener('keydown', event => {
+  const card = event.target.closest('[data-video-id]');
+  if (card && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); openPlayer(card.dataset.videoId, card.dataset.videoTitle); }
+});
+document.addEventListener('error', event => {
+  const image = event.target;
+  if (image instanceof HTMLImageElement && image.dataset.fallback) { const fallback = image.dataset.fallback; delete image.dataset.fallback; image.src = fallback; }
+}, true);
 </script>
 </body>
 </html>

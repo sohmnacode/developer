@@ -401,3 +401,11 @@ button,
 .modal-overlay{
   touch-action:manipulation;
 }
+
+/* Keyboard focus and reduced-motion preferences apply throughout the site. */
+:focus-visible { outline: 3px solid #8b5cf6; outline-offset: 4px; }
+[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  .reveal, .fade-in, .ht { opacity: 1 !important; transform: none !important; }
+}

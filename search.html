@@ -208,6 +208,21 @@ mark{
   .search-box-wrap{ padding:12px 0 10px; }
 }
 </style>
+<script src="/assets/safe.js"></script>
+<script src="/assets/chat-client.js" defer></script>
+<meta name="description" content="Search researchers, phenomena, theories, and documented consciousness case studies.">
+<link rel="canonical" href="https://reincarnatedai.com/search">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Search — ReincarnatedAI">
+<meta property="og:description" content="Search researchers, phenomena, theories, and documented consciousness case studies.">
+<meta property="og:url" content="https://reincarnatedai.com/search">
+<meta property="og:image" content="https://reincarnatedai.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Search — ReincarnatedAI">
+<meta name="twitter:description" content="Search researchers, phenomena, theories, and documented consciousness case studies.">
+<meta name="twitter:image" content="https://reincarnatedai.com/og-image.jpg">
+<meta name="robots" content="noindex,follow">
+
 </head>
 <body>
 <nav><a href="/" class="logo">ReincarnatedAI</a><div class="links"><a href="/evidence">Evidence Map</a><a href="/cases">Cases</a><a href="/phenomena">Phenomena</a><a href="/researchers">Researchers</a><a href="/theories">Theories</a><a href="/traditions">Traditions</a><a href="/watch">Watch</a><a href="/listen">Listen</a></div><a href="/submit" class="cta-nav">Share Experience</a></nav>
@@ -257,11 +272,7 @@ const deepDiveIds = new Set(caseDetails.map(c => c.id));
 const caseSlugMap = {};
 caseDetails.forEach(c => { caseSlugMap[c.name.toLowerCase()] = c.id; });
 
-function hl(text, q) {
-  if (!q) return text;
-  const safe = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  return text.replace(new RegExp(`(${safe})`, 'gi'), '<mark>$1</mark>');
-}
+const hl = RaiSafe.highlight;
 
 function snippet(text, q, maxLen = 120) {
   if (!text) return '';
@@ -300,11 +311,11 @@ function renderResults(q) {
   const total = researcherHits.length + phenomenaHits.length + theoryHits.length + caseHits.length;
 
   if (total === 0) {
-    results.innerHTML = `<div class="no-results">No results for "<strong>${q}</strong>" — try a broader search term.</div>`;
+    results.innerHTML = `<div class="no-results">No results for "<strong>${RaiSafe.escape(q)}</strong>" — try a broader search term.</div>`;
     return;
   }
 
-  let html = `<div class="results-total">${total} result${total === 1 ? '' : 's'} for "<strong>${q}</strong>"</div>`;
+  let html = `<div class="results-total">${total} result${total === 1 ? '' : 's'} for "<strong>${RaiSafe.escape(q)}</strong>"</div>`;
 
   if (researcherHits.length) {
     html += `<div class="result-group">
@@ -357,8 +368,8 @@ function renderResults(q) {
     html += `<div class="result-group">
       <div class="result-group-label">Cases (${caseHits.length})</div>
       ${caseHits.map(c => {
-        const slug = caseSlugMap[c.title.toLowerCase()];
-        const href = slug ? `/case?id=${slug}` : '/cases';
+        const slug = deepDiveIds.has(c.id) ? c.id : null;
+        const href = slug ? `/case/${slug}` : `/cases?q=${encodeURIComponent(c.title)}`;
         return `
         <a href="${href}" class="result-item">
           <div class="result-icon icon-case">◌</div>

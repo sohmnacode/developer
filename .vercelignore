@@ -1,0 +1,9 @@
+.git
+.codex-review
+tmp
+node_modules
+public
+.env*
+.claude
+.DS_Store
+**/*.docx

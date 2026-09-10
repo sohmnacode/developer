@@ -1,3 +1,5 @@
+import { caseIndex } from './research-data.js';
+
 export const caseDetails = [
   {
     id: 'james-leininger',
@@ -6,7 +8,6 @@ export const caseDetails = [
     domain: 'reincarnation',
     year: '1998–2005',
     location: 'Louisiana, USA',
-    strength: 93,
     headline: 'A Louisiana child\'s detailed WWII memories — including pilot names, aircraft type, and carrier — verified by surviving squadron members.',
     summary: 'James Leininger began having nightmares about a burning plane crash at age two. Over the following years he made over twenty specific statements about a previous life as a World War II Navy pilot — identifying his aircraft, the carrier he flew from, and three squadron members by name — all of which were independently verified before his family made contact with the relevant veterans or records.',
     timeline: [
@@ -50,7 +51,6 @@ export const caseDetails = [
     domain: 'reincarnation',
     year: '1926–1936',
     location: 'Delhi & Mathura, India',
-    strength: 91,
     headline: 'A Delhi girl directed a formal committee of investigators through a city she had never visited — recognizing streets, her previous home, and her previous family members in a crowd.',
     summary: 'From age four, Shanti Devi described a previous life in Mathura in specific, verifiable detail — her husband\'s name, the layout of her home, the location of buried money, and the circumstances of her death in childbirth. A formal investigation committee including a Member of Parliament accompanied her to Mathura in 1935 and documented her navigating streets she had never walked and identifying her previous family from a crowd. Mahatma Gandhi personally interviewed her and considered the case authentic.',
     timeline: [
@@ -93,7 +93,6 @@ export const caseDetails = [
     domain: 'nde',
     year: '1991',
     location: 'Atlanta, Georgia, USA',
-    strength: 88,
     headline: 'A documented NDE during hypothermic cardiac arrest — brain drained of blood, EEG flat — with accurate observations of surgical instruments and conversations the patient could not have made through normal perception.',
     summary: 'In 1991, singer Pam Reynolds underwent hypothermic cardiac arrest surgery for a giant basilar artery aneurysm at the Barrow Neurological Institute. The operation required stopping her heart, cooling her body to 60°F, draining blood from her brain, and silencing her auditory canals with molded earpieces. During this period, she reported leaving her body, observing the surgery in detail, and entering a tunnel experience with deceased relatives. Her observations — including the appearance of an unfamiliar surgical instrument and a specific conversation between surgeons — were later corroborated by the surgical team.',
     timeline: [
@@ -133,7 +132,6 @@ export const caseDetails = [
     domain: 'nde',
     year: '1977',
     location: 'Seattle, Washington, USA',
-    strength: 80,
     headline: 'During cardiac arrest, a patient described a worn tennis shoe on a third-floor hospital window ledge — in a specific position visible only from outside the building, three stories up.',
     summary: 'In 1977, Maria, a migrant farmworker, was admitted to Harborview Medical Center in Seattle after a cardiac arrest. During recovery, she told social worker Kimberly Clark Sharp that she had left her body and floated outside the hospital — eventually drifting to the north face of the building and noticing a tennis shoe on a third-floor window ledge. Clark was skeptical but searched the building and found the shoe exactly as described, in a position — with specific wear and a tucked lace — only visible from outside the building at window level. The case became the most widely cited OBE verification account in NDE literature.',
     timeline: [
@@ -169,7 +167,6 @@ export const caseDetails = [
     domain: 'reincarnation',
     year: '2000–2013',
     location: 'Oklahoma, USA',
-    strength: 85,
     headline: 'An Oklahoma boy\'s 55 specific claims about a Hollywood past life were traced to a virtually unknown figure in a single photograph — 49 of 55 claims independently verified.',
     summary: 'Ryan Hammons began claiming a previous Hollywood life at age four, providing specific details — a street address, sisters who became aunts, a name change, work as an agent, and a death from a "heart problem" — before any connection was established. Jim Tucker traced his memories to Marty Martyn (born Marty Kolb), a largely forgotten Hollywood extra and talent agent visible in a single 1932 film photograph. Of 55 specific claims Tucker evaluated, 49 were verified against Martyn\'s biography. The cause of death — initially unknown — was later confirmed by a death certificate.',
     timeline: [
@@ -210,7 +207,6 @@ export const caseDetails = [
     domain: 'nde',
     year: '2008-2014',
     location: 'US, UK, and Austria',
-    strength: 68,
     headline: 'A prospective multi-hospital cardiac-arrest study designed to test reports of awareness and out-of-body perception during resuscitation.',
     summary: 'The AWARE study, led by Sam Parnia and colleagues, reviewed 2,060 cardiac-arrest events across 15 hospitals and interviewed 140 survivors. It found that a minority reported memories or awareness during resuscitation, including one case with a corroborated auditory sequence during cardiac arrest. The study also tested hidden visual targets, but no patient identified a target, partly because relatively few arrest events occurred in target-equipped areas.',
     timeline: [
@@ -245,7 +241,6 @@ export const caseDetails = [
     domain: 'nde',
     year: '1988-2001',
     location: 'Netherlands',
-    strength: 85,
     headline: 'A prospective Dutch cardiac-arrest study of 344 survivors, with NDE reports collected shortly after resuscitation and followed longitudinally.',
     summary: 'Pim van Lommel and colleagues studied 344 consecutive cardiac-arrest survivors in ten Dutch hospitals. Sixty-two patients reported an NDE and 41 met criteria for a core experience. The study is influential because it was prospective, hospital-based, and included follow-ups at two and eight years, but its interpretation remains debated because precise timing of the experiences cannot be established from the medical record alone.',
     timeline: [
@@ -279,7 +274,6 @@ export const caseDetails = [
     domain: 'nde',
     year: '1999',
     location: 'United States',
-    strength: 60,
     headline: 'A focused study of NDE and OBE reports from blind experiencers, including people blind from birth.',
     summary: 'Kenneth Ring and Sharon Cooper interviewed 31 blind or severely visually impaired people who reported NDEs or OBEs. The study is notable because many subjects described visual-like perception, including some people blind from birth. It is suggestive rather than conclusive: the cases are retrospective, the descriptions are difficult to verify uniformly, and the core claim depends on testimony and phenomenological interpretation.',
     timeline: [
@@ -310,7 +304,6 @@ export const caseDetails = [
     domain: 'nde',
     year: '2009',
     location: 'United States',
-    strength: 70,
     headline: 'A structured review of published NDE cases involving apparently veridical perception.',
     summary: 'Janice Holden reviewed 107 published NDE cases in which experiencers reported perceptions that could in principle be checked. The review is frequently cited because it attempts to classify accuracy rather than merely collect dramatic stories. Its main limitation is that it depends on the quality of the underlying case reports, which range from strong medical accounts to weaker anecdotal reports.',
     timeline: [
@@ -341,7 +334,6 @@ export const caseDetails = [
     domain: 'reincarnation',
     year: '1997',
     location: 'Multiple countries',
-    strength: 62,
     headline: 'A large case collection linking children\'s birthmarks and birth defects with wounds or marks on claimed previous personalities.',
     summary: 'Ian Stevenson\'s two-volume Reincarnation and Biology and its shorter companion volume collect more than 200 cases in which a child\'s birthmark or birth defect was said to correspond to a wound, scar, or medical condition of a deceased person the child claimed to remember. The strongest cases combine physical correspondence, medical records, and early verbal statements; the weakest depend on late family testimony.',
     timeline: [
@@ -372,7 +364,6 @@ export const caseDetails = [
     domain: 'psychedelics',
     year: '2006-2008',
     location: 'United States',
-    strength: 90,
     headline: 'A landmark randomized study showing that psilocybin can occasion measurable mystical-type experiences with lasting personal significance.',
     summary: 'Roland Griffiths and colleagues conducted a carefully screened, double-blind psilocybin study in healthy volunteers and later reported durable effects at follow-up. The study is strong evidence that psilocybin can reliably produce mystical-type experiences under controlled conditions. It does not, by itself, show that the experiences disclose an external metaphysical reality.',
     timeline: [
@@ -403,7 +394,6 @@ export const caseDetails = [
     domain: 'psychedelics',
     year: '2016',
     location: 'United States',
-    strength: 88,
     headline: 'A randomized controlled trial of psilocybin-assisted therapy for cancer-related anxiety and depression.',
     summary: 'The NYU trial led by Stephen Ross tested psilocybin-assisted therapy in patients with life-threatening cancer and clinically significant anxiety or depression. At 6.5-month follow-up, many participants retained clinically meaningful reductions in anxiety and depression and reported improved attitudes toward death. The data support therapeutic effect and death-anxiety reduction, while remaining agnostic about afterlife claims.',
     timeline: [
@@ -434,7 +424,6 @@ export const caseDetails = [
     domain: 'psychedelics',
     year: '1990-1995',
     location: 'United States',
-    strength: 55,
     headline: 'The first modern US clinical DMT program documented intense short-duration psychedelic states, including frequent reports of autonomous entities.',
     summary: 'Rick Strassman and colleagues administered intravenous DMT to experienced volunteers in a controlled research setting at the University of New Mexico. The published medical studies establish dose-response physiology and subjective intensity. The entity-encounter interpretation comes largely from qualitative reports and Strassman\'s later synthesis, so it is best treated as phenomenological data rather than verification of independent beings.',
     timeline: [
@@ -465,7 +454,6 @@ export const caseDetails = [
     domain: 'psychedelics',
     year: '2012',
     location: 'United Kingdom',
-    strength: 85,
     headline: 'A landmark fMRI study linking psilocybin to decreased activity and connectivity in major hub regions of the default mode network.',
     summary: 'Robin Carhart-Harris and colleagues used fMRI to study the psilocybin state and found decreased activity in hub regions including medial prefrontal and posterior cingulate cortex. The work helped shift psychedelic neuroscience from broad speculation to network-level measurement. It supports brain-based models of ego dissolution while also giving filter-theory advocates a biological comparison point.',
     timeline: [
@@ -496,7 +484,6 @@ export const caseDetails = [
     domain: 'nonlocal',
     year: '1979-2007',
     location: 'United States',
-    strength: 38,
     headline: 'A long-running Princeton program testing whether human intention could correlate with random event generator outputs.',
     summary: 'The Princeton Engineering Anomalies Research laboratory reported tiny but cumulative deviations in random event generator experiments over nearly three decades. Supporters view the scale and persistence of the database as important; critics emphasize small effect sizes, operator effects, questionable controls, and publication-bias concerns raised in later meta-analysis.',
     timeline: [
@@ -528,7 +515,6 @@ export const caseDetails = [
     domain: 'nonlocal',
     year: '1985',
     location: 'Multiple countries',
-    strength: 48,
     headline: 'A major 1980s meta-analytic dispute over telepathy experiments using sensory homogenization.',
     summary: 'Charles Honorton argued that ganzfeld telepathy studies showed above-chance hit rates, while Ray Hyman argued that methodological flaws and multiple-analysis problems weakened the evidence. Their public exchange led to a joint communique defining stronger future standards, making this case important even for skeptics: it forced parapsychology toward better blinding, randomization, and pre-specified analysis.',
     timeline: [
@@ -560,7 +546,6 @@ export const caseDetails = [
     domain: 'nonlocal',
     year: '1966-1973',
     location: 'United States',
-    strength: 50,
     headline: 'A sleep-laboratory telepathy program using REM awakenings, target images, and blind judging of dream transcripts.',
     summary: 'Montague Ullman and Stanley Krippner conducted dream telepathy experiments at Maimonides Medical Center in Brooklyn. Subjects slept in the lab while a distant agent focused on a randomly selected target image; dream transcripts were later judged against possible targets. Some early studies reported significant target matching, but replication and methodological critiques remain substantial.',
     timeline: [
@@ -592,7 +577,6 @@ export const caseDetails = [
     domain: 'nonlocal',
     year: '2011',
     location: 'United States',
-    strength: 36,
     headline: 'A controversial series of nine psychology experiments testing whether future events could influence present responses.',
     summary: 'Daryl Bem\'s 2011 Journal of Personality and Social Psychology paper reported nine experiments with more than 1,000 participants, framing precognition as retroactive influence on ordinary psychological effects. The paper became a flashpoint for replication, Bayesian statistics, preregistration, and publication bias. It is historically important because the controversy helped catalyze the broader replication-crisis conversation.',
     timeline: [
@@ -624,7 +608,6 @@ export const caseDetails = [
     domain: 'quantum',
     year: '2007',
     location: 'Multiple laboratories',
-    strength: 82,
     headline: 'A Nature paper reporting long-lived electronic quantum coherence in a photosynthetic light-harvesting complex.',
     summary: 'Gregory Engel and colleagues used two-dimensional electronic spectroscopy to study the Fenna-Matthews-Olson complex and reported evidence of wavelike energy transfer. The study is strong evidence that quantum effects can matter in biological energy transfer, especially under the tested conditions. It is not direct evidence for quantum consciousness, but it is relevant because it constrains the claim that warm, wet biology can never preserve useful quantum behavior.',
     timeline: [
@@ -655,7 +638,6 @@ export const caseDetails = [
     domain: 'quantum',
     year: '2000s',
     location: 'Germany and international labs',
-    strength: 80,
     headline: 'A quantum radical-pair model for how migratory birds may sense Earth\'s magnetic field through cryptochrome proteins.',
     summary: 'Avian magnetoreception research suggests that birds may use light-dependent radical-pair chemistry in retinal cryptochromes to detect magnetic direction. The mechanism is one of the most plausible and experimentally grounded examples of quantum biology in a living sensory system. It still leaves open questions about receptor identity, neural readout, and species differences.',
     timeline: [
@@ -686,7 +668,6 @@ export const caseDetails = [
     domain: 'consciousness',
     year: 'Various',
     location: 'Multiple countries',
-    strength: 60,
     headline: 'Reports of unexpected clarity shortly before death in patients with severe dementia, brain injury, or psychiatric deterioration.',
     summary: 'Terminal or paradoxical lucidity refers to unexpected cognitive clarity near death, sometimes in patients with severe dementia or neurological impairment. The phenomenon is clinically important and emotionally striking, but the evidence base is still developing: many reports are retrospective caregiver accounts, and prospective physiological monitoring remains rare.',
     timeline: [
@@ -717,7 +698,6 @@ export const caseDetails = [
     domain: 'consciousness',
     year: '2023',
     location: 'Multi-lab collaboration',
-    strength: 45,
     headline: 'A preregistered adversarial collaboration testing predictions from Integrated Information Theory and Global Neuronal Workspace Theory.',
     summary: 'A large adversarial-collaboration protocol tested contrasting predictions from IIT and GNWT using theory-neutral methods. It matters for Case Explorer because it shows consciousness science moving toward preregistered theory comparison rather than loose philosophical debate. The results challenged parts of both theories and did not settle the hard problem or survival questions.',
     timeline: [
@@ -748,7 +728,6 @@ export const caseDetails = [
     domain: 'nde',
     year: '1988',
     location: 'Connecticut, USA',
-    strength: 72,
     headline: 'A cardiac-surgery OBE report centered on an unusual surgeon mannerism later described by the cardiologist and surgeon.',
     summary: 'Al Sullivan reported an out-of-body perception during emergency coronary bypass surgery, including the impression that surgeon Hiroyoshi Takata was moving his arms in a distinctive flapping manner. Sullivan later told cardiologist Anthony LaSala, who recognized the description as Takata\'s habit of keeping his hands close to his chest to preserve sterility while gesturing with his elbows. The case is suggestive because the observed behavior was specific, but it remains a retrospective witness-corroborated case rather than a prospective target test.',
     timeline: [
@@ -780,7 +759,6 @@ export const caseDetails = [
     domain: 'nde',
     year: '2008',
     location: 'Virginia, USA',
-    strength: 45,
     headline: 'A neurosurgeon\'s meningitis-coma NDE that became famous for its medical claims and equally famous for disputes about timing and interpretation.',
     summary: 'Eben Alexander reported a profound NDE during a severe E. coli meningitis illness and later argued that his neocortex was too impaired to generate the experience. The case is culturally important and medically unusual, but scientifically contested. The key issue is timing: critics argue the experience could have occurred during onset, delirium, medication effects, or recovery rather than during the deepest neurological impairment.',
     timeline: [
@@ -813,7 +791,6 @@ export const caseDetails = [
     domain: 'nde',
     year: '1977-1984',
     location: 'Seattle, Washington, USA',
-    strength: 74,
     headline: 'The investigator behind the Maria tennis-shoe case, included separately because her verification process became part of the evidential debate.',
     summary: 'Kimberly Clark Sharp was the Harborview Medical Center social worker who investigated Maria\'s report of seeing a tennis shoe on an exterior hospital ledge during a cardiac-arrest NDE. The separate Case Explorer entry focuses on Sharp because the evidential value of the case depends almost entirely on her search, observation, later reporting, and responses to skeptical critiques. The case remains influential but limited by the absence of preserved physical evidence or contemporaneous photographs.',
     timeline: [
@@ -839,4 +816,8 @@ export const caseDetails = [
     theories: ['survival', 'filter', 'hallucination'],
     sources: ['Clark Sharp, K. (1984). Clinical interventions with near-death experiencers. In The Near-Death Experience: Problems, Prospects, Perspectives.', 'Augustine, K. (2007). Does paranormal perception occur in near-death experiences? Journal of Near-Death Studies.', 'Journal of Near-Death Studies 25(4), 2007 issue: https://digital.library.unt.edu/ark:/67531/metadc799406/'],
   },
-];
+].map(c => {
+  const indexEntry = caseIndex.find(item => item.id === c.id);
+  if (!indexEntry) throw new Error('Missing case index record: ' + c.id);
+  return { ...c, strength: indexEntry.evidenceScore };
+});
