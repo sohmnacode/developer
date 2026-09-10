@@ -59,6 +59,8 @@ function emitPage(source, outputName, metadata) {
   const pages=fs.readdirSync(ROOT).filter(name=>name.endsWith('.html'));
   for (const name of pages) emitPage(fs.readFileSync(path.join(ROOT,name),'utf8'),name);
   const {caseDetails}=await import('../data/cases-detail-data.js');
+  const {extendedResearch,extendedCases}=await import('../data/extended-research-data.js');
+  write('data/extended-research.json',JSON.stringify({research:extendedResearch,cases:extendedCases},null,2));
   const template=fs.readFileSync(path.join(ROOT,'case.html'),'utf8');
   for (const c of caseDetails) emitPage(template,`case/${c.id}.html`,{name:c.name,title:`${c.name} — ReincarnatedAI`,description:c.summary.slice(0,180),url:`https://reincarnatedai.com/case/${c.id}`});
   const urls=pages.filter(p=>!['case.html','bookmarks.html','search.html','journal.html'].includes(p)).map(p=>'https://reincarnatedai.com/'+(p==='index.html'?'':p.slice(0,-5)));
