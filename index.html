@@ -408,6 +408,7 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
 .s-digest-status{width:100%;font-size:13.5px;padding-top:2px;min-height:18px}
 .s-digest-status.ok{color:rgba(40,160,80,.9)}
 .s-digest-status.err{color:rgba(200,60,60,.9)}
+.welcome-backdrop{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:20px;background:rgba(10,6,24,.62);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}.welcome-backdrop.is-open{opacity:1;visibility:visible}.welcome-modal{position:relative;width:min(460px,100%);padding:38px 34px 32px;border:1px solid rgba(255,255,255,.2);border-radius:22px;background:linear-gradient(145deg,#21133d,#100a22);box-shadow:0 24px 80px rgba(0,0,0,.35);color:#fff}.welcome-kicker{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#b49ae8;margin-bottom:12px}.welcome-modal h2{margin:0 28px 12px 0;font-size:clamp(26px,5vw,36px);line-height:1.08;letter-spacing:-.035em}.welcome-modal p{margin:0 0 22px;color:rgba(255,255,255,.68);font-size:15px;line-height:1.65}.welcome-form{display:flex;gap:8px}.welcome-form input{min-width:0;flex:1;border:1px solid rgba(255,255,255,.2);border-radius:10px;background:rgba(255,255,255,.1);padding:13px 14px;color:#fff;font:inherit;outline:none}.welcome-form input::placeholder{color:rgba(255,255,255,.42)}.welcome-form input:focus{border-color:#b49ae8}.welcome-form button{border:0;border-radius:10px;padding:0 16px;background:linear-gradient(135deg,#8b5cf6,#b08bf0);color:#fff;font:600 13px inherit;cursor:pointer;white-space:nowrap}.welcome-form button:disabled{opacity:.55;cursor:wait}.welcome-close{position:absolute;top:14px;right:15px;border:0;background:transparent;color:rgba(255,255,255,.6);font-size:22px;line-height:1;cursor:pointer}.welcome-close:hover{color:#fff}.welcome-status{min-height:19px;margin:12px 0 0!important;font-size:12px!important;color:rgba(255,255,255,.58)!important}.welcome-status.ok{color:#a7e8bd!important}.welcome-status.err{color:#ffb1b1!important}@media(max-width:480px){.welcome-modal{padding:32px 22px 24px}.welcome-form{flex-direction:column}.welcome-form button{padding:13px}}
 @media(max-width:640px){.s-digest{padding:52px 24px}.s-digest-inner{flex-direction:column;gap:20px}.s-digest-form{flex-direction:column}.s-digest-btn{text-align:center}}
 /* dark mode */
 [data-theme="dark"] .s-digest{background:#0C0A1A;border-color:rgba(100,75,180,.12)}
@@ -1520,6 +1521,31 @@ function shareAsCard() {
     a.click();
   });
 }
+</script>
+<div class="welcome-backdrop" id="welcomeSignup" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle" aria-hidden="true">
+  <div class="welcome-modal">
+    <button class="welcome-close" id="welcomeClose" type="button" aria-label="Close signup form">×</button>
+    <div class="welcome-kicker">ReincarnatedAI updates</div>
+    <h2 id="welcomeTitle">Stay curious.</h2>
+    <p>Get occasional research updates, new documentaries, podcasts, and discoveries about consciousness and the human soul.</p>
+    <form class="welcome-form" id="welcomeForm" novalidate>
+      <input id="welcomeEmail" type="email" placeholder="your@email.com" autocomplete="email" maxlength="254" aria-label="Email address" required>
+      <button type="submit">Sign me up</button>
+    </form>
+    <p class="welcome-status" id="welcomeStatus" aria-live="polite"></p>
+  </div>
+</div>
+<script>
+(function(){
+  const KEY='rai-welcome-signup-seen';
+  const modal=document.getElementById('welcomeSignup'), close=document.getElementById('welcomeClose'), form=document.getElementById('welcomeForm'), input=document.getElementById('welcomeEmail'), status=document.getElementById('welcomeStatus'), button=form.querySelector('button');
+  if(!modal||!form) return;
+  const hide=()=>{modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';};
+  const show=()=>{modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';setTimeout(()=>input.focus(),100);};
+  close.addEventListener('click',hide); modal.addEventListener('click',e=>{if(e.target===modal)hide();}); document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('is-open'))hide();});
+  let seen=false;try{seen=localStorage.getItem(KEY)==='1';}catch(e){} if(!seen)setTimeout(show,4500);
+  form.addEventListener('submit',async e=>{e.preventDefault();if(!input.reportValidity())return;button.disabled=true;button.textContent='Sending…';status.textContent='';status.className='welcome-status';try{const res=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({kind:'digest',email:input.value.trim(),consent:true})});const data=await res.json();if(!res.ok||!data.success)throw new Error();status.textContent='Thanks — we’ll keep you posted.';status.className='welcome-status ok';try{localStorage.setItem(KEY,'1');}catch(e){}setTimeout(hide,1400);}catch(e){status.textContent='Something went wrong. Please try again.';status.className='welcome-status err';button.disabled=false;button.textContent='Sign me up';}});
+})();
 </script>
 </body>
 </html>
