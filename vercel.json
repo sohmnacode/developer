@@ -4,11 +4,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "public",
   "functions": {
-    "api/vault.js": { "maxDuration": 60 },
     "api/research.js": {
-      "maxDuration": 60
-    },
-    "api/v1/*.js": {
       "maxDuration": 60
     }
   },
