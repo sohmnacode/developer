@@ -49,6 +49,7 @@
 .tl-content{padding:18px 0 18px 18px}
 .tl-content h3{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px}
 .tl-content p{font-size:13px;color:var(--muted);line-height:1.7}
+.tl-sources{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}.tl-sources a{font-size:12px;font-weight:600;color:#6740aa}.tl-item:target .tl-content{background:rgba(237,229,255,.45);border-radius:10px;padding-right:14px}.tl-item{scroll-margin-top:90px}
 @media(max-width:560px){
   .tl-item{grid-template-columns:80px 22px 1fr}
   .tl-year{font-size:14px}
@@ -119,14 +120,15 @@ for (const e of sorted) {
     lastEra = era;
   }
   html += `
-    <div class="tl-item">
+    <div class="tl-item" ${e.id ? `id="${e.id}"` : ''}>
       <div class="tl-year-col"><div class="tl-year">${e.year}</div></div>
       <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
-      <div class="tl-content"><h3>${e.title}</h3><p>${e.text}</p></div>
+      <div class="tl-content"><h3>${e.title}</h3><p>${e.text}</p>${e.sources ? `<div class="tl-sources">${e.sources.map(source => `<a href="${source.url}" target="_blank" rel="noopener">${source.label} ↗</a>`).join('')}</div>` : ''}</div>
     </div>`;
 }
 html += '</div>';
 container.innerHTML = html;
+if (location.hash) requestAnimationFrame(() => document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView());
 </script>
 <script src="/assets/ui.js" defer></script>
 <script src="/assets/chat-widget.js?v=4" defer></script>

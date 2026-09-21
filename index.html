@@ -349,7 +349,10 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
 
 /* ── This week in consciousness history — light mode ── */
 .s-history{background:#F7F6FF;padding:40px;display:flex;justify-content:center;position:relative;z-index:2;border-top:1px solid rgba(100,75,180,.07);border-bottom:1px solid rgba(100,75,180,.07)}
-.history-card{max-width:720px;width:100%;background:#fff;border:1px solid rgba(100,75,180,.12);border-radius:20px;padding:36px 40px;display:flex;gap:32px;align-items:flex-start;box-shadow:0 4px 24px rgba(100,75,180,.07)}
+.history-card{max-width:720px;width:100%;background:#fff;border:1px solid rgba(100,75,180,.12);border-radius:20px;padding:36px 40px;display:flex;gap:32px;align-items:flex-start;box-shadow:0 4px 24px rgba(100,75,180,.07);text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
+.history-card:hover,.history-card:focus-visible{transform:translateY(-3px);box-shadow:0 10px 30px rgba(100,75,180,.16)}
+.history-card:focus-visible{outline:3px solid #7c4fe3;outline-offset:4px}
+.history-deep-dive{display:inline-block;margin-top:16px;font-size:12px;font-weight:700;color:#6d28d9}
 .history-date{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(120,95,190,.5);font-weight:600;white-space:nowrap;min-width:90px;padding-top:3px;line-height:1.6}
 .history-body{flex:1;min-width:0}
 .history-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(109,40,217,.6);font-weight:600;margin-bottom:10px}
@@ -452,7 +455,7 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
 </div>
 <div style="text-align:center;margin:-28px auto 40px;font-size:11px;color:rgba(13,11,31,.4)">Aggregated public NDE, OBE, and after-death communication records · <a href="https://www.nderf.org/index.htm" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Source: NDERF</a></div>
 
-<div class="s-history"><div class="history-card" id="historyCard"></div></div>
+<div class="s-history"><a class="history-card" id="historyCard" href="/timeline"></a></div>
 
 <section class="s3" id="explore">
   <div class="s2-quote" style="margin-bottom:56px">
@@ -1362,7 +1365,7 @@ function surpriseMe() {
     { w:36, date:'September 1998', headline:'Global Consciousness Project Launched', desc:'Roger Nelson launches the GCP at Princeton, networking random number generators worldwide to detect correlations during major global events — producing datasets still analyzed today.', source:'Nelson · Princeton · 1998' },
     { w:37, date:'October 1900',   headline:'Max Planck Introduces the Quantum', desc:'Planck\'s "quantum of action" solves the blackbody radiation problem and inaugurates quantum physics — whose later implications for observation and consciousness remain unresolved.', source:'Planck · Deutsche Physikalische Gesellschaft · 1900' },
     { w:38, date:'October 1975',   headline:'Elisabeth Kübler-Ross Advocates for NDE Research', desc:'Kübler-Ross, already famous for her death and dying work, publicly endorses NDE research and calls for hospital-based documentation protocols at a major psychiatry conference.', source:'Kübler-Ross · 1975 Symposium' },
-    { w:39, date:'October 2004',   headline:'The Day I Died Airs on BBC', desc:'BBC\'s documentary on NDEs, featuring van Lommel\'s Lancet study and the Pam Reynolds case, reaches millions of viewers and becomes the most-cited public account of NDE research.', source:'BBC Scotland · The Day I Died · 2002' },
+    { w:39, date:'February 2003',   headline:'The Day I Died Airs on BBC Two', desc:'The BBC documentary examines near-death experiences through clinical research and accounts including Pam Reynolds. Its claims also prompted critical responses.', source:'BBC Two · The Day I Died · 2003', href:'/timeline#the-day-i-died' },
     { w:40, date:'October 2013',   headline:'Shared Death Experiences Documented', desc:'Raymond Moody and Paul Perry publish systematic accounts of "shared death experiences" — cases where bystanders at a death report NDE-like phenomena — expanding the evidence base.', source:'Moody & Perry · Glimpses of Eternity · 2010' },
     { w:41, date:'November 1926',  headline:'Erwin Schrödinger Publishes "On the Relation…"', desc:'Schrödinger\'s philosophical writings on consciousness, later collected in "What Is Life?" (1944), propose that consciousness is singular and universal — not produced by individual brains.', source:'Schrödinger · Cambridge University Press · 1944' },
     { w:42, date:'November 2006',  headline:'Greyson Publishes NDE Distressing Cases Study', desc:'Bruce Greyson and Nancy Evans Bush publish systematic documentation of distressing NDEs, expanding the research beyond pleasant experiences and complicating simple survival theories.', source:'Greyson & Bush · Psychiatry · 2006' },
@@ -1387,6 +1390,7 @@ function surpriseMe() {
   const entry = HISTORY.find(e => e.w === w) || HISTORY[(w - 1) % HISTORY.length];
   const card = document.getElementById('historyCard');
   if (!card || !entry) return;
+  card.href = entry.href || '/timeline';
   card.innerHTML = `
     <div class="history-date">${entry.date}</div>
     <div class="history-body">
@@ -1394,6 +1398,7 @@ function surpriseMe() {
       <div class="history-headline">${entry.headline}</div>
       <div class="history-desc">${entry.desc}</div>
       <div class="history-source">${entry.source}</div>
+      <span class="history-deep-dive">Explore the history and sources →</span>
     </div>`;
 })();
 
