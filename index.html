@@ -369,6 +369,13 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
 [data-theme="dark"] .history-desc{color:rgba(255,255,255,.42)}
 [data-theme="dark"] .history-source{color:rgba(139,92,246,.4)}
 
+/* ── Research news ── */
+.s-news{padding:42px 24px;background:#fff;position:relative;z-index:2}
+.news-home{max-width:1120px;margin:auto;padding:28px 34px;border:1px solid rgba(109,40,217,.17);border-radius:20px;background:linear-gradient(115deg,#fff,#f8f5ff);display:grid;grid-template-columns:190px minmax(0,1fr);gap:28px;box-shadow:0 6px 25px rgba(71,40,125,.06)}
+.news-home-label{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#7143bb;font-weight:800}.news-home-label span{display:block;margin-top:8px;font-size:11px;letter-spacing:0;text-transform:none;font-weight:500;color:#716b7d}.news-home h2{font-size:21px;line-height:1.35;margin:0 0 10px}.news-home h2 a{color:#17112e;text-decoration:none}.news-home h2 a:hover{text-decoration:underline}.news-home p{font-size:14px;line-height:1.65;color:#615b70;margin:0 0 12px}.news-home-meta{font-size:12px;color:#756c85}.news-home-actions{display:flex;gap:18px;flex-wrap:wrap;margin-top:15px}.news-home-actions a{font-size:12px;font-weight:700;color:#6740aa}
+@media(max-width:680px){.s-news{padding:24px 16px}.news-home{grid-template-columns:1fr;gap:15px;padding:23px}.news-home h2{font-size:19px}}
+[data-theme="dark"] .s-news{background:#0c0a1a}[data-theme="dark"] .news-home{background:linear-gradient(115deg,#17112a,#211639);border-color:rgba(139,92,246,.3)}[data-theme="dark"] .news-home h2 a{color:#f4efff}[data-theme="dark"] .news-home p,[data-theme="dark"] .news-home-meta,[data-theme="dark"] .news-home-label span{color:#bcb3cf}[data-theme="dark"] .news-home-actions a{color:#bd9bf8}
+
 /* ── Weekly digest signup — light mode ── */
 /* Case of the Week section */
 .s-cotw{background:linear-gradient(135deg,#1a0a50 0%,#3b1085 50%,#6D28D9 100%);padding:80px 40px;position:relative;z-index:2;overflow:hidden}
@@ -456,6 +463,32 @@ nav.scrolled .cta{background:linear-gradient(135deg,#5B21B6,#7C3AED)}
 <div style="text-align:center;margin:-28px auto 40px;font-size:11px;color:rgba(13,11,31,.4)">Aggregated public NDE, OBE, and after-death communication records · <a href="https://www.nderf.org/index.htm" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Source: NDERF</a></div>
 
 <div class="s-history"><a class="history-card" id="historyCard" href="/timeline"></a></div>
+
+<section class="s-news" aria-labelledby="newsHomeHeading">
+  <div class="news-home">
+    <div class="news-home-label" id="newsHomeLabel">Research News<span>Curated and source-linked</span></div>
+    <div>
+      <h2 id="newsHomeHeading"><a href="/news" id="newsHomeTitle">Explore recent research updates</a></h2>
+      <p id="newsHomeSummary">Read dated developments in consciousness and related research.</p>
+      <div class="news-home-meta" id="newsHomeMeta"></div>
+      <div class="news-home-actions"><a href="/news" id="newsHomeStory">Read the research update →</a><a href="/news">All research news →</a></div>
+    </div>
+  </div>
+</section>
+
+<script type="module">
+import { researchNews, isBreaking } from '/data/research-news.js';
+const item = researchNews[0];
+if (item) {
+  const label = document.getElementById('newsHomeLabel');
+  label.firstChild.textContent = isBreaking(item.published) ? 'Breaking Research' : 'Research News';
+  document.getElementById('newsHomeTitle').textContent = item.title;
+  document.getElementById('newsHomeTitle').href = `/news#${item.id}`;
+  document.getElementById('newsHomeSummary').textContent = item.summary;
+  document.getElementById('newsHomeMeta').textContent = `${new Date(`${item.published}T12:00:00Z`).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})} · ${item.source}`;
+  document.getElementById('newsHomeStory').href = `/news#${item.id}`;
+}
+</script>
 
 <section class="s3" id="explore">
   <div class="s2-quote" style="margin-bottom:56px">

@@ -56,7 +56,7 @@ function emitPage(source, outputName, metadata) {
   for (const name of fs.readdirSync(path.join(ROOT,'assets/icons'))) if (/\.png$/.test(name)) copy('assets/icons/'+name);
   for (const name of fs.readdirSync(path.join(ROOT,'assets/researcher-portraits'))) if (/\.(jpg|png)$/i.test(name)) copy('assets/researcher-portraits/'+name);
   for (const name of ['9998-screenplay-READER-COPY.pdf','9998-studio-submission-package.pdf']) copy('assets/9998/'+name);
-  for (const name of ['research-data.js','book-publications.js','cases-detail-data.js','extended-research-data.js','phenomena-data.js','researchers-data.js','researcher-photos.js','theories-data.js']) copy('data/'+name);
+  for (const name of ['research-data.js','book-publications.js','research-news.js','cases-detail-data.js','extended-research-data.js','phenomena-data.js','researchers-data.js','researcher-photos.js','theories-data.js']) copy('data/'+name);
   const pages=fs.readdirSync(ROOT).filter(name=>name.endsWith('.html'));
   for (const name of pages) emitPage(fs.readFileSync(path.join(ROOT,name),'utf8'),name);
   const {caseDetails}=await import('../data/cases-detail-data.js');
