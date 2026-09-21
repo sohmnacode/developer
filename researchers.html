@@ -96,6 +96,7 @@
   flex-wrap:wrap;
   align-items:center;
 }
+.mobile-filter{ display:none; }
 .chip{
   padding:7px 14px;
   border-radius:999px;
@@ -446,6 +447,7 @@
   width:100%;
   max-height:85vh;
   overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
   box-shadow:0 24px 80px rgba(0,0,0,.22);
   transform:translateY(16px) scale(.98);
   transition:transform .2s;
@@ -501,9 +503,15 @@
 .modal-tag{ padding:5px 11px; border-radius:999px; border:1px solid rgba(100,75,180,.12); font-size:11px; color:rgba(26,21,53,0.75); background:rgba(248,245,239,.6); }
 
 @media(max-width:760px){
-  .filter-strip{ padding:14px 20px; }
+  .filter-strip{ position:relative; top:auto; padding:14px 20px; }
+  .filter-strip .chip{ display:none; }
+  .mobile-filter{ display:block; width:100%; }
+  .mobile-filter label{ display:block; margin-bottom:7px; font-size:12px; font-weight:600; color:#1A1535; }
+  .mobile-filter select{ width:100%; min-height:44px; padding:10px 12px; border:1px solid rgba(100,75,180,.25); border-radius:10px; background:#fff; color:#1A1535; font:inherit; }
   .researchers-main{ padding:24px 20px 60px; }
   .researchers-hero{ padding:110px 24px 48px; }
+  .modal-overlay{ padding:12px; align-items:flex-start; }
+  .modal{ max-height:calc(100dvh - 24px); }
 }
 </style>
 <script src="/assets/safe.js"></script>
@@ -541,7 +549,12 @@
   </div>
 </div>
 
-<div class="filter-strip" id="filterStrip"></div>
+<div class="filter-strip" id="filterStrip">
+  <div class="mobile-filter">
+    <label for="mobileResearchFilter">Research area</label>
+    <select id="mobileResearchFilter" aria-label="Filter researchers by research area"></select>
+  </div>
+</div>
 
 <div class="researchers-main">
   <div class="results-count" id="count"></div>
@@ -651,19 +664,30 @@ const ALL_DOMAINS = [...new Set(researchers.flatMap(r => r.domains))].sort();
 let activeFilter = '';
 
 const filterStrip = document.getElementById('filterStrip');
+const mobileFilter = document.getElementById('mobileResearchFilter');
 const grid = document.getElementById('grid');
 const count = document.getElementById('count');
 
-filterStrip.innerHTML = ALL_DOMAINS.map(d =>
+filterStrip.insertAdjacentHTML('beforeend', ALL_DOMAINS.map(d =>
   `<button class="chip" data-domain="${d}">${d.charAt(0).toUpperCase()+d.slice(1)}</button>`
+).join(''));
+mobileFilter.innerHTML = '<option value="">All research areas</option>' + ALL_DOMAINS.map(d =>
+  `<option value="${d}">${d.charAt(0).toUpperCase()+d.slice(1)}</option>`
 ).join('');
+
+function setFilter(domain) {
+  activeFilter = domain;
+  mobileFilter.value = domain;
+  filterStrip.querySelectorAll('.chip').forEach(b => b.classList.toggle('active', b.dataset.domain === domain));
+  render();
+}
+
+mobileFilter.addEventListener('change', () => setFilter(mobileFilter.value));
 
 filterStrip.querySelectorAll('.chip').forEach(btn => {
   btn.addEventListener('click', () => {
     const same = activeFilter === btn.dataset.domain;
-    activeFilter = same ? '' : btn.dataset.domain;
-    filterStrip.querySelectorAll('.chip').forEach(b => b.classList.toggle('active', b.dataset.domain === activeFilter));
-    render();
+    setFilter(same ? '' : btn.dataset.domain);
   });
 });
 
