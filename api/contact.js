@@ -41,7 +41,7 @@ export default async function handler(req, res) {
     const payload = contactPayload(body);
     if (!limit(req, res)) return;
     // Existing public form access key; this is not an account credential.
-    const key = process.env.WEB3FORMS_KEY || 'bee91e89-fdb3-4ee9-aaaa-ce280162ddb8';
+    const key = '88a46422-0d4a-4d74-a78b-1577892a3622';
     const upstream = await fetch('https://api.web3forms.com/submit', {
       method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({ access_key: key, ...payload }), signal: AbortSignal.timeout(15000),
