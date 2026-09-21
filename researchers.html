@@ -118,6 +118,15 @@
   margin:0 auto;
 }
 .results-count{ font-size:13px; color:rgba(26,21,53,0.65); margin-bottom:28px; }
+.research-updates{ padding:32px 80px; max-width:1280px; margin:0 auto; }
+.research-updates h2{ font-family:'Space Grotesk',system-ui,sans-serif; font-size:23px; color:#1A1535; margin:0 0 6px; }
+.research-updates>p{ font-size:12px; color:#625b70; margin:0 0 18px; }
+.updates-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.update-card{ background:#fff; border:1px solid rgba(100,75,180,.14); border-radius:12px; padding:18px; }
+.update-card span{ font-size:10px; font-weight:700; color:#7653b8; text-transform:uppercase; letter-spacing:.08em; }
+.update-card h3{ font-size:14px; line-height:1.45; margin:8px 0; color:#1A1535; }
+.update-card p{ font-size:11px; color:#625b70; line-height:1.6; margin:0 0 12px; }
+.update-card a{ font-size:11px; color:#6740aa; }
 
 .researcher-card{
   background:#fff;
@@ -152,6 +161,7 @@
   margin-bottom:14px;
   flex-shrink:0;
 }
+.researcher-initials img{ width:48px; height:48px; object-fit:cover; border-radius:12px; }
 .researcher-name{
   font-family:'Space Grotesk',system-ui,sans-serif;
   font-size:18px;
@@ -383,6 +393,11 @@
 }
 .modal-link:hover{ background:rgba(100,75,180,.1); border-color:rgba(100,75,180,.3); }
 .modal-link svg{ width:11px; height:11px; flex-shrink:0; }
+.profile-photo{ width:48px; height:48px; object-fit:cover; border-radius:12px; }
+.modal-photo-credit{ font-size:10px; line-height:1.5; margin:8px 0 0; color:#625b70; }
+.modal-photo-credit a{ color:#6740aa; }
+.profile-page-link{ display:inline-flex; align-items:center; margin:10px 0 0; font-size:12px; font-weight:600; color:#6740aa; }
+.report-source{ display:inline-block; margin-top:7px; font-size:10px; color:#7653b8; }
 .papers-list{ display:flex; flex-direction:column; gap:8px; }
 .paper-item{
   padding:10px 13px;
@@ -417,6 +432,8 @@
 .paper-link svg{ width:11px; height:11px; flex-shrink:0; }
 
 @media(max-width:760px){
+  .research-updates{ padding:24px 20px; }
+  .updates-grid{ grid-template-columns:1fr; }
   .spotlight-wrap{ padding:36px 20px; }
   .spotlight-inner{ grid-template-columns:1fr; gap:24px; }
   .spotlight-stats{ flex-direction:row; flex-wrap:wrap; }
@@ -549,6 +566,16 @@
   </div>
 </div>
 
+<section class="research-updates" aria-labelledby="updatesHeading">
+  <h2 id="updatesHeading">Selected research updates</h2>
+  <p>Recent sources to explore, reviewed September 2026. These publications and programs do not establish a conclusion about life after death.</p>
+  <div class="updates-grid">
+    <article class="update-card"><span>2026 · Clinical consciousness</span><h3>EEG assessment after severe brain injury</h3><p>A study evaluated a motor-imagery EEG protocol as a possible complement to behavioral assessment.</p><a href="https://pubmed.ncbi.nlm.nih.gov/41998183/" target="_blank" rel="noopener">Read the study ↗</a></article>
+    <article class="update-card"><span>2025 · Near-death experiences</span><h3>A neuroscientific model of NDEs</h3><p>A review discusses psychological and neurophysiological mechanisms proposed to explain near-death experiences.</p><a href="https://pubmed.ncbi.nlm.nih.gov/40159547/" target="_blank" rel="noopener">Read the review ↗</a></article>
+    <article class="update-card"><span>2025 · Past-life memory research</span><h3>UVA launches a new research program</h3><p>The university describes plans to compare children with and without reported past-life memories using behavioral and neurophysiological measures.</p><a href="https://med.virginia.edu/perceptual-studies/2025/01/09/uvas-division-of-perceptual-studies-launches-major-research-initiative-on-childrens-past-life-memories/" target="_blank" rel="noopener">Read the announcement ↗</a></article>
+  </div>
+</section>
+
 <div class="filter-strip" id="filterStrip">
   <div class="mobile-filter">
     <label for="mobileResearchFilter">Research area</label>
@@ -572,6 +599,7 @@
 
 <script type="module">
 import { researchers } from '/data/researchers-data.js';
+import { researcherPhotos } from '/data/researcher-photos.js';
 
 // ── Spotlight ──────────────────────────────────────────────────────────────
 const SPOTLIGHT_IDS = ['jim-tucker','pim-van-lommel','sam-parnia','bruce-greyson','dean-radin','rupert-sheldrake'];
@@ -710,7 +738,7 @@ function render() {
   grid.innerHTML = rows.map(r => `
     <article class="researcher-card" data-modal-id="${r.id}" role="button" tabindex="0">
       <div class="researcher-card-top">
-        <div class="researcher-initials">${initials(r.name)}</div>
+        <div class="researcher-initials">${researcherPhotos[r.id] ? `<img src="${researcherPhotos[r.id].src}" alt="Portrait of ${r.name}" width="48" height="48" loading="lazy">` : initials(r.name)}</div>
         <div class="researcher-name">${r.name}</div>
         <div class="researcher-role">${r.role}</div>
         <div class="researcher-inst">${r.institution} · ${r.years}</div>
@@ -786,7 +814,8 @@ function buildPapers(papers) {
             <div class="paper-info">
               <div class="paper-title">${p.title}</div>
               <div class="paper-journal">${p.journal}</div>
-              ${p.url ? `<a class="paper-link" href="${p.url}" target="_blank" rel="noopener">${LINK_ICON} View paper</a>` : ''}
+              ${p.url ? `<a class="paper-link" href="${p.url}" target="_blank" rel="noopener">${LINK_ICON} View source</a>` : '<span class="paper-journal">Source link pending verification</span>'}
+              <a class="report-source" href="mailto:hello@reincarnatedai.com?subject=${encodeURIComponent('Researcher publication correction: '+p.title)}">Report a problem</a>
             </div>
           </div>`).join('')}
       </div>
@@ -796,12 +825,13 @@ function buildPapers(papers) {
 window.openModal = function(id) {
   const r = researchers.find(x => x.id === id);
   if (!r) return;
+  const photo = researcherPhotos[r.id];
   const instLine = r.institutionUrl
     ? `<a href="${r.institutionUrl}" target="_blank" rel="noopener" style="color:rgba(100,75,180,.7);text-decoration:none;">${r.institution}</a>`
     : r.institution;
   document.getElementById('modal').innerHTML = `
     <div class="modal-header">
-      <div class="modal-initials">${initials(r.name)}</div>
+      <div class="modal-initials">${photo ? `<img class="profile-photo" src="${photo.src}" alt="Portrait of ${r.name}" width="48" height="48">` : initials(r.name)}</div>
       <div>
         <div class="modal-name">${r.name}</div>
         <div class="modal-sub">${r.role} · ${instLine} · ${r.years}</div>
@@ -809,6 +839,8 @@ window.openModal = function(id) {
       <button class="modal-close" data-modal-close aria-label="Close details">✕</button>
     </div>
     <div class="modal-body">
+      ${photo ? `<p class="modal-photo-credit">Photo: ${photo.credit} · ${photo.license} · <a href="${photo.source}" target="_blank" rel="noopener">Image source ↗</a></p>` : ''}
+      <a class="profile-page-link" href="/researcher/${r.id}">Open full profile →</a>
       <div class="modal-section">
         <div class="modal-label">Overview</div>
         <div class="modal-text">${r.bio}</div>

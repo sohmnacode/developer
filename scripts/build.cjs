@@ -54,8 +54,9 @@ function emitPage(source, outputName, metadata) {
   for (const name of ['face.jpg','favicon.ico','apple-touch-icon.png','og-image.jpg','reincarnatedai-app-icon.png','site.webmanifest','robots.txt']) copy(name);
   for (const name of fs.readdirSync(path.join(ROOT,'assets'))) if (/\.(js|css)$/.test(name)) copy('assets/'+name);
   for (const name of fs.readdirSync(path.join(ROOT,'assets/icons'))) if (/\.png$/.test(name)) copy('assets/icons/'+name);
+  for (const name of fs.readdirSync(path.join(ROOT,'assets/researcher-portraits'))) if (/\.(jpg|png)$/i.test(name)) copy('assets/researcher-portraits/'+name);
   for (const name of ['9998-screenplay-READER-COPY.pdf','9998-studio-submission-package.pdf']) copy('assets/9998/'+name);
-  for (const name of ['research-data.js','cases-detail-data.js','extended-research-data.js','phenomena-data.js','researchers-data.js','theories-data.js']) copy('data/'+name);
+  for (const name of ['research-data.js','cases-detail-data.js','extended-research-data.js','phenomena-data.js','researchers-data.js','researcher-photos.js','theories-data.js']) copy('data/'+name);
   const pages=fs.readdirSync(ROOT).filter(name=>name.endsWith('.html'));
   for (const name of pages) emitPage(fs.readFileSync(path.join(ROOT,name),'utf8'),name);
   const {caseDetails}=await import('../data/cases-detail-data.js');
@@ -63,9 +64,14 @@ function emitPage(source, outputName, metadata) {
   write('data/extended-research.json',JSON.stringify({research:extendedResearch,cases:extendedCases},null,2));
   const template=fs.readFileSync(path.join(ROOT,'case.html'),'utf8');
   for (const c of caseDetails) emitPage(template,`case/${c.id}.html`,{name:c.name,title:`${c.name} — ReincarnatedAI`,description:c.summary.slice(0,180),url:`https://reincarnatedai.com/case/${c.id}`});
+  const {researchers}=await import('../data/researchers-data.js');
+  const {researcherPhotos}=await import('../data/researcher-photos.js');
+  const {renderResearcherProfile}=require('./researcher-profile.cjs');
+  for (const r of researchers) write(`researcher/${r.id}.html`,renderResearcherProfile(r,researcherPhotos[r.id]));
   const urls=pages.filter(p=>!['case.html','bookmarks.html','search.html','journal.html'].includes(p)).map(p=>'https://reincarnatedai.com/'+(p==='index.html'?'':p.slice(0,-5)));
   urls.push(...caseDetails.map(c=>`https://reincarnatedai.com/case/${c.id}`));
+  urls.push(...researchers.map(r=>`https://reincarnatedai.com/researcher/${r.id}`));
   const sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls.map(url=>`  <url><loc>${url}</loc></url>`).join('\n')+'\n</urlset>\n';
   write('sitemap.xml',sitemap);
-  console.log(`Built ${pages.length + caseDetails.length} pages. Public output contains no DOCX files or internal folders.`);
+  console.log(`Built ${pages.length + caseDetails.length + researchers.length} pages. Public output contains no DOCX files or internal folders.`);
 })();

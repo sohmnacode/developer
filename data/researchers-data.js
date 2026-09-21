@@ -154,8 +154,8 @@ export const researchers = [
     years: '1960–present',
     domains: ['reincarnation', 'child memory', 'verified perception'],
     stance: 'Survival',
-    headline: 'Continued Stevenson\'s work, with 2,500+ cases and the first systematic scoring system for past-life claim strength.',
-    bio: 'Tucker directs the UVA Division of Perceptual Studies. He extended Stevenson\'s cross-cultural database and developed quantitative methods for evaluating case strength. His American cases — including James Leininger and Ryan Hammons — introduced the field to Western audiences through books and media.',
+    headline: 'Former UVA Division of Perceptual Studies director who continued Stevenson\'s case research and developed ways to assess past-life memory reports.',
+    bio: 'Tucker directed the UVA Division of Perceptual Studies until his retirement in January 2025. He extended Stevenson\'s cross-cultural database and developed quantitative methods for evaluating case strength. His American cases — including James Leininger and Ryan Hammons — introduced the field to Western audiences through books and media.',
     keyWork: 'Life Before Life (2005); Return to Life (2013)',
     methodology: 'Case scoring system · Western case documentation · Quantitative evidence evaluation',
     controversy: 'Skeptics argue that American cases benefit from survivorship bias in reporting and are harder to verify than Asian cases where records are more traceable.',
@@ -636,7 +636,7 @@ export const researchers = [
   },
   // Current research roster expanded from university and institute staff pages.
   ...[
-    ['julie-exline','Julie Exline','Psychologist & Researcher','University of Virginia','afterlife beliefs','https://med.virginia.edu/perceptual-studies/dops-staff/'],
+    ['julie-exline','Julie Exline','Director, Division of Perceptual Studies','University of Virginia','afterlife beliefs','https://med.virginia.edu/perceptual-studies/dops-staff/'],
     ['elliott-gish','Elliott Gish','Researcher','University of Virginia','consciousness','https://med.virginia.edu/perceptual-studies/dops-staff/'],
     ['david-acunzo','David Acunzo','Psychiatrist & Researcher','University of Virginia','psi research','https://med.virginia.edu/perceptual-studies/dops-staff/'],
     ['philip-cozzolino','Philip Cozzolino','Research Associate Professor','University of Virginia','NDE · past-life memory','https://med.virginia.edu/perceptual-studies/dops-staff/'],

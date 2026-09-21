@@ -301,6 +301,10 @@
 }
 .rel-tag:hover{ border-color:rgba(100,75,180,.3); color:#1A1535; }
 .sources-list{ display:flex; flex-direction:column; gap:8px; }
+.case-glance{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:24px 0 34px; }
+.case-glance>div{ padding:18px; border:1px solid rgba(100,75,180,.14); border-radius:12px; background:#fff; }
+.case-glance h2{ margin:0 0 8px; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:#7653b8; }
+.case-glance p{ margin:0; font-size:12px; line-height:1.65; color:#504b61; }
 .source-item{ font-size:12px; color:rgba(26,21,53,0.75); line-height:1.65; padding-left:14px; position:relative; }
 .source-item::before{ content:'·'; position:absolute; left:2px; color:#8B5CF6; font-weight:700; }
 
@@ -319,6 +323,7 @@
 [data-theme="dark"] .strength-note{ color:rgba(255,255,255,.28); }
 
 @media(max-width:760px){
+  .case-glance{ grid-template-columns:1fr; }
   .case-hero{ padding:100px 24px 44px; }
   .case-main{ padding:28px 20px 60px; }
   .tl-item{ grid-template-columns:90px 1fr; }
@@ -359,6 +364,11 @@
 
 <div class="case-main" id="caseMain" style="display:none">
   <div class="summary-block"><p id="caseSummary"></p></div>
+  <div class="case-glance" aria-label="Evidence at a glance">
+    <div><h2>Reported observation</h2><p id="glanceObservation"></p></div>
+    <div><h2>Still uncertain</h2><p id="glanceUncertainty"></p></div>
+    <div><h2>Key alternative</h2><p id="glanceAlternative"></p></div>
+  </div>
 
   <div class="case-section">
     <div class="section-heading">Key Events</div>
@@ -439,6 +449,9 @@ if (!c) {
   document.getElementById('strengthNote').textContent = `Editorial evidence score: ${c.strength}/100`;
 
   document.getElementById('caseSummary').textContent = c.summary;
+  document.getElementById('glanceObservation').textContent = c.evidence?.[0]?.claim || 'See the evidence breakdown below.';
+  document.getElementById('glanceUncertainty').textContent = c.evidence?.find(item => item.status !== 'verified')?.claim || 'The available account does not resolve every detail; review the evidence below.';
+  document.getElementById('glanceAlternative').textContent = c.counterarguments?.[0]?.argument || 'See the counterarguments below.';
 
   document.getElementById('timeline').innerHTML = c.timeline.map(t => `
     <div class="tl-item">
@@ -493,7 +506,7 @@ if (!c) {
 
   const allRel = [...c.researchers, ...c.phenomena, ...c.theories];
   document.getElementById('relatedTags').innerHTML = allRel.map(r =>
-    `<a href="${relLinks[r]||'#'}" class="rel-tag">${relMap[r]||r}</a>`
+    `<a href="${c.researchers.includes(r) ? '/researcher/'+r : relLinks[r]||'#'}" class="rel-tag">${relMap[r]||r}</a>`
   ).join('');
 
   document.getElementById('sourcesList').innerHTML = c.sources.map(s =>
