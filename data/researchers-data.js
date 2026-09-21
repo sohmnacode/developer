@@ -20,7 +20,7 @@ export const researchers = [
     ],
     links: {
       website: 'https://med.virginia.edu/perceptual-studies/',
-      archive: 'https://med.virginia.edu/perceptual-studies/our-research/reincarnation-stevenson/',
+      archive: 'https://med.virginia.edu/perceptual-studies/our-research/children-who-report-memories-of-previous-lives/',
     },
     recentPapers: [
       { title: 'Reincarnation and Biology: A Contribution to the Etiology of Birthmarks and Birth Defects', year: 1997, journal: 'Praeger', url: null },
@@ -44,7 +44,7 @@ export const researchers = [
     controversy: 'Retrospective reports and mediumship studies are vulnerable to selection, memory, and information-leakage concerns.',
     links: { website: 'https://med.virginia.edu/perceptual-studies/resources/educational-activities/', archive: 'https://med.virginia.edu/perceptual-studies/publications/academic-publications/' },
     recentPapers: [
-      { title: 'Near-Death Experiences with Reports of Meeting Deceased People', year: 2001, journal: 'Death Studies', url: 'https://med.virginia.edu/perceptual-studies/publications/academic-publications/' },
+      { title: 'Near-Death Experiences with Reports of Meeting Deceased People', year: 2001, journal: 'Death Studies', url: 'https://med.virginia.edu/perceptual-studies/wp-content/uploads/sites/360/2017/01/KEL13-NDEwithReports-of-Meeting-Deceased-People.pdf' },
       { title: 'Irreducible Mind: Toward a Psychology for the 21st Century', year: 2007, journal: 'Rowman & Littlefield', url: 'https://med.virginia.edu/perceptual-studies/publications/books-by-dops-faculty/study-of-the-mind-body-relationship/irreducible-mind-toward-a-psychology-for-the-21st-century/' },
     ],
   },
@@ -53,7 +53,7 @@ export const researchers = [
     name: 'Janice Miner Holden',
     role: 'Counseling Researcher',
     institution: 'University of North Texas',
-    institutionUrl: 'https://digital.library.unt.edu/ark:/67531/metadc799190/',
+    institutionUrl: 'https://newdualism.org/nde-papers/Holden/Holden-Journal%20of%20Near-Death%20Studies_1988-7-19-31.pdf',
     years: 'Research career',
     domains: ['nde', 'verified perception', 'counseling'],
     stance: '',
@@ -62,10 +62,10 @@ export const researchers = [
     keyWork: 'Rationale and Considerations for Proposed Near-Death Research in the Hospital Setting (1988)',
     methodology: 'Research design · Surveys · Counseling-focused analysis',
     controversy: 'A proposed test is not itself evidence that anomalous perception occurs; survey findings depend on self-reports.',
-    links: { archive: 'https://digital.library.unt.edu/ark:/67531/metadc799190/' },
+    links: { archive: 'https://newdualism.org/nde-papers/Holden/Holden-Journal%20of%20Near-Death%20Studies_1988-7-19-31.pdf' },
     recentPapers: [
-      { title: 'Rationale and Considerations for Proposed Near-Death Research in the Hospital Setting', year: 1988, journal: 'Journal of Near-Death Studies', url: 'https://digital.library.unt.edu/ark:/67531/metadc799190/' },
-      { title: 'Spontaneous Mediumship Experiences: A Neglected Aftereffect of Near-Death Experiences', year: 2014, journal: 'Journal of Near-Death Studies', url: 'https://digital.library.unt.edu/ark:/67531/metadc948111/' },
+      { title: 'Rationale and Considerations for Proposed Near-Death Research in the Hospital Setting', year: 1988, journal: 'Journal of Near-Death Studies', url: 'https://newdualism.org/nde-papers/Holden/Holden-Journal%20of%20Near-Death%20Studies_1988-7-19-31.pdf' },
+      { title: 'Spontaneous Mediumship Experiences: A Neglected Aftereffect of Near-Death Experiences', year: 2014, journal: 'Journal of Near-Death Studies', url: 'https://iands.org/nde-research/journal-of-near-death-studies/volume-33-2014-2015-journal-of-near-death-studies/' },
     ],
   },
   {
@@ -167,11 +167,10 @@ export const researchers = [
     ],
     links: {
       website: 'https://med.virginia.edu/perceptual-studies/',
-      googleScholar: 'https://scholar.google.com/citations?user=Jim_Tucker_UVA',
     },
     recentPapers: [
-      { title: 'Children Who Claim to Remember Previous Lives: Cases with Written Records Made before Verification', year: 2016, journal: 'Explore', url: 'https://www.explorejournal.com/article/S1550-8307(16)30019-5/abstract' },
-      { title: 'The Case of James Leininger: An American Case of the Reincarnation Type', year: 2016, journal: 'Explore', url: 'https://www.explorejournal.com/article/S1550-8307(16)30007-9/abstract' },
+      { title: 'Children Who Claim to Remember Previous Lives: Cases with Written Records Made before the Previous Personality Was Identified', year: 2005, journal: 'Journal of Scientific Exploration', url: 'https://med.virginia.edu/perceptual-studies/wp-content/uploads/sites/360/2016/12/REI32-Tucker_keil-1.pdf' },
+      { title: 'The Case of James Leininger: An American Case of the Reincarnation Type', year: 2016, journal: 'Explore', url: 'https://pubmed.ncbi.nlm.nih.gov/27079216/' },
       { title: 'Return to Life: Extraordinary Cases of Children Who Remember Past Lives', year: 2013, journal: 'St. Martin\'s Press', url: null },
     ],
   },
@@ -198,7 +197,7 @@ export const researchers = [
       website: 'https://www.pimvanlommel.nl/',
     },
     recentPapers: [
-      { title: 'Near-death experience in survivors of cardiac arrest: a prospective study in the Netherlands', year: 2001, journal: 'The Lancet', url: 'https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(01)07100-8/fulltext' },
+      { title: 'Near-death experience in survivors of cardiac arrest: a prospective study in the Netherlands', year: 2001, journal: 'The Lancet', url: 'https://pubmed.ncbi.nlm.nih.gov/11755611/' },
       { title: 'Non-local Consciousness: A Concept Based on Scientific Research on Near-Death Experiences', year: 2013, journal: 'Journal of Consciousness Studies', url: null },
       { title: 'Consciousness Beyond Life: The Science of the Near-Death Experience', year: 2010, journal: 'HarperOne', url: null },
     ],
@@ -208,7 +207,7 @@ export const researchers = [
     name: 'Sam Parnia',
     role: 'Critical Care Physician & Researcher',
     institution: 'NYU Langone Health',
-    institutionUrl: 'https://med.nyu.edu/faculty/sam-parnia',
+    institutionUrl: 'https://nyulangone.org/doctors/1467610337/sam-parnia',
     years: '1970–present',
     domains: ['nde', 'clinical study', 'verified perception'],
     stance: 'Agnostic / Open',
@@ -224,11 +223,10 @@ export const researchers = [
       { title: 'Resuscitation and Near-Death Awareness', outlet: 'NYU Grand Rounds', year: 2022, url: null },
     ],
     links: {
-      website: 'https://med.nyu.edu/faculty/sam-parnia',
-      googleScholar: 'https://scholar.google.com/scholar?q=Sam+Parnia+NDE',
+      website: 'https://nyulangone.org/doctors/1467610337/sam-parnia',
     },
     recentPapers: [
-      { title: 'AWARE—AWAreness during REsuscitation—A prospective study', year: 2014, journal: 'Resuscitation', url: 'https://www.resuscitationjournal.com/article/S0300-9572(14)00739-4/fulltext' },
+      { title: 'AWARE—AWAreness during REsuscitation—A prospective study', year: 2014, journal: 'Resuscitation', url: 'https://pubmed.ncbi.nlm.nih.gov/25301715/' },
       { title: 'Cardiac Arrest: The Science and Practice of Resuscitation Medicine', year: 2007, journal: 'Cambridge University Press', url: null },
       { title: 'Guidelines and Beyond: The Science of Cardiopulmonary Resuscitation', year: 2012, journal: 'Current Opinion in Critical Care', url: null },
     ],
@@ -307,11 +305,10 @@ export const researchers = [
     ],
     links: {
       website: 'https://med.virginia.edu/perceptual-studies/',
-      googleScholar: 'https://scholar.google.com/scholar?q=Bruce+Greyson+near+death+experience',
     },
     recentPapers: [
       { title: 'After: A Doctor Explores What Near-Death Experiences Reveal about Life and Beyond', year: 2021, journal: 'St. Martin\'s Essentials', url: null },
-      { title: 'Are Persons Identical to Their Brains?', year: 2021, journal: 'Explore', url: 'https://www.explorejournal.com/article/S1550-8307(21)00002-8/abstract' },
+      { title: 'The near-death experience scale: Construction, reliability, and validity', year: 1983, journal: 'Journal of Nervous and Mental Disease', url: 'https://pubmed.ncbi.nlm.nih.gov/6854303/' },
       { title: 'The Incidence of Near-Death Experiences', year: 2003, journal: 'Medscape General Medicine', url: null },
     ],
   },
@@ -364,10 +361,9 @@ export const researchers = [
     ],
     links: {
       website: 'https://deanradin.com/',
-      googleScholar: 'https://scholar.google.com/scholar?q=Dean+Radin+parapsychology',
     },
     recentPapers: [
-      { title: 'Predicting the Unpredictable: 75 Years of Experimental Evidence', year: 2022, journal: 'Frontiers in Human Neuroscience', url: 'https://www.frontiersin.org/articles/10.3389/fnhum.2022.811659/full' },
+      { title: 'Predicting the Unpredictable: 75 Years of Experimental Evidence', year: 2011, journal: 'AIP Conference Proceedings', url: 'https://www.thepsifiles.org/paper/radin_2011_predicting/' },
       { title: 'Psychophysical interactions with a double-slit interference pattern', year: 2012, journal: 'Physics Essays', url: null },
       { title: 'Real Magic: Ancient Wisdom, Modern Science, and a Guide to the Secret Power of the Universe', year: 2018, journal: 'Harmony Books', url: null },
     ],
@@ -392,7 +388,7 @@ export const researchers = [
     ],
     links: {
       website: 'https://www.edgarcayce.org/',
-      archive: 'https://www.edgarcayce.org/the-readings/',
+      archive: 'https://edgarcayce.org/resources/library/',
     },
     recentPapers: [
       { title: 'There Is a River: The Story of Edgar Cayce', year: 1942, journal: 'Henry Holt (Thomas Sugrue)', url: null },
@@ -448,7 +444,6 @@ export const researchers = [
     ],
     links: {
       website: 'https://www.sheldrake.org/',
-      googleScholar: 'https://scholar.google.com/scholar?q=Rupert+Sheldrake+morphic+resonance',
     },
     recentPapers: [
       { title: 'Morphic Resonance: The Nature of Formative Causation', year: 2009, journal: 'Park Street Press', url: null },
@@ -528,7 +523,7 @@ export const researchers = [
     interviewClips: [],
     links: {
       website: 'https://www.spr.ac.uk/',
-      archive: 'https://www.spr.ac.uk/publications/journal-society-psychical-research',
+      archive: 'https://www.spr.ac.uk/',
     },
     recentPapers: [
       { title: 'Phantasms of the Living (with Gurney & Podmore)', year: 1886, journal: 'Society for Psychical Research', url: null },
@@ -563,7 +558,7 @@ export const researchers = [
     name: 'Gary Schwartz',
     role: 'Psychologist & Afterlife Researcher',
     institution: 'University of Arizona (Laboratory for Advances in Consciousness and Health)',
-    institutionUrl: 'https://lach.web.arizona.edu/',
+    institutionUrl: 'https://neurology.arizona.edu/gary-e-schwartz-phd',
     years: '1947–present',
     domains: ['consciousness', 'nonlocal'],
     stance: 'Psi-positive',
@@ -578,7 +573,7 @@ export const researchers = [
       { title: 'Medium Accuracy Research', outlet: 'University of Arizona Lecture', year: 2011, url: null },
     ],
     links: {
-      website: 'https://lach.web.arizona.edu/',
+      website: 'https://neurology.arizona.edu/gary-e-schwartz-phd',
     },
     recentPapers: [
       { title: 'The Afterlife Experiments: Breakthrough Scientific Evidence of Life After Death', year: 2002, journal: 'Atria Books', url: null },
@@ -653,25 +648,25 @@ export const researchers = [
     ['edward-kelly','Edward F. Kelly','Professor of Research','University of Virginia','psi · neurophysiology','https://med.virginia.edu/perceptual-studies/dops-staff/'],
     ['anil-seth','Anil Seth','Neuroscientist','University of Sussex','consciousness science','https://www.anilseth.com/'],
     ['christof-koch','Christof Koch','Neuroscientist','Allen Institute','neural correlates of consciousness','https://alleninstitute.org/what-we-do/brain-science/about/team/staff-profiles/christof-koch/'],
-    ['giulio-tononi','Giulio Tononi','Neuroscientist & Theorist','University of Wisconsin–Madison','integrated information theory','https://lmc.wisc.edu/people/giulio-tononi/'],
-    ['david-chalmers','David Chalmers','Philosopher','New York University','philosophy of mind','https://as.nyu.edu/faculty/david-chalmers.html'],
-    ['philip-goff','Philip Goff','Philosopher','Durham University','panpsychism · consciousness','https://www.durham.ac.uk/staff/philip-goff/'],
-    ['stanislas-dehaene','Stanislas Dehaene','Cognitive Neuroscientist','Collège de France','conscious access','https://www.college-de-france.fr/en/chair/stanislas-dehaene-experimental-cognitive-psychology'],
-    ['michael-graziano','Michael Graziano','Neuroscientist','Princeton University','attention schema theory','https://grazianolab.princeton.edu/'],
-    ['ned-block','ned-block','Philosopher & Cognitive Scientist','New York University','consciousness theory','https://as.nyu.edu/faculty/ned-block.html'],
+    ['giulio-tononi','Giulio Tononi','Neuroscientist & Theorist','University of Wisconsin–Madison','integrated information theory','https://www.psychiatry.wisc.edu/staff/tononi-giulio/'],
+    ['david-chalmers','David Chalmers','Philosopher','New York University','philosophy of mind','https://consc.net/bio/'],
+    ['philip-goff','Philip Goff','Philosopher','Durham University','panpsychism · consciousness','https://philipgoffphilosophy.com/about'],
+    ['stanislas-dehaene','Stanislas Dehaene','Cognitive Neuroscientist','Collège de France','conscious access','https://www.college-de-france.fr/en/chair/stanislas-dehaene-experimental-cognitive-psychology-statutory-chair'],
+    ['michael-graziano','Michael Graziano','Neuroscientist','Princeton University','attention schema theory','https://collaborate.princeton.edu/en/persons/michael-steven-graziano/'],
+    ['ned-block','Ned Block','Philosopher & Cognitive Scientist','New York University','consciousness theory','https://www.nedblock.us/'],
     ['david-nutt','David Nutt','Neuropsychopharmacologist','Imperial College London','psychedelics · brain science','https://www.imperial.ac.uk/people/d.nutt'],
     ['robin-carhart-harris','Robin Carhart-Harris','Neuroscientist','University of California, San Francisco','psychedelics · neuroimaging','https://profiles.ucsf.edu/robin.carhart-harris'],
     ['matthew-johnson','Matthew W. Johnson','Psychologist & Researcher','University of Sydney','psychedelics · addiction','https://www.sydney.edu.au/medicine-health/about/our-people/academic-staff/matthew-johnson.html'],
     ['frederick-barrett','Frederick Barrett','Neuroscientist','Johns Hopkins University','psychedelics · mystical experience','https://hopkinspsychedelic.org/'],
-    ['katherine-maclean','Katherine MacLean','Psychologist & Researcher','Independent Researcher','psychedelics · meditation','https://www.katherinemaclean.net/'],
+    ['katherine-maclean','Katherine MacLean','Psychologist & Researcher','Independent Researcher','psychedelics · meditation','https://www.katherinemaclean.org/'],
     ['penny-sartori','Penny Sartori','Nurse Researcher','UK Clinical NDE Research','NDE · clinical studies','https://www.drpennysartori.com/'],
     ['peter-fenwick','Peter Fenwick','Neuropsychiatrist & Researcher','Institute of Noetic Sciences','NDE · deathbed visions','https://www.noetic.org/'],
-    ['christopher-kerr','Christopher Kerr','Hospice Physician & Researcher','Hospice & Palliative Care Buffalo','end-of-life dreams','https://www.hospicebuffalo.com/about-us/christopher-kerr-md/'],
-    ['jessica-utts','Jessica Utts','Statistician','University of California, Irvine','parapsychology · statistics','https://www.stat.uci.edu/faculty/jessica-utts/'],
-    ['etzel-cardena','Etzel Cardeña','Psychologist & Researcher','Lund University','anomalous experiences · psi','https://www.psy.lu.se/en/etzel-cardena'],
+    ['christopher-kerr','Christopher Kerr','Hospice Physician & Researcher','Hospice & Palliative Care Buffalo','end-of-life dreams','https://www.drchristopherkerr.com/'],
+    ['jessica-utts','Jessica Utts','Statistician','University of California, Irvine','parapsychology · statistics','https://ics.uci.edu/~jutts/'],
+    ['etzel-cardena','Etzel Cardeña','Psychologist & Researcher','Lund University','anomalous experiences · psi','https://www.psy.lu.se/en/cercap'],
     ['caroline-watt','Caroline Watt','Parapsychologist','University of Edinburgh','parapsychology · presentiment','https://www.ed.ac.uk/profile/caroline-watt'],
     ['chris-french','Chris French','Psychologist','Goldsmiths, University of London','anomalistic psychology','https://www.gold.ac.uk/psychology/staff/french/'],
-    ['patrick-butlin','Patrick Butlin','AI Consciousness Researcher','University of Oxford','AI consciousness','https://www.ox.ac.uk/'],
-    ['susan-schneider','Susan Schneider','Philosopher & AI Researcher','Florida Atlantic University','AI consciousness · mind','https://www.fau.edu/philosophy/schneider/'],
+    ['patrick-butlin','Patrick Butlin','AI Consciousness Researcher','Eleos AI','AI consciousness','https://patrickbutlin.com/'],
+    ['susan-schneider','Susan Schneider','Philosopher & AI Researcher','Florida Atlantic University','AI consciousness · mind','https://www.fau.edu/artsandletters/philosophy/susan-schneider/index/'],
   ].map(([id,name,role,institution,domain,website])=>({id,name,role,institution,institutionUrl:website,years:'Current',domains:domain.split(' · '),stance:'Agnostic / Open',headline:`Active researcher working on ${domain}.`,bio:`A current researcher whose published work and institutional profile contribute to the study of ${domain}. This directory entry is a starting point for reviewing their primary work and current affiliation.`,keyWork:'See institutional profile and linked publications',methodology:'Institutional research · Published scholarship · Field-specific methods',controversy:'Interpretations and evidentiary strength vary by study, method, and disciplinary context.',links:{website},recentPapers:[]})),
 ];
