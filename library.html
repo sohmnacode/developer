@@ -110,9 +110,9 @@ function render() {
     <article class="card">
       <span class="kind-badge ${i.kind}">${i.kind}</span>
       <div class="lib-title">${i.title}</div>
-      <div class="lib-author">${i.kind==='Book' ? bookAuthors(i.author).map(a=>`<a href="${a.url}" ${a.url.startsWith('http')?'target="_blank" rel="noopener"':''}>${a.name}</a>`).join(' · ') : i.author} · ${i.year} · ${i.domain}</div>
+      <div class="lib-author">${i.kind==='Book' ? bookAuthors(i.author).map(a=>`<a href="${a.url}" ${a.url.startsWith('http')?'target="_blank" rel="noopener"':''}>${a.name}</a>`).join(' · ') : i.author} · ${i.year ? `${i.year} · ` : ''}${i.domain}</div>
       <p class="lib-note">${i.note}</p>
-      ${i.kind==='Book' && bookLinks[i.title] ? `<a class="lib-book-link" href="${bookLinks[i.title].url}" target="_blank" rel="noopener">View book · ${bookLinks[i.title].source} ↗</a>` : ''}
+      ${i.kind==='Book' && bookLinks[i.title] ? `<a class="lib-book-link" href="${bookLinks[i.title].url}" target="_blank" rel="noopener">${bookLinks[i.title].source==='Official bibliography'?'See official bibliography ↗':`View book · ${bookLinks[i.title].source} ↗`}</a>` : ''}
     </article>`).join('') || '<p class="lede" style="margin:0">No entries match.</p>';
 }
 
