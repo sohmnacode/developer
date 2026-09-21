@@ -48,6 +48,8 @@
 .count-line{font-size:13px;color:var(--muted);margin-bottom:22px}
 .section-divider{margin:48px 0 28px;border:none;border-top:1px solid var(--line)}
 .kind-section-title{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(120,95,190,.65);margin-bottom:18px;font-weight:600}
+.book-feature{margin-bottom:24px;padding:18px 22px;border:1px solid rgba(100,75,180,.16);border-radius:12px;background:rgba(237,229,255,.65)}
+.book-feature h2{font-size:18px;margin-bottom:7px}.book-feature p{font-size:12px;color:var(--muted);line-height:1.6}.book-feature a,.lib-book-link,.lib-author a{color:#6740aa}.lib-book-link{display:inline-block;margin-top:12px;font-size:12px;font-weight:600}
 </style>
 <script src="/assets/safe.js"></script>
 <script src="/assets/chat-client.js" defer></script>
@@ -65,6 +67,7 @@
 
 <main>
 <section class="section">
+  <div class="book-feature"><h2>Book Publications</h2><p>Browse all books by subject, then open an author profile or the book’s publisher, author, or library record.</p><a href="/book-publications">Explore book publications →</a></div>
   <div class="filters">
     <input id="q" class="search" placeholder="Search title, author, domain, notes…">
     <select id="domain" class="select"><option value="">All domains</option></select>
@@ -82,6 +85,7 @@
 
 <script type="module">
 import { libraryItems } from '/data/research-data.js';
+import { bookLinks, bookAuthors } from '/data/book-publications.js';
 
 const q      = document.getElementById('q');
 const domain = document.getElementById('domain');
@@ -106,8 +110,9 @@ function render() {
     <article class="card">
       <span class="kind-badge ${i.kind}">${i.kind}</span>
       <div class="lib-title">${i.title}</div>
-      <div class="lib-author">${i.author} · ${i.year} · ${i.domain}</div>
+      <div class="lib-author">${i.kind==='Book' ? bookAuthors(i.author).map(a=>`<a href="${a.url}" ${a.url.startsWith('http')?'target="_blank" rel="noopener"':''}>${a.name}</a>`).join(' · ') : i.author} · ${i.year} · ${i.domain}</div>
       <p class="lib-note">${i.note}</p>
+      ${i.kind==='Book' && bookLinks[i.title] ? `<a class="lib-book-link" href="${bookLinks[i.title].url}" target="_blank" rel="noopener">View book · ${bookLinks[i.title].source} ↗</a>` : ''}
     </article>`).join('') || '<p class="lede" style="margin:0">No entries match.</p>';
 }
 

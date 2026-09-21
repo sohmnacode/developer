@@ -56,7 +56,7 @@ function emitPage(source, outputName, metadata) {
   for (const name of fs.readdirSync(path.join(ROOT,'assets/icons'))) if (/\.png$/.test(name)) copy('assets/icons/'+name);
   for (const name of fs.readdirSync(path.join(ROOT,'assets/researcher-portraits'))) if (/\.(jpg|png)$/i.test(name)) copy('assets/researcher-portraits/'+name);
   for (const name of ['9998-screenplay-READER-COPY.pdf','9998-studio-submission-package.pdf']) copy('assets/9998/'+name);
-  for (const name of ['research-data.js','cases-detail-data.js','extended-research-data.js','phenomena-data.js','researchers-data.js','researcher-photos.js','theories-data.js']) copy('data/'+name);
+  for (const name of ['research-data.js','book-publications.js','cases-detail-data.js','extended-research-data.js','phenomena-data.js','researchers-data.js','researcher-photos.js','theories-data.js']) copy('data/'+name);
   const pages=fs.readdirSync(ROOT).filter(name=>name.endsWith('.html'));
   for (const name of pages) emitPage(fs.readFileSync(path.join(ROOT,name),'utf8'),name);
   const {caseDetails}=await import('../data/cases-detail-data.js');
@@ -66,8 +66,11 @@ function emitPage(source, outputName, metadata) {
   for (const c of caseDetails) emitPage(template,`case/${c.id}.html`,{name:c.name,title:`${c.name} — ReincarnatedAI`,description:c.summary.slice(0,180),url:`https://reincarnatedai.com/case/${c.id}`});
   const {researchers}=await import('../data/researchers-data.js');
   const {researcherPhotos}=await import('../data/researcher-photos.js');
+  const {libraryItems}=await import('../data/research-data.js');
+  const {bookLinks,bookAuthors}=await import('../data/book-publications.js');
+  const books=libraryItems.filter(item=>item.kind==='Book');
   const {renderResearcherProfile}=require('./researcher-profile.cjs');
-  for (const r of researchers) write(`researcher/${r.id}.html`,renderResearcherProfile(r,researcherPhotos[r.id]));
+  for (const r of researchers) write(`researcher/${r.id}.html`,renderResearcherProfile(r,researcherPhotos[r.id],books.filter(book=>bookAuthors(book.author).some(author=>author.name===r.name)),bookLinks));
   const urls=pages.filter(p=>!['case.html','bookmarks.html','search.html','journal.html'].includes(p)).map(p=>'https://reincarnatedai.com/'+(p==='index.html'?'':p.slice(0,-5)));
   urls.push(...caseDetails.map(c=>`https://reincarnatedai.com/case/${c.id}`));
   urls.push(...researchers.map(r=>`https://reincarnatedai.com/researcher/${r.id}`));
