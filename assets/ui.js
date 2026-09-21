@@ -15,6 +15,15 @@
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
+  const footer = document.querySelector('footer.footer');
+  if (footer && !footer.querySelector('a[href="/#contact"]')) {
+    const link = document.createElement('a');
+    link.href = '/#contact';
+    link.textContent = 'Contact';
+    const links = footer.lastElementChild?.tagName === 'SPAN' ? footer.lastElementChild : footer;
+    links.append(document.createTextNode(' · '), link);
+  }
+
   const nav = document.querySelector('nav');
   if (!nav || nav.querySelector('.nav-icon-btn')) return;
 
