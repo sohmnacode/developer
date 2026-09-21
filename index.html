@@ -483,10 +483,10 @@ if (item) {
   const label = document.getElementById('newsHomeLabel');
   label.firstChild.textContent = isBreaking(item.published) ? 'Breaking Research' : 'Research News';
   document.getElementById('newsHomeTitle').textContent = item.title;
-  document.getElementById('newsHomeTitle').href = `/news#${item.id}`;
+  document.getElementById('newsHomeTitle').href = '/news';
   document.getElementById('newsHomeSummary').textContent = item.summary;
   document.getElementById('newsHomeMeta').textContent = `${new Date(`${item.published}T12:00:00Z`).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})} · ${item.source}`;
-  document.getElementById('newsHomeStory').href = `/news#${item.id}`;
+  document.getElementById('newsHomeStory').href = '/news';
 }
 </script>
 
